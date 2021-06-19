@@ -3,6 +3,7 @@ html, body {
 }
  body {
 	 background: radial-gradient(#333, #111);
+	 margin:0;
 	 overflow: hidden;
 }
  .cards {
@@ -14,9 +15,7 @@ html, body {
 	 position: fixed;
 	 left: 0;
 	 right: 0;
-}
-.cardinplay {
-
+	 z-index: 10;
 }
  .card {
 	 height: 150px;
@@ -45,6 +44,7 @@ html, body {
 	 bottom: 0;
 	 content: '';
 	 left: 0;
+	 border-radius: 10px;
 	 pointer-events: none;
 	 position: absolute;
 	 right: 0;
@@ -281,23 +281,26 @@ html, body {
 }
  @keyframes fade {
 	 0% {
-		 opacity: 0.9;
+		 opacity: 0.8;
+		 border-radius: 10px;
 		 transform: scale(1);
 	}
 	 100% {
 		 opacity: 0;
+		 border-radius: 10px;
 		 transform: scale(1.15);
 	}
 }
 .board {
 	 width: inherit;
-	 height: 5rem;
-	 padding: 7rem;
+	 height: 0;
+	 padding: 10.1rem;
+	 padding-top: 11rem;
 }
  .cardinplay {
 	 float: left;
-	 width: 20vw;
-	 height: 12vw;
+	 width: 14rem;
+	 height: 8rem;
 	 margin: 0 auto;
 	 cursor: pointer;
 	 border-radius: 0.5vw;
@@ -315,13 +318,25 @@ html, body {
 	 left: 0;
 	 pointer-events: none;
 }
- [data-card="ysera"] {
-	 background: url("http://img3.wikia.nocookie.net/__cb20131211224539/hearthstone/images/2/23/Ysera.gif") no-repeat center center;
-	 background-size: cover;
-}
  [data-card="red"] {
 	 background: linear-gradient(-135deg, rgba(255, 153, 153, 1), rgba(218, 11, 11, 1));
 	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(255, 153, 153, 0.75);
 	 background-size: cover;
 }
- 
+ [data-card="blue"] {
+	  background: linear-gradient(-135deg, rgba(153, 194, 255, 1), rgba(11, 94, 218, 1));
+	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(153, 194, 255, 0.75);
+	 background-size: cover;
+}
+.playerhero {
+	position: absolute;
+	top: 67.5%;
+	left: 43.5%;
+	z-index: 0;
+ }
+.opponenthero {
+	position: absolute;
+	top: 3.5%;
+	left: 43.5%;
+	z-index: 0;
+ }

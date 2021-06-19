@@ -19,6 +19,7 @@ $(".cardinplay").on("click", function(e){
         yEnd = e.pageY - (target.height()/2),
         xStart = currentAttacker.offset().left,
         yStart = currentAttacker.offset().top;
+        console.log($(this));
     
     	$("svg").hide();
     
@@ -28,7 +29,7 @@ $(".cardinplay").on("click", function(e){
 			translateY: ""+(yEnd - yStart)+"px"
     	},
     	{
-      		duration: 150,
+      		duration: 200,
       		easing: [.7,.3,.73,.37]
     	}).velocity("reverse", { duration: 600, easing: [.01,.92,.09,.99]});
     	currentAttacker = null;
@@ -41,4 +42,3 @@ const deck = new Deck()
 deck.shuffle()
 console.log(deck.cards)
 
-computerCardSlot.appendChild(deck.cards[0].getHTML())
