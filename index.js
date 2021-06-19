@@ -14,6 +14,7 @@ $(".cardinplay").on("click", function(e){
     });
 }
 	else {
+		var snd = new Audio("attack.mp3");
     	var target = $(this),
         xEnd = e.pageX - (target.width()/2),
         yEnd = e.pageY - (target.height()/2),
@@ -22,6 +23,7 @@ $(".cardinplay").on("click", function(e){
         console.log($(this));
     
     	$("svg").hide();
+    	snd.play();
     
     	$(currentAttacker).velocity({
 			translateZ: 0,
@@ -41,4 +43,3 @@ const computerCardSlot = document.querySelector('.computer-card-slot')
 const deck = new Deck()
 deck.shuffle()
 console.log(deck.cards)
-

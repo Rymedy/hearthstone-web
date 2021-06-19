@@ -340,6 +340,11 @@ html, body {
 	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(153, 194, 255, 0.75);
 	 background-size: cover;
 }
+ [data-card="yellow"] {
+	 background: linear-gradient(-135deg, rgba(255, 214, 153, 1), rgba(218, 135, 11, 1));
+	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(255, 214, 153, 0.75);
+	 background-size: cover;
+}
 .playerhero {
 	position: absolute;
 	top: 67.5%;
@@ -351,4 +356,24 @@ html, body {
 	top: 3.5%;
 	left: 43.5%;
 	z-index: 0;
+ }
+ .attackValue {
+	 float: left;
+	 width: 4rem;
+	 height: 2rem;
+	 margin: 0 auto;
+	 cursor: pointer;
+	 border-top-left-radius: 0.5vw;
+	 border-bottom-right-radius: 0.5vw;
+	 transition: border 0.3s ease, box-shadow 0.3s ease;
+ }
+ .healthValue {
+ 	 float: right;
+	 width: 4rem;
+	 height: 2rem;
+	 margin: 0 auto;
+	 cursor: pointer;
+	 border-top-right-radius: 0.5vw;
+	 border-bottom-left-radius: 0.5vw;
+	 transition: border 0.3s ease, box-shadow 0.3s ease;
  }
