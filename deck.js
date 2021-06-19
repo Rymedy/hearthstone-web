@@ -22,6 +22,26 @@ class MinionCard {
 		this.attack = attack
 		this.health = health
 	}
+
+	getHTML() {
+		const cardDiv = document.createElement('div')
+		const cardFaceDiv = document.createElement('div')
+		const cardLabelDiv = document.createElement('div')
+		const attackLabelDiv = document.createElement('div')
+		const healthLabelDiv = document.createElement('div')
+		document.getElementById('cards').appendChild(cardDiv);
+		cardDiv.classList.add("card")
+		cardFaceDiv.classList.add("card-face")
+		cardLabelDiv.classList.add("card-label")
+		cardDiv.appendChild(cardFaceDiv)
+		cardFaceDiv.appendChild(cardLabelDiv)
+		cardFaceDiv.appendChild(attackLabelDiv)
+		cardFaceDiv.appendChild(healthLabelDiv)
+		cardLabelDiv.innerHTML = "1";
+		attackLabelDiv.innerText = this.attack
+		healthLabelDiv.innerText = this.health
+		return cardDiv
+	}
 }
 
 function freshDeck() {

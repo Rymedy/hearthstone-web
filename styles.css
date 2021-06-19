@@ -1,79 +1,3 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins:900i');
-*, *::after, *::before {
-	box-sizing: border-box;
-}
-
-html, body {
-	margin: 0; height: 100%; overflow: hidden
-	font-family: 'helvetica neue', helvetica, arial, sans-serif;
-	font-size: 24px;
-	font-weight: bold;
-	letter-spacing: -0.025em;
-	padding: 15px 0 0 15px;
-}
-
-body {
-}
-
-.deck {
-	height: 10rem;
-	width: 6rem;
-	 bottom: 0;
-	 content: '';
-	 left: 0;
-	 pointer-events: none;
-	 position: absolute;
-	 right: 0;
-	 top: 0;
-	 font-family: 'helvetica neue', helvetica, arial, sans-serif;
-	 font-size: 24px;
-	 font-weight: bold;
-	 letter-spacing: -0.025em;
-	-webkit-user-select: none; /* Safari */        
-	-moz-user-select: none; /* Firefox */
-	-ms-user-select: none; /* IE10+/Edge */
-	user-select: none; /* Standard */
-	 text-shadow: -0.025em 0.025em 0 rgba(255, 128, 128, 1);
-}
-
-.computer-deck {
-	color: rgba(219, 0, 0, 1);
-	background: linear-gradient(-135deg, rgba(255, 153, 153, 1), rgba(218, 11, 11, 1));
-	box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.4), inset 0 0 0 2px rgba(255, 153, 153, 0.75);
-	padding: 120px 0 0 55px;
-	position: absolute;
-	top: -5%;
-	left: 5%;
-}
-
-.player-deck {
-	color: rgba(0, 219, 219, 1);
-	background: linear-gradient(-135deg, rgba(153, 255, 255, 1), rgba(11, 218, 218, 1));
-	box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(153, 255, 255, 0.75);
-	padding: 80px 0 0 55px;
-	position: absolute;
-	top: 80%;
-	left: 80%;
-}
-
-.name-text {
-	position: absolute;
-	top: 50%;
-  	left: 15%;
-	font-size: 1.5rem;
-}
-
-.attack-text {
-	position: absolute;
-	top: 80%;
-	left: 1%;
-}
-
-.health-text {
-	position: absolute;
-	top: 80%;
-	left: 80%;
-}
 html, body {
 	 height: 100%;
 }
@@ -85,19 +9,29 @@ html, body {
 	 bottom: 0;
 	 display: flex;
 	 height: 150px;
-	 width: 100%;
 	 padding: 0 50px;
 	 justify-content: center;
 	 position: fixed;
 	 left: 0;
 	 right: 0;
 }
+.cardinplay {
+
+}
  .card {
 	 height: 150px;
 	 margin: 0 -25px;
 	 position: relative;
 	 width: 100px;
+	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none; /* Safari */
+	-khtml-user-select: none; /* Konqueror HTML */
+	-moz-user-select: none; /* Old versions of Firefox */
+	-ms-user-select: none; /* Internet Explorer/Edge */
+	user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
 }
+
  .card:after {
 	 bottom: 0;
 	 content: '';
@@ -134,10 +68,6 @@ html, body {
 	 font-weight: bold;
 	 letter-spacing: -0.025em;
 	 padding: 15px 0 0 15px;
-	-webkit-user-select: none; /* Safari */        
-	-moz-user-select: none; /* Firefox */
-	-ms-user-select: none; /* IE10+/Edge */
-	user-select: none; /* Standard */
 }
  .card:nth-child(1) .card-face {
 	 background: linear-gradient(-135deg, rgba(255, 153, 153, 1), rgba(218, 11, 11, 1));
@@ -359,100 +289,39 @@ html, body {
 		 transform: scale(1.15);
 	}
 }
-
-
-body {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.board {
+	 width: inherit;
+	 height: 5rem;
+	 padding: 7rem;
 }
-
-.wrapper {
-  position: absolute;
-  top: 45%;
-  left: 85%;
+ .cardinplay {
+	 float: left;
+	 width: 20vw;
+	 height: 12vw;
+	 margin: 0 auto;
+	 cursor: pointer;
+	 border-radius: 0.5vw;
+	 transition: border 0.3s ease, box-shadow 0.3s ease;
 }
-
-.cta {
-    display: flex;
-    padding: 3px 15px;
-    text-decoration: none;
-    font-family: 'Poppins', sans-serif;
-    font-size: 20px;
-    color: white;
-    background: #6225E6;
-    transition: 1s;
-    box-shadow: 5px 5px 0 black;
-    transform: skewX(-15deg);
+ .cardinplay:hover {
+	 box-shadow: 0 0 2em 1px #32de8a;
 }
-
-.cta:focus {
-   outline: none; 
+ .cardinplay img {
+	 width: 100%;
 }
-
-.cta:hover {
-    transition: 0.5s;
-    box-shadow: 10px 10px 0 #FBC638;
+ svg {
+	 position: absolute;
+	 top: 0;
+	 left: 0;
+	 pointer-events: none;
 }
-
-.cta span:nth-child(2) {
-    transition: 0.5s;
-    margin-right: 0px;
+ [data-card="ysera"] {
+	 background: url("http://img3.wikia.nocookie.net/__cb20131211224539/hearthstone/images/2/23/Ysera.gif") no-repeat center center;
+	 background-size: cover;
 }
-
-.cta:hover  span:nth-child(2) {
-    transition: 0.5s;
-    margin-right: 45px;
+ [data-card="red"] {
+	 background: linear-gradient(-135deg, rgba(255, 153, 153, 1), rgba(218, 11, 11, 1));
+	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(255, 153, 153, 0.75);
+	 background-size: cover;
 }
-
-  span {
-    transform: skewX(15deg) 
-  }
-
-  span:nth-child(2) {
-    width: 20px;
-    margin-left: 30px;
-    position: relative;
-    top: 12%;
-  }
-  
-/**************SVG****************/
-
-path.one {
-    transition: 0.4s;
-    transform: translateX(-60%);
-}
-
-path.two {
-    transition: 0.5s;
-    transform: translateX(-30%);
-}
-
-.cta:hover path.three {
-    animation: color_anim 1s infinite 0.2s;
-}
-
-.cta:hover path.one {
-    transform: translateX(0%);
-    animation: color_anim 1s infinite 0.6s;
-}
-
-.cta:hover path.two {
-    transform: translateX(0%);
-    animation: color_anim 1s infinite 0.4s;
-}
-
-/* SVG animations */
-
-@keyframes color_anim {
-    0% {
-        fill: white;
-    }
-    50% {
-        fill: #FBC638;
-    }
-    100% {
-        fill: white;
-    }
-}
+ 
