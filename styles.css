@@ -5,6 +5,10 @@ html, body {
 	 background: radial-gradient(#333, #111);
 	 margin:0;
 	 overflow: hidden;
+	 cursor: url(cursor/cursor.png) 10 2, auto;
+}
+ body:active {
+	 cursor: url(cursor/click.png) 10 2, auto;
 }
  .cards {
 	 bottom: 0;
@@ -40,6 +44,9 @@ html, body {
 	 top: 0px;
 	 z-index: 10;
 }
+.card:active {
+	cursor: url(cursor/grab.png) 10 2, auto;
+}
  .card-face {
 	 bottom: 0;
 	 content: '';
@@ -50,6 +57,7 @@ html, body {
 	 right: 0;
 	 top: 0;
 	 transition: 800ms cubic-bezier(0.19, 1, 0.22, 1) transform;
+}
 }
  .card-face:after {
 	 animation: none;
@@ -308,9 +316,13 @@ html, body {
 }
  .cardinplay:hover {
 	 box-shadow: 0 0 2em 1px #32de8a;
+	 cursor: url(cursor/cursor.png) 10 2, auto;
 }
  .cardinplay img {
 	 width: 100%;
+}
+.cardinplay:active {
+	cursor: url(cursor/click.png) 10 2, auto;
 }
  svg {
 	 position: absolute;
