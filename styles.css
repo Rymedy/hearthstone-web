@@ -80,7 +80,7 @@ html, body {
  .card:nth-child(1) .card-face {
 	 background: linear-gradient(-135deg, rgba(255, 153, 153, 1), rgba(218, 11, 11, 1));
 	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(255, 153, 153, 0.75);
-	 transform: translateY(45px) rotate(-28.125deg);
+	 transform: translateY(5px);
 }
  .card:nth-child(1) .card-face .card-label {
 	 color: rgba(219, 0, 0, 1);
@@ -101,7 +101,7 @@ html, body {
  .card:nth-child(2) .card-face {
 	 background: linear-gradient(-135deg, rgba(255, 153, 214, 1), rgba(218, 11, 135, 1));
 	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(255, 153, 214, 0.75);
-	 transform: translateY(35px) rotate(-21.875deg);
+	 transform: translateY(5px);
 }
  .card:nth-child(2) .card-face .card-label {
 	 color: rgba(219, 0, 132, 1);
@@ -122,7 +122,7 @@ html, body {
  .card:nth-child(3) .card-face {
 	 background: linear-gradient(-135deg, rgba(235, 153, 255, 1), rgba(177, 11, 218, 1));
 	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(235, 153, 255, 0.75);
-	 transform: translateY(25px) rotate(-15.625deg);
+	 transform: translateY(5px);
 }
  .card:nth-child(3) .card-face .card-label {
 	 color: rgba(175, 0, 219, 1);
@@ -143,7 +143,7 @@ html, body {
  .card:nth-child(4) .card-face {
 	 background: linear-gradient(-135deg, rgba(173, 153, 255, 1), rgba(53, 11, 218, 1));
 	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(173, 153, 255, 0.75);
-	 transform: translateY(15px) rotate(-9.375deg);
+	 transform: translateY(5px);
 }
  .card:nth-child(4) .card-face .card-label {
 	 color: rgba(44, 0, 219, 1);
@@ -164,7 +164,7 @@ html, body {
  .card:nth-child(5) .card-face {
 	 background: linear-gradient(-135deg, rgba(153, 194, 255, 1), rgba(11, 94, 218, 1));
 	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(153, 194, 255, 0.75);
-	 transform: translateY(5px) rotate(-3.125deg);
+	 transform: translateY(5px);
 }
  .card:nth-child(5) .card-face .card-label {
 	 color: rgba(0, 88, 219, 1);
@@ -185,7 +185,7 @@ html, body {
  .card:nth-child(6) .card-face {
 	 background: linear-gradient(-135deg, rgba(153, 255, 255, 1), rgba(11, 218, 218, 1));
 	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(153, 255, 255, 0.75);
-	 transform: translateY(5px) rotate(3.125deg);
+	 transform: translateY(5px);
 }
  .card:nth-child(6) .card-face .card-label {
 	 color: rgba(0, 219, 219, 1);
@@ -206,7 +206,7 @@ html, body {
  .card:nth-child(7) .card-face {
 	 background: linear-gradient(-135deg, rgba(153, 255, 194, 1), rgba(11, 218, 94, 1));
 	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(153, 255, 194, 0.75);
-	 transform: translateY(15px) rotate(9.375deg);
+	 transform: translateY(5px);
 }
  .card:nth-child(7) .card-face .card-label {
 	 color: rgba(0, 219, 88, 1);
@@ -227,7 +227,7 @@ html, body {
  .card:nth-child(8) .card-face {
 	 background: linear-gradient(-135deg, rgba(173, 255, 153, 1), rgba(53, 218, 11, 1));
 	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(173, 255, 153, 0.75);
-	 transform: translateY(25px) rotate(15.625deg);
+	 transform: translateY(5px);
 }
  .card:nth-child(8) .card-face .card-label {
 	 color: rgba(44, 219, 0, 1);
@@ -248,7 +248,7 @@ html, body {
  .card:nth-child(9) .card-face {
 	 background: linear-gradient(-135deg, rgba(235, 255, 153, 1), rgba(177, 218, 11, 1));
 	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(235, 255, 153, 0.75);
-	 transform: translateY(35px) rotate(21.875deg);
+	 transform: translateY(5px);
 }
  .card:nth-child(9) .card-face .card-label {
 	 color: rgba(175, 219, 0, 1);
@@ -269,7 +269,7 @@ html, body {
  .card:nth-child(10) .card-face {
 	 background: linear-gradient(-135deg, rgba(255, 214, 153, 1), rgba(218, 135, 11, 1));
 	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(255, 214, 153, 0.75);
-	 transform: translateY(45px) rotate(28.125deg);
+	 transform: translateY(5px);
 }
  .card:nth-child(10) .card-face .card-label {
 	 color: rgba(219, 132, 0, 1);
@@ -314,8 +314,18 @@ html, body {
 	 border-radius: 0.5vw;
 	 transition: border 0.3s ease, box-shadow 0.3s ease;
 }
+.computer-cardinplay {
+	 background: linear-gradient(-135deg, rgba(255, 153, 153, 1), rgba(218, 11, 11, 1));
+	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(255, 153, 153, 0.75);
+	 background-size: cover;
+}
+.player-cardinplay {
+	  background: linear-gradient(-135deg, rgba(153, 194, 255, 1), rgba(11, 94, 218, 1));
+	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(153, 194, 255, 0.75);
+	 background-size: cover;
+}
  .cardinplay:hover {
-	 box-shadow: 0 0 2em 1px #32de8a;
+	 box-shadow: 0 0 2em 1px white;
 	 cursor: url(cursor/cursor.png) 10 2, auto;
 }
  .cardinplay img {
@@ -362,18 +372,144 @@ html, body {
 	 width: 4rem;
 	 height: 2rem;
 	 margin: 0 auto;
+	 padding-left: 0.5rem;
 	 cursor: pointer;
 	 border-top-left-radius: 0.5vw;
 	 border-bottom-right-radius: 0.5vw;
 	 transition: border 0.3s ease, box-shadow 0.3s ease;
+	 background: linear-gradient(-135deg, rgba(255, 214, 153, 1), rgba(218, 135, 11, 1));
+	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(255, 214, 153, 0.75);
+	 background-size: cover;
+	 font-family: 'helvetica neue', helvetica, arial, sans-serif;
+	 font-size: 24px;
+	 font-weight: bold;
+	 letter-spacing: -0.025em;
+	 color: rgba(219, 132, 0, 1);
+	 text-shadow: -0.025em 0.025em 0 rgba(255, 204, 128, 1);
+	 user-select: none;
  }
  .healthValue {
  	 float: right;
 	 width: 4rem;
 	 height: 2rem;
 	 margin: 0 auto;
+	 padding-left: 0.5rem;
 	 cursor: pointer;
 	 border-top-right-radius: 0.5vw;
 	 border-bottom-left-radius: 0.5vw;
 	 transition: border 0.3s ease, box-shadow 0.3s ease;
+	 background: linear-gradient(-135deg, rgba(255, 153, 153, 1), rgba(218, 11, 11, 1));
+	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(255, 153, 153, 0.75);
+	 background-size: cover;
+	 font-family: 'helvetica neue', helvetica, arial, sans-serif;
+	 font-size: 24px;
+	 font-weight: bold;
+	 letter-spacing: -0.025em;
+	 color: rgba(219, 0, 0, 1);
+	 text-shadow: -0.025em 0.025em 0 rgba(255, 128, 128, 1);
+	 user-select: none;
  }
+  .cardAttackValue {
+	 float: left;
+	 width: 2rem;
+	 position: absolute;
+	 bottom: 0;
+	 left: 0;
+	 height: 1.5rem;
+	 margin: 0 auto;
+	 cursor: pointer;
+	 border-bottom-left-radius: 0.5vw;
+	 border-top-right-radius: 0.5vw;
+	 transition: border 0.3s ease, box-shadow 0.3s ease;
+	 background: linear-gradient(-135deg, rgba(255, 214, 153, 1), rgba(218, 135, 11, 1));
+	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(255, 214, 153, 0.75);
+	 background-size: cover;
+	 font-family: 'helvetica neue', helvetica, arial, sans-serif;
+	 font-size: 24px;
+	 font-weight: bold;
+	 letter-spacing: -0.025em;
+	 color: rgba(219, 132, 0, 1);
+	 text-shadow: -0.025em 0.025em 0 rgba(255, 204, 128, 1);
+	 user-select: none;
+ }
+ .cardHealthValue {
+ 	 float: right;
+	 width: 2rem;
+	 position: absolute;
+	 bottom: 0;
+	 right: 0;
+	 height: 1.5rem;
+	 margin: 0 auto;
+	 cursor: pointer;
+	 border-bottom-right-radius: 0.5vw;
+	 border-top-left-radius: 0.5vw;
+	 transition: border 0.3s ease, box-shadow 0.3s ease;
+	 background: linear-gradient(-135deg, rgba(255, 153, 153, 1), rgba(218, 11, 11, 1));
+	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(255, 153, 153, 0.75);
+	 background-size: cover;
+	 font-family: 'helvetica neue', helvetica, arial, sans-serif;
+	 font-size: 24px;
+	 font-weight: bold;
+	 letter-spacing: -0.025em;
+	 color: rgba(219, 0, 0, 1);
+	 text-shadow: -0.025em 0.025em 0 rgba(255, 128, 128, 1);
+	 user-select: none;
+}
+ .cardManaValue {
+ 	 float: right;
+	 width: 2.5rem;
+	 position: absolute;
+	 top: 0;
+	 left: 0;
+	 height: 1.8rem;
+	 margin: 0 auto;
+	 cursor: pointer;
+	 border-bottom-right-radius: 0.5vw;
+	 border-top-left-radius: 0.5vw;
+	 transition: border 0.3s ease, box-shadow 0.3s ease;
+	 background: linear-gradient(-135deg, rgba(153, 194, 255, 1), rgba(11, 94, 218, 1));
+	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(153, 194, 255, 0.75);
+	 background-size: cover;
+	 font-family: 'helvetica neue', helvetica, arial, sans-serif;
+	 font-size: 24px;
+	 font-weight: bold;
+	 letter-spacing: -0.025em;
+	 color: rgba(0, 88, 219, 1);
+	 text-shadow: -0.025em 0.025em 0 rgba(128, 179, 255, 1);
+	 user-select: none;
+}
+ .deck {
+	height: 150px;
+	 margin: 0 -25px;
+	 position: absolute;
+	 width: 100px;
+	 font-family: 'helvetica neue', helvetica, arial, sans-serif;
+	 font-size: 24px;
+	 font-weight: bold;
+	 letter-spacing: -0.025em;
+	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none; /* Safari */
+	-khtml-user-select: none; /* Konqueror HTML */
+	-moz-user-select: none; /* Old versions of Firefox */
+	-ms-user-select: none; /* Internet Explorer/Edge */
+	user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+.player-deck {
+	 background: linear-gradient(-135deg, rgba(153, 194, 255, 1), rgba(11, 94, 218, 1));
+	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(153, 194, 255, 0.75);
+	 color: rgba(0, 88, 219, 1);
+	 text-shadow: -0.025em 0.025em 0 rgba(128, 179, 255, 1);
+	 border-radius: 10px;
+	 top: 80%;
+	 left: 85%;
+}
+.computer-deck {
+	background: linear-gradient(-135deg, rgba(255, 153, 153, 1), rgba(218, 11, 11, 1));
+	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(255, 153, 153, 0.75);
+	 color: rgba(219, 0, 0, 1);
+	 text-shadow: -0.025em 0.025em 0 rgba(255, 128, 128, 1);
+	 border-radius: 10px;
+	 top: 3%;
+	 left: 3%;
+}
