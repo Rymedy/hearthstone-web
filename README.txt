@@ -1,1 +1,1 @@
-Please run the program with a web server otherwise the program's functionality will lose missing features.
+Please run the program with a web server otherwise the program's functionality will lose essential features.
