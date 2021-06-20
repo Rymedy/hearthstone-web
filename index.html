@@ -12,102 +12,133 @@
 </head>
 <body>
   <div class="cards">
-    <div class="card" id="cardOne">
+    <div class="card">
       <div class="card-face">
-        <div class="cardAttackValue"></div>
-        <div class="cardHealthValue"></div>
-        <div class="cardManaValue"></div>
+        <div class="card-label">1</div>
       </div>
     </div>
-    <div class="card" id="cardTwo">
+    <div class="card">
       <div class="card-face">
-        <div class="cardAttackValue"></div>
-        <div class="cardHealthValue"></div>
-        <div class="cardManaValue"></div>
+        <div class="card-label">1</div>
       </div>
     </div>
-    <div class="card" id="cardThree">
+    <div class="card">
       <div class="card-face">
-        <div class="cardAttackValue"></div>
-        <div class="cardHealthValue"></div>
-        <div class="cardManaValue"></div>
+        <div class="card-label">1</div>
       </div>
     </div>
-    <div class="card" id="cardFour">
+    <div class="card">
       <div class="card-face">
-        <div class="cardAttackValue"></div>
-        <div class="cardHealthValue"></div>
-        <div class="cardManaValue"></div>
+        <div class="card-label">1</div>
       </div>
     </div>
-    <div class="card" id="cardFive">
+    <div class="card">
       <div class="card-face">
-        <div class="cardAttackValue"></div>
-        <div class="cardHealthValue"></div>
-        <div class="cardManaValue"></div>
+        <div class="card-label">1</div>
       </div>
     </div>
-    <div class="card" id="cardSix">
+    <div class="card">
       <div class="card-face">
-        <div class="cardAttackValue"></div>
-        <div class="cardHealthValue"></div>
-        <div class="cardManaValue"></div>
+        <div class="card-label">1</div>
       </div>
     </div>
-    <div class="card" id="cardSeven">
+    <div class="card">
       <div class="card-face">
-        <div class="cardAttackValue"></div>
-        <div class="cardHealthValue"></div>
-        <div class="cardManaValue"></div>
+        <div class="card-label">1</div>
       </div>
     </div>
-    <div class="card" id="cardEight">
+    <div class="card">
       <div class="card-face">
-        <div class="cardAttackValue"></div>
-        <div class="cardHealthValue"></div>
-        <div class="cardManaValue"></div>
+        <div class="card-label">1</div>
       </div>
     </div>
-    <div class="card" id="cardNine">
+    <div class="card">
       <div class="card-face">
-        <div class="cardAttackValue"></div>
-        <div class="cardHealthValue"></div>
-        <div class="cardManaValue"></div>
+        <div class="card-label">1</div>
       </div>
     </div>
-    <div class="card" id="cardTen">
+    <div class="card">
       <div class="card-face">
-        <div class="cardAttackValue"></div>
-        <div class="cardHealthValue"></div>
-        <div class="cardManaValue"></div>
+        <div class="card-label">1</div>
       </div>
     </div>
   </div>
-  <div class="computer-deck deck" id="computerDeck"></div>
-  <div class="computer-card-slot card-slot"></div>
-  <div class="player-deck deck" id="playerDeck"></div>
-  <div class="player-card-slot card-slot"></div>
   <div class="board board--opponent">
   <div class="opponenthero">
     <div class="cardinplay" id="opposinghero" data-card="red">
-          <div class="attackValue" data-card="yellow">1</div>
-    <div class="healthValue" data-card="red">30</div>
+          <div class="attackValue" data-card="yellow"></div>
+    <div class="healthValue" data-card="red"></div>
     </div>
+  </div>
+  <div class="cardinplay" id="opposingMinionOne" data-card="red">
+    <div class="attackValue" data-card="yellow"></div>
+    <div class="healthValue" data-card="red"></div>
+  </div>
+  <div class="cardinplay" id="opposingMinionTwo" data-card="red">
+        <div class="attackValue" data-card="yellow"></div>
+    <div class="healthValue" data-card="red"></div>
+  </div>
+  <div class="cardinplay" id="opposingMinionThree" data-card="red">
+        <div class="attackValue" data-card="yellow"></div>
+    <div class="healthValue" data-card="red"></div>
+  </div>
+  <div class="cardinplay" id="opposingMinionFour" data-card="red">
+        <div class="attackValue" data-card="yellow"></div>
+    <div class="healthValue" data-card="red"></div>
+  </div>
+  <div class="cardinplay" id="opposingMinionFive" data-card="red">
+        <div class="attackValue" data-card="yellow"></div>
+    <div class="healthValue" data-card="red"></div>
+  </div>
+  <div class="cardinplay" id="opposingMinionSix" data-card="red">
+        <div class="attackValue" data-card="yellow"></div>
+    <div class="healthValue" data-card="red"></div>
+  </div>
+  <div class="cardinplay" id="opposingMinionSeven" data-card="red">
+        <div class="attackValue" data-card="yellow"></div>
+    <div class="healthValue" data-card="red"></div>
   </div>
 </div>
 <div class="board board--player">
   <div class="playerhero">
-    <div class="player-cardinplay cardinplay" id="playerhero" data-card="blue">
-          <div class="attackValue" data-card="yellow">1</div>
-    <div class="healthValue" data-card="red">30</div>
+    <div class="cardinplay" id="playerhero" data-card="blue">
+          <div class="attackValue" data-card="yellow"></div>
+    <div class="healthValue" data-card="red"></div>
     </div>
   </div>
-  
+  <div class="cardinplay" id="playerMinionOne" data-card="blue">
+        <div class="attackValue" data-card="yellow"></div>
+    <div class="healthValue" data-card="red"></div>
+  </div>
+  <div class="cardinplay" id="playerMinionTwo" data-card="blue">
+        <div class="attackValue" data-card="yellow"></div>
+    <div class="healthValue" data-card="red"></div>
+  </div>
+  <div class="cardinplay" id="playerMinionThree" data-card="blue">
+        <div class="attackValue" data-card="yellow"></div>
+    <div class="healthValue" data-card="red"></div>
+  </div>
+  <div class="cardinplay" id="playerMinionFour" data-card="blue">
+        <div class="attackValue" data-card="yellow"></div>
+    <div class="healthValue" data-card="red"></div>
+  </div>
+  <div class="cardinplay" id="playerMinionFive" data-card="blue">
+        <div class="attackValue" data-card="yellow"></div>
+    <div class="healthValue" data-card="red"></div>
+  </div>
+  <div class="cardinplay" id="playerMinionSix" data-card="blue">
+        <div class="attackValue" data-card="yellow"></div>
+    <div class="healthValue" data-card="red"></div>
+  </div>
+  <div class="cardinplay" id="playerMinionSeven" data-card="blue">
+        <div class="attackValue" data-card="yellow"></div>
+    <div class="healthValue" data-card="red"></div>
+  </div>
 </div>
     </div>
   </div>
   <svg width="100%" height="100%">
-  <path fill="none" stroke="#db2727" stroke-width="70" stroke-dasharray="80 20" d="">
+  <path fill="none" stroke="red" stroke-width="3" d="">
 </svg>
 </body>
 </html>
