@@ -105,20 +105,22 @@ $(".cardinplay").on("mousedown", function(e){
       		duration: 200,
       		easing: [.7,.3,.73,.37]
     	}).velocity("reverse", { duration: 600, easing: [.01,.92,.09,.99]});
-    	if(currentAttackerHealth <= 0) {
-    		currentAttacker.hide();
-    	}
-    	if(targetHealth <= 0) {
-    		target.hide();
-    	}
-    	if($("#opposinghero").is(":hidden")) {
-    		alert("You've Won!")
-    	}
-    	if($("#playerhero").is(":hidden")) {
-    		alert("You've Lost!")
-    	}
-    	currentAttacker = null;
-    	canAttack = false;
+    	setTimeout(function() {
+    	    if(currentAttackerHealth <= 0) {
+    			currentAttacker.hide();
+    		}
+    		if(targetHealth <= 0) {
+    			target.hide();
+    		}
+    		if($("#opposinghero").is(":hidden")) {
+    			alert("You've Won!")
+    		}
+    		if($("#playerhero").is(":hidden")) {
+    			alert("You've Lost!")
+    		}
+    		currentAttacker = null;
+    		canAttack = false;
+    	},500);
   	} else {
   		alert("That is not a valid target!");
   	}
