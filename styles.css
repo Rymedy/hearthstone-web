@@ -1,0 +1,515 @@
+html, body {
+	 height: 100%;
+}
+ body {
+	 background: radial-gradient(#333, #111);
+	 margin:0;
+	 overflow: hidden;
+	 cursor: url(cursor/cursor.png) 10 2, auto;
+}
+ body:active {
+	 cursor: url(cursor/click.png) 10 2, auto;
+}
+ .cards {
+	 bottom: 0;
+	 display: flex;
+	 height: 150px;
+	 padding: 0 50px;
+	 justify-content: center;
+	 position: fixed;
+	 left: 0;
+	 right: 0;
+	 z-index: 10;
+}
+ .card {
+	 height: 150px;
+	 margin: 0 -25px;
+	 position: relative;
+	 width: 100px;
+	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none; /* Safari */
+	-khtml-user-select: none; /* Konqueror HTML */
+	-moz-user-select: none; /* Old versions of Firefox */
+	-ms-user-select: none; /* Internet Explorer/Edge */
+	user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+ .card:after {
+	 bottom: 0;
+	 content: '';
+	 left: -60px;
+	 position: absolute;
+	 right: -60px;
+	 top: 0px;
+	 z-index: 10;
+}
+.card:active {
+	cursor: url(cursor/grab.png) 10 2, auto;
+}
+ .card-face {
+	 bottom: 0;
+	 content: '';
+	 left: 0;
+	 border-radius: 10px;
+	 pointer-events: none;
+	 position: absolute;
+	 right: 0;
+	 top: 0;
+	 transition: 800ms cubic-bezier(0.19, 1, 0.22, 1) transform;
+}
+}
+ .card-face:after {
+	 animation: none;
+	 background: #fff;
+	 bottom: 0;
+	 content: '';
+	 left: 0;
+	 opacity: 0;
+	 position: absolute;
+	 right: 0;
+	 top: 0;
+}
+ .card-label {
+	 font-family: 'helvetica neue', helvetica, arial, sans-serif;
+	 font-size: 24px;
+	 font-weight: bold;
+	 letter-spacing: -0.025em;
+	 padding: 15px 0 0 15px;
+}
+ .card:nth-child(1) .card-face {
+	 background: linear-gradient(-135deg, rgba(255, 153, 153, 1), rgba(218, 11, 11, 1));
+	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(255, 153, 153, 0.75);
+	 transform: translateY(5px);
+}
+ .card:nth-child(1) .card-face .card-label {
+	 color: rgba(219, 0, 0, 1);
+	 text-shadow: -0.025em 0.025em 0 rgba(255, 128, 128, 1);
+}
+ .card:nth-child(1):hover .card-face {
+	 box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4), inset 0 0 0 2px rgba(255, 153, 153, 0.75);
+	 transform: translateY(-100px) rotate(0deg) scale(2);
+	 transition-duration: 0ms;
+	 z-index: 5;
+}
+ .card:nth-child(1):hover .card-face:after {
+	 animation: fade 250ms ease-out forwards;
+}
+ .card:nth-child(1):hover:after {
+	 top: -175px;
+}
+ .card:nth-child(2) .card-face {
+	 background: linear-gradient(-135deg, rgba(255, 153, 214, 1), rgba(218, 11, 135, 1));
+	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(255, 153, 214, 0.75);
+	 transform: translateY(5px);
+}
+ .card:nth-child(2) .card-face .card-label {
+	 color: rgba(219, 0, 132, 1);
+	 text-shadow: -0.025em 0.025em 0 rgba(255, 128, 204, 1);
+}
+ .card:nth-child(2):hover .card-face {
+	 box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4), inset 0 0 0 2px rgba(255, 153, 214, 0.75);
+	 transform: translateY(-100px) rotate(0deg) scale(2);
+	 transition-duration: 0ms;
+	 z-index: 5;
+}
+ .card:nth-child(2):hover .card-face:after {
+	 animation: fade 250ms ease-out forwards;
+}
+ .card:nth-child(2):hover:after {
+	 top: -175px;
+}
+ .card:nth-child(3) .card-face {
+	 background: linear-gradient(-135deg, rgba(235, 153, 255, 1), rgba(177, 11, 218, 1));
+	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(235, 153, 255, 0.75);
+	 transform: translateY(5px);
+}
+ .card:nth-child(3) .card-face .card-label {
+	 color: rgba(175, 0, 219, 1);
+	 text-shadow: -0.025em 0.025em 0 rgba(230, 128, 255, 1);
+}
+ .card:nth-child(3):hover .card-face {
+	 box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4), inset 0 0 0 2px rgba(235, 153, 255, 0.75);
+	 transform: translateY(-100px) rotate(0deg) scale(2);
+	 transition-duration: 0ms;
+	 z-index: 5;
+}
+ .card:nth-child(3):hover .card-face:after {
+	 animation: fade 250ms ease-out forwards;
+}
+ .card:nth-child(3):hover:after {
+	 top: -175px;
+}
+ .card:nth-child(4) .card-face {
+	 background: linear-gradient(-135deg, rgba(173, 153, 255, 1), rgba(53, 11, 218, 1));
+	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(173, 153, 255, 0.75);
+	 transform: translateY(5px);
+}
+ .card:nth-child(4) .card-face .card-label {
+	 color: rgba(44, 0, 219, 1);
+	 text-shadow: -0.025em 0.025em 0 rgba(153, 128, 255, 1);
+}
+ .card:nth-child(4):hover .card-face {
+	 box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4), inset 0 0 0 2px rgba(173, 153, 255, 0.75);
+	 transform: translateY(-100px) rotate(0deg) scale(2);
+	 transition-duration: 0ms;
+	 z-index: 5;
+}
+ .card:nth-child(4):hover .card-face:after {
+	 animation: fade 250ms ease-out forwards;
+}
+ .card:nth-child(4):hover:after {
+	 top: -175px;
+}
+ .card:nth-child(5) .card-face {
+	 background: linear-gradient(-135deg, rgba(153, 194, 255, 1), rgba(11, 94, 218, 1));
+	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(153, 194, 255, 0.75);
+	 transform: translateY(5px);
+}
+ .card:nth-child(5) .card-face .card-label {
+	 color: rgba(0, 88, 219, 1);
+	 text-shadow: -0.025em 0.025em 0 rgba(128, 179, 255, 1);
+}
+ .card:nth-child(5):hover .card-face {
+	 box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4), inset 0 0 0 2px rgba(153, 194, 255, 0.75);
+	 transform: translateY(-100px) rotate(0deg) scale(2);
+	 transition-duration: 0ms;
+	 z-index: 5;
+}
+ .card:nth-child(5):hover .card-face:after {
+	 animation: fade 250ms ease-out forwards;
+}
+ .card:nth-child(5):hover:after {
+	 top: -175px;
+}
+ .card:nth-child(6) .card-face {
+	 background: linear-gradient(-135deg, rgba(153, 255, 255, 1), rgba(11, 218, 218, 1));
+	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(153, 255, 255, 0.75);
+	 transform: translateY(5px);
+}
+ .card:nth-child(6) .card-face .card-label {
+	 color: rgba(0, 219, 219, 1);
+	 text-shadow: -0.025em 0.025em 0 rgba(128, 255, 255, 1);
+}
+ .card:nth-child(6):hover .card-face {
+	 box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4), inset 0 0 0 2px rgba(153, 255, 255, 0.75);
+	 transform: translateY(-100px) rotate(0deg) scale(2);
+	 transition-duration: 0ms;
+	 z-index: 5;
+}
+ .card:nth-child(6):hover .card-face:after {
+	 animation: fade 250ms ease-out forwards;
+}
+ .card:nth-child(6):hover:after {
+	 top: -175px;
+}
+ .card:nth-child(7) .card-face {
+	 background: linear-gradient(-135deg, rgba(153, 255, 194, 1), rgba(11, 218, 94, 1));
+	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(153, 255, 194, 0.75);
+	 transform: translateY(5px);
+}
+ .card:nth-child(7) .card-face .card-label {
+	 color: rgba(0, 219, 88, 1);
+	 text-shadow: -0.025em 0.025em 0 rgba(128, 255, 179, 1);
+}
+ .card:nth-child(7):hover .card-face {
+	 box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4), inset 0 0 0 2px rgba(153, 255, 194, 0.75);
+	 transform: translateY(-100px) rotate(0deg) scale(2);
+	 transition-duration: 0ms;
+	 z-index: 5;
+}
+ .card:nth-child(7):hover .card-face:after {
+	 animation: fade 250ms ease-out forwards;
+}
+ .card:nth-child(7):hover:after {
+	 top: -175px;
+}
+ .card:nth-child(8) .card-face {
+	 background: linear-gradient(-135deg, rgba(173, 255, 153, 1), rgba(53, 218, 11, 1));
+	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(173, 255, 153, 0.75);
+	 transform: translateY(5px);
+}
+ .card:nth-child(8) .card-face .card-label {
+	 color: rgba(44, 219, 0, 1);
+	 text-shadow: -0.025em 0.025em 0 rgba(153, 255, 128, 1);
+}
+ .card:nth-child(8):hover .card-face {
+	 box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4), inset 0 0 0 2px rgba(173, 255, 153, 0.75);
+	 transform: translateY(-100px) rotate(0deg) scale(2);
+	 transition-duration: 0ms;
+	 z-index: 5;
+}
+ .card:nth-child(8):hover .card-face:after {
+	 animation: fade 250ms ease-out forwards;
+}
+ .card:nth-child(8):hover:after {
+	 top: -175px;
+}
+ .card:nth-child(9) .card-face {
+	 background: linear-gradient(-135deg, rgba(235, 255, 153, 1), rgba(177, 218, 11, 1));
+	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(235, 255, 153, 0.75);
+	 transform: translateY(5px);
+}
+ .card:nth-child(9) .card-face .card-label {
+	 color: rgba(175, 219, 0, 1);
+	 text-shadow: -0.025em 0.025em 0 rgba(230, 255, 128, 1);
+}
+ .card:nth-child(9):hover .card-face {
+	 box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4), inset 0 0 0 2px rgba(235, 255, 153, 0.75);
+	 transform: translateY(-100px) rotate(0deg) scale(2);
+	 transition-duration: 0ms;
+	 z-index: 5;
+}
+ .card:nth-child(9):hover .card-face:after {
+	 animation: fade 250ms ease-out forwards;
+}
+ .card:nth-child(9):hover:after {
+	 top: -175px;
+}
+ .card:nth-child(10) .card-face {
+	 background: linear-gradient(-135deg, rgba(255, 214, 153, 1), rgba(218, 135, 11, 1));
+	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(255, 214, 153, 0.75);
+	 transform: translateY(5px);
+}
+ .card:nth-child(10) .card-face .card-label {
+	 color: rgba(219, 132, 0, 1);
+	 text-shadow: -0.025em 0.025em 0 rgba(255, 204, 128, 1);
+}
+ .card:nth-child(10):hover .card-face {
+	 box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4), inset 0 0 0 2px rgba(255, 214, 153, 0.75);
+	 transform: translateY(-100px) rotate(0deg) scale(2);
+	 transition-duration: 0ms;
+	 z-index: 5;
+}
+ .card:nth-child(10):hover .card-face:after {
+	 animation: fade 250ms ease-out forwards;
+}
+ .card:nth-child(10):hover:after {
+	 top: -175px;
+}
+ @keyframes fade {
+	 0% {
+		 opacity: 0.8;
+		 border-radius: 10px;
+		 transform: scale(1);
+	}
+	 100% {
+		 opacity: 0;
+		 border-radius: 10px;
+		 transform: scale(1.15);
+	}
+}
+.board {
+	 width: inherit;
+	 height: 0;
+	 padding: 10.1rem;
+	 padding-top: 11rem;
+}
+ .cardinplay {
+	 float: left;
+	 width: 14rem;
+	 height: 8rem;
+	 margin: 0 auto;
+	 cursor: pointer;
+	 border-radius: 0.5vw;
+	 transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+.computer-cardinplay {
+	 background: linear-gradient(-135deg, rgba(255, 153, 153, 1), rgba(218, 11, 11, 1));
+	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(255, 153, 153, 0.75);
+	 background-size: cover;
+}
+.player-cardinplay {
+	  background: linear-gradient(-135deg, rgba(153, 194, 255, 1), rgba(11, 94, 218, 1));
+	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(153, 194, 255, 0.75);
+	 background-size: cover;
+}
+ .cardinplay:hover {
+	 box-shadow: 0 0 2em 1px white;
+	 cursor: url(cursor/cursor.png) 10 2, auto;
+}
+ .cardinplay img {
+	 width: 100%;
+}
+.cardinplay:active {
+	cursor: url(cursor/click.png) 10 2, auto;
+}
+ svg {
+	 position: absolute;
+	 top: 0;
+	 left: 0;
+	 pointer-events: none;
+}
+ [data-card="red"] {
+	 background: linear-gradient(-135deg, rgba(255, 153, 153, 1), rgba(218, 11, 11, 1));
+	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(255, 153, 153, 0.75);
+	 background-size: cover;
+}
+ [data-card="blue"] {
+	  background: linear-gradient(-135deg, rgba(153, 194, 255, 1), rgba(11, 94, 218, 1));
+	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(153, 194, 255, 0.75);
+	 background-size: cover;
+}
+ [data-card="yellow"] {
+	 background: linear-gradient(-135deg, rgba(255, 214, 153, 1), rgba(218, 135, 11, 1));
+	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(255, 214, 153, 0.75);
+	 background-size: cover;
+}
+.playerhero {
+	position: absolute;
+	top: 67.5%;
+	left: 43.5%;
+	z-index: 0;
+ }
+.opponenthero {
+	position: absolute;
+	top: 3.5%;
+	left: 43.5%;
+	z-index: 0;
+ }
+ .attackValue {
+	 float: left;
+	 width: 4rem;
+	 height: 2rem;
+	 margin: 0 auto;
+	 padding-left: 0.5rem;
+	 cursor: pointer;
+	 border-top-left-radius: 0.5vw;
+	 border-bottom-right-radius: 0.5vw;
+	 transition: border 0.3s ease, box-shadow 0.3s ease;
+	 background: linear-gradient(-135deg, rgba(255, 214, 153, 1), rgba(218, 135, 11, 1));
+	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(255, 214, 153, 0.75);
+	 background-size: cover;
+	 font-family: 'helvetica neue', helvetica, arial, sans-serif;
+	 font-size: 24px;
+	 font-weight: bold;
+	 letter-spacing: -0.025em;
+	 color: rgba(219, 132, 0, 1);
+	 text-shadow: -0.025em 0.025em 0 rgba(255, 204, 128, 1);
+	 user-select: none;
+ }
+ .healthValue {
+ 	 float: right;
+	 width: 4rem;
+	 height: 2rem;
+	 margin: 0 auto;
+	 padding-left: 0.5rem;
+	 cursor: pointer;
+	 border-top-right-radius: 0.5vw;
+	 border-bottom-left-radius: 0.5vw;
+	 transition: border 0.3s ease, box-shadow 0.3s ease;
+	 background: linear-gradient(-135deg, rgba(255, 153, 153, 1), rgba(218, 11, 11, 1));
+	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(255, 153, 153, 0.75);
+	 background-size: cover;
+	 font-family: 'helvetica neue', helvetica, arial, sans-serif;
+	 font-size: 24px;
+	 font-weight: bold;
+	 letter-spacing: -0.025em;
+	 color: rgba(219, 0, 0, 1);
+	 text-shadow: -0.025em 0.025em 0 rgba(255, 128, 128, 1);
+	 user-select: none;
+ }
+  .cardAttackValue {
+	 float: left;
+	 width: 2rem;
+	 position: absolute;
+	 bottom: 0;
+	 left: 0;
+	 height: 1.5rem;
+	 margin: 0 auto;
+	 cursor: pointer;
+	 border-bottom-left-radius: 0.5vw;
+	 border-top-right-radius: 0.5vw;
+	 transition: border 0.3s ease, box-shadow 0.3s ease;
+	 background: linear-gradient(-135deg, rgba(255, 214, 153, 1), rgba(218, 135, 11, 1));
+	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(255, 214, 153, 0.75);
+	 background-size: cover;
+	 font-family: 'helvetica neue', helvetica, arial, sans-serif;
+	 font-size: 24px;
+	 font-weight: bold;
+	 letter-spacing: -0.025em;
+	 color: rgba(219, 132, 0, 1);
+	 text-shadow: -0.025em 0.025em 0 rgba(255, 204, 128, 1);
+	 user-select: none;
+ }
+ .cardHealthValue {
+ 	 float: right;
+	 width: 2rem;
+	 position: absolute;
+	 bottom: 0;
+	 right: 0;
+	 height: 1.5rem;
+	 margin: 0 auto;
+	 cursor: pointer;
+	 border-bottom-right-radius: 0.5vw;
+	 border-top-left-radius: 0.5vw;
+	 transition: border 0.3s ease, box-shadow 0.3s ease;
+	 background: linear-gradient(-135deg, rgba(255, 153, 153, 1), rgba(218, 11, 11, 1));
+	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(255, 153, 153, 0.75);
+	 background-size: cover;
+	 font-family: 'helvetica neue', helvetica, arial, sans-serif;
+	 font-size: 24px;
+	 font-weight: bold;
+	 letter-spacing: -0.025em;
+	 color: rgba(219, 0, 0, 1);
+	 text-shadow: -0.025em 0.025em 0 rgba(255, 128, 128, 1);
+	 user-select: none;
+}
+ .cardManaValue {
+ 	 float: right;
+	 width: 2.5rem;
+	 position: absolute;
+	 top: 0;
+	 left: 0;
+	 height: 1.8rem;
+	 margin: 0 auto;
+	 cursor: pointer;
+	 border-bottom-right-radius: 0.5vw;
+	 border-top-left-radius: 0.5vw;
+	 transition: border 0.3s ease, box-shadow 0.3s ease;
+	 background: linear-gradient(-135deg, rgba(153, 194, 255, 1), rgba(11, 94, 218, 1));
+	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(153, 194, 255, 0.75);
+	 background-size: cover;
+	 font-family: 'helvetica neue', helvetica, arial, sans-serif;
+	 font-size: 24px;
+	 font-weight: bold;
+	 letter-spacing: -0.025em;
+	 color: rgba(0, 88, 219, 1);
+	 text-shadow: -0.025em 0.025em 0 rgba(128, 179, 255, 1);
+	 user-select: none;
+}
+ .deck {
+	height: 150px;
+	 margin: 0 -25px;
+	 position: absolute;
+	 width: 100px;
+	 font-family: 'helvetica neue', helvetica, arial, sans-serif;
+	 font-size: 24px;
+	 font-weight: bold;
+	 letter-spacing: -0.025em;
+	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none; /* Safari */
+	-khtml-user-select: none; /* Konqueror HTML */
+	-moz-user-select: none; /* Old versions of Firefox */
+	-ms-user-select: none; /* Internet Explorer/Edge */
+	user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+.player-deck {
+	 background: linear-gradient(-135deg, rgba(153, 194, 255, 1), rgba(11, 94, 218, 1));
+	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(153, 194, 255, 0.75);
+	 color: rgba(0, 88, 219, 1);
+	 text-shadow: -0.025em 0.025em 0 rgba(128, 179, 255, 1);
+	 border-radius: 10px;
+	 top: 80%;
+	 left: 85%;
+}
+.computer-deck {
+	background: linear-gradient(-135deg, rgba(255, 153, 153, 1), rgba(218, 11, 11, 1));
+	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(255, 153, 153, 0.75);
+	 color: rgba(219, 0, 0, 1);
+	 text-shadow: -0.025em 0.025em 0 rgba(255, 128, 128, 1);
+	 border-radius: 10px;
+	 top: 3%;
+	 left: 3%;
+}
