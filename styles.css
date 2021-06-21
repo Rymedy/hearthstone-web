@@ -1,5 +1,6 @@
 html, body {
-	 height: 100%;
+	width: 100%;
+	height: 100%;
 }
  body {
 	 background: radial-gradient(#333, #111);
@@ -13,7 +14,7 @@ html, body {
  .cards {
 	 bottom: 0;
 	 display: flex;
-	 height: 150px;
+	 height: 100px;
 	 padding: 0 50px;
 	 justify-content: center;
 	 position: fixed;
@@ -300,25 +301,39 @@ html, body {
 	}
 }
 .board {
-	 width: inherit;
+	 width: 100%;
 	 height: 0;
-	 padding: 10.1rem;
+	 padding: 2rem;
 	 padding-top: 11rem;
 }
  .cardinplay {
 	 float: left;
-	 width: 14rem;
-	 height: 8rem;
 	 margin: 0 auto;
 	 cursor: pointer;
 	 border-radius: 0.5vw;
 	 transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+@media only screen and (min-width: 1000px) {
+	.cardinplay {
+		width: 10rem;
+	 	height: 6rem;
+	}
+	.board {
+		padding: 9.1rem;
+	}
+}
+@media only screen and (min-width: 1500px) {
+	.cardinplay {
+		width: 14rem;
+	 	height: 8rem;
+	}
 }
 .computer-cardinplay {
 	 background: linear-gradient(-135deg, rgba(255, 153, 153, 1), rgba(218, 11, 11, 1));
 	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(255, 153, 153, 0.75);
 	 background-size: cover;
 }
+
 .player-cardinplay {
 	  background: linear-gradient(-135deg, rgba(153, 194, 255, 1), rgba(11, 94, 218, 1));
 	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(153, 194, 255, 0.75);
@@ -357,13 +372,13 @@ html, body {
 }
 .playerhero {
 	position: absolute;
-	top: 67.5%;
+	top: 73.5%;
 	left: 43.5%;
 	z-index: 0;
  }
 .opponenthero {
 	position: absolute;
-	top: 3.5%;
+	top: 0.5%;
 	left: 43.5%;
 	z-index: 0;
  }
