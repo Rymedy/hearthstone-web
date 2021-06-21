@@ -327,6 +327,9 @@ html, body {
 		width: 14rem;
 	 	height: 8rem;
 	}
+	.board {
+		padding: 10.1rem;
+	}
 }
 .computer-cardinplay {
 	 background: linear-gradient(-135deg, rgba(255, 153, 153, 1), rgba(218, 11, 11, 1));
@@ -372,7 +375,7 @@ html, body {
 }
 .playerhero {
 	position: absolute;
-	top: 73.5%;
+	top: 66.5%;
 	left: 43.5%;
 	z-index: 0;
  }
