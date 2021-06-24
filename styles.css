@@ -3,10 +3,12 @@ html, body {
 	height: 100%;
 }
  body {
-	 background: radial-gradient(#333, #111);
-	 margin:0;
-	 overflow: hidden;
-	 cursor: url(cursor/cursor.png) 10 2, auto;
+	background-image: url(src/images/background.png);
+	background-size: 100% 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+	overflow: hidden;
+	cursor: url(cursor/cursor.png) 10 2, auto;
 }
  body:active {
 	 cursor: url(cursor/click.png) 10 2, auto;
@@ -301,56 +303,65 @@ html, body {
 	}
 }
 .board {
-	 width: 100%;
-	 height: 0;
-	 padding: 2rem;
-	 padding-top: 11rem;
+	display: flex;
+	 justify-content: space-between;
+	 width: 80%;
+	 height: 2%;
+	 max-width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+  transform: translateY(65%);
 }
  .cardinplay {
+ 	background-image: url(src/cards/auchenai_soulpriest.jpg);
+ 	background-size: contain;
+ 	background-repeat: no-repeat;
 	 float: left;
 	 margin: 0 auto;
 	 cursor: pointer;
-	 border-radius: 0.5vw;
+	 border-radius: 0.75vw;
 	 transition: border 0.3s ease, box-shadow 0.3s ease;
 }
 @media only screen and (min-width: 1000px) {
 	.cardinplay {
-		width: 10rem;
-	 	height: 6rem;
+		width: 6rem;
+	 	height: 8rem;
 	}
 	.board {
-		padding: 9.1rem;
+		padding: 6.5rem;
 	}
 }
 @media only screen and (min-width: 1500px) {
 	.cardinplay {
-		width: 14rem;
-	 	height: 8rem;
+		width: 7rem;
+	 	height: 9rem;
 	}
 	.board {
-		padding: 10.1rem;
 	}
 }
 .computer-cardinplay {
-	 background: linear-gradient(-135deg, rgba(255, 153, 153, 1), rgba(218, 11, 11, 1));
-	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(255, 153, 153, 0.75);
 	 background-size: cover;
 }
 
 .player-cardinplay {
-	  background: linear-gradient(-135deg, rgba(153, 194, 255, 1), rgba(11, 94, 218, 1));
-	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(153, 194, 255, 0.75);
 	 background-size: cover;
 }
  .cardinplay:hover {
 	 box-shadow: 0 0 2em 1px white;
-	 cursor: url(cursor/cursor.png) 10 2, auto;
+	 cursor: url(src/cursor/cursor.png) 10 2, auto;
 }
+.playerhero:hover {
+  box-shadow: none;
+}
+.opponenthero:hover {
+	box-shadow: none;
+}
+
  .cardinplay img {
 	 width: 100%;
 }
 .cardinplay:active {
-	cursor: url(cursor/click.png) 10 2, auto;
+	cursor: url(src/cursor/click.png) 10 2, auto;
 }
  svg {
 	 position: absolute;
@@ -375,25 +386,35 @@ html, body {
 }
 .playerhero {
 	position: absolute;
-	top: 66.5%;
-	left: 43.5%;
+	width: 15%;
+	height: 70%;
+	top: 122%;
+	left: 44%;
 	z-index: 0;
+	background-image: url(src/images/hero.png);
+	background-repeat: no-repeat; /* Do not repeat the image */
+	background-size: contain;
  }
 .opponenthero {
 	position: absolute;
-	top: 0.5%;
-	left: 43.5%;
+	width: 15%;
+	height: 70%;
+	top: -25%;
+	left: 44%;
 	z-index: 0;
+	background-image: url(src/images/hero.png);
+	background-repeat: no-repeat; /* Do not repeat the image */
+	background-size: contain;
  }
  .attackValue {
 	 float: left;
-	 width: 4rem;
+	 width: 1.75rem;
 	 height: 2rem;
 	 margin: 0 auto;
 	 padding-left: 0.5rem;
 	 cursor: pointer;
-	 border-top-left-radius: 0.5vw;
-	 border-bottom-right-radius: 0.5vw;
+	 border-top-right-radius: 0.5vw;
+	 border-bottom-left-radius: 0.5vw;
 	 transition: border 0.3s ease, box-shadow 0.3s ease;
 	 background: linear-gradient(-135deg, rgba(255, 214, 153, 1), rgba(218, 135, 11, 1));
 	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(255, 214, 153, 0.75);
@@ -408,13 +429,13 @@ html, body {
  }
  .healthValue {
  	 float: right;
-	 width: 4rem;
+	 width: 1.75rem;
 	 height: 2rem;
 	 margin: 0 auto;
 	 padding-left: 0.5rem;
 	 cursor: pointer;
-	 border-top-right-radius: 0.5vw;
-	 border-bottom-left-radius: 0.5vw;
+	 border-bottom-right-radius: 0.5vw;
+	 border-top-left-radius: 0.5vw;
 	 transition: border 0.3s ease, box-shadow 0.3s ease;
 	 background: linear-gradient(-135deg, rgba(255, 153, 153, 1), rgba(218, 11, 11, 1));
 	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(255, 153, 153, 0.75);
@@ -507,27 +528,37 @@ html, body {
 	 letter-spacing: -0.025em;
 	-webkit-touch-callout: none; /* iOS Safari */
 	-webkit-user-select: none; /* Safari */
-	-khtml-user-select: none; /* Konqueror HTML */
+	-khtml-user-select: none; /* Konqueror HTML *c/
 	-moz-user-select: none; /* Old versions of Firefox */
 	-ms-user-select: none; /* Internet Explorer/Edge */
 	user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
 }
 .player-deck {
-	 background: linear-gradient(-135deg, rgba(153, 194, 255, 1), rgba(11, 94, 218, 1));
-	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(153, 194, 255, 0.75);
+	background-image: url(src/images/cardback.png);
+	background-repeat: no-repeat;
+	background-size: contain;
 	 color: rgba(0, 88, 219, 1);
 	 text-shadow: -0.025em 0.025em 0 rgba(128, 179, 255, 1);
 	 border-radius: 10px;
-	 top: 80%;
-	 left: 85%;
+	 top: 51.5%;
+	 left: 91%;
 }
 .computer-deck {
-	background: linear-gradient(-135deg, rgba(255, 153, 153, 1), rgba(218, 11, 11, 1));
-	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(255, 153, 153, 0.75);
+	background-image: url(src/images/cardback.png);
+	background-repeat: no-repeat;
+	background-size: contain;
 	 color: rgba(219, 0, 0, 1);
 	 text-shadow: -0.025em 0.025em 0 rgba(255, 128, 128, 1);
 	 border-radius: 10px;
-	 top: 3%;
-	 left: 3%;
+	 top: 24.5%;
+	 left: 91%;
+}
+#endturn {
+	width: 10%;
+	height: 10%;
+	position: absolute;
+	left: 85%;
+	top: 40%;
+
 }

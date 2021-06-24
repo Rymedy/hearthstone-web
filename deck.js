@@ -36,6 +36,7 @@ class MinionCard {
 		playerCardDiv.appendChild(playerHealthValue)
 		playerAttackValue.innerText = this.attack
 		playerHealthValue.innerText = this.health
+		//document.playerCardDiv.style.backgroundImage = "url('img_tree.png')";
 		return playerCardDiv
 	}
 	getComputerHTML() {
