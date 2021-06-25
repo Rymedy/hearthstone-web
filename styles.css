@@ -313,6 +313,7 @@ html, body {
   transform: translateY(65%);
 }
  .cardinplay {
+ 	position: relative;
  	background-image: url(src/cards/auchenai_soulpriest.jpg);
  	background-size: contain;
  	background-repeat: no-repeat;
@@ -328,7 +329,7 @@ html, body {
 	 	height: 8rem;
 	}
 	.board {
-		padding: 6.5rem;
+		padding: 5.25rem;
 	}
 }
 @media only screen and (min-width: 1500px) {
@@ -337,6 +338,7 @@ html, body {
 	 	height: 9rem;
 	}
 	.board {
+		padding: 6.5rem;
 	}
 }
 .computer-cardinplay {
@@ -386,33 +388,34 @@ html, body {
 }
 .playerhero {
 	position: absolute;
-	width: 15%;
+	width: 12%;
 	height: 70%;
 	top: 122%;
 	left: 44%;
 	z-index: 0;
 	background-image: url(src/images/hero.png);
 	background-repeat: no-repeat; /* Do not repeat the image */
-	background-size: contain;
+	background-size: cover;
  }
 .opponenthero {
 	position: absolute;
-	width: 15%;
+	width: 12%;
 	height: 70%;
 	top: -25%;
 	left: 44%;
 	z-index: 0;
 	background-image: url(src/images/hero.png);
 	background-repeat: no-repeat; /* Do not repeat the image */
-	background-size: contain;
+	background-size: cover;
  }
  .attackValue {
-	 float: left;
+ 	position: absolute;
+ 	bottom: 0;
+ 	left: 0;
 	 width: 1.75rem;
 	 height: 2rem;
 	 margin: 0 auto;
 	 padding-left: 0.5rem;
-	 cursor: pointer;
 	 border-top-right-radius: 0.5vw;
 	 border-bottom-left-radius: 0.5vw;
 	 transition: border 0.3s ease, box-shadow 0.3s ease;
@@ -428,12 +431,13 @@ html, body {
 	 user-select: none;
  }
  .healthValue {
- 	 float: right;
+ 	position: absolute;
+ 	bottom: 0;
+ 	right: 0;
 	 width: 1.75rem;
 	 height: 2rem;
 	 margin: 0 auto;
 	 padding-left: 0.5rem;
-	 cursor: pointer;
 	 border-bottom-right-radius: 0.5vw;
 	 border-top-left-radius: 0.5vw;
 	 transition: border 0.3s ease, box-shadow 0.3s ease;
@@ -560,5 +564,6 @@ html, body {
 	position: absolute;
 	left: 85%;
 	top: 40%;
-
+	user-select: none;
 }
+

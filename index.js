@@ -6,6 +6,8 @@ const playerCardSlot = document.querySelector('.board--player')
 const computerDeckElement = document.querySelector('.computer-deck')
 const playerDeckElement = document.querySelector('.player-deck')
 const svg = document.getElementById('svg')
+const svgpath = document.getElementById('svgpath')
+const body = document.getElementById('body')
 var cardinplay = document.getElementsByClassName('cardinplay')
 let playerDeck, computerDeck, inRound
 
@@ -56,6 +58,30 @@ function beginRound() {
 		canAttack = true;
 }
 
+
+document.querySelectorAll('.cardinplay').forEach(function(e){
+  e.addEventListener('click', function(e) {
+    if(currentAttacker == null) {
+        currentAttacker = this.id
+        var xOrigin = e.clientX;
+        var yOrigin = e.clientY;
+        svg.style.display = "block";
+        console.log("CurrentAttacker has been chosen.")
+    body.addEventListener('mousemove', e2 => {
+      var xDest = e2.clientX;
+      var yDest = e2.clientY;
+      svgpath.setAttribute('d', 'M'+xDest+','+yDest+' '+xOrigin+','+yOrigin+'');
+  });
+    } else {
+        var snd = new Audio("src/sounds/attack.mp3");
+        var target = this.id;
+        console.log("Target has been chosen.")
+        svg.style.display = "none";
+        snd.play();
+        currentAttacker = null;
+    }
+  });
+});
 
 // querySelector only works for the first element and querySelectorAll does not work in the current case.
     var container = document.querySelector(".cards");
