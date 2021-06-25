@@ -8,6 +8,8 @@ const playerDeckElement = document.querySelector('.player-deck')
 const svg = document.getElementById('svg')
 const svgpath = document.getElementById('svgpath')
 const body = document.getElementById('body')
+const playerHero = document.getElementById('playerhero')
+const cpuHero = document.getElementById('opposinghero')
 var cardinplay = document.getElementsByClassName('cardinplay')
 let playerDeck, computerDeck, inRound
 
@@ -30,6 +32,10 @@ function startGame() {
 	for(let i = 0; i < x; i++) {
 		playerCardSlot.appendChild(playerDeck.cards[0].getPlayerHTML())
 		computerCardSlot.appendChild(computerDeck.cards[0].getComputerHTML())
+    document.getElementsByClassName("player-cardinplay")[i].id = "playerCardInPlay" + i
+    document.getElementsByClassName("computer-cardinplay")[i].id = "cpuCardInPlay" + i
+    console.log(playerDeck.cards[0])
+    console.log(computerDeck.cards[0])
 		playerDeck.cards.shift();
 		computerDeck.cards.shift();
 		updateDeckCount()
@@ -66,7 +72,7 @@ document.querySelectorAll('.cardinplay').forEach(function(e){
         var xOrigin = e.clientX;
         var yOrigin = e.clientY;
         svg.style.display = "block";
-        console.log("CurrentAttacker has been chosen.")
+        console.log(currentAttacker + " is attacking.")
     body.addEventListener('mousemove', e2 => {
       var xDest = e2.clientX;
       var yDest = e2.clientY;
@@ -75,7 +81,38 @@ document.querySelectorAll('.cardinplay').forEach(function(e){
     } else {
         var snd = new Audio("src/sounds/attack.mp3");
         var target = this.id;
-        console.log("Target has been chosen.")
+        console.log(target + " is being attacked.")
+
+        var currentAttackerElement = document.getElementById(currentAttacker);
+        var targetElement = document.getElementById(target);
+
+        var currentAttackerAttack = currentAttackerElement.children[0].innerHTML;
+        var currentAttackerHealth = currentAttackerElement.children[1].innerHTML;
+        var targetAttack = targetElement.children[0].innerHTML;
+        var targetHealth = targetElement.children[1].innerHTML;
+        console.log(currentAttackerAttack, currentAttackerHealth, targetAttack, targetHealth)
+        currentAttackerHealth = currentAttackerHealth - targetAttack
+        targetHealth = targetHealth - currentAttackerAttack
+        currentAttackerElement.children[1].innerHTML = currentAttackerHealth
+        targetElement.children[1].innerHTML = targetHealth
+        setTimeout(function() {
+          if(currentAttackerHealth <= 0) {
+            currentAttackerElement.style.display = "none";
+          }
+          if(targetHealth <= 0) {
+            targetElement.style.display = "none";
+          }
+          if (window.getComputedStyle(cpuHero).display === "none") {
+            alert("You've Won!")
+            location.reload();
+          }
+          if (window.getComputedStyle(playerHero).display === "none") {
+            alert("You've Lost!")
+            location.reload();
+          }
+        },450);
+        currentAttacker = null;
+        canAttack = false;
         svg.style.display = "none";
         snd.play();
         currentAttacker = null;
@@ -129,7 +166,7 @@ document.querySelectorAll('.cardinplay').forEach(function(e){
         e.preventDefault();
       
         if (e.type === "touchmove") {
-          currentX = e.touches[0].clientX - initialX;
+          currentX = e.touches[0].clientX
           currentY = e.touches[0].clientY - initialY;
         } else {
           currentX = e.clientX - initialX;

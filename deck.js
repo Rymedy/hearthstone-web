@@ -36,7 +36,7 @@ class MinionCard {
 		playerCardDiv.appendChild(playerHealthValue)
 		playerAttackValue.innerText = this.attack
 		playerHealthValue.innerText = this.health
-		//document.playerCardDiv.style.backgroundImage = "url('img_tree.png')";
+		playerCardDiv.style.backgroundImage = "url('src/cards/edwin_vancleef.jpg')";
 		return playerCardDiv
 	}
 	getComputerHTML() {
@@ -51,6 +51,7 @@ class MinionCard {
 		computerCardDiv.appendChild(computerHealthValue)
 		computerAttackValue.innerText = this.attack
 		computerHealthValue.innerText = this.health
+		computerCardDiv.style.backgroundImage = "url('src/cards/sylvanas_windrunner.jpg')";
 		return computerCardDiv
 	}
 	updatePlayerHTML() {
