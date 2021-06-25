@@ -56,11 +56,26 @@ class MinionCard {
 
 		return computerCardDiv
 	}
-	updatePlayerHTML() {
-		
-	}
-	updateComputerHTML() {
-		
+	getPlayerCardsInHandHTML() {
+		const playerCardInHandDiv = document.createElement('div')
+		const playerCardFaceInHandDiv = document.createElement('div')
+		const playerAttackValueInHand = document.createElement('div')
+		const playerHealthValueInHand = document.createElement('div')
+		const playerManaValueInHand = document.createElement('div')
+		playerCardInHandDiv.classList.add("card")
+		playerCardFaceInHandDiv.classList.add("card-face")
+		playerAttackValueInHand.classList.add("cardAttackValue")
+		playerHealthValueInHand.classList.add("cardHealthValue")
+		playerManaValueInHand.classList.add("cardManaValue")
+		playerCardInHandDiv.appendChild(playerCardFaceInHandDiv)
+		playerCardFaceInHandDiv.appendChild(playerAttackValueInHand)
+		playerCardFaceInHandDiv.appendChild(playerHealthValueInHand)
+		playerCardFaceInHandDiv.appendChild(playerManaValueInHand)
+		playerAttackValueInHand.innerText = this.attack
+		playerHealthValueInHand.innerText = this.health
+		playerManaValueInHand.innerText = this.mana
+		playerCardFaceInHandDiv.style.backgroundImage = "url('" + this.imageString + "')";
+		return playerCardInHandDiv
 	}
 }
 

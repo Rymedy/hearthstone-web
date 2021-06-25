@@ -3,6 +3,7 @@ var currentAttacker = null;
 var canAttack = new Boolean(null);
 const computerCardSlot = document.querySelector('.board--opponent')
 const playerCardSlot = document.querySelector('.board--player')
+const hand = document.querySelector('.cards')
 const computerDeckElement = document.querySelector('.computer-deck')
 const playerDeckElement = document.querySelector('.player-deck')
 const svg = document.getElementById('svg')
@@ -30,6 +31,7 @@ function startGame() {
 	beginRound()
 	let x = 7
 	for(let i = 0; i < x; i++) {
+    hand.appendChild(playerDeck.cards[0].getPlayerCardsInHandHTML())
 		playerCardSlot.appendChild(playerDeck.cards[0].getPlayerHTML())
 		computerCardSlot.appendChild(computerDeck.cards[0].getComputerHTML())
     document.getElementsByClassName("player-cardinplay")[i].id = "playerCardInPlay" + i
