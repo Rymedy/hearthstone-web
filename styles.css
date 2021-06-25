@@ -314,8 +314,7 @@ html, body {
 }
  .cardinplay {
  	position: relative;
- 	background-image: url(src/cards/auchenai_soulpriest.jpg);
- 	background-size: contain;
+ 	background-size: cover;
  	background-repeat: no-repeat;
 	 float: left;
 	 margin: 0 auto;
@@ -338,7 +337,7 @@ html, body {
 	 	height: 9rem;
 	}
 	.board {
-		padding: 6.5rem;
+		padding: 6.25rem;
 	}
 }
 .computer-cardinplay {
@@ -565,5 +564,27 @@ html, body {
 	left: 85%;
 	top: 40%;
 	user-select: none;
+	z-index: 5;
 }
-
+.heroHealth {
+ 	position: absolute;
+ 	left: 125%;
+ 	top: 90%;
+	 width: 1.75rem;
+	 height: 2rem;
+	 margin: 0 auto;
+	 padding-left: 0.5rem;
+	 border-bottom-right-radius: 0.5vw;
+	 border-top-left-radius: 0.5vw;
+	 transition: border 0.3s ease, box-shadow 0.3s ease;
+	 background: linear-gradient(-135deg, rgba(255, 153, 153, 1), rgba(218, 11, 11, 1));
+	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(255, 153, 153, 0.75);
+	 background-size: cover;
+	 font-family: 'helvetica neue', helvetica, arial, sans-serif;
+	 font-size: 24px;
+	 font-weight: bold;
+	 letter-spacing: -0.025em;
+	 color: rgba(219, 0, 0, 1);
+	 text-shadow: -0.025em 0.025em 0 rgba(255, 128, 128, 1);
+	 user-select: none;
+}
