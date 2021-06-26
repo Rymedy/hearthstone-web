@@ -170,6 +170,7 @@ function dragElement(elmnt) {
         elmnt.onmousedown = dragMouseDown;
     }
     function dragMouseDown(e) {
+        collision = false
         e = e || window.event;
         pos3 = parseInt(e.clientX);
         pos4 = parseInt(e.clientY);

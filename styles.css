@@ -24,6 +24,18 @@ html, body {
 	 right: 0;
 	 z-index: 10;
 }
+.enemycards {
+	 top: 0;
+	 display: flex;
+	 height: 100px;
+	 padding: 0 50px;
+	 	 margin: -50px;
+	 justify-content: center;
+	 position: relative;
+	 left: 0;
+	 right: 0;
+	 z-index: 10;
+}
  .card {
 	 height: 150px;
 	 position: absolute;
@@ -36,7 +48,21 @@ html, body {
 	user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
 }
-
+.enemycard {
+	height: 150px;
+	 position: relative;
+	 width: 100px;
+	 background-image: url(src/images/cardback.png);
+	 background-repeat: no-repeat;
+	 background-size: contain;
+	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none; /* Safari */
+	-khtml-user-select: none; /* Konqueror HTML */
+	-moz-user-select: none; /* Old versions of Firefox */
+	-ms-user-select: none; /* Internet Explorer/Edge */
+	user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
  .card:after {
 	 bottom: 0;
 	 content: '';
@@ -528,7 +554,7 @@ html, body {
 	 height: 40%;
 	 margin: 0 auto;
 	 border-bottom-right-radius: 0.5vw;
-	 border-top-left-radius: 0.5vw;
+	 border-bottom-left-radius: 0.5vw;
 	 transition: border 0.3s ease, box-shadow 0.3s ease;
 	 background: linear-gradient(-135deg, rgba(153, 194, 255, 1), rgba(11, 94, 218, 1));
 	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(153, 194, 255, 0.75);
