@@ -1,5 +1,6 @@
 import Deck from "./deck.js"
 var currentAttacker = null;
+var collision = new Boolean(null);
 var canAttack = new Boolean(null);
 const computerCardSlot = document.querySelector('.board--opponent')
 const playerCardSlot = document.querySelector('.board--player')
@@ -68,7 +69,7 @@ function beginRound() {
 
 
 document.querySelectorAll('.cardinplay').forEach(function(e){
-  e.addEventListener('click', function(e) {
+  e.addEventListener('mousedown', function(e) {
     if(currentAttacker == null) {
         currentAttacker = this.id
         var xOrigin = e.clientX;
@@ -122,66 +123,65 @@ document.querySelectorAll('.cardinplay').forEach(function(e){
   });
 });
 
-// querySelector only works for the first element and querySelectorAll does not work in the current case.
-    var container = document.querySelector(".cards");
-	var dragItem = container.querySelector(".card");
-    var active = false;
-    var currentX;
-    var currentY;
-    var initialX;
-    var initialY;
-    var xOffset = 0;
-    var yOffset = 0;
 
-    container.addEventListener("touchstart", dragStart, false);
-    container.addEventListener("touchend", dragEnd, false);
-    container.addEventListener("touchmove", drag, false);
 
-    container.addEventListener("mousedown", dragStart, false);
-    container.addEventListener("mouseup", dragEnd, false);
-    container.addEventListener("mousemove", drag, false);
+var collisionbox = document.getElementById("collisionbox");
+var draggableElements = document.getElementsByClassName("card");
+for(var i = 0; i < draggableElements.length; i++){
+    dragElement(draggableElements[i]);
+}
 
-    function dragStart(e) {
-      if (e.type === "touchstart") {
-        initialX = e.touches[0].clientX - xOffset;
-        initialY = e.touches[0].clientY - yOffset;
-      } else {
-        initialX = e.clientX - xOffset;
-        initialY = e.clientY - yOffset;
-      }
-
-      if (e.target === dragItem) {
-        active = true;
-      }
+function dragElement(elmnt) {
+    var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    if (document.getElementById(elmnt.id + "header")) {
+        document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+    } else {
+        elmnt.onmousedown = dragMouseDown;
+    }
+    function dragMouseDown(e) {
+        e = e || window.event;
+        pos3 = parseInt(e.clientX);
+        pos4 = parseInt(e.clientY);
+        document.onmouseup = closeDragElement;
+        document.onmousemove = elementDrag;
+        return false;
     }
 
-    function dragEnd(e) {
-      initialX = currentX;
-      initialY = currentY;
-
-      active = false;
-    }
-
-    function drag(e) {
-      if (active) {
-      
-        e.preventDefault();
-      
-        if (e.type === "touchmove") {
-          currentX = e.touches[0].clientX
-          currentY = e.touches[0].clientY - initialY;
-        } else {
-          currentX = e.clientX - initialX;
-          currentY = e.clientY - initialY;
-        }
-
-        xOffset = currentX;
-        yOffset = currentY;
-
-        setTranslate(currentX, currentY, dragItem);
+    function elementDrag(e) {
+        e = e || window.event;
+        pos1 = pos3 - parseInt(e.clientX);
+        pos2 = pos4 - parseInt(e.clientY);
+        pos3 = parseInt(e.clientX);
+        pos4 = parseInt(e.clientY);
+        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+        // Checks for collision between elements (the card and collisionbox)
+        for(var i = 0; i < draggableElements.length; i++){
+          var iElements = draggableElements[i]
+          var aRect = collisionbox.getBoundingClientRect();
+          var bRect = iElements.getBoundingClientRect();
+          if (
+            ((aRect.top + aRect.height) < (bRect.top)) ||
+            (aRect.top > (bRect.top + bRect.height)) ||
+            ((aRect.left + aRect.width) < bRect.left) ||
+            (aRect.left > (bRect.left + bRect.width))) {
+              console.log("NO COLLISION!")
+              collision = false
+          } else {
+            console.log("Collision!")
+            collision = true
+            document.querySelectorAll('.card').forEach(function(e){
+            e.addEventListener('mouseup', function(e) {
+              if(collision == true) {
+                iElements.remove();
+              }
+          });
+          });
+          }
       }
     }
-
-    function setTranslate(xPos, yPos, el) {
-      el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
+    function closeDragElement() {
+        document.onmouseup = null;
+        document.onmousemove = null;
     }
+}

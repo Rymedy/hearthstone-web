@@ -19,15 +19,14 @@ html, body {
 	 height: 100px;
 	 padding: 0 50px;
 	 justify-content: center;
-	 position: fixed;
+	 position: absolute;
 	 left: 0;
 	 right: 0;
 	 z-index: 10;
 }
  .card {
 	 height: 150px;
-	 margin: 0 -25px;
-	 position: relative;
+	 position: absolute;
 	 width: 100px;
 	-webkit-touch-callout: none; /* iOS Safari */
 	-webkit-user-select: none; /* Safari */
@@ -41,9 +40,7 @@ html, body {
  .card:after {
 	 bottom: 0;
 	 content: '';
-	 left: -60px;
 	 position: absolute;
-	 right: -60px;
 	 top: 0px;
 	 z-index: 10;
 }
@@ -449,7 +446,6 @@ html, body {
 	 left: 0;
 	 height: 1.5rem;
 	 margin: 0 auto;
-	 cursor: pointer;
 	 border-bottom-left-radius: 0.5vw;
 	 border-top-right-radius: 0.5vw;
 	 transition: border 0.3s ease, box-shadow 0.3s ease;
@@ -463,6 +459,7 @@ html, body {
 	 color: rgba(219, 132, 0, 1);
 	 text-shadow: -0.025em 0.025em 0 rgba(255, 204, 128, 1);
 	 user-select: none;
+	 z-index: 5;
  }
  .cardHealthValue {
  	 float: right;
@@ -472,7 +469,6 @@ html, body {
 	 right: 0;
 	 height: 1.5rem;
 	 margin: 0 auto;
-	 cursor: pointer;
 	 border-bottom-right-radius: 0.5vw;
 	 border-top-left-radius: 0.5vw;
 	 transition: border 0.3s ease, box-shadow 0.3s ease;
@@ -486,6 +482,7 @@ html, body {
 	 color: rgba(219, 0, 0, 1);
 	 text-shadow: -0.025em 0.025em 0 rgba(255, 128, 128, 1);
 	 user-select: none;
+	 z-index: 5;
 }
  .cardManaValue {
  	 float: right;
@@ -495,7 +492,6 @@ html, body {
 	 left: 0;
 	 height: 1.8rem;
 	 margin: 0 auto;
-	 cursor: pointer;
 	 border-bottom-right-radius: 0.5vw;
 	 border-top-left-radius: 0.5vw;
 	 transition: border 0.3s ease, box-shadow 0.3s ease;
@@ -510,6 +506,27 @@ html, body {
 	 text-shadow: -0.025em 0.025em 0 rgba(128, 179, 255, 1);
 	 user-select: none;
 }
+	.cardInfoValue {
+	 width: 100px;
+	 position: absolute;
+	 bottom: 0;
+	 left: 0;
+	 height: 40%;
+	 margin: 0 auto;
+	 border-bottom-right-radius: 0.5vw;
+	 border-top-left-radius: 0.5vw;
+	 transition: border 0.3s ease, box-shadow 0.3s ease;
+	 background: linear-gradient(-135deg, rgba(153, 194, 255, 1), rgba(11, 94, 218, 1));
+	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(153, 194, 255, 0.75);
+	 background-size: cover;
+	 font-family: 'helvetica neue', helvetica, arial, sans-serif;
+	 font-size: 10px;
+	 font-weight: bold;
+	 letter-spacing: -0.025em;
+	 color: rgba(0, 88, 219, 1);
+	 text-shadow: -0.025em 0.025em 0 rgba(128, 179, 255, 1);
+	 user-select: none;
+	}
  .deck {
 	height: 150px;
 	 margin: 0 -25px;
@@ -578,4 +595,12 @@ html, body {
 	 color: rgba(219, 0, 0, 1);
 	 text-shadow: -0.025em 0.025em 0 rgba(255, 128, 128, 1);
 	 user-select: none;
+}
+.collisionbox {
+	width: 90%;
+	height: 30%;
+	position: absolute;
+	left: 5%;
+	top: 35%;
+	border: solid;
 }
