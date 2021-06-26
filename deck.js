@@ -1,3 +1,5 @@
+var id1 = 0;
+var id2 = 0;
 export default class Deck {
 	constructor(cards = freshDeck()) {
 		this.cards = cards
@@ -25,11 +27,12 @@ class MinionCard {
 		this.info = info;
 		this.mana = Math.round((this.attack + this.health) * 0.5)
 	}
-
 	getPlayerHTML() {
 		const playerCardDiv = document.createElement('div')
 		const playerAttackValue = document.createElement('div')
 		const playerHealthValue = document.createElement('div')
+		playerCardDiv.id = "playerCardInPlay" + id1
+		console.log(playerCardDiv.id)
 		playerCardDiv.classList.add("cardinplay")
 		playerCardDiv.classList.add("player-cardinplay")
 		playerAttackValue.classList.add("attackValue")
@@ -39,12 +42,15 @@ class MinionCard {
 		playerAttackValue.innerText = this.attack
 		playerHealthValue.innerText = this.health
 		playerCardDiv.style.backgroundImage = "url('" + this.imageString + "')";
+		id1 += 1
 		return playerCardDiv
 	}
 	getComputerHTML() {
 		const computerCardDiv = document.createElement('div')
 		const computerAttackValue = document.createElement('div')
 		const computerHealthValue = document.createElement('div')
+		computerCardDiv.id = "cpuCardInPlay" + id2
+		console.log(computerCardDiv.id)
 		computerCardDiv.classList.add("cardinplay")
 		computerCardDiv.classList.add("computer-cardinplay")
 		computerAttackValue.classList.add("attackValue")
@@ -54,7 +60,7 @@ class MinionCard {
 		computerAttackValue.innerText = this.attack
 		computerHealthValue.innerText = this.health
 		computerCardDiv.style.backgroundImage = "url('" + this.imageString + "')";
-
+		id2 += 1
 		return computerCardDiv
 	}
 	getPlayerCardsInHandHTML() {

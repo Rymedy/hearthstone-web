@@ -2,6 +2,9 @@ import Deck from "./deck.js"
 var currentAttacker = null;
 var collision = new Boolean(null);
 var canAttack = new Boolean(null);
+var manaCost = null;
+var manaCapacity = 1;
+var mana = manaCapacity;
 const computerCardSlot = document.querySelector('.board--opponent')
 const playerCardSlot = document.querySelector('.board--player')
 const hand = document.querySelector('.cards')
@@ -41,7 +44,17 @@ function startGame() {
 		updateDeckCount()
 	}
 }
-
+placeCard()
+function placeCard() {
+document.querySelectorAll('.card').forEach(function(e){
+  e.addEventListener('mouseup', function(e) {
+    if(collision == true) {
+      playerCardSlot.appendChild(playerDeck.cards[0].getPlayerHTML())
+      console.log(manaCapacity + " Mana Capacity")
+    }
+  });
+});
+}
 function updateDeckCount() {
 	computerDeckElement.innerText = computerDeck.numberOfCards
 	playerDeckElement.innerText = playerDeck.numberOfCards
@@ -67,7 +80,6 @@ document.getElementById("endturn").addEventListener("click", function() {
 function opponentTurn() {
   let i = 0;
   computerCardSlot.appendChild(computerDeck.cards[0].getComputerHTML())
-  document.getElementsByClassName("computer-cardinplay")[i].id = "cpuCardInPlay" + i
   computerDeck.cards.shift();
   updateDeckCount()
   i += 1
@@ -75,12 +87,19 @@ function opponentTurn() {
 }
 
 function playerTurn() {
+  let i = 0;
+  manaCapacity += 1
+  mana = manaCapacity
   hand.appendChild(playerDeck.cards[0].getPlayerCardsInHandHTML())
+  attack()
   enableDrag()
+  placeCard()
   playerDeck.cards.shift();
   updateDeckCount()
+  i += 1
 }
-
+attack()
+function attack() {
 document.querySelectorAll('.cardinplay').forEach(function(e){
   e.addEventListener('mousedown', function(e) {
     if(currentAttacker == null) {
@@ -133,12 +152,10 @@ document.querySelectorAll('.cardinplay').forEach(function(e){
         svg.style.display = "none";
         snd.play();
         currentAttacker = null;
-    } else {
-      alert("Invalid target!")
-    }
+    } 
   });
 });
-
+}
 enableDrag()
 function enableDrag() {
   for(var i = 0; i < draggableElements.length; i++){
@@ -187,11 +204,8 @@ function dragElement(elmnt) {
             document.querySelectorAll('.card').forEach(function(e){
             e.addEventListener('mouseup', function(e) {
               if(collision == true) {
-                let i = 0;
+                var manaCost = iElements.children[0].children[2].innerText;
                 iElements.remove();
-                playerCardSlot.appendChild(playerDeck.cards[0].getPlayerHTML())
-                document.getElementsByClassName("player-cardinplay")[i].id = "playerCardInPlay" + i
-                i += 1
               }
           });
           });
