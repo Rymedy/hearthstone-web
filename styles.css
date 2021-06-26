@@ -308,6 +308,7 @@ html, body {
 	 margin: 0 auto;
 	 border-radius: 0.75vw;
 	 transition: border 0.3s ease, box-shadow 0.3s ease;
+	 	 border: solid 4px rgba(0,128,0, .8);
 }
 @media only screen and (min-width: 1000px) {
 	.cardinplay {
@@ -335,7 +336,7 @@ html, body {
 	 background-size: cover;
 }
  .cardinplay:hover {
-	 box-shadow: 0 0 2em 1px white;
+	 box-shadow: 0 0 3em 1px green;
 	 cursor: url(src/cursor/cursor.png) 10 2, auto;
 }
 .playerhero:hover {
@@ -393,6 +394,16 @@ html, body {
 	background-image: url(src/images/hero.png);
 	background-repeat: no-repeat; /* Do not repeat the image */
 	background-size: cover;
+ }
+ #opposinghero {
+ 		border: none !important;
+ 		width: 100% !important;
+ 		box-shadow: none !important;
+ }
+ #playerhero {
+ 		border: none !important;
+ 		width: 100% !important;
+ 		box-shadow: none !important;
  }
  .attackValue {
  	position: absolute;
@@ -576,7 +587,7 @@ html, body {
 }
 .heroHealth {
  	position: absolute;
- 	left: 125%;
+ 	left: 80%;
  	top: 90%;
 	 width: 1.75rem;
 	 height: 2rem;

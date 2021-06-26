@@ -29,7 +29,6 @@ function startGame() {
 	console.log(computerDeck)
 
 	updateDeckCount()
-	beginRound()
 	let x = 7
 	for(let i = 0; i < x; i++) {
     hand.appendChild(playerDeck.cards[0].getPlayerCardsInHandHTML())
@@ -63,14 +62,11 @@ function updateDeckCount() {
 	}
 }
 
-function beginRound() {
-		canAttack = true;
-}
-
 
 document.querySelectorAll('.cardinplay').forEach(function(e){
   e.addEventListener('mousedown', function(e) {
     if(currentAttacker == null) {
+      if(this.classList.contains('player-cardinplay')) {
         currentAttacker = this.id
         var xOrigin = e.clientX;
         var yOrigin = e.clientY;
@@ -81,7 +77,7 @@ document.querySelectorAll('.cardinplay').forEach(function(e){
       var yDest = e2.clientY;
       svgpath.setAttribute('d', 'M'+xDest+','+yDest+' '+xOrigin+','+yOrigin+'');
   });
-    } else {
+   }} else if((this.classList.contains('computer-cardinplay') || (this.id == 'opposinghero'))) {
         var snd = new Audio("src/sounds/attack.mp3");
         var target = this.id;
         console.log(target + " is being attacked.")
@@ -119,6 +115,8 @@ document.querySelectorAll('.cardinplay').forEach(function(e){
         svg.style.display = "none";
         snd.play();
         currentAttacker = null;
+    } else {
+      alert("Invalid target!")
     }
   });
 });
