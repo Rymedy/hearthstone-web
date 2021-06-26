@@ -325,13 +325,16 @@ html, body {
 	 	height: 9rem;
 	}
 	.board {
-		padding: 6.25rem;
+		padding: 6.5rem;
 	}
 }
 .computer-cardinplay {
+	border: none !important;
 	 background-size: cover;
 }
-
+.computer-cardinplay:hover {
+	box-shadow: 0 0 3em 1px white !important;
+}
 .player-cardinplay {
 	 background-size: cover;
 }

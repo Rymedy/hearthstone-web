@@ -13,6 +13,8 @@ const body = document.getElementById('body')
 const playerHero = document.getElementById('playerhero')
 const cpuHero = document.getElementById('opposinghero')
 var cardinplay = document.getElementsByClassName('cardinplay')
+var collisionbox = document.getElementById("collisionbox");
+var draggableElements = document.getElementsByClassName("card");
 let playerDeck, computerDeck, inRound
 
 startGame()
@@ -29,13 +31,9 @@ function startGame() {
 	console.log(computerDeck)
 
 	updateDeckCount()
-	let x = 7
+	let x = 3
 	for(let i = 0; i < x; i++) {
     hand.appendChild(playerDeck.cards[0].getPlayerCardsInHandHTML())
-		playerCardSlot.appendChild(playerDeck.cards[0].getPlayerHTML())
-		computerCardSlot.appendChild(computerDeck.cards[0].getComputerHTML())
-    document.getElementsByClassName("player-cardinplay")[i].id = "playerCardInPlay" + i
-    document.getElementsByClassName("computer-cardinplay")[i].id = "cpuCardInPlay" + i
     console.log(playerDeck.cards[0])
     console.log(computerDeck.cards[0])
 		playerDeck.cards.shift();
@@ -62,6 +60,26 @@ function updateDeckCount() {
 	}
 }
 
+document.getElementById("endturn").addEventListener("click", function() {
+  opponentTurn()
+});
+
+function opponentTurn() {
+  let i = 0;
+  computerCardSlot.appendChild(computerDeck.cards[0].getComputerHTML())
+  document.getElementsByClassName("computer-cardinplay")[i].id = "cpuCardInPlay" + i
+  computerDeck.cards.shift();
+  updateDeckCount()
+  i += 1
+  playerTurn()
+}
+
+function playerTurn() {
+  hand.appendChild(playerDeck.cards[0].getPlayerCardsInHandHTML())
+  enableDrag()
+  playerDeck.cards.shift();
+  updateDeckCount()
+}
 
 document.querySelectorAll('.cardinplay').forEach(function(e){
   e.addEventListener('mousedown', function(e) {
@@ -121,14 +139,12 @@ document.querySelectorAll('.cardinplay').forEach(function(e){
   });
 });
 
-
-
-var collisionbox = document.getElementById("collisionbox");
-var draggableElements = document.getElementsByClassName("card");
-for(var i = 0; i < draggableElements.length; i++){
-    dragElement(draggableElements[i]);
+enableDrag()
+function enableDrag() {
+  for(var i = 0; i < draggableElements.length; i++){
+      dragElement(draggableElements[i]);
+  }
 }
-
 function dragElement(elmnt) {
     var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
     if (document.getElementById(elmnt.id + "header")) {
@@ -171,7 +187,11 @@ function dragElement(elmnt) {
             document.querySelectorAll('.card').forEach(function(e){
             e.addEventListener('mouseup', function(e) {
               if(collision == true) {
+                let i = 0;
                 iElements.remove();
+                playerCardSlot.appendChild(playerDeck.cards[0].getPlayerHTML())
+                document.getElementsByClassName("player-cardinplay")[i].id = "playerCardInPlay" + i
+                i += 1
               }
           });
           });
