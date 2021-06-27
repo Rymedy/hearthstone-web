@@ -29,30 +29,25 @@ function startGame() {
 	playerDeck = new Deck(deck.cards.slice(0, deckMidpoint))
 	computerDeck = new Deck(deck.cards.slice(deckMidpoint, deck.numberOfCards))
 	inRound = false
-
-	console.log(playerDeck)
-	console.log(computerDeck)
-
 	updateDeckCount()
 	let x = 3
 	for(let i = 0; i < x; i++) {
     hand.appendChild(playerDeck.cards[0].getPlayerCardsInHandHTML())
-    console.log(playerDeck.cards[0])
-    console.log(computerDeck.cards[0])
 		playerDeck.cards.shift();
 		computerDeck.cards.shift();
 		updateDeckCount()
 	}
 }
+
+function placeCardFunc(e) {
+  if(collision == true) {
+    playerCardSlot.appendChild(playerDeck.cards[0].getPlayerHTML())
+  }
+}
 placeCard()
 function placeCard() {
 document.querySelectorAll('.card').forEach(function(e){
-  e.addEventListener('mouseup', function(e) {
-    if(collision == true) {
-      playerCardSlot.appendChild(playerDeck.cards[0].getPlayerHTML())
-      console.log(manaCapacity + " Mana Capacity")
-    }
-  });
+  e.addEventListener('mouseup', placeCardFunc);
 });
 }
 function updateDeckCount() {
@@ -74,6 +69,8 @@ function updateDeckCount() {
 }
 
 document.getElementById("endturn").addEventListener("click", function() {
+  var endturn = new Audio("src/sounds/endturn.mp3");
+  endturn.play();
   opponentTurn()
 });
 
@@ -93,6 +90,9 @@ function playerTurn() {
   hand.appendChild(playerDeck.cards[0].getPlayerCardsInHandHTML())
   attack()
   enableDrag()
+  document.querySelectorAll('.card').forEach(function(e){
+    e.removeEventListener('mouseup', placeCardFunc);
+  });
   placeCard()
   playerDeck.cards.shift();
   updateDeckCount()
@@ -108,7 +108,6 @@ document.querySelectorAll('.cardinplay').forEach(function(e){
         var xOrigin = e.clientX;
         var yOrigin = e.clientY;
         svg.style.display = "block";
-        console.log(currentAttacker + " is attacking.")
     body.addEventListener('mousemove', e2 => {
       var xDest = e2.clientX;
       var yDest = e2.clientY;
@@ -117,7 +116,6 @@ document.querySelectorAll('.cardinplay').forEach(function(e){
    }} else if((this.classList.contains('computer-cardinplay') || (this.id == 'opposinghero'))) {
         var snd = new Audio("src/sounds/attack.mp3");
         var target = this.id;
-        console.log(target + " is being attacked.")
 
         var currentAttackerElement = document.getElementById(currentAttacker);
         var targetElement = document.getElementById(target);
@@ -126,7 +124,6 @@ document.querySelectorAll('.cardinplay').forEach(function(e){
         var currentAttackerHealth = currentAttackerElement.children[1].innerHTML;
         var targetAttack = targetElement.children[0].innerHTML;
         var targetHealth = targetElement.children[1].innerHTML;
-        console.log(currentAttackerAttack, currentAttackerHealth, targetAttack, targetHealth)
         currentAttackerHealth = currentAttackerHealth - targetAttack
         targetHealth = targetHealth - currentAttackerAttack
         currentAttackerElement.children[1].innerHTML = currentAttackerHealth
@@ -146,11 +143,16 @@ document.querySelectorAll('.cardinplay').forEach(function(e){
             alert("You've Lost!")
             location.reload();
           }
-        },450);
+        },250);
+        var currentAttackersElement = document.getElementById(currentAttacker);
         currentAttacker = null;
         canAttack = false;
         svg.style.display = "none";
-        snd.play();
+        if(currentAttackersElement.classList.contains('player-cardinplay')) {
+          snd.play();
+        } else {
+
+        }
         currentAttacker = null;
     } 
   });
@@ -197,10 +199,8 @@ function dragElement(elmnt) {
             (aRect.top > (bRect.top + bRect.height)) ||
             ((aRect.left + aRect.width) < bRect.left) ||
             (aRect.left > (bRect.left + bRect.width))) {
-              console.log("NO COLLISION!")
               collision = false
           } else {
-            console.log("Collision!")
             collision = true
             document.querySelectorAll('.card').forEach(function(e){
             e.addEventListener('mouseup', function(e) {

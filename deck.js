@@ -32,7 +32,6 @@ class MinionCard {
 		const playerAttackValue = document.createElement('div')
 		const playerHealthValue = document.createElement('div')
 		playerCardDiv.id = "playerCardInPlay" + id1
-		console.log(playerCardDiv.id)
 		playerCardDiv.classList.add("cardinplay")
 		playerCardDiv.classList.add("player-cardinplay")
 		playerAttackValue.classList.add("attackValue")
@@ -50,7 +49,6 @@ class MinionCard {
 		const computerAttackValue = document.createElement('div')
 		const computerHealthValue = document.createElement('div')
 		computerCardDiv.id = "cpuCardInPlay" + id2
-		console.log(computerCardDiv.id)
 		computerCardDiv.classList.add("cardinplay")
 		computerCardDiv.classList.add("computer-cardinplay")
 		computerAttackValue.classList.add("attackValue")
@@ -92,7 +90,7 @@ class MinionCard {
 
 function freshDeck() {
 	let auchenai_soulpriest = new MinionCard(1, 2, "Battlecry:", "src/cards/auchenai_soulpriest.jpg")
-	let bolvar_fordragon = new MinionCard(3, 1, "Battlecry:", "src/cards/bolvar_fordragon.jpg")
+	let bolvar_fordragon = new MinionCard(3, 1, "Whenever a friendly minion dies while this is in your hand, gain +1 Attack.", "src/cards/bolvar_fordragon.jpg")
 	let cairne_bloodhoof = new MinionCard(3, 2, "Battlecry:", "src/cards/cairne_bloodhoof.jpg")
 	let dark_whispers = new MinionCard(4, 2, "Battlecry:", "src/cards/dark_whispers.jpg")
 	let doom = new MinionCard(4, 5, "Battlecry:", "src/cards/doom.jpg")
@@ -118,11 +116,9 @@ function freshDeck() {
 	let emperor_thaurissan = new MinionCard(8, 6, "Battlecry:", "src/cards/emperor_thaurissan.jpg")
 	let elven_archer = new MinionCard(1, 1, "Battlecry:", "src/cards/elven_archer.jpg")
 	let voodoo_doctor = new MinionCard(2, 1, "Battlecry:", "src/cards/voodoo_doctor.jpg")
-	let frozen_flower = new MinionCard(2, 4, "Battlecry:", "src/cards/sylvanas_windrunner.jpg")
+	let king_krush = new MinionCard(8, 8, "Charge", "src/cards/king_krush.jpg")
 	let dark_mage = new MinionCard(2, 6, "Battlecry:", "src/cards/sylvanas_windrunner.jpg")
 	let dark_warrior = new MinionCard(20, 20, "Battlecry:", "src/cards/sylvanas_windrunner.jpg")
-	let dark_shaman = new MinionCard(3, 5, "Battlecry:", "src/cards/sylvanas_windrunner.jpg")
-	let dark_rogue = new MinionCard(9, 4, "Battlecry:", "src/cards/sylvanas_windrunner.jpg")
 
 	return [
 	auchenai_soulpriest, 
@@ -152,10 +148,8 @@ function freshDeck() {
 	emperor_thaurissan,
 	elven_archer,
 	voodoo_doctor,
-	frozen_flower,
+	king_krush,
 	dark_mage,
-	dark_warrior,
-	dark_shaman,
-	dark_rogue
+	dark_warrior
 	]
 }

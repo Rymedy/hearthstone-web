@@ -27,12 +27,13 @@ html, body {
 .enemycards {
 	 top: 0;
 	 display: flex;
+	 width: 90%;
 	 height: 100px;
 	 padding: 0 50px;
 	 	 margin: -50px;
 	 justify-content: center;
 	 position: relative;
-	 left: 0;
+	 left: 5%;
 	 right: 0;
 	 z-index: 10;
 }
@@ -413,6 +414,25 @@ html, body {
 	background-repeat: no-repeat; /* Do not repeat the image */
 	background-size: cover;
  }
+ .playerheropower {
+ 		position: absolute;
+	width: 12%;
+	height: 70%;
+	top: 120%;
+	left: 58%;
+	z-index: 0;
+	background-image: url(src/images/heropower.png);
+	background-repeat: no-repeat; /* Do not repeat the image */
+	background-size: cover;
+ }
+ .heroPowerAttack {
+ 	font-size: 0px;
+ 	user-select: none;
+ }
+  .heroPowerHealth {
+ 	font-size: 0px;
+ 	user-select: none;
+ }
 .opponenthero {
 	position: absolute;
 	width: 12%;
@@ -430,6 +450,11 @@ html, body {
  		box-shadow: none !important;
  }
  #playerhero {
+ 		border: none !important;
+ 		width: 100% !important;
+ 		box-shadow: none !important;
+ }
+  #playerheropower {
  		border: none !important;
  		width: 100% !important;
  		box-shadow: none !important;
