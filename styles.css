@@ -1,20 +1,26 @@
 html, body {
 	width: 100%;
 	height: 100%;
+	font-family: BelweBdBTBold;
 }
  body {
-	background-image: url(src/images/background.png);
-	background-size: 100% 100%;
-	background-position: center;
-	background-repeat: no-repeat;
 	overflow: hidden;
 	cursor: url(src/cursor/cursor.png) 10 2, auto;
+	 	background-color: black;
+	background-image: url(src/images/background.png) !important;
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
 }
  body:active {
 	 cursor: url(src/cursor/click.png) 10 2, auto;
 }
+@font-face {
+	font-family: BelweBdBTBold;
+	src: url(src/fonts/BelweBdBTBold.ttf);
+}
  .cards {
-	 bottom: 0;
+ 	bottom: 0;
 	 display: flex;
 	 height: 100px;
 	 padding: 0 50px;
@@ -345,6 +351,10 @@ html, body {
 	.board {
 		padding: 5.25rem;
 	}
+	#endturn {
+		left: 85%;
+		top: 42%;
+	}
 }
 @media only screen and (min-width: 1500px) {
 	.cardinplay {
@@ -353,6 +363,10 @@ html, body {
 	}
 	.board {
 		padding: 6.5rem;
+	}
+	#endturn {
+		left: 75%;
+		top: 42%;
 	}
 }
 .computer-cardinplay {
@@ -405,25 +419,25 @@ html, body {
 }
 .playerhero {
 	position: absolute;
-	width: 12%;
-	height: 70%;
-	top: 122%;
-	left: 44%;
+	width: 11%;
+	height: 76%;
+	top: 115%;
+	left: 45.3%;
 	z-index: 0;
-	background-image: url(src/images/hero.png);
+	background-image: url(src/images/medivh.gif);
 	background-repeat: no-repeat; /* Do not repeat the image */
-	background-size: cover;
+	background-size: contain;
  }
  .playerheropower {
  		position: absolute;
-	width: 12%;
-	height: 70%;
+	width: 10%;
+	height: 60%;
 	top: 120%;
-	left: 58%;
+	left: 57%;
 	z-index: 0;
-	background-image: url(src/images/heropower.png);
+	background-image: url(src/images/heropower.gif);
 	background-repeat: no-repeat; /* Do not repeat the image */
-	background-size: cover;
+	background-size: contain;
  }
  .heroPowerAttack {
  	font-size: 0px;
@@ -435,14 +449,14 @@ html, body {
  }
 .opponenthero {
 	position: absolute;
-	width: 12%;
-	height: 70%;
-	top: -25%;
-	left: 44%;
+	width: 11%;
+	height: 76%;
+	top: -32%;
+	left: 45.3%;
 	z-index: 0;
-	background-image: url(src/images/hero.png);
+	background-image: url(src/images/valeera_sanguinar.gif);
 	background-repeat: no-repeat; /* Do not repeat the image */
-	background-size: cover;
+	background-size: contain;
  }
  #opposinghero {
  		border: none !important;
@@ -585,7 +599,7 @@ html, body {
 	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(153, 194, 255, 0.75);
 	 background-size: cover;
 	 font-family: 'helvetica neue', helvetica, arial, sans-serif;
-	 font-size: 10px;
+	 font-size: 8px;
 	 font-weight: bold;
 	 letter-spacing: -0.025em;
 	 color: rgba(0, 88, 219, 1);
@@ -617,7 +631,7 @@ html, body {
 	 text-shadow: -0.025em 0.025em 0 rgba(128, 179, 255, 1);
 	 border-radius: 10px;
 	 top: 51.5%;
-	 left: 91%;
+	 left: 80%;
 }
 .computer-deck {
 	background-image: url(src/images/cardback.png);
@@ -627,14 +641,12 @@ html, body {
 	 text-shadow: -0.025em 0.025em 0 rgba(255, 128, 128, 1);
 	 border-radius: 10px;
 	 top: 24.5%;
-	 left: 91%;
+	 left: 80%;
 }
 #endturn {
-	width: 10%;
-	height: 10%;
+	width: 8%;
+	height: 8%;
 	position: absolute;
-	left: 85%;
-	top: 40%;
 	user-select: none;
 	background-color: orange;
 	z-index: 5;
@@ -642,7 +654,7 @@ html, body {
 .heroHealth {
  	position: absolute;
  	left: 80%;
- 	top: 90%;
+ 	top: 100%;
 	 width: 1.75rem;
 	 height: 2rem;
 	 margin: 0 auto;

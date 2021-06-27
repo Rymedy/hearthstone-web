@@ -1,10 +1,17 @@
+// Imports module 'Deck' from deck.js
 import Deck from "./deck.js"
+// Defines global variables
 var currentAttacker = null;
 var collision = new Boolean(null);
 var canAttack = new Boolean(null);
 var manaCost = null;
 var manaCapacity = 1;
 var mana = manaCapacity;
+var items = ["src/ost/mulligan.mp3"]
+var item = items[Math.floor(Math.random()*items.length)];
+var song = new Audio(item);
+var audioIsPlayed = new Boolean(false)
+// Defines constant variables
 const computerCardSlot = document.querySelector('.board--opponent')
 const playerCardSlot = document.querySelector('.board--player')
 const hand = document.querySelector('.cards')
@@ -15,16 +22,15 @@ const svgpath = document.getElementById('svgpath')
 const body = document.getElementById('body')
 const playerHero = document.getElementById('playerhero')
 const cpuHero = document.getElementById('opposinghero')
-var cardinplay = document.getElementsByClassName('cardinplay')
-var collisionbox = document.getElementById("collisionbox");
-var draggableElements = document.getElementsByClassName("card");
+const cardinplay = document.getElementsByClassName('cardinplay')
+const collisionbox = document.getElementById("collisionbox");
+const draggableElements = document.getElementsByClassName("card");
 let playerDeck, computerDeck, inRound
 
 startGame()
 function startGame() {
 	const deck = new Deck()
 	deck.shuffle()
-
 	const deckMidpoint = Math.ceil(deck.numberOfCards / 2)
 	playerDeck = new Deck(deck.cards.slice(0, deckMidpoint))
 	computerDeck = new Deck(deck.cards.slice(deckMidpoint, deck.numberOfCards))
@@ -38,7 +44,8 @@ function startGame() {
 		updateDeckCount()
 	}
 }
-
+song.play()
+song.volume = 0.7;
 function placeCardFunc(e) {
   if(collision == true) {
     playerCardSlot.appendChild(playerDeck.cards[0].getPlayerHTML())
@@ -72,6 +79,11 @@ document.getElementById("endturn").addEventListener("click", function() {
   var endturn = new Audio("src/sounds/endturn.mp3");
   endturn.play();
   opponentTurn()
+  if(audioIsPlayed == false) {
+    song.play()
+    song.volume = 0.7;
+    audioIsPlayed = true;
+}
 });
 
 function opponentTurn() {
@@ -90,6 +102,8 @@ function playerTurn() {
   hand.appendChild(playerDeck.cards[0].getPlayerCardsInHandHTML())
   attack()
   enableDrag()
+  // Removes all event listeners from elements with the class name 'card' for function placeCardFunc -
+  // - on mouseup to ensure elements do not have more than 1 event listener when the placeCard() function is called.
   document.querySelectorAll('.card').forEach(function(e){
     e.removeEventListener('mouseup', placeCardFunc);
   });
