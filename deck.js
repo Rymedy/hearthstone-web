@@ -31,13 +31,16 @@ class MinionCard {
 		const playerCardDiv = document.createElement('div')
 		const playerAttackValue = document.createElement('div')
 		const playerHealthValue = document.createElement('div')
+		const oval = document.createElement('div')
 		playerCardDiv.id = "playerCardInPlay" + id1
 		playerCardDiv.classList.add("cardinplay")
 		playerCardDiv.classList.add("player-cardinplay")
 		playerAttackValue.classList.add("attackValue")
 		playerHealthValue.classList.add("healthValue")
+		oval.classList.add('oval')
 		playerCardDiv.appendChild(playerAttackValue)
 		playerCardDiv.appendChild(playerHealthValue)
+		playerCardDiv.appendChild(oval)
 		playerAttackValue.innerText = this.attack
 		playerHealthValue.innerText = this.health
 		playerCardDiv.style.backgroundImage = "url('" + this.imageString + "')";
@@ -48,13 +51,16 @@ class MinionCard {
 		const computerCardDiv = document.createElement('div')
 		const computerAttackValue = document.createElement('div')
 		const computerHealthValue = document.createElement('div')
+		const oval = document.createElement('div')
 		computerCardDiv.id = "cpuCardInPlay" + id2
 		computerCardDiv.classList.add("cardinplay")
 		computerCardDiv.classList.add("computer-cardinplay")
 		computerAttackValue.classList.add("attackValue")
 		computerHealthValue.classList.add("healthValue")
+		oval.classList.add('oval')
 		computerCardDiv.appendChild(computerAttackValue)
 		computerCardDiv.appendChild(computerHealthValue)
+		computerCardDiv.appendChild(oval)
 		computerAttackValue.innerText = this.attack
 		computerHealthValue.innerText = this.health
 		computerCardDiv.style.backgroundImage = "url('" + this.imageString + "')";
@@ -64,12 +70,14 @@ class MinionCard {
 	getPlayerCardsInHandHTML() {
 		const playerCardInHandDiv = document.createElement('div')
 		const playerCardFaceInHandDiv = document.createElement('div')
+		const playerCardBorderInHandDiv = document.createElement('div')
 		const playerAttackValueInHand = document.createElement('div')
 		const playerHealthValueInHand = document.createElement('div')
 		const playerManaValueInHand = document.createElement('div')
 		const playerInfoValueInHand = document.createElement('div')
 		playerCardInHandDiv.classList.add("card")
 		playerCardFaceInHandDiv.classList.add("card-face")
+		playerCardBorderInHandDiv.classList.add("card-border")
 		playerAttackValueInHand.classList.add("cardAttackValue")
 		playerHealthValueInHand.classList.add("cardHealthValue")
 		playerManaValueInHand.classList.add("cardManaValue")
@@ -79,6 +87,7 @@ class MinionCard {
 		playerCardFaceInHandDiv.appendChild(playerHealthValueInHand)
 		playerCardFaceInHandDiv.appendChild(playerManaValueInHand)
 		playerCardFaceInHandDiv.appendChild(playerInfoValueInHand)
+		playerCardFaceInHandDiv.appendChild(playerCardBorderInHandDiv)
 		playerAttackValueInHand.innerText = this.attack
 		playerHealthValueInHand.innerText = this.health
 		playerManaValueInHand.innerText = this.mana
@@ -98,11 +107,11 @@ function freshDeck() {
 	let flamestrike = new MinionCard(4, 1, "Battlecry:", "src/cards/flamestrike.jpg")
 	let kabal_crystal_runner = new MinionCard(1, 4, "Battlecry:", "src/cards/kabal_crystal_runner.jpg")
 	let lunar_visions = new MinionCard(8, 6, "Battlecry:", "src/cards/lunar_visions.jpg")
-	let mal_ganis = new MinionCard(10, 10, "Battlecry:", "src/cards/mal_ganis.jpg")
+	let mal_ganis = new MinionCard(4, 3, "Battlecry:", "src/cards/mal_ganis.jpg")
 	let reno_jackson = new MinionCard(2, 8, "Battlecry:", "src/cards/reno_jackson.jpg")
 	let saboteur = new MinionCard(2, 4, "Battlecry:", "src/cards/saboteur.jpg")
 	let starfall = new MinionCard(2, 6, "Battlecry:", "src/cards/starfall.png")
-	let sylvanas_windrunner = new MinionCard(20, 20, "Battlecry:", "src/cards/sylvanas_windrunner.jpg")
+	let sylvanas_windrunner = new MinionCard(4, 5, "Battlecry:", "src/cards/sylvanas_windrunner.jpg")
 	let tirion_fordring = new MinionCard(3, 5, "Battlecry:", "src/cards/tirion_fordring.jpg")
 	let unstable_portal = new MinionCard(9, 4, "Battlecry:", "src/cards/unstable_portal.jpg")
 	let vaporize = new MinionCard(1, 2, "Battlecry:", "src/cards/vaporize.jpg")
@@ -118,7 +127,7 @@ function freshDeck() {
 	let voodoo_doctor = new MinionCard(2, 1, "Battlecry:", "src/cards/voodoo_doctor.jpg")
 	let king_krush = new MinionCard(8, 8, "Charge", "src/cards/king_krush.jpg")
 	let dark_mage = new MinionCard(2, 6, "Battlecry:", "src/cards/sylvanas_windrunner.jpg")
-	let dark_warrior = new MinionCard(20, 20, "Battlecry:", "src/cards/sylvanas_windrunner.jpg")
+	let dark_warrior = new MinionCard(9, 6, "Battlecry:", "src/cards/sylvanas_windrunner.jpg")
 
 	return [
 	auchenai_soulpriest, 
