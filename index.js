@@ -1,12 +1,13 @@
-// Imports module 'Deck' from deck.js
+// imports module 'Deck' from deck.js
 import Deck from "./deck.js"
-// Defines global variables
+// defines global variables
 var currentAttacker = null;
 var collision = new Boolean(null);
 var canAttack = new Boolean(null);
 var manaCost = null;
 var manaCapacity = 1;
 var mana = manaCapacity;
+// soundtrack's to be randomly selected in game
 var items = [
 "src/ost/mulligan.mp3", 
 "src/ost/bad_reputation.mp3", 
@@ -15,10 +16,16 @@ var items = [
 "src/ost/duel.mp3",
 "src/ost/the_forge.mp3"
 ]
+var amount = 0;
+// randomly selects an element from the array 'items'
 var item = items[Math.floor(Math.random()*items.length)];
+// converts the string into an audio element
 var song = new Audio(item);
+/* boolean to check if the audio is already playing to ensure multiple audio 
+files do not play at the same time when the end turn button is clicked */
 var audioIsPlayed = new Boolean(false)
-// Defines constant variables
+var playerHandArray = []
+// defines constant variables to refer to HTML elements
 const computerCardSlot = document.querySelector('.board--opponent')
 const playerCardSlot = document.querySelector('.board--player')
 const hand = document.querySelector('.cards')
@@ -34,8 +41,10 @@ const collisionbox = document.getElementById("collisionbox");
 const draggableElements = document.getElementsByClassName("card");
 let playerDeck, computerDeck, inRound
 
+// calls and defines the startGame function to perform required functions when the page is loaded.
 startGame()
 function startGame() {
+  // creates a new deck where cards are shuffled and split into 2 equal decks for both the player and AI
 	const deck = new Deck()
 	deck.shuffle()
 	const deckMidpoint = Math.ceil(deck.numberOfCards / 2)
@@ -51,19 +60,25 @@ function startGame() {
 		updateDeckCount()
 	}
 }
+// plays a random song and sets the volume to 70% from the array defined above
 song.play()
 song.volume = 0.7;
+/* defines new function that when boolean collision is true between the card and collisionbox element and element is 
+created using the getPlayerHTML() function defined in deck.js and is appended as a child into the players' board */
 function placeCardFunc(e) {
   if(collision == true) {
-    playerCardSlot.appendChild(playerDeck.cards[0].getPlayerHTML())
+    playerCardSlot.appendChild(playerDeck.cards[0].getPlayerHTML()) // Change this to playerCardSlot.appendChild([THE CARD].getPlayerHTML())
   }
 }
+// defines a new function that adds an event listener (mouseup) to all elements with the class name 'card' then calls the placeCardFunc()
 placeCard()
 function placeCard() {
 document.querySelectorAll('.card').forEach(function(e){
   e.addEventListener('mouseup', placeCardFunc);
 });
 }
+/* defines new function that updates the HTML and makes it equal to the current number of cards in each deck 
+then checks if either the players or computers deck is empty and if so the deck is no longer made visible */
 function updateDeckCount() {
 	computerDeckElement.innerText = computerDeck.numberOfCards
 	playerDeckElement.innerText = playerDeck.numberOfCards
@@ -81,7 +96,8 @@ function updateDeckCount() {
 		playerDeckElement.style.display = "block";
 	}
 }
-
+/* adds an event listener to the end turn button where when clicked plays an audio file and calls the 
+opponentTurn function then checks if the audio has been played yet and if not plays it and sets audioIsPlayed to false */
 document.getElementById("endturn").addEventListener("click", function() {
   var endturn = new Audio("src/sounds/endturn.mp3");
   endturn.play();
@@ -92,35 +108,42 @@ document.getElementById("endturn").addEventListener("click", function() {
     audioIsPlayed = true;
 }
 });
-
+/* defines new function that calls the getComputerHTML function from deck.js using the first card at the top of the computers' deck and appends as a child to 
+the computers board and uses the shift method to remove the first card in the array then proceeds to call both updateDeckCount and playerTurn functions. */
 function opponentTurn() {
-  let i = 0;
   computerCardSlot.appendChild(computerDeck.cards[0].getComputerHTML())
   computerDeck.cards.shift();
   updateDeckCount()
-  i += 1
   playerTurn()
 }
 
 function playerTurn() {
-  let i = 0;
   manaCapacity += 1
   mana = manaCapacity
+  playerHandArray.push(playerDeck.cards[0])
+  console.log(playerHandArray)
   hand.appendChild(playerDeck.cards[0].getPlayerCardsInHandHTML())
   attack()
   enableDrag()
-  // Removes all event listeners from elements with the class name 'card' for function placeCardFunc -
-  // - on mouseup to ensure elements do not have more than 1 event listener when the placeCard() function is called.
+  /* Removes all event listeners from elements with the class name 'card' for function placeCardFunc
+  on mouseup to ensure elements do not have more than 1 event listener when the placeCard() function is called. */
   document.querySelectorAll('.card').forEach(function(e){
     e.removeEventListener('mouseup', placeCardFunc);
   });
   placeCard()
   playerDeck.cards.shift();
   updateDeckCount()
-  i += 1
 }
-attack()
+
 function attack() {
+var numOfChild = playerCardSlot.childElementCount;
+for(let i=0; i<numOfChild; i++) {
+  document.getElementById("playerCardInPlay" + i).style.border = "solid 3px rgba(0, 230, 64, 1)"; 
+  document.getElementById("playerCardInPlay" + i).children[2].style.border = "solid 4px rgba(0, 230, 64, 1)";
+  document.getElementById("playerCardInPlay" + i).children[2].style.animation = "shake 0.5s";
+  document.getElementById("playerCardInPlay" + i).children[2].style.animationIterationCount = "infinite";
+}
+amount += 1;
 document.querySelectorAll('.cardinplay').forEach(function(e){
   e.addEventListener('mousedown', function(e) {
     if(currentAttacker == null) {
@@ -149,6 +172,9 @@ document.querySelectorAll('.cardinplay').forEach(function(e){
         targetHealth = targetHealth - currentAttackerAttack
         currentAttackerElement.children[1].innerHTML = currentAttackerHealth
         targetElement.children[1].innerHTML = targetHealth
+        currentAttackerElement.style.border = "solid 3px black";
+        currentAttackerElement.children[2].style.border = "solid 4px black";
+        currentAttackerElement.children[2].style.animation = "none";
         setTimeout(function() {
           if(currentAttackerHealth <= 0) {
             currentAttackerElement.style.display = "none";

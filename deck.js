@@ -20,12 +20,13 @@ export default class Deck {
 	}
 }
 class MinionCard {
-	constructor(attack, health, info, imageString) {
+	constructor(attack, health, info, imageString, name) {
 		this.imageString = imageString;
 		this.attack = attack;
 		this.health = health;
 		this.info = info;
 		this.mana = Math.round((this.attack + this.health) * 0.5)
+		this.name = name;
 	}
 	getPlayerHTML() {
 		const playerCardDiv = document.createElement('div')
@@ -75,6 +76,7 @@ class MinionCard {
 		const playerHealthValueInHand = document.createElement('div')
 		const playerManaValueInHand = document.createElement('div')
 		const playerInfoValueInHand = document.createElement('div')
+		const playerNameValueInHand = document.createElement('div')
 		playerCardInHandDiv.classList.add("card")
 		playerCardFaceInHandDiv.classList.add("card-face")
 		playerCardBorderInHandDiv.classList.add("card-border")
@@ -82,52 +84,55 @@ class MinionCard {
 		playerHealthValueInHand.classList.add("cardHealthValue")
 		playerManaValueInHand.classList.add("cardManaValue")
 		playerInfoValueInHand.classList.add("cardInfoValue")
+		playerNameValueInHand.classList.add("cardNameValue")
 		playerCardInHandDiv.appendChild(playerCardFaceInHandDiv)
 		playerCardFaceInHandDiv.appendChild(playerAttackValueInHand)
 		playerCardFaceInHandDiv.appendChild(playerHealthValueInHand)
 		playerCardFaceInHandDiv.appendChild(playerManaValueInHand)
 		playerCardFaceInHandDiv.appendChild(playerInfoValueInHand)
 		playerCardFaceInHandDiv.appendChild(playerCardBorderInHandDiv)
+		playerCardFaceInHandDiv.appendChild(playerNameValueInHand)
 		playerAttackValueInHand.innerText = this.attack
 		playerHealthValueInHand.innerText = this.health
 		playerManaValueInHand.innerText = this.mana
 		playerInfoValueInHand.innerText = this.info
+		playerNameValueInHand.innerText = this.name
 		playerCardFaceInHandDiv.style.backgroundImage = "url('" + this.imageString + "')";
 		return playerCardInHandDiv
 	}
 }
 
 function freshDeck() {
-	let auchenai_soulpriest = new MinionCard(1, 2, "Battlecry:", "src/cards/auchenai_soulpriest.jpg")
-	let bolvar_fordragon = new MinionCard(3, 1, "Whenever a friendly minion dies while this is in your hand, gain +1 Attack.", "src/cards/bolvar_fordragon.jpg")
-	let cairne_bloodhoof = new MinionCard(3, 2, "Battlecry:", "src/cards/cairne_bloodhoof.jpg")
-	let dark_whispers = new MinionCard(4, 2, "Battlecry:", "src/cards/dark_whispers.jpg")
-	let doom = new MinionCard(4, 5, "Battlecry:", "src/cards/doom.jpg")
-	let edwin_vancleef = new MinionCard(7, 6, "Battlecry:", "src/cards/edwin_vancleef.jpg")
-	let flamestrike = new MinionCard(4, 1, "Battlecry:", "src/cards/flamestrike.jpg")
-	let kabal_crystal_runner = new MinionCard(1, 4, "Battlecry:", "src/cards/kabal_crystal_runner.jpg")
-	let lunar_visions = new MinionCard(8, 6, "Battlecry:", "src/cards/lunar_visions.jpg")
-	let mal_ganis = new MinionCard(4, 3, "Battlecry:", "src/cards/mal_ganis.jpg")
-	let reno_jackson = new MinionCard(2, 8, "Battlecry:", "src/cards/reno_jackson.jpg")
-	let saboteur = new MinionCard(2, 4, "Battlecry:", "src/cards/saboteur.jpg")
-	let starfall = new MinionCard(2, 6, "Battlecry:", "src/cards/starfall.png")
-	let sylvanas_windrunner = new MinionCard(4, 5, "Battlecry:", "src/cards/sylvanas_windrunner.jpg")
-	let tirion_fordring = new MinionCard(3, 5, "Battlecry:", "src/cards/tirion_fordring.jpg")
-	let unstable_portal = new MinionCard(9, 4, "Battlecry:", "src/cards/unstable_portal.jpg")
-	let vaporize = new MinionCard(1, 2, "Battlecry:", "src/cards/vaporize.jpg")
-	let wilfred_fizzlebang = new MinionCard(3, 1, "Battlecry:", "src/cards/wilfred_fizzlebang.jpg")
-	let worgen_infiltrator = new MinionCard(3, 2, "Battlecry:", "src/cards/worgen_infiltrator.jpg")
-	let ancient_of_lore = new MinionCard(4, 2, "Battlecry:", "src/cards/ancient_of_lore.jpg")
-	let darnassus_aspirant = new MinionCard(4, 5, "Battlecry:", "src/cards/darnassus_aspirant.jpg")
-	let astral_communion = new MinionCard(7, 6, "Battlecry:", "src/cards/astral_communion.jpg")
-	let anubisath_sentinel = new MinionCard(4, 1, "Battlecry:", "src/cards/anubisath_sentinel.png")
-	let dragon_consort = new MinionCard(1, 4, "Battlecry:", "src/cards/dragon_consort.jpg")
-	let emperor_thaurissan = new MinionCard(8, 6, "Battlecry:", "src/cards/emperor_thaurissan.jpg")
-	let elven_archer = new MinionCard(1, 1, "Battlecry:", "src/cards/elven_archer.jpg")
-	let voodoo_doctor = new MinionCard(2, 1, "Battlecry:", "src/cards/voodoo_doctor.jpg")
-	let king_krush = new MinionCard(8, 8, "Charge", "src/cards/king_krush.jpg")
-	let dark_mage = new MinionCard(2, 6, "Battlecry:", "src/cards/sylvanas_windrunner.jpg")
-	let dark_warrior = new MinionCard(9, 6, "Battlecry:", "src/cards/sylvanas_windrunner.jpg")
+	let auchenai_soulpriest = new MinionCard(1, 2, "Battlecry:", "src/cards/auchenai_soulpriest.jpg", "Auchenai Soulpriest")
+	let bolvar_fordragon = new MinionCard(3, 1, "Whenever a friendly minion dies while this is in your hand, gain +1 Attack.", "src/cards/bolvar_fordragon.jpg", "Bolvar Fordragon")
+	let cairne_bloodhoof = new MinionCard(3, 2, "Battlecry:", "src/cards/cairne_bloodhoof.jpg", "Cairne Bloodhoof")
+	let dark_whispers = new MinionCard(4, 2, "Battlecry:", "src/cards/dark_whispers.jpg", "Dark Whispers")
+	let doom = new MinionCard(4, 5, "Battlecry:", "src/cards/doom.jpg", "Doom")
+	let edwin_vancleef = new MinionCard(7, 6, "Battlecry:", "src/cards/edwin_vancleef.jpg", "Edwin Vancleef")
+	let flamestrike = new MinionCard(4, 1, "Battlecry:", "src/cards/flamestrike.jpg", "Flamestrike")
+	let kabal_crystal_runner = new MinionCard(1, 4, "Battlecry:", "src/cards/kabal_crystal_runner.jpg", "Kabal Crystal Runner")
+	let lunar_visions = new MinionCard(8, 6, "Battlecry:", "src/cards/lunar_visions.jpg", "Lunar Visions")
+	let mal_ganis = new MinionCard(4, 3, "Battlecry:", "src/cards/mal_ganis.jpg", "Mal'ganis")
+	let reno_jackson = new MinionCard(2, 8, "Battlecry:", "src/cards/reno_jackson.jpg", "Reno Jackson")
+	let saboteur = new MinionCard(2, 4, "Battlecry:", "src/cards/saboteur.jpg", "Saboteur")
+	let starfall = new MinionCard(2, 6, "Battlecry:", "src/cards/starfall.png", "Starfall")
+	let sylvanas_windrunner = new MinionCard(4, 5, "Battlecry:", "src/cards/sylvanas_windrunner.jpg", "Sylvana Windrunner")
+	let tirion_fordring = new MinionCard(3, 5, "Battlecry:", "src/cards/tirion_fordring.jpg", "Tirion Fordring")
+	let unstable_portal = new MinionCard(9, 4, "Battlecry:", "src/cards/unstable_portal.jpg", "Unstable Portal")
+	let vaporize = new MinionCard(1, 2, "Battlecry:", "src/cards/vaporize.jpg", "Vaporize")
+	let wilfred_fizzlebang = new MinionCard(3, 1, "Battlecry:", "src/cards/wilfred_fizzlebang.jpg", "Wilfred Fizzlebang")
+	let worgen_infiltrator = new MinionCard(3, 2, "Battlecry:", "src/cards/worgen_infiltrator.jpg", "Worgen Infilitrator")
+	let ancient_of_lore = new MinionCard(4, 2, "Battlecry:", "src/cards/ancient_of_lore.jpg", "Ancient Of Lore")
+	let darnassus_aspirant = new MinionCard(4, 5, "Battlecry:", "src/cards/darnassus_aspirant.jpg", "Darnassus Aspirant")
+	let astral_communion = new MinionCard(7, 6, "Battlecry:", "src/cards/astral_communion.jpg", "Astral Communion")
+	let anubisath_sentinel = new MinionCard(4, 1, "Battlecry:", "src/cards/anubisath_sentinel.png", "Anubisath Sentinel")
+	let dragon_consort = new MinionCard(1, 4, "Battlecry:", "src/cards/dragon_consort.jpg", "Dragon Consort")
+	let emperor_thaurissan = new MinionCard(8, 6, "Battlecry:", "src/cards/emperor_thaurissan.jpg", "Emperor Thaurissan")
+	let elven_archer = new MinionCard(1, 1, "Battlecry:", "src/cards/elven_archer.jpg", "Elven Archer")
+	let voodoo_doctor = new MinionCard(2, 1, "Battlecry:", "src/cards/voodoo_doctor.jpg", "Voodoo Doctor")
+	let king_krush = new MinionCard(8, 8, "Charge", "src/cards/king_krush.jpg", "King Krush")
+	let ragnaros_the_firelord = new MinionCard(8, 8, "Charge", "src/cards/ragnaros_the_firelord.png", "Ragnaros the Firelord")
+	let ragnaros_the_lightlord = new MinionCard(8, 8, "Charge", "src/cards/ragnaros_the_lightlord.jpg", "Ragnaros the Lightlord")
 
 	return [
 	auchenai_soulpriest, 
@@ -158,7 +163,37 @@ function freshDeck() {
 	elven_archer,
 	voodoo_doctor,
 	king_krush,
-	dark_mage,
-	dark_warrior
+	ragnaros_the_firelord,
+	ragnaros_the_lightlord,
+	auchenai_soulpriest, 
+	bolvar_fordragon, 
+	cairne_bloodhoof, 
+	dark_whispers, 
+	doom, 
+	edwin_vancleef, 
+	flamestrike, 
+	kabal_crystal_runner, 
+	lunar_visions, 
+	mal_ganis, 
+	reno_jackson,
+	saboteur,
+	starfall,
+	sylvanas_windrunner,
+	tirion_fordring,
+	unstable_portal,
+	vaporize,
+	wilfred_fizzlebang,
+	worgen_infiltrator,
+	ancient_of_lore,
+	darnassus_aspirant,
+	astral_communion,
+	anubisath_sentinel,
+	dragon_consort,
+	emperor_thaurissan,
+	elven_archer,
+	voodoo_doctor,
+	king_krush,
+	ragnaros_the_firelord,
+	ragnaros_the_lightlord
 	]
 }

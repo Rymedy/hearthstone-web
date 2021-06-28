@@ -340,7 +340,7 @@ html, body {
 	 float: left;
 	 margin: 0 auto;
 	 transition: border 0.3s ease, box-shadow 0.3s ease;
-	 border: solid 3px rgba(0, 230, 64, 1);
+	 border: solid 3px black;
 }
 @media only screen and (min-width: 1000px) {
 	.cardinplay {
@@ -362,11 +362,11 @@ html, body {
 @media only screen and (min-width: 1500px) {
 	.cardinplay {
 		width: 6rem;
-	 	height: 8rem;
+	 	height: 7.5rem;
 	}
 	.oval {
 		width: 5.5rem;
-		height: 7.5rem;
+		height: 7rem;
 	}
 	.board {
 		padding: 6.5rem;
@@ -419,10 +419,10 @@ html, body {
 }
 .playerhero {
 	position: absolute;
-	width: 12%;
-	height: 77%;
-	top: 119.5%;
-	left: 44%;
+	width: 11%;
+	height: 17%;
+	left: 46.75%;
+	top: 67.75%;
 	z-index: 0;
 	background-image: url(src/images/medivh.gif);
 	background-repeat: no-repeat; /* Do not repeat the image */
@@ -449,10 +449,10 @@ html, body {
  }
 .opponenthero {
 	position: absolute;
-	width: 12%;
-	height: 77%;
-	top: -28%;
-	left: 44%;
+	width: 11%;
+	height: 17%;
+	left: 46.75%;
+	top: 9.75%;
 	z-index: 0;
 	background-image: url(src/images/valeera_sanguinar.gif);
 	background-repeat: no-repeat; /* Do not repeat the image */
@@ -559,18 +559,19 @@ html, body {
 }
  .cardManaValue {
  	 float: right;
-	 width: 1.8rem;
+	 width: 1.5rem;
 	 position: absolute;
-	 top: 0;
-	 left: 0;
-	 height: 1.8rem;
+	 top: 2px;
+	 left: 2px;
+	 height: 1.5rem;
 	 margin: 0 auto;
 	 border-radius: 100%;
+	 text-align: center;
 	 transition: border 0.3s ease, box-shadow 0.3s ease;
 	 background: linear-gradient(-135deg, rgba(153, 194, 255, 1), rgba(11, 94, 218, 1));
 	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(153, 194, 255, 0.75);
 	 background-size: cover;
-	 font-size: 24px;
+	 font-size: 20px;
 	 font-weight: bold;
 	 letter-spacing: -0.025em;
 	 color: white;
@@ -588,6 +589,23 @@ html, body {
 	 text-align: center;
 	 transition: border 0.3s ease, box-shadow 0.3s ease;
 	 background-color: rgb(139,69,19);
+	 background-size: cover;
+	 font-size: 8px;
+	 font-weight: bold;
+	 letter-spacing: -0.025em;
+	 color: rgb(51, 26, 0);
+	 user-select: none;
+	}
+.cardNameValue {
+	 width: 95px;
+	 position: absolute;
+	 top: 60%;
+	 left: 2.5px;
+	 height: 10%;
+	 margin: auto;
+	 text-align: center;
+	 transition: border 0.3s ease, box-shadow 0.3s ease;
+	 background-color: rgb(255,255,198);
 	 background-size: cover;
 	 font-size: 8px;
 	 font-weight: bold;
@@ -643,8 +661,8 @@ html, body {
 }
 .heroHealth {
  	position: absolute;
- 	left: 75%;
- 	top: 95%;
+ 	left: 51%;
+ 	top: 108%;
 	 width: 1.75rem;
 	 height: 2rem;
 	 margin: 0 auto;
@@ -667,10 +685,9 @@ html, body {
 	top: 35%;
 }
 .oval {
-	border: solid 4px rgba(0, 230, 64, 1);
+	border: solid 4px black;
 	border-radius: 100%;
   /* Start the shake animation and make the animation last for 0.5 seconds */
-  animation: shake 0.5s;
 
   /* When the animation is finished, start again */
   animation-iteration-count: infinite;
@@ -688,3 +705,4 @@ html, body {
   90% { transform: translate(0.25px, 0.5px) rotate(0deg); }
   100% { transform: translate(0.25px, -0.5px) rotate(-0.1deg); }
 }
+
