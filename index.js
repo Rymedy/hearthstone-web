@@ -7,7 +7,14 @@ var canAttack = new Boolean(null);
 var manaCost = null;
 var manaCapacity = 1;
 var mana = manaCapacity;
-var items = ["src/ost/mulligan.mp3"]
+var items = [
+"src/ost/mulligan.mp3", 
+"src/ost/bad_reputation.mp3", 
+"src/ost/better_hand.mp3", 
+"src/ost/dont_let_your_guard_down.mp3",
+"src/ost/duel.mp3",
+"src/ost/the_forge.mp3"
+]
 var item = items[Math.floor(Math.random()*items.length)];
 var song = new Audio(item);
 var audioIsPlayed = new Boolean(false)

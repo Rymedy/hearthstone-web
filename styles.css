@@ -31,7 +31,7 @@ html, body {
 	 z-index: 10;
 }
 .enemycards {
-	 top: 0;
+	 top: -10px;
 	 display: flex;
 	 width: 90%;
 	 height: 100px;
@@ -56,10 +56,11 @@ html, body {
                                   supported by Chrome, Edge, Opera and Firefox */
 }
 .enemycard {
-	height: 150px;
+	height: 160px;
+	margin: -15px;
 	 position: relative;
 	 width: 100px;
-	 background-image: url(src/images/cardback.png);
+	 background-image: url(src/images/goldcardback.png);
 	 background-repeat: no-repeat;
 	 background-size: contain;
 	-webkit-touch-callout: none; /* iOS Safari */
@@ -81,17 +82,23 @@ html, body {
 	cursor: url(src/cursor/grab.png) 10 2, auto;
 }
  .card-face {
- 	 background-size: cover;
+ 	 background-size: contain;
  	 background-repeat: no-repeat;
 	 bottom: 0;
 	 content: '';
 	 left: 0;
-	 border-radius: 10px;
 	 pointer-events: none;
 	 position: absolute;
 	 right: 0;
 	 top: 0;
 	 transition: 800ms cubic-bezier(0.19, 1, 0.22, 1) transform;
+}
+.card-border {
+	 height: 143px;
+	 width: 93px;
+	border: solid 4px rgba(0, 230, 64, 1);
+  animation: shake 0.5s;
+  animation-iteration-count: infinite;
 }
  .card-face:after {
 	 animation: none;
@@ -103,13 +110,6 @@ html, body {
 	 position: absolute;
 	 right: 0;
 	 top: 0;
-}
- .card-label {
-	 font-family: 'helvetica neue', helvetica, arial, sans-serif;
-	 font-size: 24px;
-	 font-weight: bold;
-	 letter-spacing: -0.025em;
-	 padding: 15px 0 0 15px;
 }
  .card:nth-child(1) .card-face {
 	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(255, 153, 153, 0.75);
@@ -328,7 +328,7 @@ html, body {
 	 justify-content: space-between;
 	 width: 80%;
 	 height: 2%;
-	 max-width: 70%;
+	 max-width: 50%;
     margin-left: auto;
     margin-right: auto;
   transform: translateY(65%);
@@ -339,27 +339,34 @@ html, body {
  	background-repeat: no-repeat;
 	 float: left;
 	 margin: 0 auto;
-	 border-radius: 0.75vw;
 	 transition: border 0.3s ease, box-shadow 0.3s ease;
-	 	 border: solid 4px rgba(0,128,0, .8);
+	 border: solid 3px rgba(0, 230, 64, 1);
 }
 @media only screen and (min-width: 1000px) {
 	.cardinplay {
-		width: 6rem;
-	 	height: 8rem;
+		width: 4rem;
+	 	height: 5rem;
+	}
+	.oval {
+		width: 3.5rem;
+		height: 4.5rem;
 	}
 	.board {
 		padding: 5.25rem;
 	}
 	#endturn {
-		left: 85%;
+		left: 77%;
 		top: 42%;
 	}
 }
 @media only screen and (min-width: 1500px) {
 	.cardinplay {
-		width: 7rem;
-	 	height: 9rem;
+		width: 6rem;
+	 	height: 8rem;
+	}
+	.oval {
+		width: 5.5rem;
+		height: 7.5rem;
 	}
 	.board {
 		padding: 6.5rem;
@@ -369,15 +376,8 @@ html, body {
 		top: 42%;
 	}
 }
-.computer-cardinplay {
-	border: none !important;
-	 background-size: cover;
-}
 .computer-cardinplay:hover {
 	box-shadow: 0 0 3em 1px white !important;
-}
-.player-cardinplay {
-	 background-size: cover;
 }
  .cardinplay:hover {
 	 box-shadow: 0 0 3em 1px green;
@@ -419,10 +419,10 @@ html, body {
 }
 .playerhero {
 	position: absolute;
-	width: 11%;
-	height: 76%;
-	top: 115%;
-	left: 45.3%;
+	width: 12%;
+	height: 77%;
+	top: 119.5%;
+	left: 44%;
 	z-index: 0;
 	background-image: url(src/images/medivh.gif);
 	background-repeat: no-repeat; /* Do not repeat the image */
@@ -433,7 +433,7 @@ html, body {
 	width: 10%;
 	height: 60%;
 	top: 120%;
-	left: 57%;
+	left: 58%;
 	z-index: 0;
 	background-image: url(src/images/heropower.gif);
 	background-repeat: no-repeat; /* Do not repeat the image */
@@ -449,10 +449,10 @@ html, body {
  }
 .opponenthero {
 	position: absolute;
-	width: 11%;
-	height: 76%;
-	top: -32%;
-	left: 45.3%;
+	width: 12%;
+	height: 77%;
+	top: -28%;
+	left: 44%;
 	z-index: 0;
 	background-image: url(src/images/valeera_sanguinar.gif);
 	background-repeat: no-repeat; /* Do not repeat the image */
@@ -475,8 +475,8 @@ html, body {
  }
  .attackValue {
  	position: absolute;
- 	bottom: 0;
- 	left: 0;
+ 	bottom: -3px;
+ 	left: -13px;
 	 width: 1.75rem;
 	 height: 2rem;
 	 margin: 0 auto;
@@ -484,21 +484,20 @@ html, body {
 	 border-top-right-radius: 0.5vw;
 	 border-bottom-left-radius: 0.5vw;
 	 transition: border 0.3s ease, box-shadow 0.3s ease;
-	 background: linear-gradient(-135deg, rgba(255, 214, 153, 1), rgba(218, 135, 11, 1));
-	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(255, 214, 153, 0.75);
 	 background-size: cover;
-	 font-family: 'helvetica neue', helvetica, arial, sans-serif;
-	 font-size: 24px;
+	 font-size: 35px;
 	 font-weight: bold;
 	 letter-spacing: -0.025em;
-	 color: rgba(219, 132, 0, 1);
-	 text-shadow: -0.025em 0.025em 0 rgba(255, 204, 128, 1);
+	 color: white;
+   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+	 text-shadow: -0.025em 0.025em 0 black;
 	 user-select: none;
+	 z-index: 10;
  }
  .healthValue {
  	position: absolute;
- 	bottom: 0;
- 	right: 0;
+ 	bottom: -3px;
+ 	right: -15px;
 	 width: 1.75rem;
 	 height: 2rem;
 	 margin: 0 auto;
@@ -506,83 +505,77 @@ html, body {
 	 border-bottom-right-radius: 0.5vw;
 	 border-top-left-radius: 0.5vw;
 	 transition: border 0.3s ease, box-shadow 0.3s ease;
-	 background: linear-gradient(-135deg, rgba(255, 153, 153, 1), rgba(218, 11, 11, 1));
-	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(255, 153, 153, 0.75);
 	 background-size: cover;
-	 font-family: 'helvetica neue', helvetica, arial, sans-serif;
-	 font-size: 24px;
+	 font-size: 35px;
 	 font-weight: bold;
 	 letter-spacing: -0.025em;
-	 color: rgba(219, 0, 0, 1);
-	 text-shadow: -0.025em 0.025em 0 rgba(255, 128, 128, 1);
+	 color: white;
+   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+	 text-shadow: -0.025em 0.025em 0 black;
 	 user-select: none;
+	 z-index: 10;
  }
   .cardAttackValue {
 	 float: left;
-	 width: 2rem;
+	 width: 1.3rem;
+	 height: 1rem;
 	 position: absolute;
 	 bottom: 0;
 	 left: 0;
-	 height: 1.5rem;
 	 margin: 0 auto;
-	 border-bottom-left-radius: 0.5vw;
-	 border-top-right-radius: 0.5vw;
 	 transition: border 0.3s ease, box-shadow 0.3s ease;
 	 background: linear-gradient(-135deg, rgba(255, 214, 153, 1), rgba(218, 135, 11, 1));
 	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(255, 214, 153, 0.75);
 	 background-size: cover;
-	 font-family: 'helvetica neue', helvetica, arial, sans-serif;
-	 font-size: 24px;
+	 font-size: 15px;
 	 font-weight: bold;
 	 letter-spacing: -0.025em;
-	 color: rgba(219, 132, 0, 1);
-	 text-shadow: -0.025em 0.025em 0 rgba(255, 204, 128, 1);
+	 color: white;
+   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+	 text-shadow: -0.025em 0.025em 0 black;
 	 user-select: none;
 	 z-index: 5;
  }
  .cardHealthValue {
  	 float: right;
-	 width: 2rem;
+	 width: 1.3rem;
+	 height: 1rem;
 	 position: absolute;
 	 bottom: 0;
 	 right: 0;
-	 height: 1.5rem;
 	 margin: 0 auto;
-	 border-bottom-right-radius: 0.5vw;
-	 border-top-left-radius: 0.5vw;
 	 transition: border 0.3s ease, box-shadow 0.3s ease;
 	 background: linear-gradient(-135deg, rgba(255, 153, 153, 1), rgba(218, 11, 11, 1));
 	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(255, 153, 153, 0.75);
 	 background-size: cover;
-	 font-family: 'helvetica neue', helvetica, arial, sans-serif;
-	 font-size: 24px;
+	 font-size: 15px;
 	 font-weight: bold;
 	 letter-spacing: -0.025em;
-	 color: rgba(219, 0, 0, 1);
-	 text-shadow: -0.025em 0.025em 0 rgba(255, 128, 128, 1);
+	 color: white;
+   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+	 text-shadow: -0.025em 0.025em 0 black;
 	 user-select: none;
 	 z-index: 5;
 }
  .cardManaValue {
  	 float: right;
-	 width: 2.5rem;
+	 width: 1.8rem;
 	 position: absolute;
 	 top: 0;
 	 left: 0;
 	 height: 1.8rem;
 	 margin: 0 auto;
-	 border-bottom-right-radius: 0.5vw;
-	 border-top-left-radius: 0.5vw;
+	 border-radius: 100%;
 	 transition: border 0.3s ease, box-shadow 0.3s ease;
 	 background: linear-gradient(-135deg, rgba(153, 194, 255, 1), rgba(11, 94, 218, 1));
 	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(153, 194, 255, 0.75);
 	 background-size: cover;
-	 font-family: 'helvetica neue', helvetica, arial, sans-serif;
 	 font-size: 24px;
 	 font-weight: bold;
 	 letter-spacing: -0.025em;
-	 color: rgba(0, 88, 219, 1);
-	 text-shadow: -0.025em 0.025em 0 rgba(128, 179, 255, 1);
+	 color: white;
+   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+	 text-shadow: -0.025em 0.025em 0 black;
 	 user-select: none;
 }
 	.cardInfoValue {
@@ -590,20 +583,16 @@ html, body {
 	 position: absolute;
 	 bottom: 0;
 	 left: 0;
-	 height: 40%;
-	 margin: 0 auto;
-	 border-bottom-right-radius: 0.5vw;
-	 border-bottom-left-radius: 0.5vw;
+	 height: 30%;
+	 margin: auto;
+	 text-align: center;
 	 transition: border 0.3s ease, box-shadow 0.3s ease;
-	 background: linear-gradient(-135deg, rgba(153, 194, 255, 1), rgba(11, 94, 218, 1));
-	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(153, 194, 255, 0.75);
+	 background-color: rgb(139,69,19);
 	 background-size: cover;
-	 font-family: 'helvetica neue', helvetica, arial, sans-serif;
 	 font-size: 8px;
 	 font-weight: bold;
 	 letter-spacing: -0.025em;
-	 color: rgba(0, 88, 219, 1);
-	 text-shadow: -0.025em 0.025em 0 rgba(128, 179, 255, 1);
+	 color: rgb(51, 26, 0);
 	 user-select: none;
 	}
  .deck {
@@ -611,8 +600,7 @@ html, body {
 	 margin: 0 -25px;
 	 position: absolute;
 	 width: 100px;
-	 font-family: 'helvetica neue', helvetica, arial, sans-serif;
-	 font-size: 24px;
+	 font-size: 27px;
 	 font-weight: bold;
 	 letter-spacing: -0.025em;
 	-webkit-touch-callout: none; /* iOS Safari */
@@ -624,21 +612,23 @@ html, body {
                                   supported by Chrome, Edge, Opera and Firefox */
 }
 .player-deck {
-	background-image: url(src/images/cardback.png);
+	background-image: url(src/images/powercardback.png);
 	background-repeat: no-repeat;
 	background-size: contain;
-	 color: rgba(0, 88, 219, 1);
-	 text-shadow: -0.025em 0.025em 0 rgba(128, 179, 255, 1);
+	 color: white;
+   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+	 text-shadow: -0.025em 0.025em 0 black;
 	 border-radius: 10px;
 	 top: 51.5%;
 	 left: 80%;
 }
 .computer-deck {
-	background-image: url(src/images/cardback.png);
+	background-image: url(src/images/goldcardback.png);
 	background-repeat: no-repeat;
 	background-size: contain;
-	 color: rgba(219, 0, 0, 1);
-	 text-shadow: -0.025em 0.025em 0 rgba(255, 128, 128, 1);
+	 color: white;
+   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+	 text-shadow: -0.025em 0.025em 0 black;
 	 border-radius: 10px;
 	 top: 24.5%;
 	 left: 80%;
@@ -653,24 +643,20 @@ html, body {
 }
 .heroHealth {
  	position: absolute;
- 	left: 80%;
- 	top: 100%;
+ 	left: 75%;
+ 	top: 95%;
 	 width: 1.75rem;
 	 height: 2rem;
 	 margin: 0 auto;
 	 padding-left: 0.5rem;
-	 border-bottom-right-radius: 0.5vw;
-	 border-top-left-radius: 0.5vw;
 	 transition: border 0.3s ease, box-shadow 0.3s ease;
-	 background: linear-gradient(-135deg, rgba(255, 153, 153, 1), rgba(218, 11, 11, 1));
-	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(255, 153, 153, 0.75);
 	 background-size: cover;
-	 font-family: 'helvetica neue', helvetica, arial, sans-serif;
-	 font-size: 24px;
+	 font-size: 40px;
 	 font-weight: bold;
 	 letter-spacing: -0.025em;
-	 color: rgba(219, 0, 0, 1);
-	 text-shadow: -0.025em 0.025em 0 rgba(255, 128, 128, 1);
+	 color: white;
+   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+	 text-shadow: -0.025em 0.025em 0 black;
 	 user-select: none;
 }
 .collisionbox {
@@ -679,4 +665,26 @@ html, body {
 	position: absolute;
 	left: 5%;
 	top: 35%;
+}
+.oval {
+	border: solid 4px rgba(0, 230, 64, 1);
+	border-radius: 100%;
+  /* Start the shake animation and make the animation last for 0.5 seconds */
+  animation: shake 0.5s;
+
+  /* When the animation is finished, start again */
+  animation-iteration-count: infinite;
+}
+@keyframes shake {
+  0% { transform: translate(0.25px, 0.25px) rotate(0deg); }
+  10% { transform: translate(-0.25px, -0.5px) rotate(-0.1deg); }
+  20% { transform: translate(-1.7px, 0px) rotate(0.1deg); }
+  30% { transform: translate(0.7px, 0.5px) rotate(0deg); }
+  40% { transform: translate(0.25px, -0.25px) rotate(0.1deg); }
+  50% { transform: translate(-0.25px, 0.5px) rotate(-0.1deg); }
+  60% { transform: translate(-0.7px, 0.25px) rotate(0deg); }
+  70% { transform: translate(0.7px, 0.25px) rotate(-0.1deg); }
+  80% { transform: translate(-0.25px, -0.25px) rotate(0.1deg); }
+  90% { transform: translate(0.25px, 0.5px) rotate(0deg); }
+  100% { transform: translate(0.25px, -0.5px) rotate(-0.1deg); }
 }
