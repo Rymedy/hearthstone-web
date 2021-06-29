@@ -28,26 +28,6 @@ class MinionCard {
 		this.mana = Math.round((this.attack + this.health) * 0.5)
 		this.name = name;
 	}
-	getPlayerHTML() {
-		const playerCardDiv = document.createElement('div')
-		const playerAttackValue = document.createElement('div')
-		const playerHealthValue = document.createElement('div')
-		const oval = document.createElement('div')
-		playerCardDiv.id = "playerCardInPlay" + id1
-		playerCardDiv.classList.add("cardinplay")
-		playerCardDiv.classList.add("player-cardinplay")
-		playerAttackValue.classList.add("attackValue")
-		playerHealthValue.classList.add("healthValue")
-		oval.classList.add('oval')
-		playerCardDiv.appendChild(playerAttackValue)
-		playerCardDiv.appendChild(playerHealthValue)
-		playerCardDiv.appendChild(oval)
-		playerAttackValue.innerText = this.attack
-		playerHealthValue.innerText = this.health
-		playerCardDiv.style.backgroundImage = "url('" + this.imageString + "')";
-		id1 += 1
-		return playerCardDiv
-	}
 	getComputerHTML() {
 		const computerCardDiv = document.createElement('div')
 		const computerAttackValue = document.createElement('div')
@@ -67,6 +47,26 @@ class MinionCard {
 		computerCardDiv.style.backgroundImage = "url('" + this.imageString + "')";
 		id2 += 1
 		return computerCardDiv
+	}
+	getPlayerHTML() {
+		const playerCardDiv = document.createElement('div')
+		const playerAttackValue = document.createElement('div')
+		const playerHealthValue = document.createElement('div')
+		const oval = document.createElement('div')
+		playerCardDiv.id = "playerCardInPlay" + id1
+		playerCardDiv.classList.add("cardinplay")
+		playerCardDiv.classList.add("player-cardinplay")
+		playerAttackValue.classList.add("attackValue")
+		playerHealthValue.classList.add("healthValue")
+		oval.classList.add('oval')
+		playerCardDiv.appendChild(playerAttackValue)
+		playerCardDiv.appendChild(playerHealthValue)
+		playerCardDiv.appendChild(oval)
+		playerAttackValue.innerText = this.attack
+		playerHealthValue.innerText = this.health
+		playerCardDiv.style.backgroundImage = "url('" + this.imageString + "')";
+		id1 += 1
+		return playerCardDiv
 	}
 	getPlayerCardsInHandHTML() {
 		const playerCardInHandDiv = document.createElement('div')
