@@ -380,7 +380,7 @@ html, body {
 	box-shadow: 0 0 3em 1px white !important;
 }
  .cardinplay:hover {
-	 box-shadow: 0 0 3em 1px green;
+	 box-shadow: 0 0 3em 1px white;
 	 cursor: url(src/cursor/cursor.png) 10 2, auto;
 }
 .playerhero:hover {
@@ -431,9 +431,9 @@ html, body {
  .playerheropower {
  		position: absolute;
 	width: 10%;
-	height: 60%;
-	top: 120%;
-	left: 58%;
+	height: 13%;
+	top: 69%;
+	left: 56%;
 	z-index: 0;
 	background-image: url(src/images/heropower.gif);
 	background-repeat: no-repeat; /* Do not repeat the image */
@@ -705,4 +705,14 @@ html, body {
   90% { transform: translate(0.25px, 0.5px) rotate(0deg); }
   100% { transform: translate(0.25px, -0.5px) rotate(-0.1deg); }
 }
-
+.mana {
+	position: absolute;
+	top: 91%;
+	left: 63.25%;
+	color: white;
+	font-size: 23px;
+	font-weight: bold;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+	text-shadow: -0.025em 0.025em 0 black;
+	user-select: none;
+}

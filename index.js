@@ -39,6 +39,7 @@ const cpuHero = document.getElementById('opposinghero')
 const cardinplay = document.getElementsByClassName('cardinplay')
 const collisionbox = document.getElementById("collisionbox");
 const draggableElements = document.getElementsByClassName("card");
+const manaElement = document.getElementById('mana');
 let playerDeck, computerDeck, inRound
 
 // calls and defines the startGame function to perform required functions when the page is loaded.
@@ -67,7 +68,8 @@ song.volume = 0.7;
 created using the getPlayerHTML() function defined in deck.js and is appended as a child into the players' board */
 function placeCardFunc(e) {
   if(collision == true) {
-    playerCardSlot.appendChild(playerDeck.cards[0].getPlayerHTML()) // Change this to playerCardSlot.appendChild([THE CARD].getPlayerHTML())
+    console.log(playerDeck.cards[0]['name'])
+    playerCardSlot.appendChild(playerDeck.cards[0].getPlayerHTML()) // Change this to playerCardSlot.appendChild([THE CARD].getPlayerHTML()); maybe cycle thru the array playerDeck.cards to find if name is = to the name of the card being placed 
   }
 }
 // defines a new function that adds an event listener (mouseup) to all elements with the class name 'card' then calls the placeCardFunc()
@@ -120,8 +122,7 @@ function opponentTurn() {
 function playerTurn() {
   manaCapacity += 1
   mana = manaCapacity
-  playerHandArray.push(playerDeck.cards[0])
-  console.log(playerHandArray)
+  manaElement.innerHTML = mana + "/" + manaCapacity;
   hand.appendChild(playerDeck.cards[0].getPlayerCardsInHandHTML())
   attack()
   enableDrag()
@@ -142,12 +143,12 @@ for(let i=0; i<numOfChild; i++) {
   document.getElementById("playerCardInPlay" + i).children[2].style.border = "solid 4px rgba(0, 230, 64, 1)";
   document.getElementById("playerCardInPlay" + i).children[2].style.animation = "shake 0.5s";
   document.getElementById("playerCardInPlay" + i).children[2].style.animationIterationCount = "infinite";
+  document.getElementById("playerCardInPlay" + i).classList.add("canAttack")
 }
-amount += 1;
 document.querySelectorAll('.cardinplay').forEach(function(e){
   e.addEventListener('mousedown', function(e) {
     if(currentAttacker == null) {
-      if(this.classList.contains('player-cardinplay')) {
+      if((this.classList.contains('player-cardinplay')) && (this.classList.contains('canAttack'))) {
         currentAttacker = this.id
         var xOrigin = e.clientX;
         var yOrigin = e.clientY;
@@ -195,11 +196,10 @@ document.querySelectorAll('.cardinplay').forEach(function(e){
         currentAttacker = null;
         canAttack = false;
         svg.style.display = "none";
+        currentAttackerElement.classList.remove("canAttack");
         if(currentAttackersElement.classList.contains('player-cardinplay')) {
           snd.play();
-        } else {
-
-        }
+        } 
         currentAttacker = null;
     } 
   });
