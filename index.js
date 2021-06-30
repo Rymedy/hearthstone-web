@@ -68,7 +68,7 @@ song.volume = 0.7;
 created using the getPlayerHTML() function defined in deck.js and is appended as a child into the players' board */
 function placeCardFunc(e) {
   if(collision == true) {
-    console.log(playerDeck.cards[0]['name'])
+    // console.log(playerDeck.cards[0]['name'])
     playerCardSlot.appendChild(playerDeck.cards[0].getPlayerHTML()) // Change this to playerCardSlot.appendChild([THE CARD].getPlayerHTML()); maybe cycle thru the array playerDeck.cards to find if name is = to the name of the card being placed 
   }
 }
@@ -84,7 +84,7 @@ then checks if either the players or computers deck is empty and if so the deck 
 function updateDeckCount() {
 	computerDeckElement.innerText = computerDeck.numberOfCards
 	playerDeckElement.innerText = playerDeck.numberOfCards
-	if (computerDeckElement.innerText === '0') {
+	if(computerDeckElement.innerText === '0') {
 		computerDeckElement.style.display = "none";
 	}
 	else {
@@ -113,6 +113,8 @@ document.getElementById("endturn").addEventListener("click", function() {
 /* defines new function that calls the getComputerHTML function from deck.js using the first card at the top of the computers' deck and appends as a child to 
 the computers board and uses the shift method to remove the first card in the array then proceeds to call both updateDeckCount and playerTurn functions. */
 function opponentTurn() {
+  // calls function defined in AI.js
+  AI()
   computerCardSlot.appendChild(computerDeck.cards[0].getComputerHTML())
   computerDeck.cards.shift();
   updateDeckCount()
@@ -185,10 +187,6 @@ document.querySelectorAll('.cardinplay').forEach(function(e){
           }
           if (window.getComputedStyle(cpuHero).display === "none") {
             alert("You've Won!")
-            location.reload();
-          }
-          if (window.getComputedStyle(playerHero).display === "none") {
-            alert("You've Lost!")
             location.reload();
           }
         },250);

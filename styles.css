@@ -630,7 +630,7 @@ html, body {
                                   supported by Chrome, Edge, Opera and Firefox */
 }
 .player-deck {
-	background-image: url(src/images/powercardback.png);
+	background-image: url(src/images/legendcardback.png);
 	background-repeat: no-repeat;
 	background-size: contain;
 	 color: white;
