@@ -113,8 +113,6 @@ function AI() {
         opponentCards[0].children[1].innerText = opponentHealth - alliedAttack;
         alliedCards[0].children[1].innerText = alliedHealth - opponentAttack;
         snd.play();
-      },750);
-      setTimeout(function() {
         if(alliedCards[0].children[1].innerHTML <= 0) { //NOT WORKING
           console.log(alliedCards[0])
           alliedCards[0].style.display = "none";
@@ -122,7 +120,7 @@ function AI() {
         if(opponentCards[0].children[1].innerHTML <= 0) {
           opponentCards[0].style.display = "none";
         }
-      },250);
+      },750);
     }
   }
   else if((numOfOpponentCards == 2) && (numOfAlliedCards == 1)) {
