@@ -197,3 +197,4 @@ function freshDeck() {
 	ragnaros_the_lightlord
 	]
 }
+
