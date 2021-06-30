@@ -7,7 +7,7 @@ hearthstone-web is a JS web clone of blizzard's popular card game 'hearthstone' 
 To play the hearthstone-web clone click [here](https://rymedy.github.io/hearthstone-web/).
 
 Current preview of the game:
-![This image failed to load.](src/images/gamepreview.png)
+![This image failed to load.](https://github.com/Rymedy/hearthstone-web/blob/master/src/images/gamepreview.PNG)
 
 ## Where can I report glitches and bugs?
 You can report glitches and bugs in the project by simply making a request [here](https://github.com/Rymedy/hearthstone-web/issues).
