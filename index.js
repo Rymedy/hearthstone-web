@@ -141,11 +141,11 @@ function playerTurn() {
 function attack() {
 var numOfChild = playerCardSlot.childElementCount;
 for(let i=0; i<numOfChild; i++) {
-  document.getElementById("playerCardInPlay" + i).style.border = "solid 3px rgba(0, 230, 64, 1)"; 
-  document.getElementById("playerCardInPlay" + i).children[2].style.border = "solid 4px rgba(0, 230, 64, 1)";
-  document.getElementById("playerCardInPlay" + i).children[2].style.animation = "shake 0.5s";
-  document.getElementById("playerCardInPlay" + i).children[2].style.animationIterationCount = "infinite";
-  document.getElementById("playerCardInPlay" + i).classList.add("canAttack")
+  document.getElementsByClassName("player-cardinplay")[i].style.border = "solid 3px rgba(0, 230, 64, 1)"; 
+  document.getElementsByClassName("player-cardinplay")[i].children[2].style.border = "solid 4px rgba(0, 230, 64, 1)";
+  document.getElementsByClassName("player-cardinplay")[i].children[2].style.animation = "shake 0.5s";
+  document.getElementsByClassName("player-cardinplay")[i].children[2].style.animationIterationCount = "infinite";
+  document.getElementsByClassName("player-cardinplay")[i].classList.add("canAttack")
 }
 document.querySelectorAll('.cardinplay').forEach(function(e){
   e.addEventListener('mousedown', function(e) {
