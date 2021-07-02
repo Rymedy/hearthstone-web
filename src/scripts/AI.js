@@ -98,7 +98,7 @@ function AI() {
     }
   }
   else if((numOfOpponentCards == 2) && (numOfAlliedCards == 1)) {
-    var maxAttack = findMaxAttack()
+    var maxAttack = findMaxOpponentAttack()
     // attacks hero if the hero is on 12 hp or lower
     if(document.getElementById('playerhero').children[1].innerText <= 12) {
       var opponentAttack = parseInt(opponentCards[0].children[0].innerText);
@@ -131,7 +131,7 @@ function AI() {
     }
   }
   else if((numOfOpponentCards == 3) && (numOfAlliedCards == 1)) {
-    var maxAttack = findMaxAttack()
+    var maxAttack = findMaxOpponentAttack()
     // attacks hero if the hero is on 14 hp or lower
     if(document.getElementById('playerhero').children[1].innerText <= 14) {
       var opponentAttack = parseInt(opponentCards[0].children[0].innerText);
@@ -166,7 +166,7 @@ function AI() {
     }
   }
   else if((numOfOpponentCards == 4) && (numOfAlliedCards == 1)) {
-    var maxAttack = findMaxAttack()
+    var maxAttack = findMaxOpponentAttack()
     // attacks hero if the hero is on 16 hp or lower
     if(document.getElementById('playerhero').children[1].innerText <= 16) {
       var opponentAttack = parseInt(opponentCards[0].children[0].innerText);
@@ -203,7 +203,7 @@ function AI() {
     }
   }
   else if((numOfOpponentCards == 5) && (numOfAlliedCards == 1)) {
-    var maxAttack = findMaxAttack()
+    var maxAttack = findMaxOpponentAttack()
     // attacks hero if the hero is on 18 hp or lower
     if(document.getElementById('playerhero').children[1].innerText <= 18) {
       var opponentAttack = parseInt(opponentCards[0].children[0].innerText);
@@ -242,7 +242,7 @@ function AI() {
     }
   }
   else if((numOfOpponentCards == 6) && (numOfAlliedCards == 1)) {
-    var maxAttack = findMaxAttack()
+    var maxAttack = findMaxOpponentAttack()
     // attacks hero if the hero is on 20 hp or lower
     if(document.getElementById('playerhero').children[1].innerText <= 20) {
       var opponentAttack = parseInt(opponentCards[0].children[0].innerText);
@@ -283,7 +283,7 @@ function AI() {
     }
   }
   else if((numOfOpponentCards == 7) && (numOfAlliedCards == 1)) {
-    var maxAttack = findMaxAttack()
+    var maxAttack = findMaxOpponentAttack()
     // attacks hero if the hero is on 20 hp or lower
     if(document.getElementById('playerhero').children[1].innerText <= 20) {
       var opponentAttack = parseInt(opponentCards[0].children[0].innerText);
@@ -326,25 +326,78 @@ function AI() {
     }
   }
   else if((numOfOpponentCards == 1) && (numOfAlliedCards == 2)){
-    console.log(opponentCards[0].children[0].innerText)
+    var maxAttack = findMaxPlayerAttack()
+    // attacks hero if the hero is on 5 hp or lower
+    if(document.getElementById('playerhero').children[1].innerText <= 5) {
+      var opponentAttack = parseInt(opponentCards[0].children[0].innerText);
+      var heroHealth = document.getElementById('playerhero').children[1].innerText;
+      document.getElementById('playerhero').children[1].innerText = heroHealth - opponentAttack;
+    }
+    // otherwise attacks with the highest attack card on the board and attacks the player hero with the other
+    else {
+      var opponentAttack = opponentCards[0].children[0].innerText;
+      var opponentHealth = opponentCards[0].children[1].innerText;
+      var alliedAttack = maxAttack.children[0].innerText;
+      var alliedHealth = maxAttack.children[1].innerText;
+      opponentCards[0].children[1].innerText = opponentHealth - alliedAttack;
+      maxAttack.children[1].innerText = alliedHealth - opponentAttack;
+      setTimeout(function() {
+        if(opponentCards[0].children[1].innerHTML <= 0) { 
+          opponentCards[0].remove();
+        }
+        if(maxAttack.children[1].innerHTML <= 0) {
+          maxAttack.remove();
+        }
+      },250);
+    }
   }
   else if((numOfOpponentCards == 2) && (numOfAlliedCards == 2)) {
-    findMaxAttack()
+    var maxAttack = findMaxOpponentAttack()
+    var maxHealth = findMaxPlayerHealth()
+    // attacks hero if the hero is on 7 hp or lower
+    if(document.getElementById('playerhero').children[1].innerText <= 7) {
+      var opponentAttack = parseInt(opponentCards[0].children[0].innerText);
+      var opponentAttack1 = parseInt(opponentCards[1].children[0].innerText);
+      var totalAttack = opponentAttack + opponentAttack1;
+      var heroHealth = document.getElementById('playerhero').children[1].innerText;
+      document.getElementById('playerhero').children[1].innerText = heroHealth - totalAttack;
+    }
+    // otherwise attacks with the highest attack card on the board and attacks the player hero with the other
+    else {
+      var opponentAttack = maxAttack.children[0].innerText;
+      var opponentHealth = maxAttack.children[1].innerText;
+      var alliedAttack = maxHealth.children[0].innerText;
+      var alliedHealth = maxHealth.children[1].innerText;
+      var opponentAttack1 = opponentCards[0].children[0].innerText + opponentCards[1].children[0].innerText - maxAttack.children[0].innerText;
+      var opponentHealth1 = opponentCards[0].children[1].innerText + opponentCards[1].children[1].innerText - maxAttack.children[1].innerText;
+      var alliedAttack1 = alliedCards[0].children[0].innerText + alliedCards[1].children[0].innerText - maxHealth.children[0].innerText;
+      var alliedHealth1 = alliedCards[0].children[1].innerText + alliedCards[1].children[1].innerText - maxHealth.children[1].innerText;
+      maxAttack.children[1].innerText = opponentHealth - alliedAttack;
+      maxHealth.children[1].innerText = alliedHealth - opponentAttack;
+      setTimeout(function() {
+        if(maxHealth.children[1].innerHTML <= 0) { 
+          maxHealth.remove();
+        }
+        if(maxAttack.children[1].innerHTML <= 0) {
+          maxAttack.remove();
+        }
+      },250);
+    }
   }
   else if((numOfOpponentCards == 3) && (numOfAlliedCards == 2)) {
-    findMaxAttack()
+    findMaxOpponentAttack()
   }
   else if((numOfOpponentCards == 4) && (numOfAlliedCards == 2)) {
-    findMaxAttack()
+    findMaxOpponentAttack()
   }
   else if((numOfOpponentCards == 5) && (numOfAlliedCards == 2)) {
-    findMaxAttack()
+    findMaxOpponentAttack()
   }
   else if((numOfOpponentCards == 6) && (numOfAlliedCards == 2)) {
-    findMaxAttack()
+    findMaxOpponentAttack()
   }
   else if((numOfOpponentCards == 7) && (numOfAlliedCards == 2)) {
-    findMaxAttack()
+    findMaxOpponentAttack()
   }
   const newHeroHealth = document.getElementById('playerhero').children[1].innerText;
   if(newHeroHealth < currentHeroHealth) {
@@ -353,7 +406,7 @@ function AI() {
   }
 }
 
-function findMaxAttack() {
+function findMaxOpponentAttack() {
   const opponentCards = document.querySelectorAll('.computer-cardinplay')
   const numOfOpponentCards = computerCardSlot.childElementCount;
   const alliedCards = document.querySelectorAll('player-cardinplay')
@@ -371,6 +424,50 @@ function findMaxAttack() {
   for(let i=0; i<opponentCards.length; i++) {
     if(opponentCards[i].children[0].innerText == biggestValue) {
       return opponentCards[i]
+    }
+  }
+}
+
+function findMaxPlayerAttack() {
+  const opponentCards = document.querySelectorAll('.computer-cardinplay')
+  const numOfOpponentCards = computerCardSlot.childElementCount;
+  const alliedCards = document.querySelectorAll('.player-cardinplay')
+  const numOfAlliedCards = playerCardSlot.childElementCount;
+  let attackValues = []
+  let biggestValue = 0
+  for(let i=0; i<alliedCards.length; i++) {
+    attackValues.push(alliedCards[i].children[0].innerText);
+  }
+  for(let i=0; i<attackValues.length; i++) {
+    if(alliedCards[i].children[0].innerText > biggestValue) {
+      biggestValue = alliedCards[i].children[0].innerText;
+    }
+  }
+  for(let i=0; i<alliedCards.length; i++) {
+    if(alliedCards[i].children[0].innerText == biggestValue) {
+      return alliedCards[i]
+    }
+  }
+}
+
+function findMaxPlayerHealth() {
+  const opponentCards = document.querySelectorAll('.computer-cardinplay')
+  const numOfOpponentCards = computerCardSlot.childElementCount;
+  const alliedCards = document.querySelectorAll('.player-cardinplay')
+  const numOfAlliedCards = playerCardSlot.childElementCount;
+  let healthValues = []
+  let biggestValue = 0
+  for(let i=0; i<alliedCards.length; i++) {
+    healthValues.push(alliedCards[i].children[1].innerText);
+  }
+  for(let i=0; i<healthValues.length; i++) {
+    if(alliedCards[i].children[0].innerText > biggestValue) {
+      biggestValue = alliedCards[i].children[1].innerText;
+    }
+  }
+  for(let i=0; i<alliedCards.length; i++) {
+    if(alliedCards[i].children[1].innerText == biggestValue) {
+      return alliedCards[i]
     }
   }
 }
