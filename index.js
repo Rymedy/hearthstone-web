@@ -25,6 +25,7 @@ var song = new Audio(item);
 files do not play at the same time when the end turn button is clicked */
 var audioIsPlayed = new Boolean(false)
 var playerHandArray = []
+var getNameOfElement = "";
 // defines constant variables to refer to HTML elements
 const computerCardSlot = document.querySelector('.board--opponent')
 const playerCardSlot = document.querySelector('.board--player')
@@ -40,7 +41,7 @@ const cardinplay = document.getElementsByClassName('cardinplay')
 const collisionbox = document.getElementById("collisionbox");
 const draggableElements = document.getElementsByClassName("card");
 const manaElement = document.getElementById('mana');
-let playerDeck, computerDeck, inRound
+let originalDeck, playerDeck, computerDeck, inRound
 
 // calls and defines the startGame function to perform required functions when the page is loaded.
 startGame()
@@ -49,6 +50,7 @@ function startGame() {
 	const deck = new Deck()
 	deck.shuffle()
 	const deckMidpoint = Math.ceil(deck.numberOfCards / 2)
+  originalDeck = new Deck(deck.cards.slice(0, deck.numberOfCards))
 	playerDeck = new Deck(deck.cards.slice(0, deckMidpoint))
 	computerDeck = new Deck(deck.cards.slice(deckMidpoint, deck.numberOfCards))
 	inRound = false
@@ -68,8 +70,18 @@ song.volume = 0.7;
 created using the getPlayerHTML() function defined in deck.js and is appended as a child into the players' board */
 function placeCardFunc(e) {
   if(collision == true) {
+    var found = false;
+    setTimeout(function() {
+    for(var i = 0; i < originalDeck.cards.length; i++) {
+      if (originalDeck.cards[i]['name'] == getNameOfElement) { 
+        found = true;
+        playerCardSlot.appendChild(originalDeck.cards[i].getPlayerHTML())
+        break;
+      }
+    }
+  },0.01);
     // console.log(playerDeck.cards[0]['name'])
-    playerCardSlot.appendChild(playerDeck.cards[0].getPlayerHTML()) // Change this to playerCardSlot.appendChild([THE CARD].getPlayerHTML()); maybe cycle thru the array playerDeck.cards to find if name is = to the name of the card being placed 
+   // Change this to playerCardSlot.appendChild([THE CARD].getPlayerHTML()); maybe cycle thru the array playerDeck.cards to find if name is = to the name of the card being placed 
   }
 }
 // defines a new function that adds an event listener (mouseup) to all elements with the class name 'card' then calls the placeCardFunc()
@@ -251,11 +263,13 @@ function dragElement(elmnt) {
             e.addEventListener('mouseup', function(e) {
               if(collision == true) {
                 var manaCost = iElements.children[0].children[2].innerText;
+                getNameOfElement = iElements.children[0].children[5].innerText;
+                console.log(getNameOfElement)
                 iElements.remove();
               }
           });
           });
-          }
+        }
       }
     }
     function closeDragElement() {
