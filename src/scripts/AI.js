@@ -428,6 +428,28 @@ function findMaxOpponentAttack() {
   }
 }
 
+function findMaxOpponentHealth() {
+  const opponentCards = document.querySelectorAll('.computer-cardinplay')
+  const numOfOpponentCards = computerCardSlot.childElementCount;
+  const alliedCards = document.querySelectorAll('player-cardinplay')
+  const numOfAlliedCards = playerCardSlot.childElementCount;
+  let attackValues = []
+  let biggestValue = 0
+  for(let i=0; i<opponentCards.length; i++) {
+    attackValues.push(opponentCards[i].children[1].innerText);
+  }
+  for(let i=0; i<attackValues.length; i++) {
+    if(opponentCards[i].children[0].innerText > biggestValue) {
+      biggestValue = opponentCards[i].children[1].innerText;
+    }
+  }
+  for(let i=0; i<opponentCards.length; i++) {
+    if(opponentCards[i].children[1].innerText == biggestValue) {
+      return opponentCards[i]
+    }
+  }
+}
+
 function findMaxPlayerAttack() {
   const opponentCards = document.querySelectorAll('.computer-cardinplay')
   const numOfOpponentCards = computerCardSlot.childElementCount;

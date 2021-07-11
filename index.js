@@ -55,6 +55,7 @@ function startGame() {
 	computerDeck = new Deck(deck.cards.slice(deckMidpoint, deck.numberOfCards))
 	inRound = false
 	updateDeckCount()
+  // start with 3 cards in hand initially
 	let x = 3
 	for(let i = 0; i < x; i++) {
     hand.appendChild(playerDeck.cards[0].getPlayerCardsInHandHTML())
@@ -73,7 +74,7 @@ function placeCardFunc(e) {
     var found = false;
     setTimeout(function() {
     for(var i = 0; i < originalDeck.cards.length; i++) {
-      if (originalDeck.cards[i]['name'] == getNameOfElement) { 
+      if ((originalDeck.cards[i]['name'] == getNameOfElement) && (playerCardSlot.childElementCount != 7)) { 
         found = true;
         playerCardSlot.appendChild(originalDeck.cards[i].getPlayerHTML())
         break;
@@ -127,9 +128,12 @@ the computers board and uses the shift method to remove the first card in the ar
 function opponentTurn() {
   // calls function defined in AI.js
   AI()
-  computerCardSlot.appendChild(computerDeck.cards[0].getComputerHTML())
-  computerDeck.cards.shift();
-  updateDeckCount()
+  // stops the AI from having more than 7 cards on the board at a time
+  if(computerCardSlot.childElementCount != 7) {
+    computerCardSlot.appendChild(computerDeck.cards[0].getComputerHTML())
+    computerDeck.cards.shift();
+    updateDeckCount()
+  }
   playerTurn()
 }
 
@@ -137,7 +141,9 @@ function playerTurn() {
   manaCapacity += 1
   mana = manaCapacity
   manaElement.innerHTML = mana + "/" + manaCapacity;
-  hand.appendChild(playerDeck.cards[0].getPlayerCardsInHandHTML())
+  if(hand.childElementCount != 10) {
+    hand.appendChild(playerDeck.cards[0].getPlayerCardsInHandHTML())
+  }
   attack()
   enableDrag()
   /* Removes all event listeners from elements with the class name 'card' for function placeCardFunc
@@ -151,13 +157,13 @@ function playerTurn() {
 }
 
 function attack() {
-var numOfChild = playerCardSlot.childElementCount;
-for(let i=0; i<numOfChild; i++) {
-  document.getElementsByClassName("player-cardinplay")[i].style.border = "solid 3px rgba(0, 230, 64, 1)"; 
-  document.getElementsByClassName("player-cardinplay")[i].children[2].style.border = "solid 4px rgba(0, 230, 64, 1)";
-  document.getElementsByClassName("player-cardinplay")[i].children[2].style.animation = "shake 0.5s";
-  document.getElementsByClassName("player-cardinplay")[i].children[2].style.animationIterationCount = "infinite";
-  document.getElementsByClassName("player-cardinplay")[i].classList.add("canAttack")
+  var numOfChild = playerCardSlot.childElementCount;
+  for(let i=0; i<numOfChild; i++) {
+    document.getElementsByClassName("player-cardinplay")[i].style.border = "solid 3px rgba(0, 230, 64, 1)"; 
+    document.getElementsByClassName("player-cardinplay")[i].children[2].style.border = "solid 4px rgba(0, 230, 64, 1)";
+    document.getElementsByClassName("player-cardinplay")[i].children[2].style.animation = "shake 0.5s";
+    document.getElementsByClassName("player-cardinplay")[i].children[2].style.animationIterationCount = "infinite";
+    document.getElementsByClassName("player-cardinplay")[i].classList.add("canAttack")
 }
 document.querySelectorAll('.cardinplay').forEach(function(e){
   e.addEventListener('mousedown', function(e) {
@@ -261,10 +267,9 @@ function dragElement(elmnt) {
             collision = true
             document.querySelectorAll('.card').forEach(function(e){
             e.addEventListener('mouseup', function(e) {
-              if(collision == true) {
+              if((collision == true) && (playerCardSlot.childElementCount != 7)){
                 var manaCost = iElements.children[0].children[2].innerText;
                 getNameOfElement = iElements.children[0].children[5].innerText;
-                console.log(getNameOfElement)
                 iElements.remove();
               }
           });
