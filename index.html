@@ -10,6 +10,13 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body id="body">
+  <button class="openbtn" onclick="openNav()">☰</button>  
+  <div id="mySidebar" class="sidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+    <h1>Volume:</h1><input type="range" id="volume-control">
+    <h1>Skin: </h1>
+    <h1>Board: </h1>
+  </div>
   <div id="collisionbox" class="collisionbox"></div>
   <div class="enemycards">
     <div class="enemycard"></div>
@@ -29,13 +36,13 @@
   <div class="opponenthero">
     <div class="cardinplay" id="opposinghero">
           <div></div>
-    <div class="heroHealth">30</div>
+    <div class="opposingHeroHealth">30</div>
     </div>
   </div>
   <div class="playerhero">
     <div class="cardinplay" id="playerhero">
       <div></div>
-    <div class="heroHealth">30</div>
+    <div class="playerHeroHealth">30</div>
     </div>
   </div>
     <div class="playerheropower">
@@ -53,4 +60,13 @@
 </svg>
 </body>
 <script src="src/scripts/AI.js"></script>
+<script>
+function openNav() {
+  document.getElementById("mySidebar").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidebar").style.width = "0";
+}
+</script>
 </html>

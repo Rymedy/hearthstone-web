@@ -33,13 +33,13 @@ html, body {
 .enemycards {
 	 top: -10px;
 	 display: flex;
-	 width: 90%;
+	 width: 60%;
 	 height: 100px;
 	 padding: 0 50px;
 	 	 margin: -50px;
 	 justify-content: center;
 	 position: relative;
-	 left: 5%;
+	 left: 20%;
 	 right: 0;
 	 z-index: 10;
 }
@@ -56,10 +56,10 @@ html, body {
                                   supported by Chrome, Edge, Opera and Firefox */
 }
 .enemycard {
+	width: 100px;
 	height: 160px;
 	margin: -15px;
 	 position: relative;
-	 width: 100px;
 	 background-image: url(src/images/goldcardback.png);
 	 background-repeat: no-repeat;
 	 background-size: contain;
@@ -352,11 +352,23 @@ html, body {
 		height: 4.5rem;
 	}
 	.board {
-		padding: 5.25rem;
+		padding: 4.5rem;
 	}
 	#endturn {
 		left: 77%;
 		top: 42%;
+	}
+	.enemycard {
+		width: 80px;
+		height: 125px;
+	}
+	.playerHeroHealth {
+		left: 55%;
+		top: 115%;
+	}
+	.opposingHeroHealth {
+		left: 55%;
+		top: 80%;
 	}
 }
 @media only screen and (min-width: 1500px) {
@@ -374,6 +386,18 @@ html, body {
 	#endturn {
 		left: 75%;
 		top: 42%;
+	}
+	.enemycard {
+		width: 100px;
+		height: 160px;
+	}
+	.playerHeroHealth {
+		left: 55%;
+		top: 125%;
+	}
+	.opposingHeroHealth {
+		left: 55%;
+		top: 60%;
 	}
 }
 .computer-cardinplay:hover {
@@ -461,6 +485,7 @@ html, body {
  #opposinghero {
  		border: none !important;
  		width: 100% !important;
+		height: 100% !important;
  		box-shadow: none !important;
  }
  #playerhero {
@@ -659,23 +684,39 @@ html, body {
 	background-color: orange;
 	z-index: 5;
 }
-.heroHealth {
- 	position: absolute;
- 	left: 51%;
- 	top: 108%;
-	 width: 1.75rem;
-	 height: 2rem;
-	 margin: 0 auto;
-	 padding-left: 0.5rem;
-	 transition: border 0.3s ease, box-shadow 0.3s ease;
-	 background-size: cover;
-	 font-size: 40px;
-	 font-weight: bold;
-	 letter-spacing: -0.025em;
-	 color: white;
-   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-	 text-shadow: -0.025em 0.025em 0 black;
-	 user-select: none;
+.opposingHeroHealth {
+	position: absolute;
+	left: 55%;
+	top: 75%;
+	width: 1.75rem;
+	height: 2rem;
+	margin: 0 auto;
+	padding-left: 0.5rem;
+	transition: border 0.3s ease, box-shadow 0.3s ease;
+	background-size: cover;
+	font-size: 40px;
+	font-weight: bold;
+	letter-spacing: -0.025em;
+	color: white;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+	text-shadow: -0.025em 0.025em 0 black;
+	user-select: none;
+}
+.playerHeroHealth {
+	position: absolute;
+	width: 1.75rem;
+	height: 2rem;
+	margin: 0 auto;
+	padding-left: 0.5rem;
+	transition: border 0.3s ease, box-shadow 0.3s ease;
+	background-size: cover;
+	font-size: 40px;
+	font-weight: bold;
+	letter-spacing: -0.025em;
+	color: white;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+	text-shadow: -0.025em 0.025em 0 black;
+	user-select: none;
 }
 .collisionbox {
 	width: 90%;
@@ -716,3 +757,55 @@ html, body {
 	text-shadow: -0.025em 0.025em 0 black;
 	user-select: none;
 }
+@media screen and (max-height: 450px) {
+	.sidebar {padding-top: 15px;}
+	.sidebar h1 {font-size: 18px;}
+  }
+  .sidebar {
+	height: 100%;
+	width: 0;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	background-color: #111;
+	overflow-x: hidden;
+	transition: 0.5s;
+	padding-top: 60px;
+  }
+  
+  .sidebar h1 {
+	padding: 8px 8px 8px 32px;
+	text-decoration: none;
+	font-size: 25px;
+	color: #818181;
+	display: block;
+	transition: 0.3s;
+  }
+  
+  .sidebar h1:hover {
+	color: #f1f1f1;
+  }
+  
+  .sidebar .closebtn {
+	position: absolute;
+	top: 0;
+	right: 25px;
+	font-size: 36px;
+	margin-left: 50px;
+	color: #818181 !important;
+    text-decoration: none !important;
+  }
+  
+  .openbtn {
+	font-size: 20px;
+	cursor: pointer;
+	background-color: #111;
+	color: white;
+	padding: 10px 15px;
+	border: none;
+  }
+  
+  .openbtn:hover {
+	background-color: #444;
+  }

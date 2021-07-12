@@ -66,7 +66,10 @@ function startGame() {
 }
 // plays a random song and sets the volume to 70% from the array defined above
 song.play()
-song.volume = 0.7;
+let volume = document.querySelector("#volume-control");
+volume.addEventListener("change", function(e) {
+  song.volume = e.currentTarget.value / 100;
+  })
 /* defines new function that when boolean collision is true between the card and collisionbox element and element is 
 created using the getPlayerHTML() function defined in deck.js and is appended as a child into the players' board */
 function placeCardFunc(e) {
@@ -74,7 +77,7 @@ function placeCardFunc(e) {
     var found = false;
     setTimeout(function() {
     for(var i = 0; i < originalDeck.cards.length; i++) {
-      if ((originalDeck.cards[i]['name'] == getNameOfElement) && (playerCardSlot.childElementCount != 7)) { 
+      if (originalDeck.cards[i]['name'] == getNameOfElement) { 
         found = true;
         playerCardSlot.appendChild(originalDeck.cards[i].getPlayerHTML())
         break;
@@ -267,7 +270,7 @@ function dragElement(elmnt) {
             collision = true
             document.querySelectorAll('.card').forEach(function(e){
             e.addEventListener('mouseup', function(e) {
-              if((collision == true) && (playerCardSlot.childElementCount != 7)){
+              if(collision == true) {
                 var manaCost = iElements.children[0].children[2].innerText;
                 getNameOfElement = iElements.children[0].children[5].innerText;
                 iElements.remove();
