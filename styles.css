@@ -9,6 +9,7 @@ html, body {
 	 	background-color: black;
 	background-image: url(src/images/background.png) !important;
 	background-size: contain;
+	background-attachment: fixed;
 	background-position: center;
 	background-repeat: no-repeat;
 }
@@ -808,4 +809,11 @@ html, body {
   
   .openbtn:hover {
 	background-color: #444;
+  }
+  #fps {
+	  position:absolute;
+	  top: 5;
+	  right: 0;
+	  color: white;
+	  font-size: 25px;
   }

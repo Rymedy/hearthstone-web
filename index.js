@@ -7,6 +7,7 @@ var canAttack = new Boolean(null);
 var manaCost = null;
 var manaCapacity = 1;
 var mana = manaCapacity;
+var maxOpponentCardsInPlay = 7;
 // soundtrack's to be randomly selected in game
 var items = [
 "src/ost/mulligan.mp3", 
@@ -27,7 +28,7 @@ var audioIsPlayed = new Boolean(false)
 var playerHandArray = []
 var getNameOfElement = "";
 // defines constant variables to refer to HTML elements
-const computerCardSlot = document.querySelector('.board--opponent')
+var computerCardSlot = document.querySelector('.board--opponent')
 const playerCardSlot = document.querySelector('.board--player')
 const hand = document.querySelector('.cards')
 const computerDeckElement = document.querySelector('.computer-deck')
@@ -77,7 +78,7 @@ function placeCardFunc(e) {
     var found = false;
     setTimeout(function() {
     for(var i = 0; i < originalDeck.cards.length; i++) {
-      if (originalDeck.cards[i]['name'] == getNameOfElement) { 
+      if ((originalDeck.cards[i]['name'] == getNameOfElement) && (playerCardSlot.childElementCount != 7)) {
         found = true;
         playerCardSlot.appendChild(originalDeck.cards[i].getPlayerHTML())
         break;
@@ -132,7 +133,8 @@ function opponentTurn() {
   // calls function defined in AI.js
   AI()
   // stops the AI from having more than 7 cards on the board at a time
-  if(computerCardSlot.childElementCount != 7) {
+  let opponentCardsInPlay = computerCardSlot.childElementCount;
+  if(opponentCardsInPlay != maxOpponentCardsInPlay) {
     computerCardSlot.appendChild(computerDeck.cards[0].getComputerHTML())
     computerDeck.cards.shift();
     updateDeckCount()
@@ -201,14 +203,18 @@ document.querySelectorAll('.cardinplay').forEach(function(e){
         currentAttackerElement.children[2].style.animation = "none";
         setTimeout(function() {
           if(currentAttackerHealth <= 0) {
-            currentAttackerElement.style.display = "none";
+            if (document.querySelector('.playerHeroHealth').innerText <= 0) {
+              alert("You've Won!")
+              location.reload();
+            }
+            currentAttackerElement.remove();
           }
           if(targetHealth <= 0) {
-            targetElement.style.display = "none";
-          }
-          if (window.getComputedStyle(cpuHero).display === "none") {
-            alert("You've Won!")
-            location.reload();
+            if (document.querySelector('.opposingHeroHealth').innerText <= 0) {
+              alert("You've Won!")
+              location.reload();
+            }
+            targetElement.remove();
           }
         },250);
         var currentAttackersElement = document.getElementById(currentAttacker);
@@ -270,7 +276,7 @@ function dragElement(elmnt) {
             collision = true
             document.querySelectorAll('.card').forEach(function(e){
             e.addEventListener('mouseup', function(e) {
-              if(collision == true) {
+              if((collision == true) && (playerCardSlot.childElementCount != 7)) {
                 var manaCost = iElements.children[0].children[2].innerText;
                 getNameOfElement = iElements.children[0].children[5].innerText;
                 iElements.remove();
