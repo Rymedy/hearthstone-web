@@ -8,23 +8,8 @@ var manaCost = null;
 var manaCapacity = 1;
 var mana = manaCapacity;
 var maxOpponentCardsInPlay = 7;
-// soundtrack's to be randomly selected in game
-var items = [
-"src/ost/mulligan.mp3", 
-"src/ost/bad_reputation.mp3", 
-"src/ost/better_hand.mp3", 
-"src/ost/dont_let_your_guard_down.mp3",
-"src/ost/duel.mp3",
-"src/ost/the_forge.mp3"
-]
+var cardplaceSnd = new Audio("src/sounds/cardplace.mp3")
 var amount = 0;
-// randomly selects an element from the array 'items'
-var item = items[Math.floor(Math.random()*items.length)];
-// converts the string into an audio element
-var song = new Audio(item);
-/* boolean to check if the audio is already playing to ensure multiple audio 
-files do not play at the same time when the end turn button is clicked */
-var audioIsPlayed = new Boolean(false)
 var playerHandArray = []
 var getNameOfElement = "";
 // defines constant variables to refer to HTML elements
@@ -66,11 +51,10 @@ function startGame() {
 	}
 }
 // plays a random song and sets the volume to 70% from the array defined above
-song.play()
 let volume = document.querySelector("#volume-control");
-volume.addEventListener("change", function(e) {
-  song.volume = e.currentTarget.value / 100;
-  })
+//volume.addEventListener("change", function(e) {
+//  song.volume = e.currentTarget.value / 100;
+//  })
 /* defines new function that when boolean collision is true between the card and collisionbox element and element is 
 created using the getPlayerHTML() function defined in deck.js and is appended as a child into the players' board */
 function placeCardFunc(e) {
@@ -81,6 +65,7 @@ function placeCardFunc(e) {
       if ((originalDeck.cards[i]['name'] == getNameOfElement) && (playerCardSlot.childElementCount != 7)) {
         found = true;
         playerCardSlot.appendChild(originalDeck.cards[i].getPlayerHTML())
+        cardplaceSnd.play();
         break;
       }
     }
@@ -121,11 +106,6 @@ document.getElementById("endturn").addEventListener("click", function() {
   var endturn = new Audio("src/sounds/endturn.mp3");
   endturn.play();
   opponentTurn()
-  if(audioIsPlayed == false) {
-    song.play()
-    song.volume = 0.7;
-    audioIsPlayed = true;
-}
 });
 /* defines new function that calls the getComputerHTML function from deck.js using the first card at the top of the computers' deck and appends as a child to 
 the computers board and uses the shift method to remove the first card in the array then proceeds to call both updateDeckCount and playerTurn functions. */
@@ -136,8 +116,13 @@ function opponentTurn() {
   let opponentCardsInPlay = computerCardSlot.childElementCount;
   if(opponentCardsInPlay != maxOpponentCardsInPlay) {
     computerCardSlot.appendChild(computerDeck.cards[0].getComputerHTML())
+    cardplaceSnd.play();
     computerDeck.cards.shift();
     updateDeckCount()
+  }
+  // to fix position of board GUI onclick
+  if(opponentCardsInPlay >= 0) {
+    playerCardSlot.style.transform = "translateY(17.5%)"; 
   }
   playerTurn()
 }
@@ -204,18 +189,37 @@ document.querySelectorAll('.cardinplay').forEach(function(e){
         setTimeout(function() {
           if(currentAttackerHealth <= 0) {
             if (document.querySelector('.playerHeroHealth').innerText <= 0) {
-              alert("You've Won!")
+              alert("You've Lost!")
               location.reload();
             }
             currentAttackerElement.remove();
           }
           if(targetHealth <= 0) {
             if (document.querySelector('.opposingHeroHealth').innerText <= 0) {
-              alert("You've Won!")
-              location.reload();
-            }
+              setTimeout(function() {
+                document.getElementById('fireworkCanvas').style.display = "block";
+              },3000);
+              song.pause();
+              let victorySnd = new Audio("src/sounds/victory.mp3");
+              victorySnd.play();
+              // adjust position of player board to fix GUI
+              let opponentCardsInPlay = computerCardSlot.childElementCount;
+              playerCardSlot.style.transform = "translateY(17.5%)"; 
+              // body.onclick = function () {
+              //  location.reload();
+              // };
+              setTimeout(function() {
+              body.style.filter = "blur(5px)";
+            },5000);
+            } else {
             targetElement.remove();
+            // adjust position of player board to fix GUI
+            let opponentCardsInPlay = computerCardSlot.childElementCount;
+            if(opponentCardsInPlay == 0) {
+              playerCardSlot.style.transform = "translateY(57.5%)"; 
+            }
           }
+        }
         },250);
         var currentAttackersElement = document.getElementById(currentAttacker);
         currentAttacker = null;

@@ -10,14 +10,71 @@
   <script src="index.js" type="module"></script>
   <link rel="stylesheet" href="styles.css">
 </head>
-<body id="body">
+<div id="load">Setting up the board...</div>
+<div id="contents">
+  <canvas id='fireworkCanvas' width='1500' height='1000' style="position:absolute; left: 10%; z-index: 10;"></canvas>
   <span id="fps"></span>
-  <button class="openbtn fas fa-cog" onclick="openNav()"></button>  
+  <div id="block"></div>
+  <div id="vs"></div>
+  <div id="playerbubble">You asked<br>for it!</div>
+  <div id="computerspeech-bubble"></div>
+<div class="gamemenu" id="gamemenu">
+  <div id="gamemenuContent">
+    <div id="gamemenuTitle">Game Menu</div>
+    <div id="border1" class="gamemenuTitleBorder"></div>
+    <div id="border2" class="gamemenuTitleBorder"></div>
+    <div id="line1"></div>
+    <div id="line2"></div>
+    <div id="darkborder1"></div>
+    <div id="circle1"></div>
+    <div id="circle2"></div>
+    <div id="silverborder1"></div>
+    <div id="goldborder1"></div>
+    <button id="concedebutton">Concede</button>
+    <div id="darkborder2"></div>
+    <div id="circle3"></div>
+    <div id="circle4"></div>
+    <div id="silverborder2"></div>
+    <div id="goldborder2"></div>
+    <button id="optionsbutton">Options</button>
+    <div id="darkborder3"></div>
+    <div id="circle5"></div>
+    <div id="circle6"></div>
+    <div id="silverborder3"></div>
+    <div id="goldborder3"></div>
+    <button id="quitbutton">Quit</button>
+    <div id="darkborder4"></div>
+    <div id="circle7"></div>
+    <div id="circle8"></div>
+    <div id="silverborder4"></div>
+    <div id="goldborder4"></div>
+    <button id="resumebutton">Resume</button>
+  </div>
+</div>
+<div class="optionsmenu" id="optionsmenu">
+  <div id="optionsmenuContent">
+    <div id="optionsmenuTitle">Options</div>
+    <div id="border3" class="optionsmenuTitleBorder"></div>
+    <div id="border4" class="optionsmenuTitleBorder"></div>
+    <div id="line3"></div>
+    <div id="line4"></div>
+    <div id="darkborder5"></div>
+    <div id="circle9"></div>
+    <div id="circle10"></div>
+    <div id="silverborder5"></div>
+    <div id="goldborder5"></div>
+    <button id="miscellaneousbutton">Miscellaneous</button>
+  </div>
+</div>
+<body id="body">
+  <div id="game" class="game">
+    <div class="bg-image"></div>
+  <button class="openbtn fas fa-cog" onclick="openNav()"></button>
   <div id="mySidebar" class="sidebar">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-    <h1>Volume:</h1><input type="range" id="volume-control">
-    <h1>Skin: </h1>
-    <h1>Board: </h1>
+    <h1>Debug Settings</h1>
+    <button id="togglefps">Hide FPS</button>
+    <!--Will move the following into options hint: (press esc): <h1>Master Volume:</h1><input type="range" id="volume-control">-->
   </div>
   <div id="collisionbox" class="collisionbox"></div>
   <div class="enemycards">
@@ -30,6 +87,7 @@
   <div id="cards" class="cards">
   </div>
   <button id="endturn">END TURN</button>
+  <button id="confirm">Confirm</button>
   <div class="computer-deck deck" id="computerDeck"></div>
   <div class="computer-card-slot card-slot"></div>
   <div class="player-deck deck" id="playerDeck"></div>
@@ -53,16 +111,21 @@
     <div class="heroPowerHealth">99999999</div>
     </div>
   </div>
+  <div class="mana" id="mana">1/1</div>
 <div class="board board--player"></div>
     </div>
   </div>
-  <div class="mana" id="mana">1/1</div>
   <svg id="svg" width="100%" height="100%">
   <path id="svgpath" fill="none" stroke="#db2727" stroke-width="40" stroke-dasharray="60,10" d="">
 </svg>
+</div>
 </body>
+</div>
 <script src="src/scripts/AI.js"></script>
 <script src="src/scripts/fps.js"></script>
+<script src="src/scripts/elementsController.js"></script>
+<script src="src/scripts/load.js"></script>
+<script src="src/scripts/fireworks.js"></script>
 <script>
 function openNav() {
   document.getElementById("mySidebar").style.width = "250px";

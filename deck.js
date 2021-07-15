@@ -36,6 +36,7 @@ class MinionCard {
 		computerCardDiv.id = "cpuCardInPlay" + id2
 		computerCardDiv.classList.add("cardinplay")
 		computerCardDiv.classList.add("computer-cardinplay")
+		computerCardDiv.classList.add('placeCardAnim')
 		computerAttackValue.classList.add("attackValue")
 		computerHealthValue.classList.add("healthValue")
 		oval.classList.add('oval')
@@ -56,6 +57,7 @@ class MinionCard {
 		playerCardDiv.id = "playerCardInPlay" + id1
 		playerCardDiv.classList.add("cardinplay")
 		playerCardDiv.classList.add("player-cardinplay")
+		playerCardDiv.classList.add('placeCardAnim')
 		playerAttackValue.classList.add("attackValue")
 		playerHealthValue.classList.add("healthValue")
 		oval.classList.add('oval')
