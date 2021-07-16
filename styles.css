@@ -1410,22 +1410,6 @@ head {
 	left: 10%;
 	background-color: #473422;
 }
-@keyframes openMenuAnim {
-	0%   {transform:scale(.5);}
-	50%  {transform:scale(1.2);}
-	100% {transform:scale(1);}
- }
- .openMenuAnim{
-    animation: openMenuAnim 0.25s;
-}
-@keyframes easeOutAnim {
-	0%   {transform:scale(1);}
-	50%  {transform:scale(1.1);}
-	100% {transform:scale(0);}
- }
- .easeOutAnim{
-    animation: easeOutAnim 0.25s;
-}
 #togglefps {
 	width: 3.5%;
 	height: 5%;
@@ -1655,15 +1639,15 @@ head {
 	background-image: url("src/images/jaina_proudmoore.gif");
 	background-size: contain;
 	background-repeat: no-repeat;
-	z-index: 12;
+	z-index: 13;
 }
-#victoryImg1 {
+#victoryImg2 {
 	width: 17%;
 	height: 30%;
 	position: absolute;
 	top: 23%;
 	left: 43.75%;
-	background-image: url("src/images/jaina_proudmoore.gif");
+	background-image: url("src/images/lich_king.png");
 	background-size: contain;
 	background-repeat: no-repeat;
 	z-index: 12;
@@ -1777,3 +1761,47 @@ head {
 	z-index:50;
 	user-select: none;
 }
+
+#victorylabel {
+	width:20%;
+	height:7%;
+	position:absolute;
+	top:53%;
+	left: 40%;
+	display: block;
+	background: -webkit-linear-gradient(230deg, rgb(219, 155, 91) 0%, rgb(167, 105, 64) 23%, rgb(84, 49, 30) 81%);
+	background: -o-linear-gradient(230deg, rgb(219, 155, 91) 0%, rgb(167, 105, 64) 23%, rgb(84, 49, 30) 81%);
+	background: -ms-linear-gradient(230deg, rgb(219, 155, 91) 0%, rgb(167, 105, 64) 23%, rgb(84, 49, 30) 81%);
+	background: -moz-linear-gradient(230deg, rgb(219, 155, 91) 0%, rgb(167, 105, 64) 23%, rgb(84, 49, 30) 81%);
+	background: linear-gradient(220deg, rgb(219, 155, 91) 0%, rgb(167, 105, 64) 23%, rgb(84, 49, 30) 81%);
+	border:solid 11px #232220;
+	color: white;
+	text-shadow:
+	-1px -1px 0 #000,
+	1px -1px 0 #000,
+	-1px 1px 0 #000,
+	1px 1px 0 #000;
+	font-size: 35px;
+	justify-content: center;
+	text-align: center;
+	z-index:40;
+	padding-top: 20px;
+}
+
+#victorylabel:after {
+	content: '';
+	position: absolute;
+	top: -20px;
+	left: -20px;
+	right: -20px;
+	bottom: -20px;
+	border:solid 9px #7e6f74;
+	-webkit-mask: 
+	radial-gradient( circle at left top,    transparent 30px, black 1px), 
+	radial-gradient( circle at right top,    transparent 30px, black 1px), 
+	radial-gradient( circle at left bottom, transparent 30px, black 1px),
+	radial-gradient( circle at right bottom, transparent 30px, black 1px),
+	linear-gradient(black,black); /* this layer is mandatory */
+  -webkit-mask-composite: destination-in;
+  mask-composite: exclude; /* for non-webkit browser */ 
+  }

@@ -25,7 +25,7 @@ class MinionCard {
 		this.attack = attack;
 		this.health = health;
 		this.info = info;
-		this.mana = Math.round((this.attack + this.health) * 0.5)
+		this.mana = Math.round(((this.attack + this.health) * 0.5) - 1);
 		this.name = name;
 	}
 	getComputerHTML() {

@@ -170,3 +170,19 @@
         transform: scale(1.15);
    }
 }
+@keyframes openMenuAnim {
+	0%   {transform:scale(.5);}
+	50%  {transform:scale(1.2);}
+	100% {transform:scale(1);}
+ }
+ .openMenuAnim{
+    animation: openMenuAnim 0.25s;
+}
+@keyframes easeOutAnim {
+	0%   {transform:scale(1);}
+	50%  {transform:scale(1.1);}
+	100% {transform:scale(0);}
+ }
+ .easeOutAnim{
+    animation: easeOutAnim 0.25s;
+}

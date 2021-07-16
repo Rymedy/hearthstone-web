@@ -262,10 +262,18 @@ document.querySelectorAll('.cardinplay').forEach(function(e){
               setTimeout(function() {
               document.getElementById("game").style.filter = "blur(5px)";
               document.getElementById("victory").style.display = "block";
+              document.getElementById("victoryImg1").classList.add("openMenuAnim");
+              document.getElementById("victoryImg2").classList.add("openMenuAnim");
+              document.getElementById("victorylabel").classList.add("openMenuAnim");
               setTimeout(function() {
                 document.getElementById('fireworkCanvas').classList.add("fadeOutAnim");
                 setTimeout(function() {
-                document.getElementById('fireworkCanvas').style.display = "none";
+                  document.getElementById('fireworkCanvas').style.display = "none";
+                  setTimeout(function() {
+                    document.getElementById('victoryImg1').style.visibility="hidden";
+                    document.getElementById('victoryImg1').style.opacity="0";
+                    document.getElementById('victoryImg1').style.transition="visibility 0s 2s, opacity 2s linear";
+                  },4000);
                 },1000);
               },5000);
             },5000);
