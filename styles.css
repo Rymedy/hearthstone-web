@@ -14,6 +14,9 @@ button:hover {
 button:active {
 	cursor: url(src/cursor/click.png) 10 2, auto;
 }
+head {
+	z-index: 500;
+}
 .bg-image {
 	width: 100%;
 	height: 100%;
@@ -73,6 +76,38 @@ button:active {
 .onLoadComputerAnim {
     animation: onLoadComputerAnim 6s;
 }
+@keyframes shakeScreenAnim {
+	0%   {transform:translate(0, 0);}
+	10%   {transform: translate(5px, 2.5px);}
+	20%   {transform: translate(-2.5px, -5px);}
+	30%   {transform: translate(-7.5px, 0px);}
+	40%   {transform: translate(0px, 5px);}
+	50%   {transform: translate(2.5px, -2.5px);}
+	60%   {transform: translate(-2.5px, 5px);}
+	70%   {transform: translate(-7.5px, 2.5px);}
+	80%   {transform: translate(5px, 2.5px);}
+	90%   {transform: translate(-2.5px, -2.5px);}
+	95%   {transform: translate(2.5px, -5px);}
+	100% {transform: translate(0, 0);}
+}
+.shakeScreenAnim {
+    animation: shakeScreenAnim 3s;
+}
+@keyframes fadeInAnim {
+	0%   {opacity: 0;}
+	100% {opacity: 1;}
+}
+.fadeInAnim {
+    animation: fadeInAnim 1s;
+}
+@keyframes fadeOutAnim {
+	0%   {opacity: 1;}
+	100% {opacity: 0;}
+}
+.fadeOutAnim {
+    animation: fadeOutAnim 1s;
+}
+
  .cards {
  	bottom: 0;
 	 display: flex;
@@ -85,7 +120,7 @@ button:active {
 	 z-index: 9;
 }
 .enemycards {
-	 top: -20px;
+	 top: 5px;
 	 display: flex;
 	 width: 60%;
 	 height: 100px;
@@ -93,7 +128,7 @@ button:active {
 	 	 margin: -50px;
 	 justify-content: center;
 	 position: relative;
-	 left: 20%;
+	 left: 15%;
 	 right: 0;
 	 z-index: 5;
 }
@@ -378,6 +413,7 @@ button:active {
 	}
 }
 .board {
+	position: absolute;
 	display: flex;
 	 justify-content: space-between;
 	 width: 80%;
@@ -385,7 +421,13 @@ button:active {
 	 max-width: 50%;
     margin-left: auto;
     margin-right: auto;
-  transform: translateY(55%);
+  transform: translateY(70%);
+}
+.board--player {
+	z-index: 1;
+}
+.board--opponent {
+	z-index: 1;
 }
  .cardinplay {
  	position: relative;
@@ -406,7 +448,9 @@ button:active {
 		height: 4.5rem;
 	}
 	.board {
-		padding: 4.5rem;
+		padding: 7.75rem;
+		left: 16.75%;
+		top: 9%;
 	}
 	#endturn {
 		left: 76.5%;
@@ -446,6 +490,27 @@ button:active {
 	#confirm {
 		font-size: 15px;
 	}
+	#playerlabel {
+		top: 90%;
+		left: 22.5%;
+		font-size: 25px;
+	}
+	#playerclasslabel {
+		top: 93.5%;
+		left: 29.5%;
+		font-size: 15px;
+	}
+	#opponentlabel {
+		top: 49%;
+		left: 70%;
+		font-size: 25px;
+	}
+	#playerbubble {
+		font-size: 25px;
+	}
+	#computerbubble {
+		font-size: 20px;
+	}
 }
 @media only screen and (min-width: 1500px) {
 	.cardinplay {
@@ -457,7 +522,9 @@ button:active {
 		height: 7rem;
 	}
 	.board {
-		padding: 5.75rem;
+		padding: 11rem;
+		left: 16.25%;
+		top: 6%;
 	}
 	#endturn {
 		left: 75.5%;
@@ -496,6 +563,27 @@ button:active {
 	}
 	#confirm {
 		font-size: 23px;
+	}
+	#playerlabel {
+		top: 92%;
+		left: 27.5%;
+		font-size: 30px;
+	}
+	#playerclasslabel {
+		top: 95.5%;
+		left: 33.5%;
+		font-size: 20px;
+	}
+	#opponentlabel {
+		top: 46.5%;
+		left: 63.5%;
+		font-size: 30px;
+	}
+	#playerbubble {
+		font-size: 35px;
+	}
+	#computerbubble {
+		font-size: 30px;
 	}
 }
 .computer-cardinplay:hover {
@@ -790,7 +878,7 @@ button:active {
 	width: 6%;
 	height: 7%;
 	position: absolute;
-	top: 74%;
+	top: 45%;
 	left: 47.7%;
 	user-select: none;
 	background-color: #22a6e3;
@@ -874,8 +962,8 @@ button:active {
 }
 .mana {
 	position: absolute;
-	top: 91%;
-	left: 63.25%;
+	top: 91.25%;
+	left: 64.35%;
 	color: white;
 	font-size: 23px;
 	font-weight: bold;
@@ -924,11 +1012,15 @@ button:active {
   }
   
   .openbtn {
+	position: absolute;
+	top: 0;
+	left: 0;
 	font-size: 20px;
 	background-color: #111;
 	color: white;
 	padding: 10px 15px;
 	border: none;
+	outline: none;
   }
   
   .openbtn:hover {
@@ -941,9 +1033,18 @@ button:active {
 	  color: white;
 	  font-size: 25px;
 	  user-select: none;
+	  z-index: 20;
   }
 
 /* In Game Menu (Press Esc) */
+#game {
+	width: 90%;
+	height: 100%;
+	padding-left: 9%;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+}
 #gamemenu {
 	width:100%;
 	height:100%;
@@ -1387,24 +1488,19 @@ button:active {
 }
 @keyframes easeOutAnim {
 	0%   {transform:scale(1);}
-	50%  {transform:scale(1.2);}
-	100% {transform:scale(.4);}
+	50%  {transform:scale(1.1);}
+	100% {transform:scale(0);}
  }
  .easeOutAnim{
     animation: easeOutAnim 0.25s;
 }
 #togglefps {
-	width: 56%;
-	height: 4%;
+	width: 3.5%;
+	height: 5%;
 	position: absolute;
-	top: 25%;
-	left: 22%;
-	background-color: #e6c4a9;
-	color: #4f3a1b;
-	border-top-left-radius: 30px 200%;
-	border-bottom-left-radius: 30px 200%; 
-	border-top-right-radius: 30px 200%;
-	border-bottom-right-radius: 30px 200%; 
+	top: 70%;
+	left: 10%;
+	background-color: #383532;
 	font-family: BelweBdBTBold;
 	user-select: none;
 	z-index: 50;
@@ -1619,14 +1715,26 @@ button:active {
 	display: none;
 }
 #victoryImg1 {
-	width: 30%;
+	width: 17%;
 	height: 30%;
 	position: absolute;
-	top: 40%;
-	left: 40%;
+	top: 23%;
+	left: 43.75%;
 	background-image: url("src/images/jaina_proudmoore.gif");
 	background-size: contain;
 	background-repeat: no-repeat;
+	z-index: 12;
+}
+#victoryImg1 {
+	width: 17%;
+	height: 30%;
+	position: absolute;
+	top: 23%;
+	left: 43.75%;
+	background-image: url("src/images/jaina_proudmoore.gif");
+	background-size: contain;
+	background-repeat: no-repeat;
+	z-index: 12;
 }
 
 /* Speech Bubbles*/
@@ -1639,7 +1747,6 @@ button:active {
     background: linear-gradient(0deg, #dbd4cc 5%, #ffffff 100%);
     color: #000000;
     font-family: Arial;
-    font-size: 35px;
     line-height: 40px;
     box-shadow: 0px 1px 0px 5px #000000;
     text-align: center;
@@ -1647,6 +1754,7 @@ button:active {
     height: 13%;
     border-radius: 50px;
 	visibility: hidden;
+	z-index: 11;
 }
 #playerbubble:after {
     content: '';
@@ -1661,4 +1769,77 @@ button:active {
     left: 77%;
     margin-left: -15px;
 }
+#computerbubble {
+    position: absolute;
+	left: 37%;
+	top: 29%;
+	padding-top: 2.5px;
+	padding-bottom: 2.5px;
+    background: linear-gradient(0deg, #dbd4cc 5%, #ffffff 100%);
+    color: #000000;
+    font-family: Arial;
+    line-height: 35px;
+    box-shadow: 0px 1px 0px 5px #000000;
+    text-align: center;
+    width: 15%;
+    height: 13%;
+    border-radius: 50px;
+	visibility: hidden;
+	z-index: 11;
+}
+#computerbubble:after {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 0;
+    z-index: 1;
+    border-style: solid;
+    border-color: #dbd4cc transparent;
+    border-width: 0 15px 18px;
+    top: -18px;
+    left: 77%;
+    margin-left: -15px;
+}
 
+/* Current Time */
+#time {
+	width: 3%;
+	height: 2%;
+	position: absolute;
+	bottom: 15px;
+	left: 15px;
+	font-size: 25px;
+	color: rgb(49, 49, 49);
+	z-index: 20;
+}
+
+#playerlabel {
+	position: absolute;
+	color: white;
+	text-shadow:
+	-1px -1px 0 #000,
+	1px -1px 0 #000,
+	-1px 1px 0 #000,
+	1px 1px 0 #000;
+	z-index:50;
+}
+#playerclasslabel {
+	position: absolute;
+	color: white;
+	text-shadow:
+	-1px -1px 0 #000,
+	1px -1px 0 #000,
+	-1px 1px 0 #000,
+	1px 1px 0 #000;
+	z-index:50;
+}
+#opponentlabel {
+	position: absolute;
+	color: white;
+	text-shadow:
+	-1px -1px 0 #000,
+	1px -1px 0 #000,
+	-1px 1px 0 #000,
+	1px 1px 0 #000;
+	z-index:50;
+}

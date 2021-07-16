@@ -17,6 +17,11 @@ var song = new Audio(item);
 /* boolean to check if the audio is already playing to ensure multiple audio 
 files do not play at the same time when the end turn button is clicked */
 var audioIsPlayed = new Boolean(false)
+// plays a random song and sets the volume to 70% from the array defined above
+let volume = document.querySelector("#volume-control");
+volume.addEventListener("change", function(e) {
+  song.volume = e.currentTarget.value / 100;
+})
 document.addEventListener("keydown", function(){
     var x=event.keyCode || event.which;
     if(x==27)
@@ -26,6 +31,7 @@ document.addEventListener("keydown", function(){
     var gamemenuContent = document.getElementById("gamemenuContent");
     if (gamemenuContent.style.display === "block")
     {
+        // hide options menu
         if (document.getElementById('optionsmenuContent').style.display === "block") {
             document.getElementById('optionsmenu').style.display = "none";
             document.getElementById('optionsmenuContent').style.display = "none";

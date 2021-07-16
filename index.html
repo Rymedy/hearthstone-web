@@ -9,15 +9,22 @@
   <title>Hearthstone</title>
   <script src="index.js" type="module"></script>
   <link rel="stylesheet" href="styles.css">
+    <div id="victory">
+  <div id="victoryImg1"></div>
+  <div id="victoryImg2"></div>
+  </div>
 </head>
 <div id="load">Setting up the board...</div>
 <div id="contents">
-  <canvas id='fireworkCanvas' width='1500' height='1000' style="position:absolute; left: 10%; z-index: 10;"></canvas>
   <span id="fps"></span>
+  <span id="time"></span>
   <div id="block"></div>
   <div id="vs"></div>
+  <span id="playerlabel">Jaina Proudmoore</span>
+  <span id="playerclasslabel">MAGE</span>
+  <span id="opponentlabel">The Lich King</span>
   <div id="playerbubble">You asked<br>for it!</div>
-  <div id="computerspeech-bubble"></div>
+  <div id="computerbubble">You call that<br>wretched pile of<br>cards a deck?</div>
 <div class="gamemenu" id="gamemenu">
   <div id="gamemenuContent">
     <div id="gamemenuTitle">Game Menu</div>
@@ -53,6 +60,10 @@
 </div>
 <div class="optionsmenu" id="optionsmenu">
   <div id="optionsmenuContent">
+    <h1 style="color: white; position: absolute; left: 68%; top: 0%;">Sound</h1>
+    <div style="position: absolute; left: 60%; top:10%;"><h1 style="color: white;">Master Volume</h1><input type="range" id="volume-control"></div>
+    <div style="position: absolute; left: 60%; top:28%;"><h1 style="color: white;">Music Volume</h1><input type="range" id="volume-control"></div>
+    <button id="togglefps"></button><h1 style="color: white; position: absolute; left: 15%; top: 65%;">Show FPS</h1>
     <div id="optionsmenuTitle">Options</div>
     <div id="border3" class="optionsmenuTitleBorder"></div>
     <div id="border4" class="optionsmenuTitleBorder"></div>
@@ -63,19 +74,14 @@
     <div id="circle10"></div>
     <div id="silverborder5"></div>
     <div id="goldborder5"></div>
-    <button id="miscellaneousbutton">Miscellaneous</button>
+    <button id="miscellaneousbutton" draggable="false">Miscellaneous</button>
   </div>
 </div>
 <body id="body">
   <div id="game" class="game">
+    <canvas id='fireworkCanvas' width='1500' height='1000' style="position:absolute; left: 10%; z-index: 10;"></canvas>
     <div class="bg-image"></div>
-  <button class="openbtn fas fa-cog" onclick="openNav()"></button>
-  <div id="mySidebar" class="sidebar">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-    <h1>Debug Settings</h1>
-    <button id="togglefps">Hide FPS</button>
-    <!--Will move the following into options hint: (press esc): <h1>Master Volume:</h1><input type="range" id="volume-control">-->
-  </div>
+  <button class="openbtn fas fa-cog" onclick="showGameMenu()"></button>
   <div id="collisionbox" class="collisionbox"></div>
   <div class="enemycards">
     <div class="enemycard"></div>
@@ -87,7 +93,7 @@
   <div id="cards" class="cards">
   </div>
   <button id="endturn">END TURN</button>
-  <button id="confirm">Confirm</button>
+  <button id="confirm">Play</button>
   <div class="computer-deck deck" id="computerDeck"></div>
   <div class="computer-card-slot card-slot"></div>
   <div class="player-deck deck" id="playerDeck"></div>
@@ -126,13 +132,14 @@
 <script src="src/scripts/elementsController.js"></script>
 <script src="src/scripts/load.js"></script>
 <script src="src/scripts/fireworks.js"></script>
+<script src="src/scripts/time.js"></script>
 <script>
-function openNav() {
-  document.getElementById("mySidebar").style.width = "250px";
-}
-
-function closeNav() {
-  document.getElementById("mySidebar").style.width = "0";
+function showGameMenu() {
+  // show game menu
+  document.getElementById("gamemenu").style.display = "block";
+  document.getElementById("gamemenuContent").style.display = "block";
+  document.getElementById("gamemenuContent").classList.add('openMenuAnim');
+  openmenuSnd.play();
 }
 </script>
 </html>
