@@ -194,7 +194,8 @@ document.querySelectorAll('.cardinplay').forEach(function(e){
    }} else if((this.classList.contains('computer-cardinplay') || (this.id == 'opposinghero'))) {
         playerCardSlot.style.zIndex = "2"
         computerCardSlot.style.zIndex = "1"
-        var snd = new Audio("src/sounds/attack.mp3");
+        var attackSnd = new Audio("src/sounds/attack.mp3");
+        var bigHitSnd = new Audio("src/sounds/bigattack.mp3");
         var target = this.id;
 
         var currentAttackerElement = document.getElementById(currentAttacker);
@@ -204,10 +205,16 @@ document.querySelectorAll('.cardinplay').forEach(function(e){
         var currentAttackerHealth = currentAttackerElement.children[1].innerHTML;
         var targetAttack = targetElement.children[0].innerHTML;
         var targetHealth = targetElement.children[1].innerHTML;
-        currentAttackerHealth = currentAttackerHealth - targetAttack
-        targetHealth = targetHealth - currentAttackerAttack
-        currentAttackerElement.children[1].innerHTML = currentAttackerHealth
-        targetElement.children[1].innerHTML = targetHealth
+        currentAttackerHealth -= targetAttack;
+        targetHealth -= currentAttackerAttack;
+        currentAttackerElement.children[1].innerHTML = currentAttackerHealth;
+        targetElement.children[1].innerHTML = targetHealth;
+        if (currentAttackerAttack >= 5) {
+          document.getElementById("game").classList.add("bigHitAnim");
+          setTimeout(function() {
+            document.getElementById("game").classList.remove("bigHitAnim");
+          },200);
+        }
         currentAttackerElement.style.border = "solid 3px black";
         currentAttackerElement.children[2].style.border = "solid 4px black";
         currentAttackerElement.children[2].style.animation = "none";
@@ -248,7 +255,10 @@ document.querySelectorAll('.cardinplay').forEach(function(e){
               // body.onclick = function () {
               //  location.reload();
               // };
-              document.getElementById("game").classList.add("screenShakeAnim");
+              setTimeout(function() {
+                document.querySelector(".opponenthero").style.display = "none";
+                document.getElementById("game").classList.add("shakeScreenAnim");
+              },750);
               setTimeout(function() {
               document.getElementById("game").style.filter = "blur(5px)";
               document.getElementById("victory").style.display = "block";
@@ -275,7 +285,11 @@ document.querySelectorAll('.cardinplay').forEach(function(e){
         svg.style.display = "none";
         currentAttackerElement.classList.remove("canAttack");
         if(currentAttackersElement.classList.contains('player-cardinplay')) {
-          snd.play();
+          if(currentAttackerAttack >= 5) {
+            bigHitSnd.play();
+          } else {
+            attackSnd.play();
+          }
         } 
         currentAttacker = null;
     } 

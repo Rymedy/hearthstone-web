@@ -52,62 +52,6 @@ head {
     background:url("src/images/loading.gif") no-repeat center center rgb(255, 255, 255) !important;
 }
 /* In Game */
-/* Animations */
-@keyframes placeCardAnim {
-	0%   {transform:scale(2);}
-	100% {transform:scale(1);}
- }
- .placeCardAnim{
-    animation: placeCardAnim 0.3s;
-}
-@keyframes onLoadPlayerAnim {
-	0%   {transform:scale(2.4) translate(-110px, -20px);}
-	95%   {transform:scale(2.4) translate(-110px, -20px);}
-	100% {transform:scale(1) translate(0, 0);}
-}
-.onLoadPlayerAnim {
-    animation: onLoadPlayerAnim 6s;
-}
-@keyframes onLoadComputerAnim {
-	0%   {transform:scale(2.4) translate(160px, 40px);}
-	95%   {transform:scale(2.4) translate(160px, 40px);}
-	100% {transform:scale(1) translate(0, 0);}
-}
-.onLoadComputerAnim {
-    animation: onLoadComputerAnim 6s;
-}
-@keyframes shakeScreenAnim {
-	0%   {transform:translate(0, 0);}
-	10%   {transform: translate(5px, 2.5px);}
-	20%   {transform: translate(-2.5px, -5px);}
-	30%   {transform: translate(-7.5px, 0px);}
-	40%   {transform: translate(0px, 5px);}
-	50%   {transform: translate(2.5px, -2.5px);}
-	60%   {transform: translate(-2.5px, 5px);}
-	70%   {transform: translate(-7.5px, 2.5px);}
-	80%   {transform: translate(5px, 2.5px);}
-	90%   {transform: translate(-2.5px, -2.5px);}
-	95%   {transform: translate(2.5px, -5px);}
-	100% {transform: translate(0, 0);}
-}
-.shakeScreenAnim {
-    animation: shakeScreenAnim 3s;
-}
-@keyframes fadeInAnim {
-	0%   {opacity: 0;}
-	100% {opacity: 1;}
-}
-.fadeInAnim {
-    animation: fadeInAnim 1s;
-}
-@keyframes fadeOutAnim {
-	0%   {opacity: 1;}
-	100% {opacity: 0;}
-}
-.fadeOutAnim {
-    animation: fadeOutAnim 1s;
-}
-
  .cards {
  	bottom: 0;
 	 display: flex;
@@ -399,18 +343,6 @@ head {
 }
  .card:nth-child(10):hover:after {
 	 top: -175px;
-}
- @keyframes fade {
-	 0% {
-		 opacity: 0.8;
-		 border-radius: 10px;
-		 transform: scale(1);
-	}
-	 100% {
-		 opacity: 0;
-		 border-radius: 10px;
-		 transform: scale(1.15);
-	}
 }
 .board {
 	position: absolute;
@@ -1766,7 +1698,7 @@ head {
     border-color: #dbd4cc transparent;
     border-width: 24px 15px 0;
     bottom: -24px;
-    left: 77%;
+    left: 73%;
     margin-left: -15px;
 }
 #computerbubble {
@@ -1797,7 +1729,7 @@ head {
     border-color: #dbd4cc transparent;
     border-width: 0 15px 18px;
     top: -18px;
-    left: 77%;
+    left: 73%;
     margin-left: -15px;
 }
 
@@ -1832,6 +1764,7 @@ head {
 	-1px 1px 0 #000,
 	1px 1px 0 #000;
 	z-index:50;
+	user-select: none;
 }
 #opponentlabel {
 	position: absolute;
@@ -1842,4 +1775,5 @@ head {
 	-1px 1px 0 #000,
 	1px 1px 0 #000;
 	z-index:50;
+	user-select: none;
 }

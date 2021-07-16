@@ -9,6 +9,7 @@
   <title>Hearthstone</title>
   <script src="index.js" type="module"></script>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="src/stylesheets/animations.css">
     <div id="victory">
   <div id="victoryImg1"></div>
   <div id="victoryImg2"></div>
@@ -23,8 +24,6 @@
   <span id="playerlabel">Jaina Proudmoore</span>
   <span id="playerclasslabel">MAGE</span>
   <span id="opponentlabel">The Lich King</span>
-  <div id="playerbubble">You asked<br>for it!</div>
-  <div id="computerbubble">You call that<br>wretched pile of<br>cards a deck?</div>
 <div class="gamemenu" id="gamemenu">
   <div id="gamemenuContent">
     <div id="gamemenuTitle">Game Menu</div>
@@ -79,6 +78,8 @@
 </div>
 <body id="body">
   <div id="game" class="game">
+    <div id="playerbubble">You asked<br>for it!</div>
+    <div id="computerbubble">You call that<br>wretched pile of<br>cards a deck?</div>
     <canvas id='fireworkCanvas' width='1500' height='1000' style="position:absolute; left: 10%; z-index: 10;"></canvas>
     <div class="bg-image"></div>
   <button class="openbtn fas fa-cog" onclick="showGameMenu()"></button>
