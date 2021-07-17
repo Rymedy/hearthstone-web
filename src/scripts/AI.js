@@ -11,66 +11,25 @@ function AI() {
   const alliedCards = document.querySelectorAll('.player-cardinplay')
   const numOfAlliedCards = playerCardSlot.childElementCount;
   if((numOfOpponentCards == 1) && (numOfAlliedCards == 0)){
-    var opponentAttack = opponentCards[0].children[0].innerText;
-    var heroHealth = document.getElementById('playerhero').children[1].innerText;
-    document.getElementById('playerhero').children[1].innerText = heroHealth - opponentAttack;
+    noAlliedCards();
   }
   else if((numOfOpponentCards == 2) && (numOfAlliedCards == 0)) {
-    var heroHealth = document.getElementById('playerhero').children[1].innerText;
-    var firstAttack = parseInt(opponentCards[0].children[0].innerText);
-    var secondAttack = parseInt(opponentCards[1].children[0].innerText);
-    var sumOfAttack = firstAttack + secondAttack;
-    document.getElementById('playerhero').children[1].innerText = heroHealth - sumOfAttack;
+    noAlliedCards();
   }
   else if((numOfOpponentCards == 3) && (numOfAlliedCards == 0)) {
-    var heroHealth = document.getElementById('playerhero').children[1].innerText;
-    var firstAttack = parseInt(opponentCards[0].children[0].innerText);
-    var secondAttack = parseInt(opponentCards[1].children[0].innerText);
-    var thirdAttack = parseInt(opponentCards[2].children[0].innerText);
-    var sumOfAttack = firstAttack + secondAttack + thirdAttack;
-    document.getElementById('playerhero').children[1].innerText = heroHealth - sumOfAttack;
+    noAlliedCards();
   }
   else if((numOfOpponentCards == 4) && (numOfAlliedCards == 0)) {
-    var heroHealth = document.getElementById('playerhero').children[1].innerText;
-    var firstAttack = parseInt(opponentCards[0].children[0].innerText);
-    var secondAttack = parseInt(opponentCards[1].children[0].innerText);
-    var thirdAttack = parseInt(opponentCards[2].children[0].innerText);
-    var fourthAttack = parseInt(opponentCards[3].children[0].innerText);
-    var sumOfAttack = firstAttack + secondAttack + thirdAttack + fourthAttack;
-    document.getElementById('playerhero').children[1].innerText = heroHealth - sumOfAttack;
+    noAlliedCards();
   }
   else if((numOfOpponentCards == 5) && (numOfAlliedCards == 0)) {
-    var heroHealth = document.getElementById('playerhero').children[1].innerText;
-    var firstAttack = parseInt(opponentCards[0].children[0].innerText);
-    var secondAttack = parseInt(opponentCards[1].children[0].innerText);
-    var thirdAttack = parseInt(opponentCards[2].children[0].innerText);
-    var fourthAttack = parseInt(opponentCards[3].children[0].innerText);
-    var fifthAttack = parseInt(opponentCards[4].children[0].innerText);
-    var sumOfAttack = firstAttack + secondAttack + thirdAttack + fourthAttack + fifthAttack;
-    document.getElementById('playerhero').children[1].innerText = heroHealth - sumOfAttack;
+    noAlliedCards();
   }
   else if((numOfOpponentCards == 6) && (numOfAlliedCards == 0)) {
-    var heroHealth = document.getElementById('playerhero').children[1].innerText;
-    var firstAttack = parseInt(opponentCards[0].children[0].innerText);
-    var secondAttack = parseInt(opponentCards[1].children[0].innerText);
-    var thirdAttack = parseInt(opponentCards[2].children[0].innerText);
-    var fourthAttack = parseInt(opponentCards[3].children[0].innerText);
-    var fifthAttack = parseInt(opponentCards[4].children[0].innerText);
-    var sixthAttack = parseInt(opponentCards[5].children[0].innerText);
-    var sumOfAttack = firstAttack + secondAttack + thirdAttack + fourthAttack + fifthAttack + sixthAttack;
-    document.getElementById('playerhero').children[1].innerText = heroHealth - sumOfAttack;
+    noAlliedCards();
   }
   else if((numOfOpponentCards == 7) && (numOfAlliedCards == 0)) {
-    var heroHealth = document.getElementById('playerhero').children[1].innerText;
-    var firstAttack = parseInt(opponentCards[0].children[0].innerText);
-    var secondAttack = parseInt(opponentCards[1].children[0].innerText);
-    var thirdAttack = parseInt(opponentCards[2].children[0].innerText);
-    var fourthAttack = parseInt(opponentCards[3].children[0].innerText);
-    var fifthAttack = parseInt(opponentCards[4].children[0].innerText);
-    var sixthAttack = parseInt(opponentCards[5].children[0].innerText);
-    var seventhAttack = parseInt(opponentCards[6].children[0].innerText);
-    var sumOfAttack = firstAttack + secondAttack + thirdAttack + fourthAttack + fifthAttack + sixthAttack + seventhAttack;
-    document.getElementById('playerhero').children[1].innerText = heroHealth - sumOfAttack;
+    noAlliedCards();
   }
   else if((numOfOpponentCards == 1) && (numOfAlliedCards == 1)){
     // attacks hero if the hero is on 10 hp or lower
@@ -78,6 +37,7 @@ function AI() {
       var opponentAttack = opponentCards[0].children[0].innerText;
       var heroHealth = document.getElementById('playerhero').children[1].innerText;
       document.getElementById('playerhero').children[1].innerText = heroHealth - opponentAttack;
+      showDamageLabel(opponentAttack);
     }
     // otherwise attacks the one card on the board.
     else {
@@ -106,6 +66,7 @@ function AI() {
       var totalAttack = opponentAttack + opponentAttack1;
       var heroHealth = document.getElementById('playerhero').children[1].innerText;
       document.getElementById('playerhero').children[1].innerText = heroHealth - totalAttack;
+      showDamageLabel(totalAttack);
     }
     // otherwise attacks the highest attack card on the board and attacks the hero with the other
     else {
@@ -120,6 +81,7 @@ function AI() {
       maxAttack.children[1].innerText = opponentHealth - alliedAttack;
       alliedCards[0].children[1].innerText = alliedHealth - opponentAttack;
       document.getElementById('playerhero').children[1].innerText = heroHealth - totalAttack;
+      showDamageLabel(totalAttack);
       setTimeout(function() {
         if(alliedCards[0].children[1].innerHTML <= 0) { 
           alliedCards[0].remove();
@@ -140,6 +102,7 @@ function AI() {
       var totalAttack = opponentAttack + opponentAttack1 + opponentAttack2;
       var heroHealth = document.getElementById('playerhero').children[1].innerText;
       document.getElementById('playerhero').children[1].innerText = heroHealth - totalAttack;
+      showDamageLabel(totalAttack);
     }
     // otherwise attacks the highest attack card on the board and attacks the hero with the other
     else {
@@ -155,6 +118,7 @@ function AI() {
       maxAttack.children[1].innerText = opponentHealth - alliedAttack;
       alliedCards[0].children[1].innerText = alliedHealth - opponentAttack;
       document.getElementById('playerhero').children[1].innerText = heroHealth - totalAttack;
+      showDamageLabel(totalAttack);
       setTimeout(function() {
         if(alliedCards[0].children[1].innerHTML <= 0) { 
           alliedCards[0].remove();
@@ -176,6 +140,7 @@ function AI() {
       var totalAttack = opponentAttack + opponentAttack1 + opponentAttack2 + opponentAttack3;
       var heroHealth = document.getElementById('playerhero').children[1].innerText;
       document.getElementById('playerhero').children[1].innerText = heroHealth - totalAttack;
+      showDamageLabel(totalAttack);
     }
     // otherwise attacks the highest attack card on the board and attacks the hero with the other
     else {
@@ -192,6 +157,7 @@ function AI() {
       maxAttack.children[1].innerText = opponentHealth - alliedAttack;
       alliedCards[0].children[1].innerText = alliedHealth - opponentAttack;
       document.getElementById('playerhero').children[1].innerText = heroHealth - totalAttack;
+      showDamageLabel(totalAttack);
       setTimeout(function() {
         if(alliedCards[0].children[1].innerHTML <= 0) { 
           alliedCards[0].remove();
@@ -214,6 +180,7 @@ function AI() {
       var totalAttack = opponentAttack + opponentAttack1 + opponentAttack2 + opponentAttack3 + opponentAttack4;
       var heroHealth = document.getElementById('playerhero').children[1].innerText;
       document.getElementById('playerhero').children[1].innerText = heroHealth - totalAttack;
+      showDamageLabel(totalAttack);
     }
     // otherwise attacks the highest attack card on the board and attacks the hero with the other
     else {
@@ -231,6 +198,7 @@ function AI() {
       maxAttack.children[1].innerText = opponentHealth - alliedAttack;
       alliedCards[0].children[1].innerText = alliedHealth - opponentAttack;
       document.getElementById('playerhero').children[1].innerText = heroHealth - totalAttack;
+      showDamageLabel(totalAttack);
       setTimeout(function() {
         if(alliedCards[0].children[1].innerHTML <= 0) { 
           alliedCards[0].remove();
@@ -254,6 +222,7 @@ function AI() {
       var totalAttack = opponentAttack + opponentAttack1 + opponentAttack2 + opponentAttack3 + opponentAttack4 + opponentAttack5;
       var heroHealth = document.getElementById('playerhero').children[1].innerText;
       document.getElementById('playerhero').children[1].innerText = heroHealth - totalAttack;
+      showDamageLabel(totalAttack);
     }
     // otherwise attacks the highest attack card on the board and attacks the hero with the other
     else {
@@ -272,6 +241,7 @@ function AI() {
       maxAttack.children[1].innerText = opponentHealth - alliedAttack;
       alliedCards[0].children[1].innerText = alliedHealth - opponentAttack;
       document.getElementById('playerhero').children[1].innerText = heroHealth - totalAttack;
+      showDamageLabel(totalAttack);
       setTimeout(function() {
         if(alliedCards[0].children[1].innerHTML <= 0) { 
           alliedCards[0].remove();
@@ -296,6 +266,7 @@ function AI() {
       var totalAttack = opponentAttack + opponentAttack1 + opponentAttack2 + opponentAttack3 + opponentAttack4 + opponentAttack5 + opponentAttack6;
       var heroHealth = document.getElementById('playerhero').children[1].innerText;
       document.getElementById('playerhero').children[1].innerText = heroHealth - totalAttack;
+      showDamageLabel(totalAttack);
     }
     // otherwise attacks the highest attack card on the board and attacks the hero with the other
     else {
@@ -315,6 +286,7 @@ function AI() {
       maxAttack.children[1].innerText = opponentHealth - alliedAttack;
       alliedCards[0].children[1].innerText = alliedHealth - opponentAttack;
       document.getElementById('playerhero').children[1].innerText = heroHealth - totalAttack;
+      showDamageLabel(totalAttack);
       setTimeout(function() {
         if(alliedCards[0].children[1].innerHTML <= 0) { 
           alliedCards[0].remove();
@@ -332,8 +304,9 @@ function AI() {
       var opponentAttack = parseInt(opponentCards[0].children[0].innerText);
       var heroHealth = document.getElementById('playerhero').children[1].innerText;
       document.getElementById('playerhero').children[1].innerText = heroHealth - opponentAttack;
+      showDamageLabel(opponentAttack);
     }
-    // otherwise attacks with the highest attack card on the board and attacks the player hero with the other
+    // otherwise attacks with the highest attack card on the board
     else {
       var opponentAttack = opponentCards[0].children[0].innerText;
       var opponentHealth = opponentCards[0].children[1].innerText;
@@ -361,6 +334,7 @@ function AI() {
       var totalAttack = opponentAttack + opponentAttack1;
       var heroHealth = document.getElementById('playerhero').children[1].innerText;
       document.getElementById('playerhero').children[1].innerText = heroHealth - totalAttack;
+      showDamageLabel(totalAttack);
     }
     // otherwise attacks with the highest attack card on the board and attacks the player hero with the other
     else {
@@ -499,7 +473,81 @@ function checkForLoss() {
     playerHero.style.display = "none";
   }
   if (window.getComputedStyle(playerHero).display === "none") {
-    alert("You've Lost!")
-    location.reload();
+    setTimeout(function() {
+      alert("You've Lost!")
+      location.reload();
+    },1000);
+  }
+}
+
+function showDamageLabel(currentAttackerAttack) {
+  document.querySelector("#playerdamagevalue").innerText = "-" + currentAttackerAttack;
+  document.querySelector("#playerdamagecontainer").style.visibility = "visible";
+  document.getElementById('playerdamagecontainer').style.opacity="1";
+  document.getElementById('playerdamagecontainer').style.transition="none";
+  document.querySelector("#playerdamagelabel").classList.add("openMenuAnim");
+  document.querySelector("#playerdamagevalue").classList.add("openMenuAnim");
+  document.querySelector("#playerdamagelabel").classList.remove("fadeOutAnim");
+  document.querySelector("#playerdamagevalue").classList.remove("fadeOutAnim");
+  setTimeout(function() {
+    document.querySelector("#playerdamagelabel").classList.add("fadeOutAnim");
+    document.querySelector("#playerdamagevalue").classList.add("fadeOutAnim");
+    document.querySelector("#playerdamagelabel").classList.remove("openMenuAnim");
+    document.querySelector("#playerdamagevalue").classList.remove("openMenuAnim");
+    setTimeout(function() {
+      document.getElementById('playerdamagecontainer').style.visibility="hidden";
+      document.getElementById('playerdamagecontainer').style.opacity="0";
+    },1000);
+  },2000);
+}
+
+
+// AI RELATED
+function noAlliedCards() {
+  let sumOfAttack = 0;
+  const opponentCards = document.querySelectorAll('.computer-cardinplay')
+  const numOfOpponentCards = computerCardSlot.childElementCount;
+  var heroHealth = document.getElementById('playerhero').children[1].innerText;
+  for(let i = 0; i < numOfOpponentCards; i++) {
+    sumOfAttack += parseInt(opponentCards[i].children[0].innerText);
+  }
+  document.getElementById('playerhero').children[1].innerText = heroHealth - sumOfAttack;
+  showDamageLabel(sumOfAttack);
+}
+
+function oneAlliedCard() {
+  var maxAttack = findMaxOpponentAttack()
+  // attacks hero if the hero is on 12 hp or lower
+  // starts at 10 increments by 2 every time +1 opponent card
+  if(document.getElementById('playerhero').children[1].innerText <= 12) {
+    var opponentAttack = parseInt(opponentCards[0].children[0].innerText);
+    var opponentAttack1 = parseInt(opponentCards[1].children[0].innerText);
+    var totalAttack = opponentAttack + opponentAttack1;
+    var heroHealth = document.getElementById('playerhero').children[1].innerText;
+    document.getElementById('playerhero').children[1].innerText = heroHealth - totalAttack;
+    showDamageLabel(totalAttack);
+  }
+  // otherwise attacks the highest attack card on the board and attacks the hero with the other
+  else {
+    var heroHealth = document.getElementById('playerhero').children[1].innerText;
+    var opponentAttack = parseInt(maxAttack.children[0].innerText);
+    var opponentHealth = maxAttack.children[1].innerText;
+    var alliedAttack = alliedCards[0].children[0].innerText;
+    var alliedHealth = alliedCards[0].children[1].innerText;
+    var opponentAttack1 = parseInt(opponentCards[0].children[0].innerText);
+    var opponentAttack2 = parseInt(opponentCards[1].children[0].innerText);
+    var totalAttack = opponentAttack1 + opponentAttack2 - opponentAttack;
+    maxAttack.children[1].innerText = opponentHealth - alliedAttack;
+    alliedCards[0].children[1].innerText = alliedHealth - opponentAttack;
+    document.getElementById('playerhero').children[1].innerText = heroHealth - totalAttack;
+    showDamageLabel(totalAttack);
+    setTimeout(function() {
+      if(alliedCards[0].children[1].innerHTML <= 0) { 
+        alliedCards[0].remove();
+      }
+      if(maxAttack.children[1].innerHTML <= 0) {
+        maxAttack.remove();
+      }
+    },250);
   }
 }

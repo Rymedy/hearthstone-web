@@ -2,9 +2,10 @@
 import Deck from "./deck.js"
 // defines global variables
 var currentAttacker = null;
-var collision = new Boolean(null);
-var canAttack = new Boolean(null);
-var playersTurn = new Boolean(null);
+var isInGame = new Boolean(false);
+var collision = new Boolean(false);
+var canAttack = new Boolean(false);
+var playersTurn = new Boolean(false);
 var alreadyMocked = new Boolean(false);
 var gameIsWon = new Boolean(false);
 var manaCost = null;
@@ -215,6 +216,26 @@ document.querySelectorAll('.cardinplay').forEach(function(e){
             document.getElementById("game").classList.remove("bigHitAnim");
           },200);
         }
+        if(targetElement.id == 'opposinghero') {
+          document.querySelector("#computerdamagevalue").innerText = "-" + currentAttackerAttack;
+          document.querySelector("#computerdamagecontainer").style.visibility = "visible";
+          document.getElementById('computerdamagecontainer').style.opacity="1";
+          document.getElementById('computerdamagecontainer').style.transition="none";
+          document.querySelector("#computerdamagelabel").classList.add("openMenuAnim");
+          document.querySelector("#computerdamagevalue").classList.add("openMenuAnim");
+          document.querySelector("#computerdamagelabel").classList.remove("fadeOutAnim");
+          document.querySelector("#computerdamagevalue").classList.remove("fadeOutAnim");
+          setTimeout(function() {
+            document.querySelector("#computerdamagelabel").classList.add("fadeOutAnim");
+            document.querySelector("#computerdamagevalue").classList.add("fadeOutAnim");
+            document.querySelector("#computerdamagelabel").classList.remove("openMenuAnim");
+            document.querySelector("#computerdamagevalue").classList.remove("openMenuAnim");
+            setTimeout(function() {
+              document.getElementById('computerdamagecontainer').style.visibility="hidden";
+              document.getElementById('computerdamagecontainer').style.opacity="0";
+            },1000);
+          },2000);
+        }
         currentAttackerElement.style.border = "solid 3px black";
         currentAttackerElement.children[2].style.border = "solid 4px black";
         currentAttackerElement.children[2].style.animation = "none";
@@ -229,6 +250,8 @@ document.querySelectorAll('.cardinplay').forEach(function(e){
           if(targetHealth <= 0) {
             if (document.querySelector('.opposingHeroHealth').innerText <= 0) {
               gameIsWon = true;
+              document.getElementById('block').style.opacity = "0";
+              document.getElementById('block').style.visibility = "visible";
               setTimeout(function() {
                 document.getElementById('fireworkCanvas').style.display = "block";
                 document.getElementById('fireworkCanvas').classList.add("fadeInAnim");
@@ -261,6 +284,7 @@ document.querySelectorAll('.cardinplay').forEach(function(e){
               },750);
               setTimeout(function() {
               document.getElementById("game").style.filter = "blur(5px)";
+              document.getElementById('block').style.visibility = "hidden";
               document.getElementById("victory").style.display = "block";
               document.getElementById("victoryImg1").classList.add("openMenuAnim");
               document.getElementById("victoryImg2").classList.add("openMenuAnim");

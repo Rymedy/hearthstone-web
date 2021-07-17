@@ -175,7 +175,7 @@
 	50%  {transform:scale(1.2);}
 	100% {transform:scale(1);}
  }
- .openMenuAnim{
+ .openMenuAnim {
     animation: openMenuAnim 0.25s;
 }
 @keyframes easeOutAnim {
@@ -183,6 +183,17 @@
 	50%  {transform:scale(1.1);}
 	100% {transform:scale(0);}
  }
- .easeOutAnim{
+ .easeOutAnim {
     animation: easeOutAnim 0.25s;
+}
+@keyframes zoomOutAnim {
+	0% {
+		transform:scale(4) rotate(-35deg);
+	}
+	100% {
+		transform:scale(1) rotate(0deg);
+	}
+ }
+ .zoomOutAnim {
+    animation: zoomOutAnim 4s;
 }

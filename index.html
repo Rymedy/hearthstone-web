@@ -15,75 +15,96 @@
   <div id="victoryImg2"></div>
   <div id="victorylabel">Victory!</div>
   </div>
+  <div id="leftsideblock"></div>
+  <div id="rightsideblock"></div>
+  <div id="transitionblock"></div>
 </head>
 <div id="load">Setting up the board...</div>
+<button class="openbtn fas fa-cog" onclick="showGameMenu()"></button>
+<span id="fps"></span>
+<span id="time"></span>
+<div class="gamemenu" id="gamemenu">
+<div id="gamemenuContent">
+  <div id="gamemenuTitle">Game Menu</div>
+  <div id="border1" class="gamemenuTitleBorder"></div>
+  <div id="border2" class="gamemenuTitleBorder"></div>
+  <div id="line1"></div>
+  <div id="line2"></div>
+  <div id="darkborder1"></div>
+  <div id="circle1"></div>
+  <div id="circle2"></div>
+  <div id="silverborder1"></div>
+  <div id="goldborder1"></div>
+  <button id="concedebutton">Concede</button>
+  <div id="darkborder2"></div>
+  <div id="circle3"></div>
+  <div id="circle4"></div>
+  <div id="silverborder2"></div>
+  <div id="goldborder2"></div>
+  <button id="optionsbutton">Options</button>
+  <div id="darkborder3"></div>
+  <div id="circle5"></div>
+  <div id="circle6"></div>
+  <div id="silverborder3"></div>
+  <div id="goldborder3"></div>
+  <button id="quitbutton">Quit</button>
+  <div id="darkborder4"></div>
+  <div id="circle7"></div>
+  <div id="circle8"></div>
+  <div id="silverborder4"></div>
+  <div id="goldborder4"></div>
+  <button id="resumebutton">Resume</button>
+</div>
+</div>
+<div class="optionsmenu" id="optionsmenu">
+<div id="optionsmenuContent">
+  <h1 style="color: white; position: absolute; left: 68%; top: 0%;">Sound</h1>
+  <div style="position: absolute; left: 60%; top:10%;"><h1 style="color: white;">Master Volume</h1><input type="range" id="volume-control"></div>
+  <div style="position: absolute; left: 60%; top:28%;"><h1 style="color: white;">Music Volume</h1><input type="range" id="volume-control"></div>
+  <button id="togglefps"></button><h1 style="color: white; position: absolute; left: 15%; top: 65%;">Show FPS</h1>
+  <div id="optionsmenuTitle">Options</div>
+  <div id="border3" class="optionsmenuTitleBorder"></div>
+  <div id="border4" class="optionsmenuTitleBorder"></div>
+  <div id="line3"></div>
+  <div id="line4"></div>
+  <div id="darkborder5"></div>
+  <div id="circle9"></div>
+  <div id="circle10"></div>
+  <div id="silverborder5"></div>
+  <div id="goldborder5"></div>
+  <button id="miscellaneousbutton" onclick=" window.open('https://playhearthstone.com/en-gb','_blank')" draggable="false">Official Website</button>
+</div>
+</div>
 <div id="contents">
-  <span id="fps"></span>
-  <span id="time"></span>
   <div id="block"></div>
   <div id="vs"></div>
   <span id="playerlabel">Jaina Proudmoore</span>
   <span id="playerclasslabel">MAGE</span>
   <span id="opponentlabel">The Lich King</span>
-<div class="gamemenu" id="gamemenu">
-  <div id="gamemenuContent">
-    <div id="gamemenuTitle">Game Menu</div>
-    <div id="border1" class="gamemenuTitleBorder"></div>
-    <div id="border2" class="gamemenuTitleBorder"></div>
-    <div id="line1"></div>
-    <div id="line2"></div>
-    <div id="darkborder1"></div>
-    <div id="circle1"></div>
-    <div id="circle2"></div>
-    <div id="silverborder1"></div>
-    <div id="goldborder1"></div>
-    <button id="concedebutton">Concede</button>
-    <div id="darkborder2"></div>
-    <div id="circle3"></div>
-    <div id="circle4"></div>
-    <div id="silverborder2"></div>
-    <div id="goldborder2"></div>
-    <button id="optionsbutton">Options</button>
-    <div id="darkborder3"></div>
-    <div id="circle5"></div>
-    <div id="circle6"></div>
-    <div id="silverborder3"></div>
-    <div id="goldborder3"></div>
-    <button id="quitbutton">Quit</button>
-    <div id="darkborder4"></div>
-    <div id="circle7"></div>
-    <div id="circle8"></div>
-    <div id="silverborder4"></div>
-    <div id="goldborder4"></div>
-    <button id="resumebutton">Resume</button>
-  </div>
-</div>
-<div class="optionsmenu" id="optionsmenu">
-  <div id="optionsmenuContent">
-    <h1 style="color: white; position: absolute; left: 68%; top: 0%;">Sound</h1>
-    <div style="position: absolute; left: 60%; top:10%;"><h1 style="color: white;">Master Volume</h1><input type="range" id="volume-control"></div>
-    <div style="position: absolute; left: 60%; top:28%;"><h1 style="color: white;">Music Volume</h1><input type="range" id="volume-control"></div>
-    <button id="togglefps"></button><h1 style="color: white; position: absolute; left: 15%; top: 65%;">Show FPS</h1>
-    <div id="optionsmenuTitle">Options</div>
-    <div id="border3" class="optionsmenuTitleBorder"></div>
-    <div id="border4" class="optionsmenuTitleBorder"></div>
-    <div id="line3"></div>
-    <div id="line4"></div>
-    <div id="darkborder5"></div>
-    <div id="circle9"></div>
-    <div id="circle10"></div>
-    <div id="silverborder5"></div>
-    <div id="goldborder5"></div>
-    <button id="miscellaneousbutton" draggable="false">Miscellaneous</button>
-  </div>
-</div>
 <body id="body">
+  <div id="mainmenu" class="mainmenu">
+    <div id="goldborder6"></div>
+    <button id="playbutton">Play</button>
+    <div id="goldborder7"></div>
+    <button id="tutorialbutton">Tutorial</button>
+    <div id="goldborder8"></div>
+    <button id="maintenancebutton1" disabled>Under Maintenance</button>
+    <div id="goldborder9"></div>
+    <button id="maintenancebutton2" disabled>Under Maintenance</button>
+  </div>
   <div id="game" class="game">
+    <div id="computerdamagecontainer">
+      <div id="computerdamagelabel"></div>
+      <div id="computerdamagevalue">-0</div>
+    </div>
+    <div id="playerdamagecontainer">
+      <div id="playerdamagelabel"></div>
+      <div id="playerdamagevalue">-0</div>
+    </div>
     <div id="playerbubble">You asked<br>for it!</div>
     <div id="computerbubble">You call that<br>wretched pile of<br>cards a deck?</div>
     <canvas id='fireworkCanvas' width='1500' height='1000' style="position:absolute; left: 10%; z-index: 10;"></canvas>
     <div class="bg-image"></div>
-  <button class="openbtn fas fa-cog" onclick="showGameMenu()"></button>
   <div id="collisionbox" class="collisionbox"></div>
   <div class="enemycards">
     <div class="enemycard"></div>
