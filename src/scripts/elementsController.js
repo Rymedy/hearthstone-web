@@ -1,5 +1,9 @@
 var openmenuSnd = new Audio("src/sounds/openmenu.mp3");
 var menuhoverSnd = new Audio("src/sounds/menuselect.mp3");
+// Initial volume of 0.20
+// Make sure it's a multiple of 0.05
+var vol = 0.5;
+var interval = 175; // 200ms interval
 // soundtrack's to be randomly selected in game
 var items = [
     //"src/ost/mulligan.mp3", 
@@ -143,8 +147,24 @@ miscellaneousbtn.onclick = function () {
 };
 
 playbtn.onclick = function () {
+    // fade out the volume of the mainmenuOST
+    var fadeout = setInterval(
+        function() {
+          // Reduce volume by 0.05 as long as it is above 0
+          // This works as long as you start with a multiple of 0.05!
+          if (vol > 0) {
+            vol -= 0.05;
+            mainmenuOST.volume = vol;
+          }
+          else {
+            // Stop the setInterval when 0 is reached
+            clearInterval(fadeout);
+          }
+        }, interval);
     openmenuSnd.play();
-    mainmenuOST.pause();
+    setTimeout(function() {
+        mainmenuOST.pause();
+    },1750);
     document.getElementById('transitionblock').style.visibility="visible";
     document.getElementById('transitionblock').classList.add("fadeInAnim");
     setTimeout(function() {
