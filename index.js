@@ -8,13 +8,16 @@ var canAttack = new Boolean(false);
 var playersTurn = new Boolean(false);
 var alreadyMocked = new Boolean(false);
 var gameIsWon = new Boolean(false);
+var isTutorial = new Boolean(false);
 var manaCost = null;
 var manaCapacity = 1;
 var mana = manaCapacity;
 var maxOpponentCardsInPlay = 7;
 var cardplaceSnd = new Audio("src/sounds/cardplace.mp3")
 var mockSnd = new Audio("src/sounds/mock.mp3")
+var jobsdoneSnd = new Audio("src/voiceovers/innkeeper_jobs_done.mp3")
 var amount = 0;
+var oldNumOfChild = 0;
 var playerHandArray = []
 var getNameOfElement = "";
 // defines constant variables to refer to HTML elements
@@ -133,8 +136,9 @@ function playerTurn() {
   manaCapacity += 1
   mana = manaCapacity
   manaElement.innerHTML = mana + "/" + manaCapacity;
+  oldNumOfChild = playerCardSlot.childElementCount;
   setTimeout(function() {
-    if ((playersTurn == true) && (alreadyMocked == false) && (gameIsWon == false)) {
+    if ((playersTurn == true) && (alreadyMocked == false) && (gameIsWon == false) && (isTutorial == false)) {
       alreadyMocked = true;
       mockSnd.play();
       setTimeout(function() {
@@ -175,7 +179,7 @@ function attack() {
     document.getElementsByClassName("player-cardinplay")[i].children[2].style.border = "solid 4px rgba(0, 230, 64, 1)";
     document.getElementsByClassName("player-cardinplay")[i].children[2].style.animation = "shake 0.5s";
     document.getElementsByClassName("player-cardinplay")[i].children[2].style.animationIterationCount = "infinite";
-    document.getElementsByClassName("player-cardinplay")[i].classList.add("canAttack")
+    document.getElementsByClassName("player-cardinplay")[i].classList.add("canAttack");
 }
 document.querySelectorAll('.cardinplay').forEach(function(e){
   e.addEventListener('mousedown', function(e) {
@@ -210,7 +214,7 @@ document.querySelectorAll('.cardinplay').forEach(function(e){
         targetHealth -= currentAttackerAttack;
         currentAttackerElement.children[1].innerHTML = currentAttackerHealth;
         targetElement.children[1].innerHTML = targetHealth;
-        if (currentAttackerAttack >= 5) {
+        if ((currentAttackerAttack >= 5) && (isScreenShake == true)) {
           document.getElementById("game").classList.add("bigHitAnim");
           setTimeout(function() {
             document.getElementById("game").classList.remove("bigHitAnim");
@@ -250,6 +254,13 @@ document.querySelectorAll('.cardinplay').forEach(function(e){
           if(targetHealth <= 0) {
             if (document.querySelector('.opposingHeroHealth').innerText <= 0) {
               gameIsWon = true;
+              if (isTutorial == true) {
+                var hasPlayedTutorial = "true";
+                var hasPlayedTutorial_serialized = JSON.stringify(hasPlayedTutorial); 
+                localStorage.setItem("hasPlayedTutorial", hasPlayedTutorial_serialized);
+                var hasPlayedTutorial_deserailized = JSON.parse(localStorage.getItem("hasPlayedTutorial"));
+                console.log(hasPlayedTutorial_deserailized);
+              }
               document.getElementById('block').style.opacity = "0";
               document.getElementById('block').style.visibility = "visible";
               setTimeout(function() {
@@ -257,6 +268,7 @@ document.querySelectorAll('.cardinplay').forEach(function(e){
                 document.getElementById('fireworkCanvas').classList.add("fadeInAnim");
               },3000);
               song.pause();
+              lichkingOST.pause();
               let victorySnd = new Audio("src/sounds/victory.mp3");
               victorySnd.play();
               setTimeout(function() {
@@ -280,7 +292,9 @@ document.querySelectorAll('.cardinplay').forEach(function(e){
               // };
               setTimeout(function() {
                 document.querySelector(".opponenthero").style.display = "none";
-                document.getElementById("game").classList.add("shakeScreenAnim");
+                if (isScreenShake == true) {
+                  document.getElementById("game").classList.add("shakeScreenAnim");
+                }
               },750);
               setTimeout(function() {
               document.getElementById("game").style.filter = "blur(5px)";
@@ -316,6 +330,16 @@ document.querySelectorAll('.cardinplay').forEach(function(e){
         canAttack = false;
         svg.style.display = "none";
         currentAttackerElement.classList.remove("canAttack");
+        if ((hand.childElementCount == 0) || (mana == 0)) {
+          for(let i=0; i<oldNumOfChild; i++) {
+            if (playerCardSlot.children[i].classList.contains("canAttack")) {
+              break;
+            } 
+            if (i == oldNumOfChild - 1) {
+              jobsdoneSnd.play();
+            }
+          }
+        }
         if(currentAttackersElement.classList.contains('player-cardinplay')) {
           if(currentAttackerAttack >= 5) {
             bigHitSnd.play();
@@ -389,3 +413,15 @@ function dragElement(elmnt) {
         document.onmousemove = null;
     }
 }
+// Disable and Enable Screen Shakes
+const screenshakebtn = document.getElementById('togglescreenshake')
+var isScreenShake = new Boolean(true);
+screenshakebtn.onclick = function () {
+  if (isScreenShake == true) {
+      isScreenShake = false;
+      console.log("Screen Shaking has been set to " + isScreenShake);
+    } else if (isScreenShake == false) {
+      isScreenShake = true;
+      console.log("Screen Shaking has been set to " + isScreenShake);
+    }
+};

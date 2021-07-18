@@ -15,17 +15,21 @@ document.onreadystatechange = function () {
          document.getElementById('contents').style.visibility="hidden";
     } else if (state == 'complete') {
         setTimeout(function(){
-            mainmenuOST.play();
-            mainmenuOST.volume = 0.7;
-            setTimeout(function(){
-                voiceover.play();
-            },900);
             document.getElementById('interactive');
             document.getElementById('load').style.visibility="hidden";
             document.getElementById('load').style.opacity="0";
             document.getElementById('load').style.transition="visibility 0s 0.5s, opacity 0.5s linear";
-            document.getElementById('mainmenu').style.visibility="visible";
-            document.getElementById('mainmenu').classList.add("zoomOutAnim");
+            if (typeof hasPlayedTutorial_deserailized !== 'undefined') {
+               tutorial();
+            } else {
+                mainmenuOST.play();
+                mainmenuOST.volume = 0.7;
+                setTimeout(function(){
+                    voiceover.play();
+                },900);
+                document.getElementById('mainmenu').style.visibility="visible";
+                document.getElementById('mainmenu').classList.add("zoomOutAnim");
+            }
         },1000);
     }
   }

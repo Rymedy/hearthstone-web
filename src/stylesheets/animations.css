@@ -197,3 +197,16 @@
  .zoomOutAnim {
     animation: zoomOutAnim 4s;
 }
+
+/* Tutorial Animations */
+@keyframes openPackAnim {
+	0% {
+		transform:scale(4) rotate(-35deg);
+	}
+	100% {
+		transform:scale(1) rotate(0deg);
+	}
+ }
+ .openPackAnim {
+    animation: zoomOutAnim 4s;
+}

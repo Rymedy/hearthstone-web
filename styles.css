@@ -2,6 +2,7 @@ html, body {
 	width: 100%;
 	height: 100%;
 	font-family: BelweBdBTBold;
+	overflow: hidden;
 }
 body {
 	overflow: hidden;
@@ -51,7 +52,9 @@ head {
 	font-size: 35px;
 	text-align: center;
 	user-select: none;
-    background:url("src/images/loading.gif") no-repeat center center rgb(255, 255, 255) !important;
+	color: white;
+    background:url("src/images/loading.gif") no-repeat center center black !important;
+	background-size: contain;
 }
 /* In Game */
  .cards {
@@ -396,11 +399,11 @@ head {
 	}
 	.playerHeroHealth {
 		left: 55%;
-		top: 115%;
+		top: 123%;
 	}
 	.opposingHeroHealth {
 		left: 55%;
-		top: 80%;
+		top: 74%;
 	}
 	.deck {
 		height: 115px;
@@ -419,7 +422,7 @@ head {
 		font-size: 15px;
 	}
 	#miscellaneousbutton {
-		font-size: 15px;
+		font-size: 10px;
 	}
 	#playbutton {
 		font-size: 15px;
@@ -459,6 +462,9 @@ head {
 		left:45.5%;
 		top:58%;
 	}
+	#hintlabel {
+		font-size: 19px;
+	}
 }
 @media only screen and (min-width: 1500px) {
 	.cardinplay {
@@ -484,11 +490,11 @@ head {
 	}
 	.playerHeroHealth {
 		left: 55%;
-		top: 125%;
+		top: 115%;
 	}
 	.opposingHeroHealth {
 		left: 55%;
-		top: 60%;
+		top: 81%;
 	}
 	.deck {
 		height: 150px;
@@ -507,7 +513,7 @@ head {
 		font-size: 25px;
 	}
 	#miscellaneousbutton {
-		font-size: 25px;
+		font-size: 18px;
 	}
 	#playbutton {
 		font-size: 25px;
@@ -546,6 +552,9 @@ head {
 	#playerdamagelabel {
 		left:46.5%;
 		top:62%;
+	}
+	#hintlabel {
+		font-size: 23px;
 	}
 }
 .computer-cardinplay:hover {
@@ -844,6 +853,9 @@ head {
 	left: 47.7%;
 	user-select: none;
 	background-color: #22a6e3;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
 	border-top-left-radius: 120%35px;
 	border-bottom-left-radius: 120%35px; 
 	border-top-right-radius: 120%35px;
@@ -860,8 +872,6 @@ head {
 }
 .opposingHeroHealth {
 	position: absolute;
-	left: 55%;
-	top: 75%;
 	width: 1.75rem;
 	height: 2rem;
 	margin: 0 auto;
@@ -1406,17 +1416,7 @@ head {
 	left: 10%;
 	background-color: #473422;
 }
-#togglefps {
-	width: 3.5%;
-	height: 5%;
-	position: absolute;
-	top: 70%;
-	left: 10%;
-	background-color: #383532;
-	font-family: BelweBdBTBold;
-	user-select: none;
-	z-index: 50;
-}
+
 
 /* Options Menu */
 #optionsmenu {
@@ -1588,7 +1588,28 @@ head {
 #miscellaneousbutton:hover {
 	background-color: #fffeea;
 }
-
+#togglefps {
+	width: 3.5%;
+	height: 5%;
+	position: absolute;
+	top: 70%;
+	left: 10%;
+	background-color: #383532;
+	font-family: BelweBdBTBold;
+	user-select: none;
+	z-index: 50;
+}
+#togglescreenshake {
+	width: 3.5%;
+	height: 5%;
+	position: absolute;
+	top: 84%;
+	left: 10%;
+	background-color: #383532;
+	font-family: BelweBdBTBold;
+	user-select: none;
+	z-index: 50;
+}
 
 /* Main Menu */
 #mainmenu {
@@ -1689,7 +1710,7 @@ head {
 	width: 16%;
 	height: 3.5%;
 	position: absolute;
-	top: 42.9%;
+	top: 43.2%;
 	left: 41.5%;
 	background-color: #e6c4a9;
 	color: #4f3a1b;
@@ -1719,7 +1740,7 @@ head {
 	width: 13%;
 	height: 3.5%;
 	position: absolute;
-	top: 49.9%;
+	top: 50.2%;
 	left: 43%;
 	background-color: #e6c4a9;
 	color: #4f3a1b;
@@ -1743,6 +1764,7 @@ head {
 	right: 0;
 	background-color: rgba(0, 0, 0, 0.85);
 	z-index: 10;
+	visibility: hidden;
 }
 #leftsideblock {
 	width: 12%;
@@ -1788,6 +1810,7 @@ head {
 	background-size: contain;
 	background-repeat: no-repeat;
 	z-index: 20;
+	visibility: hidden;
 }
 
 /* Victory Screen */
@@ -1850,9 +1873,9 @@ head {
     position: absolute;
     display: block;
     width: 0;
-    z-index: 1;
+    z-index: 11;
     border-style: solid;
-    border-color: #dbd4cc transparent;
+    border-color: white transparent;
     border-width: 24px 15px 0;
     bottom: -24px;
     left: 73%;
@@ -1882,9 +1905,9 @@ head {
     position: absolute;
     display: block;
     width: 0;
-    z-index: 1;
+    z-index: 11;
     border-style: solid;
-    border-color: #dbd4cc transparent;
+    border-color: white transparent;
     border-width: 0 15px 18px;
     top: -18px;
     left: 73%;
@@ -1913,6 +1936,8 @@ head {
 	-1px 1px 0 #000,
 	1px 1px 0 #000;
 	z-index:50;
+	visibility: hidden;
+	user-select: none;
 }
 #playerclasslabel {
 	position: absolute;
@@ -1924,6 +1949,7 @@ head {
 	1px 1px 0 #000;
 	z-index:50;
 	user-select: none;
+	visibility: hidden;
 }
 #opponentlabel {
 	position: absolute;
@@ -1935,6 +1961,7 @@ head {
 	1px 1px 0 #000;
 	z-index:50;
 	user-select: none;
+	visibility: hidden;
 }
 
 #victorylabel {
@@ -2081,3 +2108,69 @@ head {
 	transform: rotate(-15deg);
 	user-select: none;
 }
+
+/* Tutorial */
+  #triangle {
+	width: 0; 
+	height: 0; 
+	position:absolute;
+	left: 57.25%;
+	top: 42.75%;
+	border-left: 20px solid transparent;
+	border-right: 20px solid transparent;
+	border-bottom: 30px solid red;
+	transform: rotate(-90deg);
+	z-index: 11;
+	visibility: hidden;
+  }
+  #hintbackbackground {
+	width: 12.6%;
+	height: 10.5%;
+	position: absolute;
+	top: 38.8%;
+	left: 60.25%;
+	background-color: #95928b;
+	border-top-left-radius: 100%30px;
+	border-bottom-left-radius: 100%30px; 
+	border-top-right-radius: 100%30px;
+	border-bottom-right-radius: 100%30px; 
+	z-index: 11;
+	visibility: hidden;
+  }
+  #hintbackground {
+	width: 12.25%;
+	height: 10%;
+	position: absolute;
+	top: 39%;
+	left: 60.4%;
+	background: linear-gradient(-135deg, rgba(149,146,139,255),rgba(81,69,52,255));;
+	border-top-left-radius: 100%30px;
+	border-bottom-left-radius: 100%30px; 
+	border-top-right-radius: 100%30px;
+	border-bottom-right-radius: 100%30px; 
+	z-index: 11;
+	visibility: hidden;
+  }
+  #hint {
+	  width: 11%;
+	  height: 8%;
+	  position: absolute;
+	  top: 40%;
+	  left: 61%;
+	background-color: #ede2cd;
+	border-top-left-radius: 100%30px;
+	border-bottom-left-radius: 100%30px; 
+	border-top-right-radius: 100%30px;
+	border-bottom-right-radius: 100%30px; 
+	z-index: 11;
+	visibility: hidden;
+  }
+  #hintlabel {
+	  position: absolute;
+	  top: 35%;
+	  left: 20%;
+	font-family: Arial, Helvetica, sans-serif;
+	color: black;
+	z-index: 11;
+	text-align: center;
+  }

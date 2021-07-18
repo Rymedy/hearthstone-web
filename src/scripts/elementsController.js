@@ -5,14 +5,14 @@ var menuhoverSnd = new Audio("src/sounds/menuselect.mp3");
 var vol = 0.5;
 var interval = 175; // 200ms interval
 // soundtrack's to be randomly selected in game
+var lichkingOST = new Audio("src/ost/knights_of_the_frozen_throne.mp3");
 var items = [
-    //"src/ost/mulligan.mp3", 
-    //"src/ost/bad_reputation.mp3", 
-    //"src/ost/better_hand.mp3", 
-    //"src/ost/dont_let_your_guard_down.mp3",
-    //"src/ost/duel.mp3",
-    //"src/ost/the_forge.mp3",
-    "src/ost/knights_of_the_frozen_throne.mp3"
+    "src/ost/mulligan.mp3", 
+    "src/ost/bad_reputation.mp3", 
+    "src/ost/better_hand.mp3", 
+    "src/ost/dont_let_your_guard_down.mp3",
+    "src/ost/duel.mp3",
+    "src/ost/the_forge.mp3"
     ]
 // randomly selects an element from the array 'items'
 var item = items[Math.floor(Math.random()*items.length)];
@@ -120,39 +120,78 @@ resumebtn.onclick = function () {
 };
 
 confirmbtn.onclick = function () {
-    document.querySelector('#block').style.visibility = "hidden";
-    document.querySelector('#block').style.opacity="0";
-    document.querySelector('#block').style.transition="visibility 0s 0.5s, opacity 0.5s linear";
-    document.querySelector('#confirm').style.visibility = "hidden";
-    document.querySelector('#confirm').style.opacity="0";
-    document.querySelector('#confirm').style.transition="visibility 0s 0.5s, opacity 0.5s linear";
-    document.querySelector('.playerHeroHealth').style.visibility = "visible";
-    document.querySelector('.playerHeroHealth').style.opacity="1";
-    document.querySelector('.playerHeroHealth').style.transition="visibility 0.5s, opacity 0.5s linear";
-    document.querySelector('.opposingHeroHealth').style.visibility = "visible";
-    document.querySelector('.opposingHeroHealth').style.opacity="1";
-    document.querySelector('.opposingHeroHealth').style.transition="visibility 0.5s, opacity 0.5s linear";
-    document.querySelector('#endturn').style.zIndex = "10";
-    document.querySelector(".playerhero").style.zIndex = "5";
-    document.querySelector(".opponenthero").style.zIndex = "5";
-    if(audioIsPlayed == false) {
-        song.play()
-        song.volume = 0.7;
-        audioIsPlayed = true;
+    if (isTutorial == true) {
+        document.querySelector('#triangle').style.visibility = "hidden";
+        document.querySelector('#triangle').style.opacity="0";
+        document.querySelector('#triangle').style.transition="visibility 0s 0.5s, opacity 0.5s linear";
+        document.querySelector('#hintbackbackground').style.visibility = "hidden";
+        document.querySelector('#hintbackbackground').style.opacity="0";
+        document.querySelector('#hintbackbackground').style.transition="visibility 0s 0.5s, opacity 0.5s linear";
+        document.querySelector('#hintbackground').style.visibility = "hidden";
+        document.querySelector('#hintbackground').style.opacity="0";
+        document.querySelector('#hintbackground').style.transition="visibility 0s 0.5s, opacity 0.5s linear";
+        document.querySelector('#hint').style.visibility = "hidden";
+        document.querySelector('#hint').style.opacity="0";
+        document.querySelector('#hint').style.transition="visibility 0s 0.5s, opacity 0.5s linear";
+        document.querySelector('#block').style.visibility = "hidden";
+        document.querySelector('#block').style.opacity="0";
+        document.querySelector('#block').style.transition="visibility 0s 0.5s, opacity 0.5s linear";
+        document.querySelector('#confirm').style.visibility = "hidden";
+        document.querySelector('#confirm').style.opacity="0";
+        document.querySelector('#confirm').style.transition="visibility 0s 0.5s, opacity 0.5s linear";
+        document.querySelector('.playerHeroHealth').style.visibility = "visible";
+        document.querySelector('.playerHeroHealth').style.opacity="1";
+        document.querySelector('.playerHeroHealth').style.transition="visibility 0.5s, opacity 0.5s linear";
+        document.querySelector('.opposingHeroHealth').style.visibility = "visible";
+        document.querySelector('.opposingHeroHealth').style.opacity="1";
+        document.querySelector('.opposingHeroHealth').style.transition="visibility 0.5s, opacity 0.5s linear";
+        document.querySelector('#endturn').style.zIndex = "10";
+        document.querySelector(".playerhero").style.zIndex = "5";
+        document.querySelector(".opponenthero").style.zIndex = "5";
+        song.play();
+        document.querySelector(".playerHeroHealth").innerText = "30";
+        document.querySelector(".opposingHeroHealth").innerText = "10";
+    } else {
+        document.querySelector('#block').style.visibility = "hidden";
+        document.querySelector('#block').style.opacity="0";
+        document.querySelector('#block').style.transition="visibility 0s 0.5s, opacity 0.5s linear";
+        document.querySelector('#confirm').style.visibility = "hidden";
+        document.querySelector('#confirm').style.opacity="0";
+        document.querySelector('#confirm').style.transition="visibility 0s 0.5s, opacity 0.5s linear";
+        document.querySelector('.playerHeroHealth').style.visibility = "visible";
+        document.querySelector('.playerHeroHealth').style.opacity="1";
+        document.querySelector('.playerHeroHealth').style.transition="visibility 0.5s, opacity 0.5s linear";
+        document.querySelector('.opposingHeroHealth').style.visibility = "visible";
+        document.querySelector('.opposingHeroHealth').style.opacity="1";
+        document.querySelector('.opposingHeroHealth').style.transition="visibility 0.5s, opacity 0.5s linear";
+        document.querySelector('#endturn').style.zIndex = "10";
+        document.querySelector(".playerhero").style.zIndex = "5";
+        document.querySelector(".opponenthero").style.zIndex = "5";
+        if(audioIsPlayed == false) {
+            lichkingOST.play();
+            song.volume = 0.7;
+            audioIsPlayed = true;
+        }
     }
 };
 
 miscellaneousbtn.onclick = function () {
     openmenuSnd.play();
+    window.open(
+        'https://playhearthstone.com/en-gb',
+        '_blank' // <- This is what makes it open in a new window.
+      );
 };
 
 playbtn.onclick = function () {
+    isTutorial = false;
+    document.getElementById("block").style.visibility = "visible";
     // fade out the volume of the mainmenuOST
     var fadeout = setInterval(
         function() {
           // Reduce volume by 0.05 as long as it is above 0
           // This works as long as you start with a multiple of 0.05!
-          if (vol > 0) {
+          if (vol > 0.05) {
             vol -= 0.05;
             mainmenuOST.volume = vol;
           }
@@ -176,6 +215,10 @@ playbtn.onclick = function () {
     document.getElementById('mainmenu').style.visibility="hidden";
     setTimeout(function() {
     document.getElementById('contents').style.visibility="visible";
+    document.getElementById("playerlabel").style.visibility = "visible";
+    document.getElementById("playerclasslabel").style.visibility = "visible";
+    document.getElementById("opponentlabel").style.visibility = "visible";
+    document.getElementById("vs").style.visibility = "visible";
     let onloadSnd = new Audio("src/sounds/ongameload.mp3");
     onloadSnd.play();
     document.querySelector('.playerhero').classList.add("onLoadPlayerAnim");
@@ -229,8 +272,65 @@ playbtn.onclick = function () {
 },1000);
 };
 
+function tutorial() {
+    isTutorial = true;
+        // fade out the volume of the mainmenuOST
+        var fadeout = setInterval(
+            function() {
+              // Reduce volume by 0.05 as long as it is above 0
+              // This works as long as you start with a multiple of 0.05!
+              if (vol > 0.05) {
+                vol -= 0.05;
+                mainmenuOST.volume = vol;
+              }
+              else {
+                // Stop the setInterval when 0 is reached
+                clearInterval(fadeout);
+              }
+            }, interval);
+        setTimeout(function() {
+            mainmenuOST.pause();
+        },1750);
+        document.querySelector(".opponenthero").style.backgroundImage = "url(src/images/hogger.png)";
+        document.querySelector('#endturn').style.zIndex = "10";
+        document.querySelector(".playerhero").style.zIndex = "5";
+        document.querySelector(".opponenthero").style.zIndex = "5";
+        document.getElementById('transitionblock').style.visibility="visible";
+        document.getElementById("block").style.visibility = "visible";
+        document.querySelector('#endturn').style.zIndex = "9";
+        document.querySelector('#confirm').style.display = "block";
+        document.querySelector('#confirm').innerText = "";
+        document.querySelector('#confirm').style.backgroundColor = "transparent";
+        document.querySelector('#confirm').style.border = "none";
+        document.querySelector('#confirm').style.width = "11%";
+        document.querySelector('#confirm').style.height = "25%";
+        document.querySelector('#confirm').style.top = "34%";
+        document.querySelector('#confirm').style.left = "44.7%";
+        document.querySelector('#confirm').style.transform = "rotate(-15deg)";
+        document.querySelector('#confirm').style.backgroundImage = "url(src/images/pack.png)";
+        document.querySelector('#triangle').style.visibility = "visible";
+        document.querySelector('#hintbackbackground').style.visibility = "visible";
+        document.querySelector('#hintbackground').style.visibility = "visible";
+        document.querySelector('#hint').style.visibility = "visible";
+        document.getElementById('triangle').classList.add("openMenuAnim");
+        document.getElementById('hintbackbackground').classList.add("openMenuAnim");
+        document.getElementById('hintbackground').classList.add("openMenuAnim");
+        document.getElementById('hint').classList.add("openMenuAnim");
+        setTimeout(function() {
+            document.getElementById('transitionblock').classList.add("fadeInAnim");
+            document.getElementById('transitionblock').classList.add("fadeOutAnim");
+            setTimeout(function() {
+                document.getElementById('transitionblock').style.visibility="hidden";
+            },1000);
+        },1000);
+        document.getElementById('mainmenu').style.visibility="hidden";
+        document.getElementById('contents').style.visibility="visible";
+}
+
+
 tutorialbtn.onclick = function () {
     openmenuSnd.play();
+    tutorial();
 };
 
 const targetDiv = document.getElementById("fps");
