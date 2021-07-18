@@ -10,18 +10,20 @@ window.requestAnimFrame = (function(){
   })();
   
   var fpsElement = document.getElementById("fps");
+
+  // declare an array that stores
+  let fps = [];
   
-  var then = Date.now() / 1000;  // get time in seconds
   var render = function() {
-      var now = Date.now() / 1000;  // get time in seconds
-      
-      // compute time since last frame
-      var elapsedTime = now - then;
-      then = now;
-      
-      // compute fps
-      var fps = 1 / elapsedTime;
-      fpsElement.innerText = fps.toFixed(0) + "fps";  
+      const now = Date.now();
+      /* delete all frames older than 1000ms */
+      while (fps.length > 0 && fps[0] <= now - 1000) {
+        fps.shift();
+      }
+      /* add a single frame to the fps counter */
+      fps.push(now);
+
+      fpsElement.innerText = fps.length + "fps";  
       requestAnimFrame(render);
   };
 render();
