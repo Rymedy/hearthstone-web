@@ -7,6 +7,8 @@ var items = [
     ]
 // randomly selects an element from the array 'items'
 var item = items[Math.floor(Math.random()*items.length)];
+var hasPlayedTutorial_deserailized = JSON.parse(localStorage.getItem("hasPlayedTutorial"));
+console.log(hasPlayedTutorial_deserailized);
 // converts the string into an audio element
 var voiceover = new Audio(item);
 document.onreadystatechange = function () {
@@ -19,7 +21,7 @@ document.onreadystatechange = function () {
             document.getElementById('load').style.visibility="hidden";
             document.getElementById('load').style.opacity="0";
             document.getElementById('load').style.transition="visibility 0s 0.5s, opacity 0.5s linear";
-            if (typeof hasPlayedTutorial_deserailized !== 'undefined') {
+            if (hasPlayedTutorial_deserailized === null) {
                tutorial();
             } else {
                 mainmenuOST.play();

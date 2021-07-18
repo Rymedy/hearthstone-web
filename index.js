@@ -137,6 +137,9 @@ function playerTurn() {
   mana = manaCapacity
   manaElement.innerHTML = mana + "/" + manaCapacity;
   oldNumOfChild = playerCardSlot.childElementCount;
+  if (document.querySelector('.opposingHeroHealth').innerText == 10) {
+    isTutorial = true;
+  }
   setTimeout(function() {
     if ((playersTurn == true) && (alreadyMocked == false) && (gameIsWon == false) && (isTutorial == false)) {
       alreadyMocked = true;
