@@ -50,13 +50,20 @@ function startGame() {
 	inRound = false
 	updateDeckCount()
   // start with 3 cards in hand initially
-	let x = 3
-	for(let i = 0; i < x; i++) {
+  if (isTutorial == true) {
     hand.appendChild(playerDeck.cards[0].getPlayerCardsInHandHTML())
 		playerDeck.cards.shift();
 		computerDeck.cards.shift();
 		updateDeckCount()
-	}
+  } else {
+    let x = 3
+    for(let i = 0; i < x; i++) {
+      hand.appendChild(playerDeck.cards[0].getPlayerCardsInHandHTML())
+      playerDeck.cards.shift();
+      computerDeck.cards.shift();
+      updateDeckCount()
+    }
+  }
 }
 /* defines new function that when boolean collision is true between the card and collisionbox element and element is 
 created using the getPlayerHTML() function defined in deck.js and is appended as a child into the players' board */
@@ -296,6 +303,7 @@ document.querySelectorAll('.cardinplay').forEach(function(e){
               setTimeout(function() {
                 document.querySelector(".opponenthero").style.display = "none";
                 if (isScreenShake == true) {
+                  document.getElementById("game").classList.remove("shakeScreenAnim");
                   document.getElementById("game").classList.add("shakeScreenAnim");
                 }
               },750);

@@ -430,6 +430,9 @@ head {
 	#tutorialbutton {
 		font-size: 15px;
 	}
+	#starttutorialbutton {
+		font-size: 20px;
+	}
 	#confirm {
 		font-size: 15px;
 	}
@@ -464,6 +467,9 @@ head {
 	}
 	#hintlabel {
 		font-size: 19px;
+	}
+	#tutorialmenuhint {
+		font-size: 20px;
 	}
 }
 @media only screen and (min-width: 1500px) {
@@ -521,6 +527,9 @@ head {
 	#tutorialbutton {
 		font-size: 25px;
 	}
+	#starttutorialbutton {
+		font-size: 30px;
+	}
 	#confirm {
 		font-size: 23px;
 	}
@@ -555,6 +564,9 @@ head {
 	}
 	#hintlabel {
 		font-size: 23px;
+	}
+	#tutorialmenuhint {
+		font-size: 25px;
 	}
 }
 .computer-cardinplay:hover {
@@ -844,6 +856,7 @@ head {
 	border-top-right-radius: 120%35px;
 	border-bottom-right-radius: 120%35px; 
 	font-family: BelweBdBTBold;
+	z-index: 2;
 }
 #confirm {
 	width: 6%;
@@ -869,6 +882,7 @@ head {
 	2px 2px 0 #000;
 	z-index: 21;
 	display: none;
+	outline: none;
 }
 .opposingHeroHealth {
 	position: absolute;
@@ -2173,4 +2187,193 @@ head {
 	color: black;
 	z-index: 11;
 	text-align: center;
+	user-select: none;
   }
+
+  #tutorialmenu {
+	width:100%;
+	height:100%;
+	position: absolute;
+	z-index: 30;
+	display: none;
+}
+
+#tutorialmenuContent {
+	width:33%;
+	height:35%;
+	position:absolute;
+	top:34%;
+	left: 33%;
+	display: none;
+	background-color: #c3af7f;
+	border:solid 11px #232220;
+	z-index:40;
+	padding-top: 20px;
+}
+
+#tutorialmenuContent:after {
+	content: '';
+	position: absolute;
+	top: -20px;
+	left: -20px;
+	right: -20px;
+	bottom: -20px;
+	border:solid 9px #7e6f74;
+	-webkit-mask: 
+	radial-gradient( circle at left top,    transparent 30px, black 1px), 
+	radial-gradient( circle at right top,    transparent 30px, black 1px), 
+	radial-gradient( circle at left bottom, transparent 30px, black 1px),
+	radial-gradient( circle at right bottom, transparent 30px, black 1px),
+	linear-gradient(black,black); /* this layer is mandatory */
+  -webkit-mask-composite: destination-in;
+  mask-composite: exclude; /* for non-webkit browser */ 
+  }
+  #tutorialmenuTitle {
+	width: 26%;
+	height: 7%;
+	position: absolute;
+	top: -6.5%;
+	left: 32.5%;
+	color: white;
+	background-color: #b7a783;
+	text-shadow:
+	-1px -1px 0 #000,
+	1px -1px 0 #000,
+	-1px 1px 0 #000,
+	1px 1px 0 #000;
+	z-index:10;
+	padding-left: 10%;
+	border: 5px solid #1c1c1c;
+	user-select: none;
+  }
+  .tutorialmenuTitleBorder {
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+	position: absolute;
+	transform: rotate(180deg);
+	-webkit-mask: 
+	radial-gradient( circle at left bottom, transparent 15px, black 1px),
+	radial-gradient( circle at right bottom, transparent 15px, black 1px),
+	linear-gradient(black,black); /* this layer is mandatory */
+  -webkit-mask-composite: destination-in;
+  mask-composite: exclude; /* for non-webkit browser */ 
+  }
+#border5 {
+	border-bottom: 50px solid #56514b;
+	width: 39%;
+	height: 2%;
+	top: -8%;
+	left: 28%;
+	z-index: 5
+}
+#border6 {
+	border-bottom: 50px solid #22211f;
+	width: 43.5%;
+	height: 8%;
+	top: -8%;
+	left: 25.5%;
+	z-index: 4;
+}
+#hoggerposter {
+	width: 34%;
+	height: 54%;
+	position: absolute;
+	top: 20%;
+	left: 10%;
+	background-image: url("src/images/hoggerposter.png");
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+#tutorialmenuhint {
+	width: 100%;
+	height: 54%;
+	position: absolute;
+	top: 30%;
+	left: 20%;
+	text-align: center;
+}
+
+#darkborder10 {
+	width: 30%;
+	height: 15.5%;
+	position: absolute;
+	top: 95%;
+	left: 36%;
+	border-top-left-radius: 30px 150%;
+	border-bottom-left-radius: 30px 150%; 
+	border-top-right-radius: 30px 150%;
+	border-bottom-right-radius: 30px 150%; 
+	background: linear-gradient(to top, #1b1613, #2c2723);
+	z-index: 50;
+}
+#circle11 {
+	display: block;
+	border-radius: 100%;
+	height: 3.5%;
+	width: 2%;
+	margin: 0;
+	position: absolute;
+	top: 101.5%;
+	left: 37.5%;
+	background: radial-gradient(circle at 2.5% 1.5%, #7b7672, #7b7672);
+	z-index: 50;
+  }
+  #circle12 {
+	display: block;
+	border-radius: 100%;
+	height: 3.5%;
+	width: 2%;
+	margin: 0;
+	position: absolute;
+	top: 101.5%;
+	left: 63%;
+	background: radial-gradient(circle at 2.5% 1.5%, #7b7672, #7b7672);
+	z-index: 50;
+  }
+#silverborder10 {
+	width: 21.5%;
+	height: 15.5%;
+	position: absolute;
+	top: 95%;
+	left: 40.75%;
+	border-top-left-radius: 30px 150%;
+	border-bottom-left-radius: 30px 150%; 
+	border-top-right-radius: 30px 150%;
+	border-bottom-right-radius: 30px 150%; 
+	background: linear-gradient(to top, #403836, #2b2620);
+	z-index: 50;
+}
+#goldborder10 {
+	width: 20%;
+	height: 13.75%;
+	position: absolute;
+	top: 95.9%;
+	left: 41.5%;
+	border-top-left-radius: 30px 175%;
+	border-bottom-left-radius: 30px 175%; 
+	border-top-right-radius: 30px 175%;
+	border-bottom-right-radius: 30px 175%; 
+	background: linear-gradient(to top, #7b5a24, #ffd56f);
+	z-index: 50;
+}
+#starttutorialbutton {
+	width: 15%;
+	height: 9.5%;
+	position: absolute;
+	top: 98.4%;
+	left: 44%;
+	background-color: #e6c4a9;
+	color: #4f3a1b;
+	border-top-left-radius: 30px 200%;
+	border-bottom-left-radius: 30px 200%; 
+	border-top-right-radius: 30px 200%;
+	border-bottom-right-radius: 30px 200%; 
+	font-family: BelweBdBTBold;
+	user-select: none;
+	z-index: 50;
+	outline: none;
+}
+#starttutorialbutton:hover {
+	background-color: #fffeea;
+}

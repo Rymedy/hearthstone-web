@@ -178,6 +178,14 @@
  .openMenuAnim {
     animation: openMenuAnim 0.25s;
 }
+@keyframes triangleOpenMenuAnim {
+	0%   {transform:scale(.5) rotate(150deg) translate(5px, 5px);}
+	50%  {transform:scale(1.2) rotate(150deg);}
+	100% {transform:scale(1) rotate(150deg);}
+ }
+ .triangleOpenMenuAnim {
+    animation: triangleOpenMenuAnim 0.25s;
+}
 @keyframes easeOutAnim {
 	0%   {transform:scale(1);}
 	50%  {transform:scale(1.1);}
@@ -185,6 +193,13 @@
  }
  .easeOutAnim {
     animation: easeOutAnim 0.25s;
+}
+@keyframes straightEaseOutAnim {
+	0%   {transform:scale(1);}
+	100% {transform:scale(0);}
+ }
+ .straightEaseOutAnim {
+    animation: straightEaseOutAnim 0.25s;
 }
 @keyframes zoomOutAnim {
 	0% {
@@ -200,13 +215,147 @@
 
 /* Tutorial Animations */
 @keyframes openPackAnim {
+	0%   {transform:rotate(-15deg) translate(0, 0) scale(1);}
+	1%   {transform:rotate(-15deg) translate(5px, 2.5px);}
+	2%   {transform:rotate(-15deg) translate(-2.5px, -5px);}
+	3%   {transform:rotate(-15deg) translate(-7.5px, 0px);}
+	4%   {transform:rotate(-15deg) translate(0px, 5px);}
+	5%   {transform:rotate(-15deg) translate(2.5px, -2.5px);}
+	6%   {transform:rotate(-15deg) translate(-2.5px, 5px);}
+	7%   {transform:rotate(-15deg) translate(-7.5px, 2.5px);}
+	8%   {transform:rotate(-15deg) translate(5px, 2.5px);}
+	9%   {transform:rotate(-15deg) translate(-2.5px, -2.5px);}
+	10%   {transform:rotate(-15deg) translate(2.5px, -5px);}
+	11%   {transform:rotate(-15deg) translate(5px, 2.5px);}
+	12%   {transform:rotate(-15deg) translate(-2.5px, -5px);}
+	13%   {transform:rotate(-15deg) translate(-7.5px, 0px);}
+	14%   {transform:rotate(-15deg) translate(0px, 5px);}
+	15%   {transform:rotate(-15deg) translate(2.5px, -2.5px);}
+	16%   {transform:rotate(-15deg) translate(-2.5px, 5px);}
+	17%   {transform:rotate(-15deg) translate(-7.5px, 2.5px);}
+	18%   {transform:rotate(-15deg) translate(5px, 2.5px);}
+	19%   {transform:rotate(-15deg) translate(-2.5px, -2.5px);}
+	20%   {transform:rotate(-15deg) translate(2.5px, -5px);}
+	21%   {transform:rotate(-15deg) translate(5px, 2.5px);}
+	22%   {transform:rotate(-15deg) translate(-2.5px, -5px);}
+	23%   {transform:rotate(-15deg) translate(-7.5px, 0px);}
+	24%   {transform:rotate(-15deg) translate(0px, 5px);}
+	25%   {transform:rotate(-15deg) translate(2.5px, -2.5px);}
+	26%   {transform:rotate(-15deg) translate(-2.5px, 5px);}
+	27%   {transform:rotate(-15deg) translate(-7.5px, 2.5px);}
+	28%   {transform:rotate(-15deg) translate(5px, 2.5px);}
+	29%   {transform:rotate(-15deg) translate(-2.5px, -2.5px);}
+	30%   {transform:rotate(-15deg) translate(2.5px, -5px);}
+	31%   {transform:rotate(-15deg) translate(5px, 2.5px);}
+	32%   {transform:rotate(-15deg) translate(-2.5px, -5px);}
+	33%   {transform:rotate(-15deg) translate(-7.5px, 0px);}
+	34%   {transform:rotate(-15deg) translate(0px, 5px);}
+	35%   {transform:rotate(-15deg) translate(2.5px, -2.5px);}
+	36%   {transform:rotate(-15deg) translate(-2.5px, 5px);}
+	37%   {transform:rotate(-15deg) translate(-7.5px, 2.5px);}
+	38%   {transform:rotate(-15deg) translate(5px, 2.5px);}
+	39%   {transform:rotate(-15deg) translate(-2.5px, -2.5px);}
+	40%   {transform:rotate(-15deg) translate(2.5px, -5px);}
+	41% {transform:rotate(-15deg) translate(0, 0);}
+	42%   {transform:rotate(-15deg) translate(5px, 2.5px);}
+	43%   {transform:rotate(-15deg) translate(-2.5px, -5px);}
+	44%   {transform:rotate(-15deg) translate(-7.5px, 0px);}
+	45%   {transform:rotate(-15deg) translate(0px, 5px);}
+	46%   {transform:rotate(-15deg) translate(2.5px, -2.5px);}
+	47%   {transform:rotate(-15deg) translate(-2.5px, 5px);}
+	48%   {transform:rotate(-15deg) translate(-7.5px, 2.5px);}
+	49%   {transform:rotate(-15deg) translate(5px, 2.5px);}
+	50%   {transform:rotate(-15deg) translate(-2.5px, -2.5px);}
+	51%   {transform:rotate(-15deg) translate(2.5px, -5px);}
+	52%   {transform:rotate(-15deg) translate(0, 0);}
+	53%   {transform:rotate(-15deg) translate(5px, 2.5px);}
+	54%   {transform:rotate(-15deg) translate(-2.5px, -5px);}
+	55%   {transform:rotate(-15deg) translate(-7.5px, 0px);}
+	56%   {transform:rotate(-15deg) translate(0px, 5px);}
+	57%   {transform:rotate(-15deg) translate(2.5px, -2.5px);}
+	58%   {transform:rotate(-15deg) translate(-2.5px, 5px);}
+	59%   {transform:rotate(-15deg) translate(-7.5px, 2.5px);}
+	60%   {transform:rotate(-15deg) translate(5px, 2.5px);}
+	61%   {transform:rotate(-15deg) translate(-2.5px, -2.5px);}
+	62%   {transform:rotate(-15deg) translate(2.5px, -5px);}
+	63%   {transform:rotate(-15deg) translate(5px, 2.5px);}
+	64%   {transform:rotate(-15deg) translate(-2.5px, -5px);}
+	65%   {transform:rotate(-15deg) translate(-7.5px, 0px);}
+	66%   {transform:rotate(-15deg) translate(0px, 5px);}
+	67%   {transform:rotate(-15deg) translate(2.5px, -2.5px);}
+	68%   {transform:rotate(-15deg) translate(-2.5px, 5px);}
+	69%   {transform:rotate(-15deg) translate(-7.5px, 2.5px);}
+	70%   {transform:rotate(-15deg) translate(5px, 2.5px);}
+	71%   {transform:rotate(-15deg) translate(-2.5px, -2.5px);}
+	72%   {transform:rotate(-15deg) translate(2.5px, -5px);}
+	73%   {transform:rotate(-15deg) translate(5px, 2.5px);}
+	74%   {transform:rotate(-15deg) translate(-2.5px, -5px);}
+	75%   {transform:rotate(-15deg) translate(-7.5px, 0px);}
+	76%   {transform:rotate(-15deg) translate(0px, 5px);}
+	77%   {transform:rotate(-15deg) translate(2.5px, -2.5px);}
+	78%   {transform:rotate(-15deg) translate(-2.5px, 5px);}
+	79%   {transform:rotate(-15deg) translate(-7.5px, 2.5px);}
+	80%   {transform:rotate(-15deg) translate(5px, 2.5px);}
+	81%   {transform:rotate(-15deg) translate(-2.5px, -2.5px) scale(1.45);}
+	82%   {transform:rotate(-15deg) translate(2.5px, -5px) scale(1.6);}
+	83%   {transform:rotate(-15deg) translate(5px, 2.5px) scale(1.6);}
+	84%   {transform:rotate(-15deg) translate(-2.5px, -5px) scale(1.6);}
+	85%   {transform:rotate(-15deg) translate(-7.5px, 0px) scale(1.6);}
+	86%   {transform:rotate(-15deg) translate(0px, 5px) scale(1.6);}
+	87%   {transform:rotate(-15deg) translate(2.5px, -2.5px) scale(1.6);}
+	88%   {transform:rotate(-15deg) translate(-2.5px, 5px);}
+	89%   {transform:rotate(-15deg) translate(-7.5px, 2.5px);}
+	90%   {transform:rotate(-15deg) translate(5px, 2.5px);}
+	91%   {transform:rotate(-15deg) translate(-2.5px, -2.5px);}
+	92%   {transform:rotate(-15deg) translate(2.5px, -5px);}
+	93% {transform:rotate(-15deg) translate(0, 0);}
+	94%   {transform:rotate(-15deg) translate(5px, 2.5px);}
+	95%   {transform:rotate(-15deg) translate(-1.7px, -2.95px);}
+	96%   {transform:rotate(-15deg) translate(-2.1px, 0px);}
+	97%   {transform:rotate(-15deg) translate(3px, 2.5px);}
+	98%   {transform:rotate(-15deg) translate(3px, -3px);}
+	99%   {transform:rotate(-15deg) translate(-4px, 5px);}
+	100% {transform:rotate(-15deg) translate(4px, 3px);}
+}
+ .openPackAnim {
+    animation: openPackAnim 1.5s;
+}
+@keyframes tutorialHeroAnim {
 	0% {
-		transform:scale(4) rotate(-35deg);
+		transform:translate(20px, -300px) scale(1.6) rotate(-4deg);
+	}
+	45% {
+		transform:translate(45px, -300px) scale(2.7) rotate(-4deg);
+	}
+	50% {
+		transform:translate(50px, -300px) scale(3) rotate(0deg);
+	}
+	80% {
+		transform:translate(50px, -300px) scale(3) rotate(1deg);
+	}
+	90% {
+		transform:translate(50px, -300px) scale(3) rotate(-1.5deg);
 	}
 	100% {
-		transform:scale(1) rotate(0deg);
+		transform:translate(0, 0) scale(1) rotate(0deg);
 	}
  }
- .openPackAnim {
-    animation: zoomOutAnim 4s;
+ .tutorialHeroAnim {
+    animation: tutorialHeroAnim 8s;
 }
+
+@keyframes tutorialHoggerAnim {
+	0% {
+		transform:translate(0px, -750px) scale(1.5);
+	}
+	10% {
+		transform:translate(0px, -200px) scale(1.5);
+	}
+	100% {
+		transform:translate(0, 0) scale(1) rotate(0deg);
+	}
+ }
+ .tutorialHoggerAnim {
+    animation: tutorialHoggerAnim 0.75s;
+}
+
