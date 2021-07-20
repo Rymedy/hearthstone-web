@@ -2,7 +2,6 @@
 import Deck from "./deck.js"
 // defines global variables
 var currentAttacker = null;
-var isInGame = new Boolean(false);
 var collision = new Boolean(false);
 var canAttack = new Boolean(false);
 var playersTurn = new Boolean(false);
@@ -76,6 +75,10 @@ function placeCardFunc(e) {
         found = true;
         playerCardSlot.appendChild(originalDeck.cards[i].getPlayerHTML())
         cardplaceSnd.play();
+        if (hand.childElementCount == 0) {
+          document.getElementById("gifhint").style.backgroundImage = "url('src/hints/end_turn.gif')";
+          document.getElementById("texthint").innerText = "Press the end turn button...";
+        }
         break;
       }
     }
@@ -115,6 +118,9 @@ opponentTurn function then checks if the audio has been played yet and if not pl
 document.getElementById("endturn").addEventListener("click", function() {
   var endturn = new Audio("src/sounds/endturn.mp3");
   endturn.play();
+  document.querySelector("#endturn").style.zIndex = "50";
+  document.getElementById("gifhint").style.backgroundImage = "url('src/hints/attack.gif')";
+  document.getElementById("texthint").innerText = "Click on an green bordered allied card then click on an enemy to attack.";
   opponentTurn()
 });
 /* defines new function that calls the getComputerHTML function from deck.js using the first card at the top of the computers' deck and appends as a child to 
@@ -264,6 +270,7 @@ document.querySelectorAll('.cardinplay').forEach(function(e){
           if(targetHealth <= 0) {
             if (document.querySelector('.opposingHeroHealth').innerText <= 0) {
               gameIsWon = true;
+              document.querySelector("#endturn").style.zIndex = "1";
               if (isTutorial == true) {
                 var hasPlayedTutorial = "true";
                 var hasPlayedTutorial_serialized = JSON.stringify(hasPlayedTutorial); 
@@ -277,23 +284,31 @@ document.querySelectorAll('.cardinplay').forEach(function(e){
                 document.getElementById('fireworkCanvas').style.display = "block";
                 document.getElementById('fireworkCanvas').classList.add("fadeInAnim");
               },3000);
-              song.pause();
-              lichkingOST.pause();
-              let victorySnd = new Audio("src/sounds/victory.mp3");
-              victorySnd.play();
-              setTimeout(function() {
-                document.querySelector("#computerbubble").innerText = "I see... only\ndarkness\nbefore me...";
-                document.querySelector("#computerbubble").style.visibility = "visible";
-                document.querySelector('#computerbubble').classList.add("openMenuAnim");
+              if (isTutorial == true) {
+                let victorySnd = new Audio("src/sounds/victorytutorial.mp3");
+                victorySnd.play();
+                song.pause();
+              } else {
+                lichkingOST.pause();
+                let victorySnd = new Audio("src/sounds/victory.mp3");
+                victorySnd.play();
+                var myGold = Number(localStorage.getItem('myGold'));
+                myGold += 10; // number of gold earned per win
+                localStorage.setItem('myGold', myGold.toString());
                 setTimeout(function() {
-                  document.querySelector('#computerbubble').classList.add("easeOutAnim");
-                  document.querySelector('#computerbubble').classList.remove("openMenuAnim");
-                  setTimeout(function(){
-                    document.querySelector("#computerbubble").style.visibility = "hidden";
-                    document.querySelector('#computerbubble').classList.remove("easeOutAnim");
-                  },250);
-                },5000);
-              },250);
+                  document.querySelector("#computerbubble").innerText = "I see... only\ndarkness\nbefore me...";
+                  document.querySelector("#computerbubble").style.visibility = "visible";
+                  document.querySelector('#computerbubble').classList.add("openMenuAnim");
+                  setTimeout(function() {
+                    document.querySelector('#computerbubble').classList.add("easeOutAnim");
+                    document.querySelector('#computerbubble').classList.remove("openMenuAnim");
+                    setTimeout(function(){
+                      document.querySelector("#computerbubble").style.visibility = "hidden";
+                      document.querySelector('#computerbubble').classList.remove("easeOutAnim");
+                    },250);
+                  },5000);
+                },250);
+              }
               // adjust position of player board to fix GUI
               let opponentCardsInPlay = computerCardSlot.childElementCount;
               computerCardSlot.style.transform = "translateY(17.5%)"; 
@@ -319,10 +334,18 @@ document.querySelectorAll('.cardinplay').forEach(function(e){
                 setTimeout(function() {
                   document.getElementById('fireworkCanvas').style.display = "none";
                   setTimeout(function() {
-                    document.getElementById('victoryImg1').style.visibility="hidden";
-                    document.getElementById('victoryImg1').style.opacity="0";
-                    document.getElementById('victoryImg1').style.transition="visibility 0s 2s, opacity 2s linear";
-                  },4000);
+                    location.reload();
+                  },9000);
+                  if (isTutorial == false) {
+                    setTimeout(function() {
+                      document.getElementById('victoryImg1').style.visibility="hidden";
+                      document.getElementById('victoryImg1').style.opacity="0";
+                      document.getElementById('victoryImg1').style.transition="visibility 0s 2s, opacity 2s linear";
+                    },4000);
+                  } else if (isTutorial == true) {
+                    document.getElementById('victoryhint').style.display = "block";
+                    document.getElementById('victoryhint').classList.add("openMenuAnim");
+                  }
                 },1000);
               },5000);
             },5000);
@@ -346,7 +369,7 @@ document.querySelectorAll('.cardinplay').forEach(function(e){
             if (playerCardSlot.children[i].classList.contains("canAttack")) {
               break;
             } 
-            if (i == oldNumOfChild - 1) {
+            if ((i == oldNumOfChild - 1) && (gameIsWon == false)) {
               jobsdoneSnd.play();
             }
           }

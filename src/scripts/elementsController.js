@@ -2,6 +2,9 @@ var openmenuSnd = new Audio("src/sounds/openmenu.mp3");
 var menuhoverSnd = new Audio("src/sounds/menuselect.mp3");
 var startTutorialSnd = new Audio("src/voiceovers/innkeeper_starttutorial.mp3");
 var battlebeginSnd = new Audio("src/voiceovers/innkeeper_tutorialbattle.mp3");
+var jainathreatSnd = new Audio("src/voiceovers/jaina_tutorialbattle.mp3");
+var hasPlayedBattleBeginSnd = new Boolean(false);
+var isInGame = new Boolean(false);
 // Initial volume of 0.20
 // Make sure it's a multiple of 0.05
 var vol = 0.5;
@@ -53,6 +56,11 @@ document.addEventListener("keydown", function(){
         document.getElementById("gamemenu").style.display = "block";
         document.getElementById("gamemenuContent").style.display = "block";
         document.getElementById("gamemenuContent").classList.add('openMenuAnim');
+        if (isInGame == true) {
+            concedebtn.disabled = false;
+        } else if (isInGame == false) {
+            concedebtn.disabled = true;
+        }
         openmenuSnd.play();
     }
     }
@@ -65,6 +73,7 @@ var quitbtn = document.querySelector('#quitbutton');
 var resumebtn = document.querySelector('#resumebutton');
 var miscellaneousbtn = document.querySelector('#miscellaneousbutton');
 var confirmbtn = document.querySelector('#confirm');
+var endturnbtn = document.getElementById("endturn");
 
 var playbtn = document.querySelector('#playbutton');
 var tutorialbtn = document.querySelector('#tutorialbutton');
@@ -144,7 +153,9 @@ confirmbtn.onclick = function () {
         document.querySelector(".opponenthero").style.zIndex = "5";
         document.querySelector(".playerHeroHealth").innerText = "30";
         document.querySelector(".opposingHeroHealth").innerText = "10";
+        document.querySelector('#confirm').classList.remove("packHoverAnim");
         document.querySelector("#confirm").classList.add("openPackAnim");
+        endturnbtn.disabled = true;
         setTimeout(function() {
             startTutorialSnd.play();
             setTimeout(function() {
@@ -176,7 +187,6 @@ confirmbtn.onclick = function () {
                                     document.querySelector("#computerbubble").style.visibility = "hidden";
                                     document.querySelector('#computerbubble').classList.remove("easeOutAnim");
                                     setTimeout(function(){
-                                        document.querySelector('#block').style.visibility = "hidden";
                                         document.querySelector("#tutorialmenu").style.display = "block";
                                         document.querySelector("#tutorialmenuContent").style.display = "block";
                                         document.querySelector("#tutorialmenuContent").classList.add("openMenuAnim");
@@ -227,6 +237,7 @@ miscellaneousbtn.onclick = function () {
 
 playbtn.onclick = function () {
     isTutorial = false;
+    isInGame = true;
     document.getElementById("block").style.visibility = "visible";
     // fade out the volume of the mainmenuOST
     var fadeout = setInterval(
@@ -316,6 +327,7 @@ playbtn.onclick = function () {
 
 function tutorial() {
     isTutorial = true;
+    isInGame = true;
         // fade out the volume of the mainmenuOST
         var fadeout = setInterval(
             function() {
@@ -343,6 +355,7 @@ function tutorial() {
         document.getElementById("block").style.visibility = "visible";
         document.querySelector('#endturn').style.zIndex = "9";
         document.querySelector('#confirm').style.display = "block";
+        document.querySelector('#confirm').classList.add("packHoverAnim");
         document.querySelector('#confirm').innerText = "";
         document.querySelector('#confirm').style.backgroundColor = "transparent";
         document.querySelector('#confirm').style.border = "none";
@@ -379,10 +392,149 @@ tutorialbtn.onclick = function () {
 
 starttutorialbtn.onclick = function () {
     openmenuSnd.play();
-    battlebeginSnd.play();
+    document.querySelector('#triangle').classList.remove("triangleOpenMenuAnim");
+    document.querySelector('#hintbackbackground').classList.remove("openMenuAnim");
+    document.querySelector('#hintbackground').classList.remove("openMenuAnim");
+    document.querySelector('#hint').classList.remove("openMenuAnim");
+    document.querySelector(".opponenthero").style.zIndex = "2";
+    document.getElementById("game").classList.remove("shakeScreenAnim");
+        startTutorialSnd.addEventListener("ended", function(){
+            if (hasPlayedBattleBeginSnd == false) {
+                battlebeginSnd.play();
+                hasPlayedBattleBeginSnd = true;
+            }
+        })
+        
+    if ((hasPlayedBattleBeginSnd == false) && (startTutorialSnd.paused)){
+        battlebeginSnd.play();
+    }
+    document.querySelector(".playerhero").style.zIndex = "8";
+    document.querySelector("#endturn").style.zIndex = "21";
     document.querySelector("#tutorialmenuContent").classList.add("straightEaseOutAnim");
     setTimeout(function() {
-        song.play();
+        battlebeginSnd.onended = function() {
+                jainathreatSnd.play();
+                document.querySelector("#playerbubble").innerHTML = "...";
+                document.querySelector("#playerbubble").style.visibility = "visible";
+                document.querySelector('#playerbubble').classList.add("openMenuAnim");
+                setTimeout(function(){
+                    document.querySelector('#playerbubble').classList.add("easeOutAnim");
+                    document.querySelector('#playerbubble').classList.remove("openMenuAnim");
+                    setTimeout(function(){
+                        document.querySelector("#playerbubble").style.visibility = "hidden";
+                        document.querySelector('#playerbubble').classList.remove("easeOutAnim");
+                        setTimeout(function() {
+                            // start tutorial
+                            document.querySelector('#block').style.visibility = "hidden";
+                            document.getElementById("gifhint").style.display = "block";
+                            document.getElementById("texthint").style.display = "block";
+                            endturnbtn.disabled = false;
+                            setTimeout(function() {
+                            document.querySelector('#triangle').style.visibility = "visible";
+                            document.querySelector('#triangle').style.opacity="1";
+                            document.querySelector('#triangle').style.transition="none";
+                            document.querySelector('#triangle').style.top="82.75%";
+                            document.querySelector('#triangle').style.left="56%";
+                            document.querySelector('#hintbackbackground').style.visibility = "visible";
+                            document.querySelector('#hintbackbackground').style.opacity="1";
+                            document.querySelector('#hintbackbackground').style.transition="none";
+                            document.querySelector('#hintbackbackground').style.top="78.8%";
+                            document.querySelector('#hintbackbackground').style.left="58.5%";
+                            document.querySelector('#hintbackground').style.visibility = "visible";
+                            document.querySelector('#hintbackground').style.opacity="1";
+                            document.querySelector('#hintbackground').style.transition="none";
+                            document.querySelector('#hintbackground').style.top="79%";
+                            document.querySelector('#hintbackground').style.left="58.7%";
+                            document.querySelector('#hint').style.opacity="1";
+                            document.querySelector('#hint').style.transition="none";
+                            document.querySelector('#hint').style.visibility = "visible";
+                            document.querySelector('#hint').style.opacity="1";
+                            document.querySelector('#hint').style.transition="none";
+                            document.querySelector('#hint').style.top="80%";
+                            document.querySelector('#hint').style.left="59.25%";
+                            document.querySelector('#hintlabel').style.left="10%";
+                            document.querySelector('#hintlabel').style.top="17%";
+                            document.querySelector('#triangle').classList.add("triangleOpenMenuAnim");
+                            document.querySelector('#hintbackbackground').classList.add("openMenuAnim");
+                            document.querySelector('#hintbackground').classList.add("openMenuAnim");
+                            document.querySelector('#hint').classList.add("openMenuAnim");
+                            document.querySelector('#hintlabel').innerText = "If you run out of\nHealth, you lose.";
+                            setTimeout(function() {
+                                document.querySelector('#triangle').style.visibility = "hidden";
+                                document.querySelector('#triangle').style.opacity="0";
+                                document.querySelector('#triangle').style.transition="visibility 0s 0.5s, opacity 0.5s linear";
+                                document.querySelector('#hintbackbackground').style.visibility = "hidden";
+                                document.querySelector('#hintbackbackground').style.opacity="0";
+                                document.querySelector('#hintbackbackground').style.transition="visibility 0s 0.5s, opacity 0.5s linear";
+                                document.querySelector('#hintbackground').style.visibility = "hidden";
+                                document.querySelector('#hintbackground').style.opacity="0";
+                                document.querySelector('#hintbackground').style.transition="visibility 0s 0.5s, opacity 0.5s linear";
+                                document.querySelector('#hint').style.visibility = "hidden";
+                                document.querySelector('#hint').style.opacity="0";
+                                document.querySelector('#hint').style.transition="visibility 0s 0.5s, opacity 0.5s linear";
+                                document.querySelector('#triangle').classList.remove("triangleOpenMenuAnim");
+                                document.querySelector('#hintbackbackground').classList.remove("openMenuAnim");
+                                document.querySelector('#hintbackground').classList.remove("openMenuAnim");
+                                document.querySelector('#hint').classList.remove("openMenuAnim");
+                                setTimeout(function() {
+                                    setTimeout(function() {
+                                        document.querySelector('#triangle').style.visibility = "visible";
+                                        document.querySelector('#triangle').style.opacity="1";
+                                        document.querySelector('#triangle').style.transition="none";
+                                        document.querySelector('#triangle').style.top="24.75%";
+                                        document.querySelector('#triangle').style.left="56%";
+                                        document.querySelector('#hintbackbackground').style.visibility = "visible";
+                                        document.querySelector('#hintbackbackground').style.opacity="1";
+                                        document.querySelector('#hintbackbackground').style.transition="none";
+                                        document.querySelector('#hintbackbackground').style.top="21.3%";
+                                        document.querySelector('#hintbackbackground').style.left="58.5%";
+                                        document.querySelector('#hintbackground').style.visibility = "visible";
+                                        document.querySelector('#hintbackground').style.opacity="1";
+                                        document.querySelector('#hintbackground').style.transition="none";
+                                        document.querySelector('#hintbackground').style.top="21.5%";
+                                        document.querySelector('#hintbackground').style.left="58.7%";
+                                        document.querySelector('#hint').style.opacity="1";
+                                        document.querySelector('#hint').style.transition="none";
+                                        document.querySelector('#hint').style.visibility = "visible";
+                                        document.querySelector('#hint').style.opacity="1";
+                                        document.querySelector('#hint').style.transition="none";
+                                        document.querySelector('#hint').style.top="22.5%";
+                                        document.querySelector('#hint').style.left="59.25%";
+                                        document.querySelector('#hintlabel').style.left="10%";
+                                        document.querySelector('#hintlabel').style.top="17%";
+                                        document.querySelector('#triangle').classList.add("triangleOpenMenuAnim");
+                                        document.querySelector('#hintbackbackground').classList.add("openMenuAnim");
+                                        document.querySelector('#hintbackground').classList.add("openMenuAnim");
+                                        document.querySelector('#hint').classList.add("openMenuAnim");
+                                        document.querySelector('#hintlabel').style.width = "100%";
+                                        document.querySelector('#hintlabel').style.left = "0";
+                                        document.querySelector('#hintlabel').style.fontSize = "20px";
+                                        document.querySelector('#hintlabel').innerText = "When Hogger has\nno Health, you win.";
+                                        setTimeout(function() {
+                                            document.querySelector('#triangle').style.visibility = "hidden";
+                                            document.querySelector('#triangle').style.opacity="0";
+                                            document.querySelector('#triangle').style.transition="visibility 0s 0.5s, opacity 0.5s linear";
+                                            document.querySelector('#hintbackbackground').style.visibility = "hidden";
+                                            document.querySelector('#hintbackbackground').style.opacity="0";
+                                            document.querySelector('#hintbackbackground').style.transition="visibility 0s 0.5s, opacity 0.5s linear";
+                                            document.querySelector('#hintbackground').style.visibility = "hidden";
+                                            document.querySelector('#hintbackground').style.opacity="0";
+                                            document.querySelector('#hintbackground').style.transition="visibility 0s 0.5s, opacity 0.5s linear";
+                                            document.querySelector('#hint').style.visibility = "hidden";
+                                            document.querySelector('#hint').style.opacity="0";
+                                            document.querySelector('#hint').style.transition="visibility 0s 0.5s, opacity 0.5s linear";
+                                        },4000)
+                                    },1000)
+                                    },1000)
+                                },4000)
+                            },2000)
+                        },1000)
+                    },250);
+                },1000);
+                setTimeout(function() {
+                    song.play();
+            },1000)
+        }
         document.querySelector("#tutorialmenuContent").style.display = "none";
         document.querySelector("#tutorialmenu").style.display = "none";
     },125);

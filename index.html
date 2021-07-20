@@ -14,6 +14,7 @@
   <div id="victoryImg1"></div>
   <div id="victoryImg2"></div>
   <div id="victorylabel">Victory!</div>
+  <div id="victoryhint">Congratulations, you have finished the tutorial and have now unlocked "Play" mode!</div>
   </div>
   <div id="leftsideblock"></div>
   <div id="rightsideblock"></div>
@@ -98,6 +99,8 @@
   <span id="opponentlabel">The Lich King</span>
 <body id="body">
   <div id="mainmenu" class="mainmenu">
+    <div id="myGoldBackground"></div>
+    <div id="myGold">0 🪙</div>
     <div id="goldborder6"></div>
     <button id="playbutton">Play</button>
     <div id="goldborder7"></div>
@@ -106,13 +109,16 @@
     <button id="maintenancebutton1" disabled>Under Maintenance</button>
     <div id="goldborder9"></div>
     <button id="maintenancebutton2" disabled>Under Maintenance</button>
+    <div id="blockmainmenu"></div>
   </div>
   <div id="game" class="game">
+    <div id="texthint">Play all your cards onto the board.</div>
+    <div id="gifhint"></div>
     <div id="triangle"></div>
     <div id="hintbackbackground"></div>
     <div id="hintbackground"></div>
     <div id="hint">
-      <div id="hintlabel">Free cards!</div>
+      <div id="hintlabel">Free hero!</div>
     </div>
     <div id="computerdamagecontainer">
       <div id="computerdamagelabel"></div>
@@ -136,7 +142,6 @@
   </div>
   <div id="cards" class="cards">
   </div>
-  <button id="endturn">END TURN</button>
   <button id="confirm">Play</button>
   <div class="computer-deck deck" id="computerDeck"></div>
   <div class="computer-card-slot card-slot"></div>
@@ -155,6 +160,7 @@
     <div class="playerHeroHealth">30</div>
     </div>
   </div>
+  <button id="endturn">END TURN</button>
   <div id="block"></div>
     <div class="playerheropower">
     <div class="cardinplay" id="playerheropower">

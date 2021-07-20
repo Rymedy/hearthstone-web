@@ -20,6 +20,12 @@ document.onreadystatechange = function () {
             document.getElementById('load').style.visibility="hidden";
             document.getElementById('load').style.opacity="0";
             document.getElementById('load').style.transition="visibility 0s 0.5s, opacity 0.5s linear";
+            var myGold = Number(localStorage.getItem('myGold'));
+            if (typeof myGold === 'undefined') {
+                var myGold = 0;
+                localStorage.setItem('myGold', myGold.toString());
+            }
+            document.getElementById("myGold").innerText = myGold + "🪙";
             if (hasPlayedTutorial_deserailized === null) {
                tutorial();
             } else {
@@ -28,8 +34,12 @@ document.onreadystatechange = function () {
                 setTimeout(function(){
                     voiceover.play();
                 },550);
+                document.querySelector('#blockmainmenu').style.display="block";
                 document.getElementById('mainmenu').style.visibility="visible";
                 document.getElementById('mainmenu').classList.add("zoomOutAnim");
+                setTimeout(function() {
+                    document.querySelector('#blockmainmenu').style.display="none";
+                },4000);
             }
         },1000);
     }

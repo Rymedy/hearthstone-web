@@ -528,7 +528,7 @@ head {
 		font-size: 25px;
 	}
 	#starttutorialbutton {
-		font-size: 30px;
+		font-size: 26px;
 	}
 	#confirm {
 		font-size: 23px;
@@ -647,7 +647,7 @@ head {
 	height: 17%;
 	left: 46.75%;
 	top: 9.75%;
-	z-index: 10;
+	z-index: 11;
 	background-image: url(src/images/lich_king.png);
 	background-repeat: no-repeat; /* Do not repeat the image */
 	background-size: contain;
@@ -884,6 +884,9 @@ head {
 	display: none;
 	outline: none;
 }
+#confirm:hover {
+	animation-iteration-count: infinite;
+}
 .opposingHeroHealth {
 	position: absolute;
 	width: 1.75rem;
@@ -900,6 +903,7 @@ head {
 	text-shadow: -0.025em 0.025em 0 black;
 	user-select: none;
 	visibility: hidden;
+	pointer-events: none;
 }
 .playerHeroHealth {
 	position: absolute;
@@ -917,6 +921,7 @@ head {
 	text-shadow: -0.025em 0.025em 0 black;
 	user-select: none;
 	visibility: hidden;
+	pointer-events: none;
 }
 .collisionbox {
 	width: 90%;
@@ -1767,12 +1772,42 @@ head {
 	z-index: 20;
 	outline: none;
 }
-/* Onload */
-#block {
+#myGold {
+	width: 10%;
+	height: 5%;
+	position: absolute;
+	top: 1%;
+	left: 81%;
+	color: white;
+	font-size: 35px;
+}
+#myGoldBackground {
+	width:9%;
+	height:1%;
+	position:absolute;
+	top:2%;
+	left: 76%;
+	background-color: #353331;
+	border:solid 3px #7b7977;
+	border-radius: 25px;
+	padding-top: 20px;
+}
+#blockmainmenu {
 	width: 100%;
 	height: 100%;
 	position: absolute;
 	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	z-index: 200;
+}
+/* Onload */
+#block {
+	width: 100%;
+	height: 110%;
+	position: absolute;
+	top: -3px;
 	left: 0;
 	bottom: 0;
 	right: 0;
@@ -1881,6 +1916,7 @@ head {
 	visibility: hidden;
 	z-index: 11;
 	user-select: none;
+	pointer-events: none;
 }
 #playerbubble:after {
     content: '';
@@ -1894,6 +1930,7 @@ head {
     bottom: -24px;
     left: 73%;
     margin-left: -15px;
+	pointer-events: none;
 }
 #computerbubble {
     position: absolute;
@@ -1913,6 +1950,7 @@ head {
 	visibility: hidden;
 	z-index: 11;
 	user-select: none;
+	pointer-events: none;
 }
 #computerbubble:after {
     content: '';
@@ -1926,6 +1964,7 @@ head {
     top: -18px;
     left: 73%;
     margin-left: -15px;
+	pointer-events: none;
 }
 
 /* Current Time */
@@ -2021,6 +2060,25 @@ head {
   -webkit-mask-composite: destination-in;
   mask-composite: exclude; /* for non-webkit browser */ 
   }
+  #victoryhint {
+	width:43%;
+	height:7%;
+	position:absolute;
+	top:72%;
+	left: 29%;
+	display: none;
+	color: white;
+	text-shadow:
+	-1px -1px 0 #000,
+	1px -1px 0 #000,
+	-1px 1px 0 #000,
+	1px 1px 0 #000;
+	font-size: 35px;
+	justify-content: center;
+	text-align: center;
+	z-index:40;
+	padding-top: 20px;
+}
 #computerdamagecontainer {
 	visibility: hidden;
 	pointer-events:none;
@@ -2293,7 +2351,30 @@ head {
 	left: 20%;
 	text-align: center;
 }
-
+#gifhint {
+	width: 22%;
+	height: 19%;
+	position: absolute;
+	bottom: 0;
+	left: 12%;
+	background-image: url("src/hints/place_card.gif");
+	background-repeat: no-repeat;
+	background-size: contain;
+	display: none;
+	z-index: 50;
+}
+#texthint {
+	width: 80%;
+	height: 7%;
+	position: absolute;
+	top: 1%;
+	left: 26%;
+	color: white;
+	font-size: 25px;
+	display: none;
+	z-index: 50;
+	user-select: none;
+}
 #darkborder10 {
 	width: 30%;
 	height: 15.5%;
@@ -2371,7 +2452,7 @@ head {
 	border-bottom-right-radius: 30px 200%; 
 	font-family: BelweBdBTBold;
 	user-select: none;
-	z-index: 50;
+	z-index: 200;
 	outline: none;
 }
 #starttutorialbutton:hover {

@@ -356,6 +356,36 @@
 	}
  }
  .tutorialHoggerAnim {
-    animation: tutorialHoggerAnim 0.75s;
+    animation: tutorialHoggerAnim 0.5s;
 }
 
+@keyframes packHoverAnim {
+	0% {
+		width: 11%;
+		height: 25%;
+		transform:translate(0px, 0px) scale(1.25) rotate(0deg);
+	}
+	25% {
+		width: 11%;
+		height: 25%;
+		transform:translate(-3px, 0px) scale(1.20) rotate(5deg);
+	}
+	50% {
+		width: 11%;
+		height: 25%;
+		transform:translate(-3px, 0px) scale(1.25) rotate(-5deg);
+	}
+	75% {
+		width: 11%;
+		height: 25%;
+		transform:translate(0px, -3px) scale(1.20) rotate(5deg);
+	}
+	100% {
+		width: 11%;
+		height: 25%;
+		transform:translate(0px, 0px) scale(1.25) rotate(0deg);
+	}
+ }
+ .packHoverAnim {
+    animation: packHoverAnim 1.5s;
+}
