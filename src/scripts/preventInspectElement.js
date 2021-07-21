@@ -1,6 +1,6 @@
 // /* comment this out or delete it to have access to inspect element
 // or go to the upper right corner of the page click the 3 dots and
-// click more tools and then developer tools*/
+// click more tools and then developer tools */
 
 // put oncontextmenu="return false" in the body tag to prevent right clicking
 

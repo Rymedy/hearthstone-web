@@ -7,7 +7,7 @@ html, body {
 body {
 	overflow: hidden;
 	cursor: url(src/cursor/cursor.png) 10 2, auto;
-	 	background-color: black;
+	background-color: black;
 }
 button:hover {
 	cursor: url(src/cursor/cursor.png) 10 2, auto;
@@ -471,6 +471,31 @@ head {
 	#tutorialmenuhint {
 		font-size: 20px;
 	}
+	#shopbutton {
+		top: 81.2%;
+		left: 15.1%;
+	}
+	#myPacks {
+		top: 88.2%;
+		left: 35.2%;
+		font-size: 25px;
+	}
+	#myPacksBackground {
+		top:88.7%;
+		left: 39.2%;
+	}
+	#myGold {
+		top: 1.25%;
+		left: 81%;
+		font-size: 27px;
+	}
+	#packOpenAnimElem {
+		left: 39.5%;
+		top: 36%;
+	}
+	#localmultiplayerbutton {
+		font-size: 18px;
+	}
 }
 @media only screen and (min-width: 1500px) {
 	.cardinplay {
@@ -567,6 +592,31 @@ head {
 	}
 	#tutorialmenuhint {
 		font-size: 25px;
+	}
+	#shopbutton {
+		top: 81.2%;
+		left: 16.1%;
+	}
+	#myPacks {
+		top: 88.2%;
+		left: 35.5%;
+		font-size: 30px;
+	}
+	#myPacksBackground {
+		top:88.7%;
+		left: 39.55%;
+	}
+	#myGold {
+		top: 1%;
+		left: 81%;
+		font-size: 35px;
+	}
+	#packOpenAnimElem {
+		left: 38.5%;
+		top: 36%;
+	}
+	#localmultiplayerbutton {
+		font-size: 22px;
 	}
 }
 .computer-cardinplay:hover {
@@ -1725,7 +1775,7 @@ head {
 	border-bottom-right-radius: 30px 175%; 
 	background: linear-gradient(to top right, #653517, #e6c279);
 }
-#maintenancebutton1 {
+#localmultiplayerbutton {
 	width: 16%;
 	height: 3.5%;
 	position: absolute;
@@ -1741,6 +1791,9 @@ head {
 	user-select: none;
 	z-index: 20;
 	outline: none;
+}
+#localmultiplayerbutton:hover {
+	background-color: #fffeea;
 }
 
 #goldborder9 {
@@ -1772,14 +1825,45 @@ head {
 	z-index: 20;
 	outline: none;
 }
+#openpacksbutton {
+	width: 8%;
+	height: 11.5%;
+	position: absolute;
+	top: 78.9%;
+	left: 36.6%;
+	background-color: transparent;
+	border-bottom-left-radius: 15px;
+	border-bottom-right-radius: 15px;
+	font-family: BelweBdBTBold;
+	user-select: none;
+	z-index: 20;
+	outline: none;
+}
+#openpacksbutton:hover {
+	background-color: rgb(255, 245, 151);
+	opacity: 0.25;
+}
+#shopbutton {
+	width: 8%;
+	height: 14.85%;
+	position: absolute;
+	background-color: transparent;
+	border-radius: 100%;
+	font-family: BelweBdBTBold;
+	user-select: none;
+	z-index: 20;
+	outline: none;
+}
+#shopbutton:hover {
+	-webkit-box-shadow: 0px 3px 13px 8px #FFFFFF; 
+	box-shadow: 0px 3px 13px 8px #FFFFFF;
+}
 #myGold {
 	width: 10%;
 	height: 5%;
 	position: absolute;
-	top: 1%;
-	left: 81%;
 	color: white;
-	font-size: 35px;
+	user-select: none;
 }
 #myGoldBackground {
 	width:9%;
@@ -1791,6 +1875,30 @@ head {
 	border:solid 3px #7b7977;
 	border-radius: 25px;
 	padding-top: 20px;
+}
+#myPacks {
+	width: 10%;
+	height: 5%;
+	position: absolute;
+	color: white;
+	user-select: none;
+	pointer-events: none;
+	text-shadow:
+	-1px -1px 0 #000,
+	1px -1px 0 #000,
+	-1px 1px 0 #000,
+	1px 1px 0 #000;
+	text-align: center;
+	z-index: 21;
+}
+#myPacksBackground {
+	width:1.6%;
+	height:2.5%;
+	position:absolute;
+	background-color: #ba3e22;
+	border:solid 3px #876635;
+	border-radius: 5px;
+	z-index: 21;
 }
 #blockmainmenu {
 	width: 100%;
@@ -2457,4 +2565,302 @@ head {
 }
 #starttutorialbutton:hover {
 	background-color: #fffeea;
+}
+
+/* Open Packs */
+#openpacks {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	bottom: 0;
+    top: 0;
+    left: 12%;
+    right: 0;
+	background-image: url(src/images/openpacksbackground.png) !important;
+	background-size: contain;
+	background-repeat: no-repeat;
+	display: none;
+	z-index: 25;
+}
+.packs {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	z-index: 9;
+}
+.pack {
+	left: 0;
+	top: 0;
+	perspective: 400px;
+	position: absolute;
+	transform-style: preserve-3d;
+	will-change: transform;
+	width: 250px;
+	user-drag: none;
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-drag: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	z-index: 50;
+	display: none;
+}
+.pack:active {
+	cursor: url(src/cursor/grab.png) 10 2, auto;
+}
+.pack-image {
+	display: block;
+	pointer-events: none;
+	transform-style: preserve-3d;
+	width: 100%;
+	will-change: transform;
+	user-drag: none;
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-drag: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+}
+
+#darkborder6 {
+	width: 10%;
+	height: 5.5%;
+	position: absolute;
+	top: 92.25%;
+	left: 1.5%;
+	border-top-left-radius: 30px 150%;
+	border-bottom-left-radius: 30px 150%; 
+	border-top-right-radius: 30px 150%;
+	border-bottom-right-radius: 30px 150%; 
+	background: linear-gradient(to top, #1b1613, #2c2723);
+}
+#circle13 {
+	display: block;
+	border-radius: 100%;
+	height: .5%;
+	width: .25%;
+	margin: 0;
+	position: absolute;
+	top: 94.5%;
+	left: 1.8%;
+	background: radial-gradient(circle at 2.5% 1.5%, #7b7672, #7b7672);
+  }
+  #circle14 {
+	display: block;
+	border-radius: 100%;
+	height: .5%;
+	width: .25%;
+	margin: 0;
+	position: absolute;
+	top: 94.5%;
+	left: 10.75%;
+	background: radial-gradient(circle at 2.5% 1.5%, #7b7672, #7b7672);
+  }
+#silverborder6 {
+	width: 8%;
+	height: 5.5%;
+	position: absolute;
+	top: 92.25%;
+	left: 2.5%;
+	border-top-left-radius: 30px 150%;
+	border-bottom-left-radius: 30px 150%; 
+	border-top-right-radius: 30px 150%;
+	border-bottom-right-radius: 30px 150%; 
+	background: linear-gradient(to top, #403836, #2b2620);
+}
+#goldborder11 {
+	width: 6.5%;
+	height: 5%;
+	position: absolute;
+	top: 92.5%;
+	left: 3.25%;
+	border-top-left-radius: 30px 175%;
+	border-bottom-left-radius: 30px 175%; 
+	border-top-right-radius: 30px 175%;
+	border-bottom-right-radius: 30px 175%; 
+	background: linear-gradient(to top, #7b5a24, #ffd56f);
+}
+#backfrompackbtn {
+	width: 5%;
+	height: 4%;
+	position: absolute;
+	top: 93%;
+	left: 4%;
+	background-color: #e6c4a9;
+	color: #4f3a1b;
+	border-top-left-radius: 30px 200%;
+	border-bottom-left-radius: 30px 200%; 
+	border-top-right-radius: 30px 200%;
+	border-bottom-right-radius: 30px 200%; 
+	font-family: BelweBdBTBold;
+	user-select: none;
+	z-index: 200;
+	outline: none;
+}
+#backfrompackbtn:hover {
+	background-color: #fffeea;
+}
+#pkcollisionbox {
+	width: 13%;
+	height: 32%;
+	position: absolute;
+	left: 50.25%;
+	top: 37%;
+	z-index: 26;
+	display: none;
+}
+#packOpenAnimElem {
+	width: 17%;
+	height: 34%;
+	position: absolute;
+	background-image: url(src/images/pack.png);
+	background-repeat: no-repeat;
+	background-size: contain;
+	transform-style: preserve-3d;
+	will-change: transform;
+	user-drag: none;
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-drag: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	z-index: 50;
+	display: none;
+}
+
+#cardOneOpenPack {
+	display: none;
+}
+
+/* Shop Menu */
+#shopmenu {
+	width:100%;
+	height:100%;
+	position: absolute;
+	z-index: 30;
+	display: none;
+}
+
+#shopmenuContent {
+	width:45%;
+	height:52%;
+	position:absolute;
+	top:23%;
+	left: 25%;
+	display: none;
+	background: -webkit-linear-gradient(200deg, rgb(219, 155, 91) 0%, rgb(167, 105, 64) 23%, rgb(84, 49, 30) 81%);
+	background: -o-linear-gradient(200deg, rgb(219, 155, 91) 0%, rgb(167, 105, 64) 23%, rgb(84, 49, 30) 81%);
+	background: -ms-linear-gradient(200deg, rgb(219, 155, 91) 0%, rgb(167, 105, 64) 23%, rgb(84, 49, 30) 81%);
+	background: -moz-linear-gradient(200deg, rgb(219, 155, 91) 0%, rgb(167, 105, 64) 23%, rgb(84, 49, 30) 81%);
+	background: linear-gradient(200deg, rgb(219, 155, 91) 0%, rgb(167, 105, 64) 23%, rgb(84, 49, 30) 81%);
+	border:solid 11px #232220;
+	z-index:40;
+	padding-top: 20px;
+}
+
+#shopmenuContent:after {
+	content: '';
+	position: absolute;
+	top: -20px;
+	left: -20px;
+	right: -20px;
+	bottom: -20px;
+	border:solid 9px #7e6f74;
+	-webkit-mask: 
+	radial-gradient( circle at left top,    transparent 30px, black 1px), 
+	radial-gradient( circle at right top,    transparent 30px, black 1px), 
+	radial-gradient( circle at left bottom, transparent 30px, black 1px),
+	radial-gradient( circle at right bottom, transparent 30px, black 1px),
+	linear-gradient(black,black); /* this layer is mandatory */
+  -webkit-mask-composite: destination-in;
+  mask-composite: exclude; /* for non-webkit browser */ 
+  }
+
+#darkborder7 {
+	width: 35%;
+	height: 12.5%;
+	position: absolute;
+	top: 84%;
+	left: 58%;
+	border-top-left-radius: 30px 150%;
+	border-bottom-left-radius: 30px 150%; 
+	border-top-right-radius: 30px 150%;
+	border-bottom-right-radius: 30px 150%; 
+	background: linear-gradient(to top, #1b1613, #2c2723);
+}
+#circle15 {
+	display: block;
+	border-radius: 100%;
+	height: 2.5%;
+	width: 1.5%;
+	margin: 0;
+	position: absolute;
+	top: 89.5%;
+	left: 59.25%;
+	background: radial-gradient(circle at 2.5% 1.5%, #7b7672, #7b7672);
+  }
+  #circle16 {
+	display: block;
+	border-radius: 100%;
+	height: 2.5%;
+	width: 1.5%;
+	margin: 0;
+	position: absolute;
+	top: 89.5%;
+	left: 90%;
+	background: radial-gradient(circle at 2.5% 1.5%, #7b7672, #7b7672);
+  }
+#silverborder11 {
+	width: 27.5%;
+	height: 12.5%;
+	position: absolute;
+	top: 84%;
+	left: 62%;
+	border-top-left-radius: 30px 150%;
+	border-bottom-left-radius: 30px 150%; 
+	border-top-right-radius: 30px 150%;
+	border-bottom-right-radius: 30px 150%; 
+	background: linear-gradient(to top, #403836, #2b2620);
+}
+#goldborder12 {
+	width: 26%;
+	height: 9.75%;
+	position: absolute;
+	top: 85.5%;
+	left: 62.75%;
+	border-top-left-radius: 30px 175%;
+	border-bottom-left-radius: 30px 175%; 
+	border-top-right-radius: 30px 175%;
+	border-bottom-right-radius: 30px 175%; 
+	background: linear-gradient(to top, #7b5a24, #ffd56f);
+}
+#buybutton {
+	width: 23%;
+	height: 6.5%;
+	position: absolute;
+	top: 87%;
+	left: 64%;
+	background-color: #e6c4a9;
+	color: #4f3a1b;
+	border-top-left-radius: 30px 200%;
+	border-bottom-left-radius: 30px 200%; 
+	border-top-right-radius: 30px 200%;
+	border-bottom-right-radius: 30px 200%; 
+	font-family: BelweBdBTBold;
+	user-select: none;
+	z-index: 50;
+	outline: none;
+}
+#buybutton:hover {
+	background-color: #fffeea;
+}
+#cardpackimg {
+	width: 29%;
+	height: 47%;
+	position: absolute;
+	left: 68%;
+	top: 10%;
+	background-image: url(src/images/pack.png);
+	background-repeat: no-repeat;
+	background-size: contain;
 }

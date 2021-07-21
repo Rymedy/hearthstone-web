@@ -1,5 +1,8 @@
 var openmenuSnd = new Audio("src/sounds/openmenu.mp3");
+var purchaseSnd = new Audio("src/sounds/purchase.mp3");
 var menuhoverSnd = new Audio("src/sounds/menuselect.mp3");
+var shophoverSnd = new Audio("src/sounds/shophover.mp3");
+var shoponclickSnd = new Audio("src/sounds/shoponclick.mp3")
 var startTutorialSnd = new Audio("src/voiceovers/innkeeper_starttutorial.mp3");
 var battlebeginSnd = new Audio("src/voiceovers/innkeeper_tutorialbattle.mp3");
 var jainathreatSnd = new Audio("src/voiceovers/jaina_tutorialbattle.mp3");
@@ -51,6 +54,11 @@ document.addEventListener("keydown", function(){
         document.getElementById("gamemenu").style.display = "none";
         document.getElementById("gamemenuContent").style.display = "none";
         }
+    } else if (document.getElementById("shopmenu").style.display == "block") {
+        document.getElementById("shopmenu").style.display = "none";
+        document.getElementById("shopmenuContent").style.display = "none";
+        document.getElementById("shopmenuContent").classList.remove("openMenuAnim");
+        document.getElementById("mainmenu").style.filter = "none";
     } else {
         // show game menu
         document.getElementById("gamemenu").style.display = "block";
@@ -77,8 +85,13 @@ var endturnbtn = document.getElementById("endturn");
 
 var playbtn = document.querySelector('#playbutton');
 var tutorialbtn = document.querySelector('#tutorialbutton');
+var localmultiplayerbtn = document.querySelector('#localmultiplayerbutton');
+var openpacksbtn = document.querySelector('#openpacksbutton');
+var shopbtn = document.querySelector('#shopbutton');
+var buybtn = document.querySelector('#buybutton');
 
 var starttutorialbtn = document.querySelector('#starttutorialbutton');
+var backfrompackbtn = document.querySelector('#backfrompackbtn');
 
 concedebtn.addEventListener('mouseover', function(){
     menuhoverSnd.play();
@@ -101,9 +114,25 @@ playbtn.addEventListener('mouseover', function(){
 tutorialbtn.addEventListener('mouseover', function(){
     menuhoverSnd.play();
 })
+localmultiplayerbtn.addEventListener('mouseover', function(){
+    menuhoverSnd.play();
+})
+openpacksbtn.addEventListener('mouseover', function(){
+    menuhoverSnd.play();
+})
 starttutorialbtn.addEventListener('mouseover', function(){
     menuhoverSnd.play();
 })
+backfrompackbtn.addEventListener('mouseover', function(){
+    menuhoverSnd.play();
+})
+shopbtn.addEventListener('mouseover', function(){
+    shophoverSnd.play();
+})
+buybtn.addEventListener('mouseover', function(){
+    menuhoverSnd.play();
+})
+
 
 concedebtn.onclick = function () {
     openmenuSnd.play()
@@ -257,6 +286,7 @@ playbtn.onclick = function () {
     setTimeout(function() {
         mainmenuOST.pause();
     },1750);
+    crowdSnd.pause();
     document.getElementById('transitionblock').style.visibility="visible";
     document.getElementById('transitionblock').classList.add("fadeInAnim");
     setTimeout(function() {
@@ -345,6 +375,7 @@ function tutorial() {
         setTimeout(function() {
             mainmenuOST.pause();
         },1750);
+        crowdSnd.pause();
         document.querySelector(".playerhero").style.visibility = "hidden";
         document.querySelector(".opponenthero").style.visibility = "hidden";
         document.querySelector(".opponenthero").style.backgroundImage = "url(src/images/hogger.png)";
@@ -388,6 +419,86 @@ function tutorial() {
 tutorialbtn.onclick = function () {
     openmenuSnd.play();
     tutorial();
+};
+
+localmultiplayerbtn.onclick = function () {
+    openmenuSnd.play();
+};
+
+openpacksbtn.onclick = function () {
+    openmenuSnd.play();
+    // fade out the volume of the mainmenuOST
+    var fadeout = setInterval(
+        function() {
+            // Reduce volume by 0.05 as long as it is above 0
+            // This works as long as you start with a multiple of 0.05!
+            if (vol > 0.05) {
+            vol -= 0.05;
+            mainmenuOST.volume = vol;
+            }
+            else {
+            // Stop the setInterval when 0 is reached
+            clearInterval(fadeout);
+            }
+        }, interval);
+    setTimeout(function() {
+        mainmenuOST.pause();
+    },1750);
+    crowdSnd.pause();
+    var packElements = document.getElementsByClassName("pack");
+    document.querySelector("#mainmenu").style.display = "none";
+    document.querySelector("#openpacks").style.display = "block";
+    document.querySelector("#pkcollisionbox").style.display = "block";
+    for (let i = 0; i < packElements.length; i++) {
+        document.getElementsByClassName("pack")[i].style.display = "block";
+    }
+    var myPacks = Number(localStorage.getItem('myPacks'));
+    if (myPacks >= 1) {
+        init();
+    }
+};
+
+function shop() {
+    shoponclickSnd.play();
+    document.getElementById("shopmenu").style.display = "block";
+    document.getElementById("shopmenuContent").style.display = "block";
+    document.getElementById("shopmenuContent").classList.add("openMenuAnim");
+    document.getElementById("mainmenu").style.filter = "blur(5px)";
+}
+
+shopbtn.onclick = function () {
+    shop();
+};
+
+buybtn.onclick = function () {
+    openmenuSnd.play();
+    var myGold = Number(localStorage.getItem('myGold'));
+    myGold -= 100;
+    if (myGold >= 0) {
+        setTimeout(function() {
+            purchaseSnd.play();
+        },150)
+        createPack();
+        var myPacks = Number(localStorage.getItem('myPacks'));
+        myPacks += 1;
+        localStorage.setItem('myGold', myGold.toString());
+        localStorage.setItem('myPacks', myPacks.toString());
+        document.getElementById("myGold").innerText = myGold + "🪙";
+        document.getElementById("myPacks").innerText = myPacks;
+    } else {
+        myGold += 100;
+    }
+};
+
+backfrompackbtn.onclick = function () {
+    openmenuSnd.play();
+    var packElements = document.getElementsByClassName("pack");
+    document.querySelector("#mainmenu").style.display = "block";
+    document.querySelector("#openpacks").style.display = "none";
+    document.querySelector("#pkcollisionbox").style.display = "none";
+    for (let i = 0; i < packElements.length; i++) {
+        document.getElementsByClassName("pack")[i].style.display = "none";
+    }
 };
 
 starttutorialbtn.onclick = function () {

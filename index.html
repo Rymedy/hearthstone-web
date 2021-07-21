@@ -77,6 +77,17 @@
   <button id="miscellaneousbutton" draggable="false">Official Website</button>
 </div>
 </div>
+<div class="shopmenu" id="shopmenu">
+  <div id="shopmenuContent">
+    <div id="cardpackimg"></div>
+    <div id="darkborder7"></div>
+    <div id="circle15"></div>
+    <div id="circle16"></div>
+    <div id="silverborder11"></div>
+    <div id="goldborder12"></div>
+    <button id="buybutton" draggable="false">100🪙 BUY</button>
+  </div>
+  </div>
 <div class="tutorialmenu" id="tutorialmenu">
   <div id="tutorialmenuContent">
     <div id="tutorialmenuTitle">Defeat Hogger!</div>
@@ -106,9 +117,13 @@
     <div id="goldborder7"></div>
     <button id="tutorialbutton">Tutorial</button>
     <div id="goldborder8"></div>
-    <button id="maintenancebutton1" disabled>Under Maintenance</button>
+    <button id="localmultiplayerbutton" disabled>Under Maintenance</button>
     <div id="goldborder9"></div>
     <button id="maintenancebutton2" disabled>Under Maintenance</button>
+    <button id="openpacksbutton"></button>
+    <button id="shopbutton"></button>
+    <div id="myPacksBackground"></div>
+    <div id="myPacks">0</div>
     <div id="blockmainmenu"></div>
   </div>
   <div id="game" class="game">
@@ -172,6 +187,22 @@
 <div class="board board--player"></div>
     </div>
   </div>
+  <div id="pkcollisionbox" class="pkcollisionbox"></div>
+  <div id="openpacks">
+    <div id="darkborder6"></div>
+    <div id="circle13"></div>
+    <div id="circle14"></div>
+    <div id="silverborder6"></div>
+    <div id="goldborder11"></div>
+    <button id="backfrompackbtn">Back</button>
+    <div id="packOpenAnimElem"></div>
+    <div id="cardOneOpenPack"></div>
+    <div id="cardTwoOpenPack"></div>
+    <div id="cardThreeOpenPack"></div>
+    <div id="cardFourOpenPack"></div>
+    <div id="cardFiveOpenPack"></div>
+    </div>
+  </div>
   <svg id="svg" width="100%" height="100%">
   <path id="svgpath" fill="none" stroke="#db2727" stroke-width="40" stroke-dasharray="60,10" d="">
 </svg>
@@ -180,6 +211,7 @@
 </div>
 <script src="src/scripts/AI.js"></script>
 <script src="src/scripts/fps.js"></script>
+<script src="src/scripts/pack_handler.js"></script>
 <script src="src/scripts/elementsController.js"></script>
 <script src="src/scripts/load.js"></script>
 <script src="src/scripts/fireworks.js"></script>

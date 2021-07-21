@@ -1,4 +1,5 @@
 var mainmenuOST = new Audio("src/ost/mainmenu.mp3")
+var crowdSnd = new Audio("src/sounds/crowd.mp3")
 // voiceover's to be randomly selected in game
 var items = [
     "src/voiceovers/innkeeper_1.mp3",
@@ -25,7 +26,17 @@ document.onreadystatechange = function () {
                 var myGold = 0;
                 localStorage.setItem('myGold', myGold.toString());
             }
+            var myPacks = Number(localStorage.getItem('myPacks'));
+            if (typeof myPacks === 'undefined') {
+                var myPacks = 0;
+                localStorage.setItem('myPacks', myPacks.toString());
+            }
             document.getElementById("myGold").innerText = myGold + "🪙";
+            document.getElementById("myPacks").innerText = myPacks;
+            // make an element and set innerText to myPacks in mainmenu
+            for (let i = 0; i < myPacks; i++) {
+                createPack();
+            }
             if (hasPlayedTutorial_deserailized === null) {
                tutorial();
             } else {
@@ -34,11 +45,25 @@ document.onreadystatechange = function () {
                 setTimeout(function(){
                     voiceover.play();
                 },550);
+                if (typeof crowdSnd.loop == 'boolean')
+                {
+                    crowdSnd.loop = true;
+                }
+                else
+                {
+                    crowdSnd.addEventListener('ended', function() {
+                        this.currentTime = 0;
+                        this.play();
+                    }, false);
+                }
+                crowdSnd.play();
+                crowdSnd.volume = 0.5;
                 document.querySelector('#blockmainmenu').style.display="block";
                 document.getElementById('mainmenu').style.visibility="visible";
                 document.getElementById('mainmenu').classList.add("zoomOutAnim");
                 setTimeout(function() {
                     document.querySelector('#blockmainmenu').style.display="none";
+                    document.getElementById('mainmenu').classList.remove("zoomOutAnim");
                 },4000);
             }
         },1000);

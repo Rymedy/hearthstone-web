@@ -389,3 +389,99 @@
  .packHoverAnim {
     animation: packHoverAnim 1.5s;
 }
+
+@keyframes packOpenAnim {
+	0% {
+		transform:translate(0px, 0px) scale(1) rotate(0deg);
+	}
+	35% {
+		transform:translate(0px, 0px) scale(1) rotate(0deg);
+	}
+	40% {
+		transform:translate(-3px, 0px) scale(1) rotate(0deg);
+	}
+	60% {
+		transform:translate(40px, -3px) scale(1.6) rotate(-20deg);
+	}
+	80% {
+		transform:translate(40px, -3px) scale(1.6) rotate(-20deg);
+	}
+	95% {
+		transform:translate(40px, -3px) scale(1.63) rotate(-20deg);
+	}
+	96% {
+		transform:translate(44px, -6px) scale(1.57) rotate(-20deg);
+	}
+	97% {
+		transform:translate(36px, 4px) scale(1.61) rotate(-20deg);
+	}
+	98% {
+		transform:translate(42px, -5px) scale(1.56) rotate(-20deg);
+	}
+	99% {
+		transform:translate(38.5px, 2.5px) scale(1.64) rotate(-20deg);
+	}
+	100% {
+		transform:translate(40px, -3px) scale(1.65) rotate(-20deg);
+	}
+ }
+ .packOpenAnim {
+    animation: packOpenAnim 2s;
+}
+
+@keyframes openPackShakeScreenAnim {
+	0%   {transform:translate(0, 0);}
+	2%   {transform: translate(-2.5px, -5px);}
+	4%   {transform: translate(-7.5px, 0px);}
+	6%   {transform: translate(0px, 5px);}
+	8%   {transform: translate(2.5px, -2.5px);}
+	10%   {transform: translate(-2.5px, 5px);}
+	12%   {transform: translate(-7.5px, 2.5px);}
+	14%   {transform: translate(5px, 2.5px);}
+	16%   {transform: translate(-2.5px, -2.5px);}
+	18%   {transform: translate(2.5px, -5px);}
+	20%   {transform: translate(5px, 2.5px);}
+	22%   {transform: translate(-2.5px, -5px);}
+	24%   {transform: translate(-7.5px, 0px);}
+	26%   {transform: translate(0px, 5px);}
+	28%   {transform: translate(2.5px, -2.5px);}
+	30%   {transform: translate(-2.5px, 5px);}
+	32%   {transform: translate(-7.5px, 2.5px);}
+	34%   {transform: translate(5px, 2.5px);}
+	36%   {transform: translate(-2.5px, -2.5px);}
+	38%   {transform: translate(2.5px, -5px);}
+	40%   {transform: translate(5px, 2.5px);}
+	42%   {transform: translate(-2.5px, -5px);}
+	44%   {transform: translate(-7.5px, 0px);}
+	46%   {transform: translate(0px, 5px);}
+	48%   {transform: translate(2.5px, -2.5px);}
+	50%   {transform: translate(-2.5px, 5px);}
+	52%   {transform: translate(-7.5px, 2.5px);}
+	54%   {transform: translate(5px, 2.5px);}
+	56%   {transform: translate(-2.5px, -2.5px);}
+	58%   {transform: translate(2.5px, -5px);}
+	60%   {transform: translate(5px, 2.5px);}
+	62%   {transform: translate(-2.5px, -5px);}
+	64%   {transform: translate(-7.5px, 0px);}
+	66%   {transform: translate(0px, 5px);}
+	68%   {transform: translate(2.5px, -2.5px);}
+	70%   {transform: translate(-2.5px, 5px);}
+	72%   {transform: translate(-7.5px, 2.5px);}
+	74%   {transform: translate(5px, 2.5px);}
+	76%   {transform: translate(-2.5px, -2.5px);}
+	78%   {transform: translate(2.5px, -5px);}
+	80% {transform: translate(0, 0);}
+	82%   {transform: translate(5px, 2.5px);}
+	84%   {transform: translate(-2.5px, -5px);}
+	86%   {transform: translate(-7.5px, 0px);}
+	88%   {transform: translate(0px, 5px);}
+	90%   {transform: translate(2.5px, -2.5px);}
+	92%   {transform: translate(-2.5px, 5px);}
+	94%   {transform: translate(-7.5px, 2.5px);}
+	96%   {transform: translate(5px, 2.5px);}
+	98%   {transform: translate(-1px, -2.5px);}
+	100% {transform: translate(0, 0);}
+}
+.openPackShakeScreenAnim {
+    animation: openPackShakeScreenAnim 0.5s;
+}

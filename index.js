@@ -41,11 +41,12 @@ startGame()
 function startGame() {
   // creates a new deck where cards are shuffled and split into 2 equal decks for both the player and AI
 	const deck = new Deck()
-	deck.shuffle()
 	const deckMidpoint = Math.ceil(deck.numberOfCards / 2)
   originalDeck = new Deck(deck.cards.slice(0, deck.numberOfCards))
 	playerDeck = new Deck(deck.cards.slice(0, deckMidpoint))
+  playerDeck.shuffle()
 	computerDeck = new Deck(deck.cards.slice(deckMidpoint, deck.numberOfCards))
+  computerDeck.shuffle()
 	inRound = false
 	updateDeckCount()
   // start with 3 cards in hand initially
@@ -295,6 +296,13 @@ document.querySelectorAll('.cardinplay').forEach(function(e){
                 var myGold = Number(localStorage.getItem('myGold'));
                 myGold += 10; // number of gold earned per win
                 localStorage.setItem('myGold', myGold.toString());
+                // 20% or 1/5 chance of getting a pack on win
+                var chanceGetPack = Math.random();
+                if (chanceGetPack < 0.2) {
+                  var myPacks = Number(localStorage.getItem('myPacks'));
+                  myPacks += 1;
+                  localStorage.setItem('myPacks', myPacks.toString());
+                }
                 setTimeout(function() {
                   document.querySelector("#computerbubble").innerText = "I see... only\ndarkness\nbefore me...";
                   document.querySelector("#computerbubble").style.visibility = "visible";
