@@ -485,3 +485,86 @@
 .openPackShakeScreenAnim {
     animation: openPackShakeScreenAnim 0.5s;
 }
+
+@keyframes cardOnePackOpen {
+	0% {
+		transform:translate(350px, 300px) scale(0);
+	}
+	100% {
+		transform:translate(0, 0) scale(1);
+	}
+ }
+ .cardOnePackOpen {
+    animation: cardOnePackOpen 0.25s;
+}
+
+@keyframes cardTwoPackOpen {
+	0% {
+		transform:translate(0px, 350px) scale(0);
+	}
+	100% {
+		transform:translate(0, 0) scale(1);
+	}
+ }
+ .cardTwoPackOpen {
+    animation: cardTwoPackOpen 0.25s;
+}
+
+@keyframes cardThreePackOpen {
+	0% {
+		transform:translate(-350px, 300px) scale(0);
+	}
+	100% {
+		transform:translate(0, 0) scale(1);
+	}
+ }
+ .cardThreePackOpen {
+    animation: cardThreePackOpen 0.25s;
+}
+
+@keyframes cardFourPackOpen {
+	0% {
+		transform:translate(300px, -300px) scale(0);
+	}
+	100% {
+		transform:translate(0, 0) scale(1);
+	}
+ }
+ .cardFourPackOpen {
+    animation: cardFourPackOpen 0.25s;
+}
+
+@keyframes cardFivePackOpen {
+	0% {
+		transform:translate(-300px, -300px) scale(0);
+	}
+	100% {
+		transform:translate(0, 0) scale(1);
+	}
+ }
+ .cardFivePackOpen {
+    animation: cardFivePackOpen 0.25s;
+}
+
+@keyframes flipAnim {
+	0%   {transform:translate(0, 0);}
+	10%   {transform: translate(10px, 5px);}
+	20%   {transform: translate(-5px, -10px);}
+	30%   {transform: translate(-15px, 0px);}
+	40%   {transform: translate(0px, 10px);}
+	50%   {transform: translate(5px, -5px);}
+	60%   {transform: translate(-5px, 10px);}
+	70%   {transform: translate(-15px, 5px);}
+	80%   {transform: translate(10px, 5px);}
+	90%   {transform: translate(-5px, -5px);}
+	100%   {transform: translate(0, 0);}
+}
+.rareFlipAnim {
+    animation: rareFlipAnim 0.1s;
+}
+.epicFlipAnim {
+    animation: epicFlipAnim 0.15s;
+}
+.legendaryFlipAnim {
+    animation: flipAnim 0.25s;
+}

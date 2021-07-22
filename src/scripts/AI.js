@@ -80,7 +80,7 @@ function AI() {
     }
   }
   else if((numOfOpponentCards == 2) && (numOfAlliedCards == 2)) {
-    // twoAlliedCards();
+    twoAlliedCards(2);
   }
   else if((numOfOpponentCards == 3) && (numOfAlliedCards == 2)) {
     // twoAlliedCards();
@@ -211,7 +211,10 @@ function AI() {
   }
 }
 
-function findMaxOpponentAttack() {
+/* returns the element with the largest attack on the opponent's side 
+where the parameter 'largestValue' determines wheather the 2nd largest value
+3rd largest value 4th largest etc. is returned*/
+function findMaxOpponentAttack(largestValue) {
   const opponentCards = document.querySelectorAll('.computer-cardinplay')
   const numOfOpponentCards = computerCardSlot.childElementCount;
   const alliedCards = document.querySelectorAll('player-cardinplay')
@@ -226,6 +229,15 @@ function findMaxOpponentAttack() {
       biggestValue = opponentCards[i].children[0].innerText;
     }
   }
+  for (let i=0; i<largestValue; i++) {
+    let index = attackValues.indexOf(biggestValue);
+    attackValues.splice(index, 1);
+    for(let i=0; i<attackValues.length; i++) {
+      if(opponentCards[i].children[0].innerText > biggestValue) {
+        biggestValue = opponentCards[i].children[0].innerText;
+      }
+    }
+  }
   for(let i=0; i<opponentCards.length; i++) {
     if(opponentCards[i].children[0].innerText == biggestValue) {
       return opponentCards[i]
@@ -233,29 +245,10 @@ function findMaxOpponentAttack() {
   }
 }
 
-function findMaxOpponentHealth() {
-  const opponentCards = document.querySelectorAll('.computer-cardinplay')
-  const numOfOpponentCards = computerCardSlot.childElementCount;
-  const alliedCards = document.querySelectorAll('player-cardinplay')
-  const numOfAlliedCards = playerCardSlot.childElementCount;
-  let attackValues = []
-  let biggestValue = 0
-  for(let i=0; i<opponentCards.length; i++) {
-    attackValues.push(opponentCards[i].children[1].innerText);
-  }
-  for(let i=0; i<attackValues.length; i++) {
-    if(opponentCards[i].children[0].innerText > biggestValue) {
-      biggestValue = opponentCards[i].children[1].innerText;
-    }
-  }
-  for(let i=0; i<opponentCards.length; i++) {
-    if(opponentCards[i].children[1].innerText == biggestValue) {
-      return opponentCards[i]
-    }
-  }
-}
-
-function findMaxPlayerAttack() {
+/* returns the element with the largest attack on the player's side 
+where the parameter 'largestValue' determines wheather the 2nd largest value
+3rd largest value 4th largest etc. is returned*/
+function findMaxPlayerAttack(largestValue) {
   const opponentCards = document.querySelectorAll('.computer-cardinplay')
   const numOfOpponentCards = computerCardSlot.childElementCount;
   const alliedCards = document.querySelectorAll('.player-cardinplay')
@@ -270,6 +263,15 @@ function findMaxPlayerAttack() {
       biggestValue = alliedCards[i].children[0].innerText;
     }
   }
+  for (let i=0; i<largestValue; i++) {
+    let index = attackValues.indexOf(biggestValue);
+    attackValues.splice(index, 1);
+    for(let i=0; i<attackValues.length; i++) {
+      if(alliedCards[i].children[0].innerText > biggestValue) {
+        biggestValue = alliedCards[i].children[0].innerText;
+      }
+    }
+  }
   for(let i=0; i<alliedCards.length; i++) {
     if(alliedCards[i].children[0].innerText == biggestValue) {
       return alliedCards[i]
@@ -277,7 +279,44 @@ function findMaxPlayerAttack() {
   }
 }
 
-function findMaxPlayerHealth() {
+/* returns the element with the largest health on the opponent's side 
+where the parameter 'largestValue' determines wheather the 2nd largest value
+3rd largest value 4th largest etc. is returned*/
+function findMaxOpponentHealth(largestValue) {
+  const opponentCards = document.querySelectorAll('.computer-cardinplay')
+  const numOfOpponentCards = computerCardSlot.childElementCount;
+  const alliedCards = document.querySelectorAll('player-cardinplay')
+  const numOfAlliedCards = playerCardSlot.childElementCount;
+  let healthValues = []
+  let biggestValue = 0
+  for(let i=0; i<opponentCards.length; i++) {
+    healthValues.push(opponentCards[i].children[1].innerText);
+  }
+  for(let i=0; i<healthValues.length; i++) {
+    if(opponentCards[i].children[0].innerText > biggestValue) {
+      biggestValue = opponentCards[i].children[1].innerText;
+    }
+  }
+  for (let i=0; i<largestValue; i++) {
+    let index = healthValues.indexOf(biggestValue);
+    healthValues.splice(index, 1);
+    for(let i=0; i<healthValues.length; i++) {
+      if(opponentCards[i].children[0].innerText > biggestValue) {
+        biggestValue = opponentCards[i].children[1].innerText;
+      }
+    }
+  }
+  for(let i=0; i<opponentCards.length; i++) {
+    if(opponentCards[i].children[1].innerText == biggestValue) {
+      return opponentCards[i]
+    }
+  }
+}
+
+/* returns the element with the largest health on the player's side 
+where the parameter 'largestValue' determines wheather the 2nd largest value
+3rd largest value 4th largest etc. is returned*/
+function findMaxPlayerHealth(largestValue) {
   const opponentCards = document.querySelectorAll('.computer-cardinplay')
   const numOfOpponentCards = computerCardSlot.childElementCount;
   const alliedCards = document.querySelectorAll('.player-cardinplay')
@@ -292,12 +331,24 @@ function findMaxPlayerHealth() {
       biggestValue = alliedCards[i].children[1].innerText;
     }
   }
+  for (let i=0; i<largestValue; i++) {
+    let index = attackValues.indexOf(biggestValue);
+    attackValues.splice(index, 1);
+    for(let i=0; i<healthValues.length; i++) {
+      if(alliedCards[i].children[0].innerText > biggestValue) {
+        biggestValue = alliedCards[i].children[1].innerText;
+      }
+    }
+  }
   for(let i=0; i<alliedCards.length; i++) {
     if(alliedCards[i].children[1].innerText == biggestValue) {
       return alliedCards[i]
     }
   }
 }
+
+
+
 
 function checkForLoss() {
   if (document.getElementById('playerhero').children[1].innerText <= 0) {
@@ -350,7 +401,7 @@ function oneAlliedCard() {
   const opponentCards = document.querySelectorAll('.computer-cardinplay')
   const alliedCards = document.querySelectorAll('.player-cardinplay')
   const numOfOpponentCards = computerCardSlot.childElementCount;
-  var maxAttack = findMaxOpponentAttack()
+  var maxAttack = findMaxOpponentAttack(0)
   // attacks hero if the hero is on 12 hp or lower
   // starts at 10 increments by 2 every time +1 opponent card
   let healthModifier = 10;
@@ -407,13 +458,15 @@ function oneAlliedCard() {
   }
 }
 
-function twoAlliedCards() {
+function twoAlliedCards(numberOfOpponentCards) {
   const opponentCards = document.querySelectorAll('.computer-cardinplay')
   const alliedCards = document.querySelectorAll('.player-cardinplay')
   const numOfOpponentCards = computerCardSlot.childElementCount;
   const numOfAlliedCards = playerCardSlot.childElementCount;
-  var maxAttack = findMaxOpponentAttack()
-  var maxHealth = findMaxPlayerHealth()
+  var maxOpponentAttack = findMaxOpponentAttack(numberOfOpponentCards - 1)
+  var secondMaxOpponentAttack = findMaxOpponentAttack(numberOfOpponentCards)
+  var maxPlayerAttack = findMaxPlayerAttack(numberOfOpponentCards - 1)
+  var secondMaxPlayerAttack = findMaxPlayerAttack(numberOfOpponentCards)
 
   let healthModifier = 5;
   if (numOfOpponentCards == 2) {
@@ -432,31 +485,40 @@ function twoAlliedCards() {
     healthModifier += 10;
   }
   if(document.getElementById('playerhero').children[1].innerText <= healthModifier) {
-    var opponentAttack = parseInt(opponentCards[0].children[0].innerText);
-    var opponentAttack1 = parseInt(opponentCards[1].children[0].innerText);
-    var totalAttack = opponentAttack + opponentAttack1;
-    var heroHealth = document.getElementById('playerhero').children[1].innerText;
-    document.getElementById('playerhero').children[1].innerText = heroHealth - totalAttack;
-    showDamageLabel(totalAttack);
+    for(let i = 0; i < numOfOpponentCards; i++) {
+      var opponentAttack = parseInt(opponentCards[i].children[0].innerText);
+      var heroHealth = document.getElementById('playerhero').children[1].innerText;
+      document.getElementById('playerhero').children[1].innerText = heroHealth - opponentAttack;
+      showDamageLabel(opponentAttack);
+    }
   }
   // otherwise attacks with the highest attack card on the board and attacks the player hero with the other
   else {
-    var opponentAttack = maxAttack.children[0].innerText;
-    var opponentHealth = maxAttack.children[1].innerText;
-    var alliedAttack = maxHealth.children[0].innerText;
-    var alliedHealth = maxHealth.children[1].innerText;
-    var opponentAttack1 = opponentCards[0].children[0].innerText + opponentCards[1].children[0].innerText - maxAttack.children[0].innerText;
-    var opponentHealth1 = opponentCards[0].children[1].innerText + opponentCards[1].children[1].innerText - maxAttack.children[1].innerText;
-    var alliedAttack1 = alliedCards[0].children[0].innerText + alliedCards[1].children[0].innerText - maxHealth.children[0].innerText;
-    var alliedHealth1 = alliedCards[0].children[1].innerText + alliedCards[1].children[1].innerText - maxHealth.children[1].innerText;
-    maxAttack.children[1].innerText = opponentHealth - alliedAttack;
-    maxHealth.children[1].innerText = alliedHealth - opponentAttack;
+    var opponentAttack = maxOpponentAttack.children[0].innerText;
+    var opponentHealth = maxOpponentAttack.children[1].innerText;
+    var secondOpponentAttack = secondMaxOpponentAttack.children[0].innerText;
+    var secondOpponentHealth = secondMaxOpponentAttack.children[1].innerText;
+    var alliedAttack = maxPlayerAttack.children[0].innerText;
+    var alliedHealth = maxPlayerAttack.children[1].innerText;
+    var secondAlliedAttack = secondMaxPlayerAttack.children[0].innerText;
+    var secondAlliedHealth = secondMaxPlayerAttack.children[1].innerText;
+   
+    maxOpponentAttack.children[1].innerText = opponentHealth - alliedAttack;
+    maxPlayerAttack.children[1].innerText = alliedHealth - opponentAttack;
+    secondMaxOpponentAttack.children[1].innerText = secondOpponentHealth - secondAlliedAttack;
+    secondMaxPlayerAttack.children[1].innerText = secondAlliedHealth - secondOpponentAttack;
     setTimeout(function() {
-      if(maxHealth.children[1].innerHTML <= 0) { 
-        maxHealth.remove();
+      if(maxPlayerAttack.children[1].innerHTML <= 0) { 
+        maxPlayerAttack.remove();
       }
-      if(maxAttack.children[1].innerHTML <= 0) {
-        maxAttack.remove();
+      if(maxOpponentAttack.children[1].innerHTML <= 0) {
+        maxOpponentAttack.remove();
+      }
+      if(secondMaxPlayerAttack.children[1].innerHTML <= 0) { 
+        secondMaxPlayerAttack.remove();
+      }
+      if(secondMaxOpponentAttack.children[1].innerHTML <= 0) {
+        secondMaxOpponentAttack.remove();
       }
     },250);
   }

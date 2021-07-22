@@ -92,6 +92,7 @@ var buybtn = document.querySelector('#buybutton');
 
 var starttutorialbtn = document.querySelector('#starttutorialbutton');
 var backfrompackbtn = document.querySelector('#backfrompackbtn');
+var donepackbtn = document.querySelector('#donepackbutton');
 
 concedebtn.addEventListener('mouseover', function(){
     menuhoverSnd.play();
@@ -492,6 +493,7 @@ buybtn.onclick = function () {
 
 backfrompackbtn.onclick = function () {
     openmenuSnd.play();
+    crowdSnd.play();
     var packElements = document.getElementsByClassName("pack");
     document.querySelector("#mainmenu").style.display = "block";
     document.querySelector("#openpacks").style.display = "none";
@@ -650,6 +652,32 @@ starttutorialbtn.onclick = function () {
         document.querySelector("#tutorialmenu").style.display = "none";
     },125);
 };
+
+donepackbtn.onclick = function () {
+    document.getElementById('openpacks').classList.remove("openPackShakeScreenAnim");
+    var packElements = document.getElementsByClassName("pack");
+    for (let i = 0; i < packElements.length; i++) {
+        document.getElementsByClassName("pack")[i].style.display = "none";
+    }
+    var packElements = document.getElementsByClassName("pack");
+    for (let i = 0; i < packElements.length; i++) {
+        document.getElementsByClassName("pack")[i].style.display = "block";
+    }
+    // if remaining packs still exist run this function again
+    var myPacks = Number(localStorage.getItem('myPacks'));
+    if (myPacks >= 1) {
+        init();
+    }
+    donepackbtn.style.display = "none";
+    document.getElementById("openpacks").style.filter = "none";
+    document.getElementById("backfrompackbtn").disabled = false;
+    document.getElementById("containerOpenPack").style.display = "none";
+    elementsToRemove = document.querySelectorAll(".flip-card");
+    for (let i = 0; i < 5; i++) {
+        console.log(i, elementsToRemove);
+        elementsToRemove[i].remove();
+    }
+}
 
 const targetDiv = document.getElementById("fps");
 const fpsbtn = document.getElementById('togglefps')
