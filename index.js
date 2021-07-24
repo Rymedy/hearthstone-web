@@ -1,5 +1,5 @@
 // imports module 'Deck' from deck.js
-import Deck from "./deck.js"
+// import Deck from "./deck.js"
 // defines global variables
 var currentAttacker = null;
 var collision = new Boolean(false);
@@ -21,7 +21,7 @@ var playerHandArray = []
 var getNameOfElement = "";
 // defines constant variables to refer to HTML elements
 var computerCardSlot = document.querySelector('.board--opponent')
-const playerCardSlot = document.querySelector('.board--player')
+const playerCardSlot2 = document.querySelector('.board--player')
 const hand = document.querySelector('.cards')
 const computerDeckElement = document.querySelector('.computer-deck')
 const playerDeckElement = document.querySelector('.player-deck')
@@ -36,10 +36,11 @@ const draggableElements = document.getElementsByClassName("card");
 const manaElement = document.getElementById('mana');
 let originalDeck, playerDeck, computerDeck, inRound
 
-// calls and defines the startGame function to perform required functions when the page is loaded.
-startGame()
+/* calls and defines the startGame function to perform 
+required functions when the page is loaded. */
 function startGame() {
-  // creates a new deck where cards are shuffled and split into 2 equal decks for both the player and AI
+  /* creates a new deck where cards split into 2 equal decks for both 
+  the player and AI and shuffled */
 	const deck = new Deck()
 	const deckMidpoint = Math.ceil(deck.numberOfCards / 2)
   originalDeck = new Deck(deck.cards.slice(0, deck.numberOfCards))
@@ -72,9 +73,9 @@ function placeCardFunc(e) {
     var found = false;
     setTimeout(function() {
     for(var i = 0; i < originalDeck.cards.length; i++) {
-      if ((originalDeck.cards[i]['name'] == getNameOfElement) && (playerCardSlot.childElementCount != 7)) {
+      if ((originalDeck.cards[i]['name'] == getNameOfElement) && (playerCardSlot2.childElementCount != 7)) {
         found = true;
-        playerCardSlot.appendChild(originalDeck.cards[i].getPlayerHTML())
+        playerCardSlot2.appendChild(originalDeck.cards[i].getPlayerHTML())
         cardplaceSnd.play();
         if (hand.childElementCount == 0) {
           document.getElementById("gifhint").style.backgroundImage = "url('src/hints/end_turn.gif')";
@@ -85,11 +86,11 @@ function placeCardFunc(e) {
     }
   },0.01);
     // console.log(playerDeck.cards[0]['name'])
-   // Change this to playerCardSlot.appendChild([THE CARD].getPlayerHTML()); maybe cycle thru the array playerDeck.cards to find if name is = to the name of the card being placed 
+   // Change this to playerCardSlot2.appendChild([THE CARD].getPlayerHTML()); maybe cycle thru the array playerDeck.cards to find if name is = to the name of the card being placed 
   }
 }
 // defines a new function that adds an event listener (mouseup) to all elements with the class name 'card' then calls the placeCardFunc()
-placeCard()
+
 function placeCard() {
 document.querySelectorAll('.card').forEach(function(e){
   e.addEventListener('mouseup', placeCardFunc);
@@ -136,6 +137,7 @@ function opponentTurn() {
     computerCardSlot.appendChild(computerDeck.cards[0].getComputerHTML())
     cardplaceSnd.play();
     computerDeck.cards.shift();
+    console.log('computerDeckElement', computerDeckElement);
     updateDeckCount()
   }
   // to fix position of board GUI onclick
@@ -150,10 +152,11 @@ function playerTurn() {
   manaCapacity += 1
   mana = manaCapacity
   manaElement.innerHTML = mana + "/" + manaCapacity;
-  oldNumOfChild = playerCardSlot.childElementCount;
+  oldNumOfChild = playerCardSlot2.childElementCount;
   if (document.querySelector('.opposingHeroHealth').innerText == 10) {
     isTutorial = true;
   }
+  // mock's the user if it has been their turn for 30secs+
   setTimeout(function() {
     if ((playersTurn == true) && (alreadyMocked == false) && (gameIsWon == false) && (isTutorial == false)) {
       alreadyMocked = true;
@@ -173,7 +176,7 @@ function playerTurn() {
       },250);
     }
   },30000)
-
+  // the player draws a card if their hand is not full (max cards in hand 10 cards)
   if(hand.childElementCount != 10) {
     hand.appendChild(playerDeck.cards[0].getPlayerCardsInHandHTML())
   }
@@ -188,21 +191,21 @@ function playerTurn() {
   playerDeck.cards.shift();
   updateDeckCount()
 }
-
+/* gives all current cards on the board the ability to attack by giving the card
+class 'canAttack', when attacking the card is checked to see if the card has
+this class.*/
 function attack() {
-  var numOfChild = playerCardSlot.childElementCount;
+  var numOfChild = playerCardSlot2.childElementCount;
   for(let i=0; i<numOfChild; i++) {
-    document.getElementsByClassName("player-cardinplay")[i].style.border = "solid 3px rgba(0, 230, 64, 1)"; 
-    document.getElementsByClassName("player-cardinplay")[i].children[2].style.border = "solid 4px rgba(0, 230, 64, 1)";
-    document.getElementsByClassName("player-cardinplay")[i].children[2].style.animation = "shake 0.5s";
-    document.getElementsByClassName("player-cardinplay")[i].children[2].style.animationIterationCount = "infinite";
+    document.getElementsByClassName("player-cardinplay")[i].style.boxShadow = "0px 2px 15px 12px #0FCC00"; 
     document.getElementsByClassName("player-cardinplay")[i].classList.add("canAttack");
 }
+// attacking algorithm
 document.querySelectorAll('.cardinplay').forEach(function(e){
   e.addEventListener('mousedown', function(e) {
     if(currentAttacker == null) {
       if((this.classList.contains('player-cardinplay')) && (this.classList.contains('canAttack'))) {
-        playerCardSlot.style.zIndex = "1"
+        playerCardSlot2.style.zIndex = "1"
         computerCardSlot.style.zIndex = "2"
         currentAttacker = this.id
         var xOrigin = e.clientX;
@@ -214,7 +217,7 @@ document.querySelectorAll('.cardinplay').forEach(function(e){
       svgpath.setAttribute('d', 'M'+xDest+','+yDest+' '+xOrigin+','+yOrigin+'');
   });
    }} else if((this.classList.contains('computer-cardinplay') || (this.id == 'opposinghero'))) {
-        playerCardSlot.style.zIndex = "2"
+        playerCardSlot2.style.zIndex = "2"
         computerCardSlot.style.zIndex = "1"
         var attackSnd = new Audio("src/sounds/attack.mp3");
         var bigHitSnd = new Audio("src/sounds/bigattack.mp3");
@@ -223,14 +226,16 @@ document.querySelectorAll('.cardinplay').forEach(function(e){
         var currentAttackerElement = document.getElementById(currentAttacker);
         var targetElement = document.getElementById(target);
 
-        var currentAttackerAttack = currentAttackerElement.children[0].innerHTML;
-        var currentAttackerHealth = currentAttackerElement.children[1].innerHTML;
-        var targetAttack = targetElement.children[0].innerHTML;
-        var targetHealth = targetElement.children[1].innerHTML;
+        var currentAttackerAttack = currentAttackerElement.children[0].children[0].innerHTML;
+        var currentAttackerHealth = currentAttackerElement.children[1].children[0].innerHTML;
+        var targetAttack = targetElement.children[0].children[0].innerHTML;
+        var targetHealth = targetElement.children[1].children[0].innerHTML;
         currentAttackerHealth -= targetAttack;
         targetHealth -= currentAttackerAttack;
-        currentAttackerElement.children[1].innerHTML = currentAttackerHealth;
-        targetElement.children[1].innerHTML = targetHealth;
+        currentAttackerElement.children[1].children[0].innerHTML = currentAttackerHealth;
+        targetElement.children[1].children[0].innerHTML = targetHealth;
+        currentAttackerElement.children[1].children[0].style.color = "#f20301";
+        targetElement.children[1].children[0].style.color = "#f20301";
         if ((currentAttackerAttack >= 5) && (isScreenShake == true)) {
           document.getElementById("game").classList.add("bigHitAnim");
           setTimeout(function() {
@@ -257,9 +262,7 @@ document.querySelectorAll('.cardinplay').forEach(function(e){
             },1000);
           },2000);
         }
-        currentAttackerElement.style.border = "solid 3px black";
-        currentAttackerElement.children[2].style.border = "solid 4px black";
-        currentAttackerElement.children[2].style.animation = "none";
+        currentAttackerElement.style.boxShadow = "none";
         setTimeout(function() {
           if(currentAttackerHealth <= 0) {
             if (document.querySelector('.playerHeroHealth').innerText <= 0) {
@@ -320,9 +323,6 @@ document.querySelectorAll('.cardinplay').forEach(function(e){
               // adjust position of player board to fix GUI
               let opponentCardsInPlay = computerCardSlot.childElementCount;
               computerCardSlot.style.transform = "translateY(17.5%)"; 
-              // body.onclick = function () {
-              //  location.reload();
-              // };
               setTimeout(function() {
                 document.querySelector(".opponenthero").style.display = "none";
                 if (isScreenShake == true) {
@@ -374,7 +374,7 @@ document.querySelectorAll('.cardinplay').forEach(function(e){
         currentAttackerElement.classList.remove("canAttack");
         if ((hand.childElementCount == 0) || (mana == 0)) {
           for(let i=0; i<oldNumOfChild; i++) {
-            if (playerCardSlot.children[i].classList.contains("canAttack")) {
+            if (playerCardSlot2.children[i].classList.contains("canAttack")) {
               break;
             } 
             if ((i == oldNumOfChild - 1) && (gameIsWon == false)) {
@@ -394,7 +394,7 @@ document.querySelectorAll('.cardinplay').forEach(function(e){
   });
 });
 }
-enableDrag()
+
 function enableDrag() {
   for(var i = 0; i < draggableElements.length; i++){
       dragElement(draggableElements[i]);
@@ -440,7 +440,7 @@ function dragElement(elmnt) {
             collision = true
             document.querySelectorAll('.card').forEach(function(e){
             e.addEventListener('mouseup', function(e) {
-              if((collision == true) && (playerCardSlot.childElementCount != 7)) {
+              if((collision == true) && (playerCardSlot2.childElementCount != 7)) {
                 var manaCost = iElements.children[0].children[2].innerText;
                 getNameOfElement = iElements.children[0].children[5].innerText;
                 iElements.remove();
@@ -455,6 +455,10 @@ function dragElement(elmnt) {
         document.onmousemove = null;
     }
 }
+startGame();
+placeCard();
+enableDrag();
+
 // Disable and Enable Screen Shakes
 const screenshakebtn = document.getElementById('togglescreenshake')
 var isScreenShake = new Boolean(true);

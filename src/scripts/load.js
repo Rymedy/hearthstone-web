@@ -40,31 +40,7 @@ document.onreadystatechange = function () {
             if (hasPlayedTutorial_deserailized === null) {
                tutorial();
             } else {
-                mainmenuOST.play();
-                mainmenuOST.volume = 0.7;
-                setTimeout(function(){
-                    voiceover.play();
-                },550);
-                if (typeof crowdSnd.loop == 'boolean')
-                {
-                    crowdSnd.loop = true;
-                }
-                else
-                {
-                    crowdSnd.addEventListener('ended', function() {
-                        this.currentTime = 0;
-                        this.play();
-                    }, false);
-                }
-                crowdSnd.play();
-                crowdSnd.volume = 0.5;
-                document.querySelector('#blockmainmenu').style.display="block";
-                document.getElementById('mainmenu').style.visibility="visible";
-                document.getElementById('mainmenu').classList.add("zoomOutAnim");
-                setTimeout(function() {
-                    document.querySelector('#blockmainmenu').style.display="none";
-                    document.getElementById('mainmenu').classList.remove("zoomOutAnim");
-                },4000);
+                document.getElementById("preventCORS").style.visibility = "visible";
             }
         },1000);
     }

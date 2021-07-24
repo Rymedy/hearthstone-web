@@ -9,6 +9,9 @@ body {
 	cursor: url(src/cursor/cursor.png) 10 2, auto;
 	background-color: black;
 }
+body:active {
+	cursor: url(src/cursor/click.png) 10 2, auto;
+}
 button:hover {
 	cursor: url(src/cursor/cursor.png) 10 2, auto;
 }
@@ -33,9 +36,7 @@ head {
 	background-repeat: no-repeat;
 	z-index: -1;
 }
- body:active {
-	 cursor: url(src/cursor/click.png) 10 2, auto;
-}
+
 @font-face {
 	font-family: BelweBdBTBold;
 	src: url(src/fonts/BelweBdBTBold.ttf);
@@ -55,6 +56,21 @@ head {
 	color: white;
     background:url("src/images/loading.gif") no-repeat center center black !important;
 	background-size: contain;
+}
+#preventCORS {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: black;
+	color: white;
+	font-size:40px;
+	visibility: hidden;
+	text-align:center;
+	z-index: 1000;
 }
 /* In Game */
  .cards {
@@ -85,7 +101,7 @@ head {
 	 height: 150px;
 	 position: absolute;
 	 width: 100px;
-	 border-radius: 12px;
+	 border-radius: 8px;
 	-webkit-touch-callout: none; /* iOS Safari */
 	-webkit-user-select: none; /* Safari */
 	-khtml-user-select: none; /* Konqueror HTML */
@@ -139,7 +155,7 @@ head {
 	border: solid 4px rgba(0, 230, 64, 1);
   animation: shake 0.5s;
   animation-iteration-count: infinite;
-  border-radius: 12px;
+  border-radius: 8px;
 }
  .card-face:after {
 	 animation: none;
@@ -376,16 +392,13 @@ head {
 	 float: left;
 	 margin: 0 auto;
 	 transition: border 0.3s ease, box-shadow 0.3s ease;
-	 border: solid 3px black;
+	 border: solid 5px #735c4c;
+	 border-radius: 100%;
 }
 @media only screen and (min-width: 1000px) {
 	.cardinplay {
-		width: 4rem;
-	 	height: 5rem;
-	}
-	.oval {
-		width: 3.5rem;
-		height: 4.5rem;
+		width: 4.8rem;
+	 	height: 6rem;
 	}
 	.board {
 		padding: 7.75rem;
@@ -499,15 +512,36 @@ head {
 	#localmultiplayerbutton {
 		font-size: 18px;
 	}
+	#preventCORS {
+		line-height: 2000%;
+	}
+	.healthValueBackground {
+		width: 30%;
+		height: 23%;
+		margin-top: -34%;
+		margin-left: 68%;
+	}
+	.healthValue {
+		bottom: -23.6%;
+		right: -44.2%;
+		font-size: 27px;
+	}
+	.attackValueBackground {
+		width: 28%;
+		height: 22%;
+		margin-top: 93%;
+		margin-left: -1%;
+	}
+	.attackValue {
+		bottom: -3.35%;
+		right: 56.8%;
+		font-size: 27px;
+	}
 }
 @media only screen and (min-width: 1500px) {
 	.cardinplay {
-		width: 6rem;
-	 	height: 7.5rem;
-	}
-	.oval {
-		width: 5.5rem;
-		height: 7rem;
+		width: 6.4rem;
+	 	height: 8.5rem;
 	}
 	.board {
 		padding: 11rem;
@@ -621,6 +655,31 @@ head {
 	#localmultiplayerbutton {
 		font-size: 22px;
 	}
+	#preventCORS {
+		line-height: 2500%;
+	}
+	.healthValueBackground {
+		width: 30%;
+		height: 23%;
+		margin-top: -33%;
+		margin-left: 66%;
+	}
+	.healthValue {
+		bottom: 17%;
+		right: -31%;
+		font-size: 35px;
+	}
+	.attackValueBackground {
+		width: 28%;
+		height: 22%;
+		margin-top: 93%;
+		margin-left: -1%;
+	}
+	.attackValue {
+		bottom: 12.5%;
+		right: 67.7%;
+		font-size: 35px;
+	}
 }
 .computer-cardinplay:hover {
 	box-shadow: 0 0 3em 1px white !important;
@@ -723,8 +782,6 @@ head {
  }
  .attackValue {
  	position: absolute;
- 	bottom: -3px;
- 	left: -13px;
 	 width: 1.75rem;
 	 height: 2rem;
 	 margin: 0 auto;
@@ -733,19 +790,21 @@ head {
 	 border-bottom-left-radius: 0.5vw;
 	 transition: border 0.3s ease, box-shadow 0.3s ease;
 	 background-size: cover;
-	 font-size: 35px;
+	 font-size: 40px;
 	 font-weight: bold;
 	 letter-spacing: -0.025em;
 	 color: white;
-   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-	 text-shadow: -0.025em 0.025em 0 black;
+	 text-shadow:
+	 -1px -1px 0 #000,
+	 1px -1px 0 #000,
+	 -1px 1px 0 #000,
+	 1px 1px 0 #000;
 	 user-select: none;
 	 z-index: 10;
+	 
  }
  .healthValue {
  	position: absolute;
- 	bottom: -3px;
- 	right: -15px;
 	 width: 1.75rem;
 	 height: 2rem;
 	 margin: 0 auto;
@@ -754,15 +813,35 @@ head {
 	 border-top-left-radius: 0.5vw;
 	 transition: border 0.3s ease, box-shadow 0.3s ease;
 	 background-size: cover;
-	 font-size: 35px;
 	 font-weight: bold;
 	 letter-spacing: -0.025em;
 	 color: white;
-   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-	 text-shadow: -0.025em 0.025em 0 black;
+	 text-shadow:
+	 -1px -1px 0 #000,
+	 1px -1px 0 #000,
+	 -1px 1px 0 #000,
+	 1px 1px 0 #000;
+	 transform: rotate(45deg);
 	 user-select: none;
 	 z-index: 10;
  }
+ .attackValueBackground {
+	background: rgb(152,81,36);
+	background: linear-gradient(347deg, rgba(152,81,36,1) 0%, rgba(215,146,41,1) 50%, rgba(253,237,68,1) 100%);
+	border-radius: 100%;
+	float: left;
+	border: 3px solid rgba(50,36,33,255);
+ }
+ .healthValueBackground {
+	background: rgb(221,42,41);
+	background: linear-gradient(347deg, rgba(221,42,41,1) 0%, rgba(205,37,38,1) 50%, rgba(104,35,27,1) 100%);
+	border-radius: 25px 60%;
+	border-top-right-radius: 0;
+	transform: rotate(-45deg);
+	float: left;
+	border: 3px solid rgba(50,36,33,255);
+ }
+
   .cardAttackValue {
 	 float: left;
 	 width: 1.3rem;
@@ -909,6 +988,7 @@ head {
 	border-top-right-radius: 120%35px;
 	border-bottom-right-radius: 120%35px; 
 	font-family: BelweBdBTBold;
+	outline: none;
 	z-index: 2;
 }
 #confirm {
@@ -952,8 +1032,11 @@ head {
 	font-weight: bold;
 	letter-spacing: -0.025em;
 	color: white;
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-	text-shadow: -0.025em 0.025em 0 black;
+	text-shadow:
+	-1px -1px 0 #000,
+	1px -1px 0 #000,
+	-1px 1px 0 #000,
+	1px 1px 0 #000;
 	user-select: none;
 	visibility: hidden;
 	pointer-events: none;
@@ -970,8 +1053,11 @@ head {
 	font-weight: bold;
 	letter-spacing: -0.025em;
 	color: white;
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-	text-shadow: -0.025em 0.025em 0 black;
+	text-shadow:
+	-1px -1px 0 #000,
+	1px -1px 0 #000,
+	-1px 1px 0 #000,
+	1px 1px 0 #000;
 	user-select: none;
 	visibility: hidden;
 	pointer-events: none;
@@ -982,27 +1068,6 @@ head {
 	position: absolute;
 	left: 5%;
 	top: 35%;
-}
-.oval {
-	border: solid 4px black;
-	border-radius: 100%;
-  /* Start the shake animation and make the animation last for 0.5 seconds */
-
-  /* When the animation is finished, start again */
-  animation-iteration-count: infinite;
-}
-@keyframes shake {
-  0% { transform: translate(0.25px, 0.25px) rotate(0deg); }
-  10% { transform: translate(-0.25px, -0.5px) rotate(-0.1deg); }
-  20% { transform: translate(-1.7px, 0px) rotate(0.1deg); }
-  30% { transform: translate(0.7px, 0.5px) rotate(0deg); }
-  40% { transform: translate(0.25px, -0.25px) rotate(0.1deg); }
-  50% { transform: translate(-0.25px, 0.5px) rotate(-0.1deg); }
-  60% { transform: translate(-0.7px, 0.25px) rotate(0deg); }
-  70% { transform: translate(0.7px, 0.25px) rotate(-0.1deg); }
-  80% { transform: translate(-0.25px, -0.25px) rotate(0.1deg); }
-  90% { transform: translate(0.25px, 0.5px) rotate(0deg); }
-  100% { transform: translate(0.25px, -0.5px) rotate(-0.1deg); }
 }
 .mana {
 	position: absolute;

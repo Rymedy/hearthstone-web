@@ -1,6 +1,7 @@
 var id1 = 0;
 var id2 = 0;
-export default class Deck {
+
+class Deck {
 	constructor(cards = freshDeck()) {
 		this.cards = cards
 	}
@@ -30,19 +31,22 @@ class MinionCard {
 	}
 	getComputerHTML() {
 		const computerCardDiv = document.createElement('div')
+		const computerAttackValueBackground = document.createElement('div')
+		const computerHealthValueBackground = document.createElement('div')
 		const computerAttackValue = document.createElement('div')
 		const computerHealthValue = document.createElement('div')
-		const oval = document.createElement('div')
 		computerCardDiv.id = "cpuCardInPlay" + id2
 		computerCardDiv.classList.add("cardinplay")
 		computerCardDiv.classList.add("computer-cardinplay")
 		computerCardDiv.classList.add('placeCardAnim')
 		computerAttackValue.classList.add("attackValue")
 		computerHealthValue.classList.add("healthValue")
-		oval.classList.add('oval')
-		computerCardDiv.appendChild(computerAttackValue)
-		computerCardDiv.appendChild(computerHealthValue)
-		computerCardDiv.appendChild(oval)
+		computerAttackValueBackground.classList.add("attackValueBackground")
+		computerHealthValueBackground.classList.add("healthValueBackground")
+		computerCardDiv.appendChild(computerAttackValueBackground)
+		computerCardDiv.appendChild(computerHealthValueBackground)
+		computerAttackValueBackground.appendChild(computerAttackValue)
+		computerHealthValueBackground.appendChild(computerHealthValue)
 		computerAttackValue.innerText = this.attack
 		computerHealthValue.innerText = this.health
 		computerCardDiv.style.backgroundImage = "url('" + this.imageString + "')";
@@ -51,19 +55,22 @@ class MinionCard {
 	}
 	getPlayerHTML() {
 		const playerCardDiv = document.createElement('div')
+		const playerAttackValueBackground = document.createElement('div')
+		const playerHealthValueBackground = document.createElement('div')
 		const playerAttackValue = document.createElement('div')
 		const playerHealthValue = document.createElement('div')
-		const oval = document.createElement('div')
 		playerCardDiv.id = "playerCardInPlay" + id1
 		playerCardDiv.classList.add("cardinplay")
 		playerCardDiv.classList.add("player-cardinplay")
 		playerCardDiv.classList.add('placeCardAnim')
 		playerAttackValue.classList.add("attackValue")
 		playerHealthValue.classList.add("healthValue")
-		oval.classList.add('oval')
-		playerCardDiv.appendChild(playerAttackValue)
-		playerCardDiv.appendChild(playerHealthValue)
-		playerCardDiv.appendChild(oval)
+		playerAttackValueBackground.classList.add("attackValueBackground")
+		playerHealthValueBackground.classList.add("healthValueBackground")
+		playerCardDiv.appendChild(playerAttackValueBackground)
+		playerCardDiv.appendChild(playerHealthValueBackground)
+		playerAttackValueBackground.appendChild(playerAttackValue)
+		playerHealthValueBackground.appendChild(playerHealthValue)
 		playerAttackValue.innerText = this.attack
 		playerHealthValue.innerText = this.health
 		playerCardDiv.style.backgroundImage = "url('" + this.imageString + "')";
@@ -217,4 +224,3 @@ function freshDeck() {
 	stormwind_champion
 	]
 }
-

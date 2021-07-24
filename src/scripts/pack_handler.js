@@ -424,8 +424,6 @@ function onmouseup() {
 							fifthPass = true;
 						}
 						if ((firstPass == true) && (secondPass == true) && (thirdPass == true) && (fourthPass == true) && (fifthPass == true)) {
-							// show button
-							console.log("Show button here");
 							document.getElementById("donepackbutton").style.display = "block";
 						}
 					}

@@ -2,12 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initital-scale=1.0">
+  <meta name="viewport" content="width=device-width">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="icon" href="src/images/favicon.ico" type="image/x-icon"/>
   <script src="https://kit.fontawesome.com/12e13ca7a0.js" crossorigin="anonymous"></script>
   <title>Hearthstone</title>
-  <script src="index.js" type="module"></script>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="src/stylesheets/animations.css">
     <div id="victory">
@@ -20,6 +19,7 @@
   <div id="rightsideblock"></div>
   <div id="transitionblock"></div>
 </head>
+<div id="preventCORS">Click anywhere to continue...</div>
 <div id="load">Setting up the board...</div>
 <button class="openbtn fas fa-cog" onclick="showGameMenu()"></button>
 <span id="fps"></span>
@@ -165,8 +165,10 @@
   <div class="board board--opponent"></div>
   <div class="opponenthero">
     <div class="cardinplay" id="opposinghero">
-          <div></div>
+  <div><div></div></div>
+  <div>
     <div class="opposingHeroHealth">30</div>
+  </div>
     </div>
   </div>
   <div class="playerhero">
@@ -206,6 +208,9 @@
 </div>
 </body>
 </div>
+<!-- Scripts -->
+<script src="deck.js"></script>
+<script src="index.js"></script>
 <script src="src/scripts/AI.js"></script>
 <script src="src/scripts/fps.js"></script>
 <script src="src/scripts/pack_handler.js"></script>
