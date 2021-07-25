@@ -481,7 +481,7 @@ buybtn.onclick = function () {
         },150)
         createPack();
         var myPacks = Number(localStorage.getItem('myPacks'));
-        myPacks += 1;
+        myPacks++;
         localStorage.setItem('myGold', myGold.toString());
         localStorage.setItem('myPacks', myPacks.toString());
         document.getElementById("myGold").innerText = myGold + "🪙";
@@ -720,3 +720,25 @@ preventCORSbtn.onclick = function () {
         document.getElementById('mainmenu').classList.remove("zoomOutAnim");
     },4000);
 }
+
+let outercircle = document.getElementById('outercursor');
+const onMouseOuterMove = (e) =>{
+  outercircle.style.left = e.pageX + 'px';
+  outercircle.style.top = e.pageY + 'px';
+}
+document.addEventListener('mousemove', onMouseOuterMove);
+
+let innercircle = document.getElementById('innercursor');
+const onMouseInnerMove = (e) =>{
+  innercircle.style.left = e.pageX + 'px';
+  innercircle.style.top = e.pageY + 'px';
+}
+document.addEventListener('mousemove', onMouseInnerMove);
+
+let triangle = document.getElementById('arrowcursor');
+const onMouseTriangleMove = (e) =>{
+  triangle.style.left = e.pageX + 'px';
+  triangle.style.top = e.pageY + 'px';
+}
+document.addEventListener('mousemove', onMouseTriangleMove);
+

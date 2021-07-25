@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="icon" href="src/images/favicon.ico" type="image/x-icon"/>
-  <script src="https://kit.fontawesome.com/12e13ca7a0.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <title>Hearthstone</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="src/stylesheets/animations.css">
@@ -21,7 +21,7 @@
 </head>
 <div id="preventCORS">Click anywhere to continue...</div>
 <div id="load">Setting up the board...</div>
-<button class="openbtn fas fa-cog" onclick="showGameMenu()"></button>
+<button class="openbtn" onclick="showGameMenu()"><i class="fa fa-gear"></i></button>
 <span id="fps"></span>
 <span id="time"></span>
 <div class="gamemenu" id="gamemenu">
@@ -202,8 +202,11 @@
   </div>
   <div id="containerOpenPack"></div>
   <button id="donepackbutton">Done</button>
+  <div id="innercursor"></div>
+  <div id="outercursor"></div>
+  <div id="arrowcursor"></div>
   <svg id="svg" width="100%" height="100%">
-  <path id="svgpath" fill="none" stroke="#db2727" stroke-width="40" stroke-dasharray="60,10" d="">
+  <path id="svgpath" fill="none" stroke="#e82e12" stroke-width="40" stroke-dasharray="60,10" d="">
 </svg>
 </div>
 </body>

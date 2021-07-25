@@ -1,6 +1,7 @@
 // imports module 'Deck' from deck.js
 // import Deck from "./deck.js"
 // defines global variables
+var iElements = null;
 var currentAttacker = null;
 var collision = new Boolean(false);
 var canAttack = new Boolean(false);
@@ -21,7 +22,7 @@ var playerHandArray = []
 var getNameOfElement = "";
 // defines constant variables to refer to HTML elements
 var computerCardSlot = document.querySelector('.board--opponent')
-const playerCardSlot2 = document.querySelector('.board--player')
+var playerCardSlot2 = document.querySelector('.board--player')
 const hand = document.querySelector('.cards')
 const computerDeckElement = document.querySelector('.computer-deck')
 const playerDeckElement = document.querySelector('.player-deck')
@@ -137,7 +138,6 @@ function opponentTurn() {
     computerCardSlot.appendChild(computerDeck.cards[0].getComputerHTML())
     cardplaceSnd.play();
     computerDeck.cards.shift();
-    console.log('computerDeckElement', computerDeckElement);
     updateDeckCount()
   }
   // to fix position of board GUI onclick
@@ -149,7 +149,7 @@ function opponentTurn() {
 
 function playerTurn() {
   playersTurn = true;
-  manaCapacity += 1
+  manaCapacity++;
   mana = manaCapacity
   manaElement.innerHTML = mana + "/" + manaCapacity;
   oldNumOfChild = playerCardSlot2.childElementCount;
@@ -211,9 +211,16 @@ document.querySelectorAll('.cardinplay').forEach(function(e){
         var xOrigin = e.clientX;
         var yOrigin = e.clientY;
         svg.style.display = "block";
+        document.getElementById("innercursor").style.visibility = "visible";
+        document.getElementById("outercursor").style.visibility = "visible";
+        document.getElementById("arrowcursor").style.visibility = "visible";
+        body.style.cursor = "none";
     body.addEventListener('mousemove', e2 => {
       var xDest = e2.clientX;
       var yDest = e2.clientY;
+      var angleDeg = Math.atan2(yDest - yOrigin, xDest - xOrigin) * 180 / Math.PI;
+      var deg = angleDeg + 90;
+      document.getElementById("arrowcursor").style.transform = 'rotate('+deg+'deg) translate(-50%,-110%)';
       svgpath.setAttribute('d', 'M'+xDest+','+yDest+' '+xOrigin+','+yOrigin+'');
   });
    }} else if((this.classList.contains('computer-cardinplay') || (this.id == 'opposinghero'))) {
@@ -234,7 +241,9 @@ document.querySelectorAll('.cardinplay').forEach(function(e){
         targetHealth -= currentAttackerAttack;
         currentAttackerElement.children[1].children[0].innerHTML = currentAttackerHealth;
         targetElement.children[1].children[0].innerHTML = targetHealth;
-        currentAttackerElement.children[1].children[0].style.color = "#f20301";
+        if (targetElement.id != "opposinghero") {
+          currentAttackerElement.children[1].children[0].style.color = "#f20301";
+        }
         targetElement.children[1].children[0].style.color = "#f20301";
         if ((currentAttackerAttack >= 5) && (isScreenShake == true)) {
           document.getElementById("game").classList.add("bigHitAnim");
@@ -279,8 +288,6 @@ document.querySelectorAll('.cardinplay').forEach(function(e){
                 var hasPlayedTutorial = "true";
                 var hasPlayedTutorial_serialized = JSON.stringify(hasPlayedTutorial); 
                 localStorage.setItem("hasPlayedTutorial", hasPlayedTutorial_serialized);
-                var hasPlayedTutorial_deserailized = JSON.parse(localStorage.getItem("hasPlayedTutorial"));
-                console.log(hasPlayedTutorial_deserailized);
               }
               document.getElementById('block').style.opacity = "0";
               document.getElementById('block').style.visibility = "visible";
@@ -303,7 +310,7 @@ document.querySelectorAll('.cardinplay').forEach(function(e){
                 var chanceGetPack = Math.random();
                 if (chanceGetPack < 0.2) {
                   var myPacks = Number(localStorage.getItem('myPacks'));
-                  myPacks += 1;
+                  myPacks++;
                   localStorage.setItem('myPacks', myPacks.toString());
                 }
                 setTimeout(function() {
@@ -371,6 +378,10 @@ document.querySelectorAll('.cardinplay').forEach(function(e){
         currentAttacker = null;
         canAttack = false;
         svg.style.display = "none";
+        document.getElementById("innercursor").style.visibility = "hidden";
+        document.getElementById("outercursor").style.visibility = "hidden";
+        document.getElementById("arrowcursor").style.visibility = "hidden";
+        body.style.cursor = "url(src/cursor/cursor.png) 10 2, auto";
         currentAttackerElement.classList.remove("canAttack");
         if ((hand.childElementCount == 0) || (mana == 0)) {
           for(let i=0; i<oldNumOfChild; i++) {
@@ -408,8 +419,10 @@ function dragElement(elmnt) {
         elmnt.onmousedown = dragMouseDown;
     }
     function dragMouseDown(e) {
-        collision = false
         e = e || window.event;
+        iElements = e.target;
+        elmnt.style.position = "absolute";
+        elmnt.style.left = e.clientX + "px";
         pos3 = parseInt(e.clientX);
         pos4 = parseInt(e.clientY);
         document.onmouseup = closeDragElement;
@@ -426,8 +439,6 @@ function dragElement(elmnt) {
         elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
         elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
         // Checks for collision between elements (the card and collisionbox)
-        for(var i = 0; i < draggableElements.length; i++){
-          var iElements = draggableElements[i]
           var aRect = collisionbox.getBoundingClientRect();
           var bRect = iElements.getBoundingClientRect();
           if (
@@ -435,19 +446,17 @@ function dragElement(elmnt) {
             (aRect.top > (bRect.top + bRect.height)) ||
             ((aRect.left + aRect.width) < bRect.left) ||
             (aRect.left > (bRect.left + bRect.width))) {
-              collision = false
+              collision = false;
           } else {
-            collision = true
+            collision = true;
             document.querySelectorAll('.card').forEach(function(e){
             e.addEventListener('mouseup', function(e) {
               if((collision == true) && (playerCardSlot2.childElementCount != 7)) {
-                var manaCost = iElements.children[0].children[2].innerText;
                 getNameOfElement = iElements.children[0].children[5].innerText;
                 iElements.remove();
               }
           });
           });
-        }
       }
     }
     function closeDragElement() {

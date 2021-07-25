@@ -70,16 +70,18 @@ head {
 	font-size:40px;
 	visibility: hidden;
 	text-align:center;
+	user-select: none;
 	z-index: 1000;
 }
 /* In Game */
  .cards {
- 	bottom: 0;
+ 	bottom: 75px;
 	 display: flex;
 	 height: 100px;
 	 padding: 0 50px;
 	 justify-content: center;
 	 position: absolute;
+	 margin: -50px;
 	 left: 0;
 	 right: 0;
 	 z-index: 9;
@@ -90,7 +92,6 @@ head {
 	 width: 60%;
 	 height: 100px;
 	 padding: 0 50px;
-	 	 margin: -50px;
 	 justify-content: center;
 	 position: relative;
 	 left: 15%;
@@ -99,9 +100,10 @@ head {
 }
  .card {
 	 height: 150px;
-	 position: absolute;
+	 position: relative;
 	 width: 100px;
 	 border-radius: 8px;
+	 float: left;
 	-webkit-touch-callout: none; /* iOS Safari */
 	-webkit-user-select: none; /* Safari */
 	-khtml-user-select: none; /* Konqueror HTML */
@@ -168,6 +170,41 @@ head {
 	 right: 0;
 	 top: 0;
 }
+#innercursor {
+	position:absolute;
+	transform:translate(-50%,-50%);
+	height:20px;
+	width: 20px;
+	border-radius:50%;
+	border:4px solid #e82e12;
+	pointer-events: none;
+	visibility: hidden;
+	z-index: 100;
+}
+#outercursor {
+	position:absolute;
+	transform:translate(-50%,-50%);
+	height:75px;
+	width:75px;
+	border-radius:50%;
+	border:16px solid #e82e12;
+	pointer-events: none;
+	visibility: hidden;
+	z-index: 100;
+}
+#arrowcursor {
+	width: 0; 
+	height: 0; 
+	position:absolute;
+	transform:translate(-50%,-50%);
+	transform-origin: 0% 0%;
+	border-left: 30px solid transparent;
+	border-right: 30px solid transparent;
+	border-bottom: 30px solid #e82e12;
+	pointer-events: none;
+	visibility: hidden;
+	z-index:101;
+  }
  .card:nth-child(1) .card-face {
 	 box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.15), inset 0 0 0 2px rgba(255, 153, 153, 0.75);
 	 transform: translateY(5px);
@@ -558,11 +595,11 @@ head {
 	}
 	.playerHeroHealth {
 		left: 55%;
-		top: 115%;
+		top: 103%;
 	}
 	.opposingHeroHealth {
 		left: 55%;
-		top: 81%;
+		top: 80%;
 	}
 	.deck {
 		height: 150px;
@@ -676,8 +713,8 @@ head {
 		margin-left: -1%;
 	}
 	.attackValue {
-		bottom: 12.5%;
-		right: 67.7%;
+		bottom: 10%;
+		right: 66.7%;
 		font-size: 35px;
 	}
 }
@@ -790,7 +827,6 @@ head {
 	 border-bottom-left-radius: 0.5vw;
 	 transition: border 0.3s ease, box-shadow 0.3s ease;
 	 background-size: cover;
-	 font-size: 40px;
 	 font-weight: bold;
 	 letter-spacing: -0.025em;
 	 color: white;
@@ -860,6 +896,7 @@ head {
 	 color: white;
    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 	 text-shadow: -0.025em 0.025em 0 black;
+	 text-align: center;
 	 user-select: none;
 	 z-index: 5;
  }
@@ -881,6 +918,7 @@ head {
 	 color: white;
    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 	 text-shadow: -0.025em 0.025em 0 black;
+	 text-align: center;
 	 user-select: none;
 	 z-index: 5;
 }
@@ -921,6 +959,7 @@ head {
 	 font-weight: bold;
 	 letter-spacing: -0.025em;
 	 color: rgb(51, 26, 0);
+	 z-index: 4;
 	 user-select: none;
 	}
 .cardNameValue {
@@ -2090,7 +2129,7 @@ head {
     height: 13%;
     border-radius: 50px;
 	visibility: hidden;
-	z-index: 11;
+	z-index: 20;
 	user-select: none;
 	pointer-events: none;
 }
@@ -2099,7 +2138,7 @@ head {
     position: absolute;
     display: block;
     width: 0;
-    z-index: 11;
+    z-index: 20;
     border-style: solid;
     border-color: white transparent;
     border-width: 24px 15px 0;
@@ -2124,7 +2163,7 @@ head {
     height: 13%;
     border-radius: 50px;
 	visibility: hidden;
-	z-index: 11;
+	z-index: 20;
 	user-select: none;
 	pointer-events: none;
 }
@@ -2133,7 +2172,7 @@ head {
     position: absolute;
     display: block;
     width: 0;
-    z-index: 11;
+    z-index: 20;
     border-style: solid;
     border-color: white transparent;
     border-width: 0 15px 18px;
