@@ -53,17 +53,31 @@ function startGame() {
 	updateDeckCount()
   // start with 3 cards in hand initially
   if (isTutorial == true) {
-    hand.appendChild(playerDeck.cards[0].getPlayerCardsInHandHTML())
+    for (let i=0; i<playerDeck.cards.length; i++) {
+      if (playerDeck.cards[i]['mana'] == 1) {
+        hand.appendChild(playerDeck.cards[i].getPlayerCardsInHandHTML())
+        break
+      }
+    }
 		playerDeck.cards.shift();
 		computerDeck.cards.shift();
 		updateDeckCount()
   } else {
-    let x = 3
+    let x = 2;
     for(let i = 0; i < x; i++) {
       hand.appendChild(playerDeck.cards[0].getPlayerCardsInHandHTML())
       playerDeck.cards.shift();
       computerDeck.cards.shift();
       updateDeckCount()
+    }
+    for (let i=0; i<playerDeck.cards.length; i++) {
+      if (playerDeck.cards[i]['mana'] == 1) {
+        hand.appendChild(playerDeck.cards[i].getPlayerCardsInHandHTML())
+        playerDeck.cards.shift();
+        computerDeck.cards.shift();
+        updateDeckCount()
+        break
+      }
     }
   }
 }
@@ -130,21 +144,49 @@ document.getElementById("endturn").addEventListener("click", function() {
 the computers board and uses the shift method to remove the first card in the array then proceeds to call both updateDeckCount and playerTurn functions. */
 function opponentTurn() {
   playersTurn = false;
+  document.getElementById("computerTurn").style.display = "block";
+  document.getElementById("endturn").style.backgroundColor = "grey";
+  document.getElementById("endturn").innerText = "ENEMY TURN";
+  if (computerCardSlot.childElementCount != 0) {
   // calls function defined in AI.js
-  AI()
+  setTimeout(function() {
+    AI();
+  },1250)
   // stops the AI from having more than 7 cards on the board at a time
-  let opponentCardsInPlay = computerCardSlot.childElementCount;
-  if(opponentCardsInPlay != maxOpponentCardsInPlay) {
-    computerCardSlot.appendChild(computerDeck.cards[0].getComputerHTML())
-    cardplaceSnd.play();
-    computerDeck.cards.shift();
-    updateDeckCount()
+  setTimeout(function() {
+    let opponentCardsInPlay = computerCardSlot.childElementCount;
+    if(opponentCardsInPlay != maxOpponentCardsInPlay) {
+      computerCardSlot.appendChild(computerDeck.cards[0].getComputerHTML())
+      cardplaceSnd.play();
+      computerDeck.cards.shift();
+      updateDeckCount();
+      // to fix position of board GUI onclick
+      if(opponentCardsInPlay >= 0) {
+        computerCardSlot.style.transform = "translateY(17.5%)"; 
+      }
+    }
+    setTimeout(function() {
+      playerTurn();
+    },1000)
+  },2500)
+  } else {
+    setTimeout(function() {
+      let opponentCardsInPlay = computerCardSlot.childElementCount;
+      if(opponentCardsInPlay != maxOpponentCardsInPlay) {
+        computerCardSlot.appendChild(computerDeck.cards[0].getComputerHTML())
+        cardplaceSnd.play();
+        computerDeck.cards.shift();
+        updateDeckCount();
+        // to fix position of board GUI onclick
+        if(opponentCardsInPlay >= 0) {
+          computerCardSlot.style.transform = "translateY(17.5%)"; 
+        }
+      }
+      setTimeout(function() {
+        playerTurn();
+      },1000)
+    },1250)
   }
-  // to fix position of board GUI onclick
-  if(opponentCardsInPlay >= 0) {
-    computerCardSlot.style.transform = "translateY(17.5%)"; 
-  }
-  playerTurn()
 }
 
 function playerTurn() {
@@ -153,6 +195,9 @@ function playerTurn() {
   mana = manaCapacity
   manaElement.innerHTML = mana + "/" + manaCapacity;
   oldNumOfChild = playerCardSlot2.childElementCount;
+  document.getElementById("computerTurn").style.display = "none";
+  document.getElementById("endturn").style.backgroundColor = "#4ce322";
+  document.getElementById("endturn").innerText = "END TURN";
   if (document.querySelector('.opposingHeroHealth').innerText == 10) {
     isTutorial = true;
   }
@@ -384,7 +429,7 @@ document.querySelectorAll('.cardinplay').forEach(function(e){
         body.style.cursor = "url(src/cursor/cursor.png) 10 2, auto";
         currentAttackerElement.classList.remove("canAttack");
         if ((hand.childElementCount == 0) || (mana == 0)) {
-          for(let i=0; i<oldNumOfChild; i++) {
+          for(let i=0; i<playerCardSlot2.childElementCount; i++) {
             if (playerCardSlot2.children[i].classList.contains("canAttack")) {
               break;
             } 

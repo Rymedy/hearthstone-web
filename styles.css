@@ -73,6 +73,18 @@ head {
 	user-select: none;
 	z-index: 1000;
 }
+#computerTurn {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	display: none;
+	user-select: none;
+	z-index: 1000;
+}
 /* In Game */
  .cards {
  	bottom: 75px;
@@ -87,14 +99,14 @@ head {
 	 z-index: 9;
 }
 .enemycards {
-	 top: 5px;
+	 top: -26px;
 	 display: flex;
 	 width: 60%;
 	 height: 100px;
 	 padding: 0 50px;
 	 justify-content: center;
 	 position: relative;
-	 left: 15%;
+	 left: 12%;
 	 right: 0;
 	 z-index: 5;
 }
@@ -1134,7 +1146,7 @@ head {
 	padding: 10px 15px;
 	border: none;
 	outline: none;
-	z-index: 200;
+	z-index: 10000;
   }
   
   .openbtn:hover {
