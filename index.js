@@ -16,6 +16,7 @@ var maxOpponentCardsInPlay = 7;
 var cardplaceSnd = new Audio("src/sounds/cardplace.mp3")
 var mockSnd = new Audio("src/sounds/mock.mp3")
 var jobsdoneSnd = new Audio("src/voiceovers/innkeeper_jobs_done.mp3")
+var playerturnSnd = new Audio("src/sounds/playerturn.mp3")
 var amount = 0;
 var oldNumOfChild = 0;
 var playerHandArray = []
@@ -61,7 +62,8 @@ function startGame() {
     }
 		playerDeck.cards.shift();
 		computerDeck.cards.shift();
-		updateDeckCount()
+		updateDeckCount();
+    checkForRequiredMana();
   } else {
     let x = 2;
     for(let i = 0; i < x; i++) {
@@ -79,6 +81,7 @@ function startGame() {
         break
       }
     }
+    checkForRequiredMana();
   }
 }
 /* defines new function that when boolean collision is true between the card and collisionbox element and element is 
@@ -90,7 +93,11 @@ function placeCardFunc(e) {
     for(var i = 0; i < originalDeck.cards.length; i++) {
       if ((originalDeck.cards[i]['name'] == getNameOfElement) && (playerCardSlot2.childElementCount != 7)) {
         found = true;
+        var manaCost = originalDeck.cards[i]['mana'];
+        mana -= manaCost;
+        manaElement.innerHTML = mana + "/" + manaCapacity;
         playerCardSlot2.appendChild(originalDeck.cards[i].getPlayerHTML())
+        checkForRequiredMana();
         cardplaceSnd.play();
         if (hand.childElementCount == 0) {
           document.getElementById("gifhint").style.backgroundImage = "url('src/hints/end_turn.gif')";
@@ -195,6 +202,7 @@ function playerTurn() {
   mana = manaCapacity
   manaElement.innerHTML = mana + "/" + manaCapacity;
   oldNumOfChild = playerCardSlot2.childElementCount;
+  playerturnSnd.play();
   document.getElementById("computerTurn").style.display = "none";
   document.getElementById("endturn").style.backgroundColor = "#4ce322";
   document.getElementById("endturn").innerText = "END TURN";
@@ -225,8 +233,9 @@ function playerTurn() {
   if(hand.childElementCount != 10) {
     hand.appendChild(playerDeck.cards[0].getPlayerCardsInHandHTML())
   }
-  attack()
-  enableDrag()
+  checkForRequiredMana();
+  attack();
+  enableDrag();
   /* Removes all event listeners from elements with the class name 'card' for function placeCardFunc
   on mouseup to ensure elements do not have more than 1 event listener when the placeCard() function is called. */
   document.querySelectorAll('.card').forEach(function(e){
@@ -235,6 +244,20 @@ function playerTurn() {
   placeCard()
   playerDeck.cards.shift();
   updateDeckCount()
+}
+
+function checkForRequiredMana() {
+  for (let i=0; i<draggableElements.length; i++) {
+    var playercard = document.getElementsByClassName("card")[i];
+    if (mana < draggableElements[i].children[0].children[2].innerText) {
+      draggableElements[i].style.pointerEvents = "none";
+      draggableElements[i].children[0].children[4].style.border = "solid 4px rgb(56, 56, 56)";
+    } else {
+      draggableElements[i].style.pointerEvents = "all";
+      draggableElements[i].children[0].children[4].style.border = "solid 4px #0FCC00";
+    }
+    console.log(draggableElements[i]['mana'])
+  }
 }
 /* gives all current cards on the board the ability to attack by giving the card
 class 'canAttack', when attacking the card is checked to see if the card has

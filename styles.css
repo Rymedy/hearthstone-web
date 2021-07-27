@@ -166,7 +166,7 @@ head {
 .card-border {
 	 height: 143px;
 	 width: 93px;
-	border: solid 4px rgba(0, 230, 64, 1);
+	border: solid 4px rgb(56, 56, 56);
   animation: shake 0.5s;
   animation-iteration-count: infinite;
   border-radius: 8px;
