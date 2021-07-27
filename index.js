@@ -83,6 +83,7 @@ function startGame() {
     }
     checkForRequiredMana();
   }
+  createManaCrystal();
 }
 /* defines new function that when boolean collision is true between the card and collisionbox element and element is 
 created using the getPlayerHTML() function defined in deck.js and is appended as a child into the players' board */
@@ -98,6 +99,33 @@ function placeCardFunc(e) {
         manaElement.innerHTML = mana + "/" + manaCapacity;
         playerCardSlot2.appendChild(originalDeck.cards[i].getPlayerHTML())
         checkForRequiredMana();
+        var manaCrystals = document.getElementsByClassName("manabox");
+        for (let i=0; i<manaCrystals.length; i++) {
+          if (i == 0) {
+            manaCrystals[manaCrystals.length-1].style.backgroundColor = "black";
+          }
+          else if (i == 1) {
+            manaCrystals[manaCrystals.length-2].style.backgroundColor = "black";
+          }
+          else if (i == 2) {
+            manaCrystals[manaCrystals.length-3].style.backgroundColor = "black";
+          }
+          else if (i == 3) {
+            manaCrystals[manaCrystals.length-4].style.backgroundColor = "black";
+          }
+          else if (i == 4) {
+            manaCrystals[manaCrystals.length-5].style.backgroundColor = "black";
+          }
+          else if (i == 5) {
+            manaCrystals[manaCrystals.length-6].style.backgroundColor = "black";
+          }
+          else if (i == 6) {
+            manaCrystals[manaCrystals.length-7].style.backgroundColor = "black";
+          }
+          if (i+1 == manaCost) {
+            break
+          }
+        }
         cardplaceSnd.play();
         if (hand.childElementCount == 0) {
           document.getElementById("gifhint").style.backgroundImage = "url('src/hints/end_turn.gif')";
@@ -198,9 +226,16 @@ function opponentTurn() {
 
 function playerTurn() {
   playersTurn = true;
-  manaCapacity++;
+  if (manaCapacity != 10) {
+    manaCapacity++;
+    createManaCrystal();
+  }
   mana = manaCapacity
   manaElement.innerHTML = mana + "/" + manaCapacity;
+  var manaCrystals = document.getElementsByClassName("manabox");
+  for (let i=0; i<manaCrystals.length; i++) {
+    manaCrystals[i].style.backgroundColor = "#3669c9";
+  }
   oldNumOfChild = playerCardSlot2.childElementCount;
   playerturnSnd.play();
   document.getElementById("computerTurn").style.display = "none";
@@ -258,6 +293,13 @@ function checkForRequiredMana() {
     }
     console.log(draggableElements[i]['mana'])
   }
+}
+
+function createManaCrystal() {
+  const manacontainer = document.getElementById("manacontainer");
+  const manacrystal = document.createElement('div');
+  manacrystal.classList.add("manabox");
+  manacontainer.appendChild(manacrystal);
 }
 /* gives all current cards on the board the ability to attack by giving the card
 class 'canAttack', when attacking the card is checked to see if the card has

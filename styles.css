@@ -1161,7 +1161,66 @@ head {
 	  user-select: none;
 	  z-index: 200;
   }
-
+/* Mana GUI Related */
+#manacontainer {
+	width: 17.6%;
+	height: 3.4%;
+	position: absolute;
+	left: 67%;
+	top: 90.6%;
+	background-color: #234856;
+	border: 4px solid #476e7a;
+}
+.manabox {
+	position: relative;
+	width: 30px; 
+	height: 17.32px;
+	float: left;
+	background-color: #3669c9;
+	margin: 8.66px 0;
+	box-shadow: 0 0 40px rgba(0,0,0,0.9);
+	border-left: solid 1.5px #333333;
+	border-right: solid 1.5px #333333;
+  }
+  
+  .manabox:before,
+  .manabox:after {
+	content: "";
+	position: absolute;
+	z-index: 1;
+	width: 21.21px;
+	height: 21.21px;
+	-webkit-transform: scaleY(0.5774) rotate(-45deg);
+	-ms-transform: scaleY(0.5774) rotate(-45deg);
+	transform: scaleY(0.5774) rotate(-45deg);
+	background-color: inherit;
+	left: 2.8934px;
+	box-shadow: 0 0 40px rgba(0,0,0,0.9);
+  }
+  
+  .manabox:before {
+	top: -10.6066px;
+	border-top: solid 2.1213px #333333;
+	border-right: solid 2.1213px #333333;
+  }
+  
+  .manabox:after {
+	bottom: -10.6066px;
+	border-bottom: solid 2.1213px #333333;
+	border-left: solid 2.1213px #333333;
+  }
+  
+  /*cover up extra shadows*/
+  .manabox span {
+	display: block;
+	position: absolute;
+	top:0.8660254037844386px;
+	left: 0;
+	width:27px;
+	height:15.5885px;
+	z-index: 2;
+	background: inherit;
+  }
 /* In Game Menu (Press Esc) */
 #game {
 	width: 90%;
