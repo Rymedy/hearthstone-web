@@ -31,7 +31,9 @@ function createCommonCard() {
 	flipCard.classList.add("flip-card-common");
 	innerFlipCard.classList.add("flip-card-inner");
 	frontFlipCard.classList.add("flip-card-front");
+	backFlipCard.classList.add("card-face");
 	backFlipCard.classList.add("flip-card-back");
+	backFlipCard.innerHTML = "This feature has not yet been developed!";
 	imgFlipCard.style.width = "100%";
 	imgFlipCard.style.height = "100%";
 	containerDiv.appendChild(flipCard);
@@ -74,7 +76,9 @@ function createRareCard() {
 	flipCard.classList.add("flip-card-rare");
 	innerFlipCard.classList.add("flip-card-inner");
 	frontFlipCard.classList.add("flip-card-front");
+	backFlipCard.classList.add("card-face");
 	backFlipCard.classList.add("flip-card-back");
+	backFlipCard.innerHTML = "This feature has not yet been developed!";
 	imgFlipCard.style.width = "100%";
 	imgFlipCard.style.height = "100%";
 	containerDiv.appendChild(flipCard);
@@ -117,7 +121,9 @@ function createEpicCard() {
 	flipCard.classList.add("flip-card-epic");
 	innerFlipCard.classList.add("flip-card-inner");
 	frontFlipCard.classList.add("flip-card-front");
+	backFlipCard.classList.add("card-face");
 	backFlipCard.classList.add("flip-card-back");
+	backFlipCard.innerHTML = "This feature has not yet been developed!";
 	imgFlipCard.style.width = "100%";
 	imgFlipCard.style.height = "100%";
 	containerDiv.appendChild(flipCard);
@@ -160,7 +166,9 @@ function createLegendaryCard() {
 	flipCard.classList.add("flip-card-legendary");
 	innerFlipCard.classList.add("flip-card-inner");
 	frontFlipCard.classList.add("flip-card-front");
+	backFlipCard.classList.add("card-face");
 	backFlipCard.classList.add("flip-card-back");
+	backFlipCard.innerHTML = "This feature has not yet been developed!";
 	imgFlipCard.style.width = "100%";
 	imgFlipCard.style.height = "100%";
 	containerDiv.appendChild(flipCard);

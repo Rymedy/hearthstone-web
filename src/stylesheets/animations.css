@@ -158,6 +158,9 @@
 .fadeOutAnim {
     animation: fadeOutAnim 1s;
 }
+.longFadeOutAnim {
+    animation: fadeOutAnim 3s;
+}
 @keyframes fade {
     0% {
         opacity: 0.8;

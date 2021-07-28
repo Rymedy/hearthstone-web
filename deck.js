@@ -21,13 +21,14 @@ class Deck {
 	}
 }
 class MinionCard {
-	constructor(attack, health, mana, info, imageString, name) {
+	constructor(attack, health, mana, info, imageString, name, rarity) {
 		this.imageString = imageString;
 		this.attack = attack;
 		this.health = health;
 		this.info = info;
 		this.name = name;
 		this.mana = mana;
+		this.rarity = rarity;
 	}
 	getComputerHTML() {
 		const computerCardDiv = document.createElement('div')
@@ -113,24 +114,24 @@ class MinionCard {
 
 function freshDeck() {
 	// deck in use by the player and computer
-	let mal_ganis = new MinionCard(4, 3, 9, "Your other Demons have +2/+2. Your hero is Immune.", "src/cards/mal_ganis.jpg", "Mal'ganis")
-	let elven_archer = new MinionCard(1, 1, 1, "Battlecry: Deal 1 damage.", "src/cards/elven_archer.jpg", "Elven Archer")
-	let voodoo_doctor = new MinionCard(2, 1, 1, "Battlecry: Restore 2 Health.", "src/cards/voodoo_doctor.jpg", "Voodoo Doctor")
-	let king_krush = new MinionCard(8, 8, 9, "Charge", "src/cards/king_krush.jpg", "King Krush")
-	let ragnaros_the_firelord = new MinionCard(8, 8, 8, "Can't attack. At the end of your turn, deal 8 damage to a random enemy.", "src/cards/ragnaros_the_firelord.png", "Ragnaros the Firelord")
-	let ragnaros_the_lightlord = new MinionCard(8, 8, 8, "At the end of your turn, restore 8 Health to a damaged friendly character.", "src/cards/ragnaros_the_lightlord.jpg", "Ragnaros the Lightlord")
-	let acidic_swamp_ooze = new MinionCard(3, 2, 2, "Battlecry: Destroy your opponent's weapon.", "src/cards/acidic_swamp_ooze.jpg", "Acidic Swamp Ooze")
-	let bloodfen_raptor = new MinionCard(3, 2, 2, "", "src/cards/bloodfen_raptor.jpg", "Bloodfen Raptor")
-	let kobold_geomancer = new MinionCard(2, 2, 2, "Spell Damage +1", "src/cards/kobold_geomancer.png", "Kobold Geomancer")
-	let razorfen_hunter = new MinionCard(2, 3, 3, "Battlecry: Summon a 1/1 Boar.", "src/cards/razorfen_hunter.jpg", "Razorfen Hunter")
-	let shattered_sun_cleric = new MinionCard(3, 2, 3, "Battlecry: Give a friendly minion +1/+1.", "src/cards/shattered_sun_cleric.png", "Shattered Sun Cleric")
-	let chillwind_yeti = new MinionCard(4, 5, 4, "", "src/cards/chillwind_yeti.jpg", "Chillwind Yeti")
-	let gnomish_inventor = new MinionCard(2, 4, 4, "Battlecry: Draw a card.", "src/cards/gnomish_inventor.jpg", "Gnomish Inventor")
-	let senjin_shieldmasta = new MinionCard(3, 5, 4, "Taunt", "src/cards/senjin_shieldmasta.jpg", "Sen'jin Shieldmasta")
-	let gurubashi_berserker = new MinionCard(2, 8, 5, "Whenever this minion takes damage, gain +3 Attack.", "src/cards/gurubashi_berserker.png", "Gurubashi Berserker")
-	let archmage = new MinionCard(4, 7, 6, "Spell Damage +1", "src/cards/archmage.jpg", "Archmage")
-	let boulderfist_ogre = new MinionCard(6, 7, 6, "", "src/cards/boulderfist_ogre.jpg", "Boulderfist Ogre")
-	let stormwind_champion = new MinionCard(7, 7, 7, "Your other minions have +1/+1.", "src/cards/stormwind_champion.png", "Stormwind Champion")
+	let mal_ganis = new MinionCard(9, 7, 9, "Your other Demons have +2/+2. Your hero is Immune.", "src/cards/mal_ganis.jpg", "Mal'ganis", "Legendary")
+	let elven_archer = new MinionCard(1, 1, 1, "Battlecry: Deal 1 damage.", "src/cards/elven_archer.jpg", "Elven Archer", "Common")
+	let voodoo_doctor = new MinionCard(2, 1, 1, "Battlecry: Restore 2 Health.", "src/cards/voodoo_doctor.jpg", "Voodoo Doctor", "Common")
+	let king_krush = new MinionCard(8, 8, 9, "Charge", "src/cards/king_krush.jpg", "King Krush", "Legendary")
+	let ragnaros_the_firelord = new MinionCard(8, 8, 8, "Can't attack. At the end of your turn, deal 8 damage to a random enemy.", "src/cards/ragnaros_the_firelord.png", "Ragnaros the Firelord", "Legendary")
+	let ragnaros_the_lightlord = new MinionCard(8, 8, 8, "At the end of your turn, restore 8 Health to a damaged friendly character.", "src/cards/ragnaros_the_lightlord.jpg", "Ragnaros the Lightlord", "Legendary")
+	let acidic_swamp_ooze = new MinionCard(3, 2, 2, "Battlecry: Destroy your opponent's weapon.", "src/cards/acidic_swamp_ooze.jpg", "Acidic Swamp Ooze", "Common")
+	let bloodfen_raptor = new MinionCard(3, 2, 2, "", "src/cards/bloodfen_raptor.jpg", "Bloodfen Raptor", "Common")
+	let kobold_geomancer = new MinionCard(2, 2, 2, "Spell Damage +1", "src/cards/kobold_geomancer.png", "Kobold Geomancer", "Common")
+	let razorfen_hunter = new MinionCard(2, 3, 3, "Battlecry: Summon a 1/1 Boar.", "src/cards/razorfen_hunter.jpg", "Razorfen Hunter", "Common")
+	let shattered_sun_cleric = new MinionCard(3, 2, 3, "Battlecry: Give a friendly minion +1/+1.", "src/cards/shattered_sun_cleric.png", "Shattered Sun Cleric", "Common")
+	let chillwind_yeti = new MinionCard(4, 5, 4, "", "src/cards/chillwind_yeti.jpg", "Chillwind Yeti", "Common")
+	let gnomish_inventor = new MinionCard(2, 4, 4, "Battlecry: Draw a card.", "src/cards/gnomish_inventor.jpg", "Gnomish Inventor", "Common")
+	let senjin_shieldmasta = new MinionCard(3, 5, 4, "Taunt", "src/cards/senjin_shieldmasta.jpg", "Sen'jin Shieldmasta", "Common")
+	let gurubashi_berserker = new MinionCard(2, 8, 5, "Whenever this minion takes damage, gain +3 Attack.", "src/cards/gurubashi_berserker.png", "Gurubashi Berserker", "Common")
+	let archmage = new MinionCard(4, 7, 6, "Spell Damage +1", "src/cards/archmage.jpg", "Archmage", "Common")
+	let boulderfist_ogre = new MinionCard(6, 7, 6, "", "src/cards/boulderfist_ogre.jpg", "Boulderfist Ogre", "Common")
+	let stormwind_champion = new MinionCard(7, 7, 7, "Your other minions have +1/+1.", "src/cards/stormwind_champion.png", "Stormwind Champion", "Common")
 
 	return [
 	// player's deck

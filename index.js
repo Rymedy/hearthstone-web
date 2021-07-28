@@ -17,6 +17,7 @@ var cardplaceSnd = new Audio("src/sounds/cardplace.mp3")
 var mockSnd = new Audio("src/sounds/mock.mp3")
 var jobsdoneSnd = new Audio("src/voiceovers/innkeeper_jobs_done.mp3")
 var playerturnSnd = new Audio("src/sounds/playerturn.mp3")
+var heropowerSnd = new Audio("src/sounds/heropower.mp3")
 var amount = 0;
 var oldNumOfChild = 0;
 var playerHandArray = []
@@ -99,33 +100,7 @@ function placeCardFunc(e) {
         manaElement.innerHTML = mana + "/" + manaCapacity;
         playerCardSlot2.appendChild(originalDeck.cards[i].getPlayerHTML())
         checkForRequiredMana();
-        var manaCrystals = document.getElementsByClassName("manabox");
-        for (let i=0; i<manaCrystals.length; i++) {
-          if (i == 0) {
-            manaCrystals[manaCrystals.length-1].style.backgroundColor = "black";
-          }
-          else if (i == 1) {
-            manaCrystals[manaCrystals.length-2].style.backgroundColor = "black";
-          }
-          else if (i == 2) {
-            manaCrystals[manaCrystals.length-3].style.backgroundColor = "black";
-          }
-          else if (i == 3) {
-            manaCrystals[manaCrystals.length-4].style.backgroundColor = "black";
-          }
-          else if (i == 4) {
-            manaCrystals[manaCrystals.length-5].style.backgroundColor = "black";
-          }
-          else if (i == 5) {
-            manaCrystals[manaCrystals.length-6].style.backgroundColor = "black";
-          }
-          else if (i == 6) {
-            manaCrystals[manaCrystals.length-7].style.backgroundColor = "black";
-          }
-          if (i+1 == manaCost) {
-            break
-          }
-        }
+        updateManaGUI();
         cardplaceSnd.play();
         if (hand.childElementCount == 0) {
           document.getElementById("gifhint").style.backgroundImage = "url('src/hints/end_turn.gif')";
@@ -139,8 +114,38 @@ function placeCardFunc(e) {
    // Change this to playerCardSlot2.appendChild([THE CARD].getPlayerHTML()); maybe cycle thru the array playerDeck.cards to find if name is = to the name of the card being placed 
   }
 }
-// defines a new function that adds an event listener (mouseup) to all elements with the class name 'card' then calls the placeCardFunc()
 
+function updateManaGUI() {
+  var manaCrystals = document.getElementsByClassName("manabox");
+  for (let i=0; i<manaCrystals.length; i++) {
+    if (i == 0) {
+      manaCrystals[manaCrystals.length-1].style.backgroundColor = "black";
+    }
+    else if (i == 1) {
+      manaCrystals[manaCrystals.length-2].style.backgroundColor = "black";
+    }
+    else if (i == 2) {
+      manaCrystals[manaCrystals.length-3].style.backgroundColor = "black";
+    }
+    else if (i == 3) {
+      manaCrystals[manaCrystals.length-4].style.backgroundColor = "black";
+    }
+    else if (i == 4) {
+      manaCrystals[manaCrystals.length-5].style.backgroundColor = "black";
+    }
+    else if (i == 5) {
+      manaCrystals[manaCrystals.length-6].style.backgroundColor = "black";
+    }
+    else if (i == 6) {
+      manaCrystals[manaCrystals.length-7].style.backgroundColor = "black";
+    }
+    if (i+1 == manaCost) {
+      break
+    }
+  }
+}
+
+// defines a new function that adds an event listener (mouseup) to all elements with the class name 'card' then calls the placeCardFunc()
 function placeCard() {
 document.querySelectorAll('.card').forEach(function(e){
   e.addEventListener('mouseup', placeCardFunc);
@@ -179,6 +184,7 @@ document.getElementById("endturn").addEventListener("click", function() {
 the computers board and uses the shift method to remove the first card in the array then proceeds to call both updateDeckCount and playerTurn functions. */
 function opponentTurn() {
   playersTurn = false;
+  document.body.style.cursor = "url(src/cursor/spectate.png) 10 2, auto";
   document.getElementById("computerTurn").style.display = "block";
   document.getElementById("endturn").style.backgroundColor = "grey";
   document.getElementById("endturn").innerText = "ENEMY TURN";
@@ -238,6 +244,9 @@ function playerTurn() {
   }
   oldNumOfChild = playerCardSlot2.childElementCount;
   playerturnSnd.play();
+  document.body.style.cursor = "url(src/cursor/cursor.png) 10 2, auto";
+  document.getElementById("playerheropower").style.boxShadow = "0px 2px 15px 12px #0FCC00";
+  document.getElementById("playerheropower").classList.add("canAttack");
   document.getElementById("computerTurn").style.display = "none";
   document.getElementById("endturn").style.backgroundColor = "#4ce322";
   document.getElementById("endturn").innerText = "END TURN";
@@ -304,7 +313,8 @@ function createManaCrystal() {
 /* gives all current cards on the board the ability to attack by giving the card
 class 'canAttack', when attacking the card is checked to see if the card has
 this class.*/
-function attack() {
+function attack() { 
+  document.getElementById("playerheropower").classList.add("canAttack");
   var numOfChild = playerCardSlot2.childElementCount;
   for(let i=0; i<numOfChild; i++) {
     document.getElementsByClassName("player-cardinplay")[i].style.boxShadow = "0px 2px 15px 12px #0FCC00"; 
@@ -314,7 +324,7 @@ function attack() {
 document.querySelectorAll('.cardinplay').forEach(function(e){
   e.addEventListener('mousedown', function(e) {
     if(currentAttacker == null) {
-      if((this.classList.contains('player-cardinplay')) && (this.classList.contains('canAttack'))) {
+      if((this.classList.contains('player-cardinplay')) && (this.classList.contains('canAttack')) || (this.id == "playerheropower") && (this.classList.contains('canAttack'))) {
         playerCardSlot2.style.zIndex = "1"
         computerCardSlot.style.zIndex = "2"
         currentAttacker = this.id
@@ -342,19 +352,41 @@ document.querySelectorAll('.cardinplay').forEach(function(e){
 
         var currentAttackerElement = document.getElementById(currentAttacker);
         var targetElement = document.getElementById(target);
-
+        
         var currentAttackerAttack = currentAttackerElement.children[0].children[0].innerHTML;
         var currentAttackerHealth = currentAttackerElement.children[1].children[0].innerHTML;
         var targetAttack = targetElement.children[0].children[0].innerHTML;
         var targetHealth = targetElement.children[1].children[0].innerHTML;
-        currentAttackerHealth -= targetAttack;
-        targetHealth -= currentAttackerAttack;
-        currentAttackerElement.children[1].children[0].innerHTML = currentAttackerHealth;
-        targetElement.children[1].children[0].innerHTML = targetHealth;
-        if (targetElement.id != "opposinghero") {
-          currentAttackerElement.children[1].children[0].style.color = "#f20301";
+        if (currentAttacker == "playerheropower") {
+          mana -= 2;
+          manaElement.innerHTML = mana + "/" + manaCapacity;
+          checkForRequiredMana();
+          updateManaGUI();
+          setTimeout(function() {
+          currentAttackerHealth -= targetAttack;
+          targetHealth -= currentAttackerAttack;
+          currentAttackerElement.children[1].children[0].innerHTML = currentAttackerHealth;
+          targetElement.children[1].children[0].innerHTML = targetHealth;
+          if (targetElement.id != "opposinghero") {
+            currentAttackerElement.children[1].children[0].style.color = "#f20301";
+          }
+          targetElement.children[1].children[0].style.color = "#f20301";
+          if (targetHealth <= 0) {
+            setTimeout(function() {
+              targetElement.remove();
+            },200);
+          }
+        },1250);
+        } else {
+          currentAttackerHealth -= targetAttack;
+          targetHealth -= currentAttackerAttack;
+          currentAttackerElement.children[1].children[0].innerHTML = currentAttackerHealth;
+          targetElement.children[1].children[0].innerHTML = targetHealth;
+          if (targetElement.id != "opposinghero") {
+            currentAttackerElement.children[1].children[0].style.color = "#f20301";
+          }
+          targetElement.children[1].children[0].style.color = "#f20301";
         }
-        targetElement.children[1].children[0].style.color = "#f20301";
         if ((currentAttackerAttack >= 5) && (isScreenShake == true)) {
           document.getElementById("game").classList.add("bigHitAnim");
           setTimeout(function() {
@@ -382,6 +414,9 @@ document.querySelectorAll('.cardinplay').forEach(function(e){
           },2000);
         }
         currentAttackerElement.style.boxShadow = "none";
+        if (currentAttacker == "playerheropower") {
+          document.getElementById("playerheropower").classList.remove("canAttack");
+        }
         setTimeout(function() {
           if(currentAttackerHealth <= 0) {
             if (document.querySelector('.playerHeroHealth').innerText <= 0) {
@@ -509,7 +544,9 @@ document.querySelectorAll('.cardinplay').forEach(function(e){
           } else {
             attackSnd.play();
           }
-        } 
+        } else {
+          heropowerSnd.play();
+        }
         currentAttacker = null;
     } 
   });
