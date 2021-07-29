@@ -571,3 +571,50 @@
 .legendaryFlipAnim {
     animation: flipAnim 0.25s;
 }
+
+
+/* Card onPlay Anims */
+@keyframes ragnarosTheFirelord {
+	0%   {transform:scale(1.1) rotate(0deg);}
+	10% {transform: scale(2.75) rotate(-13deg);}
+	45% {transform: scale(3.2) rotate(-20deg);}
+	85% {transform: scale(2.85) rotate(-20deg);}
+	100%   {transform: scale(1) rotate(0deg);}
+}
+.ragnarosTheFirelord {
+    animation: ragnarosTheFirelord 2s;
+}
+
+.theLichKingShake {
+    animation: bigHitAnim 0.4s;
+}
+@keyframes theLichKing {
+	0%   {transform:scale(2.5); opacity: 0;}
+	60%   {transform:scale(2.5); opacity: 0.95;}
+	100%   {transform: scale(1); opacity: 1;}
+}
+.theLichKing {
+	animation: theLichKing 1s;
+}
+
+@keyframes stormwindChampion {
+	0%   {transform:scale(1.8) rotate(0deg);}
+	70%   {transform:scale(2.1) rotate(-20deg);}
+	100%   {transform: scale(1) rotate(0deg);}
+}
+.stormwindChampion {
+	animation: stormwindChampion 0.75s;
+}
+
+
+@keyframes deathwing {
+	0%   {transform:scale(1) rotate(0deg);}
+	60%   {transform:scale(10) rotate(-30deg);}
+	100%   {transform: scale(1) rotate(0deg);}
+}
+.deathwingShake {
+    animation: shakeScreenAnim 2s;
+}
+.deathwing {
+	animation: deathwing 2s;
+}

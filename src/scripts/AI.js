@@ -203,6 +203,7 @@ function AI() {
       }
     },250);
   }
+  return true
 }
 
 
@@ -240,6 +241,7 @@ function findMaxOpponentAttack(largestValue) {
       return opponentCards[i]
     }
   }
+  return true
 }
 
 /* returns the element with the largest attack on the player's side 
@@ -275,6 +277,7 @@ function findMaxPlayerAttack(largestValue) {
       return alliedCards[i]
     }
   }
+  return true
 }
 
 /* returns the element with the largest health on the opponent's side 
@@ -309,6 +312,7 @@ function findMaxOpponentHealth(largestValue) {
       return opponentCards[i]
     }
   }
+  return true
 }
 
 /* returns the element with the largest health on the player's side 
@@ -343,6 +347,7 @@ function findMaxPlayerHealth(largestValue) {
       return alliedCards[i]
     }
   }
+  return true
 }
 
 
@@ -358,6 +363,7 @@ function checkForLoss() {
       location.reload();
     },1000);
   }
+  return true
 }
 
 function getSumOfAttack() {
@@ -390,6 +396,7 @@ function showDamageLabel(currentAttackerAttack) {
       document.getElementById('playerdamagecontainer').style.opacity="0";
     },1000);
   },2000);
+  return true
 }
 
 
@@ -459,6 +466,7 @@ function oneAlliedCard() {
       }
     },250);
   }
+  return true
 }
 
 function twoAlliedCards() {
@@ -541,6 +549,7 @@ function twoAlliedCards() {
           showDamageLabel(sumOfAttack);
     }
   }
+  return true
 }
 
 
@@ -624,6 +633,7 @@ function threeAlliedCards() {
           showDamageLabel(sumOfAttack);
     }
   }
+  return true
 }
 
 function fourAlliedCards() {
@@ -706,6 +716,7 @@ function fourAlliedCards() {
           showDamageLabel(sumOfAttack);
     }
   }
+  return true
 }
 
 function fiveAlliedCards() {
@@ -788,6 +799,7 @@ function fiveAlliedCards() {
           showDamageLabel(sumOfAttack);
     }
   }
+  return true
 }
 
 function sixAlliedCards() {
@@ -870,6 +882,7 @@ function sixAlliedCards() {
           showDamageLabel(sumOfAttack);
     }
   }
+  return true
 }
 
 function sevenAlliedCards() {
@@ -926,4 +939,5 @@ function sevenAlliedCards() {
       }
     }
   }
+  return true
 }

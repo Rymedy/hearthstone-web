@@ -3152,3 +3152,8 @@ head {
 	display: none;
 	z-index: 26;
   }
+
+  #snowCanvas {
+	  display: none;
+	  transform: rotate(83deg);
+  }

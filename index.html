@@ -146,6 +146,7 @@
     <div id="playerbubble">You asked<br>for it!</div>
     <div id="computerbubble">You call that<br>wretched pile of<br>cards a deck?</div>
     <canvas id='fireworkCanvas' width='1500' height='1000' style="position:absolute; left: 10%; z-index: 10;"></canvas>
+    <canvas id='snowCanvas' width='1500' height='1000' style="position:absolute; left: 3; top: -41%; z-index: 10;"></canvas>
     <div class="bg-image"></div>
     <div id="manacontainer">
     </div>
@@ -216,6 +217,7 @@
 </div>
 <!-- Scripts -->
 <script src="deck.js"></script>
+<script src="src/scripts/attack.js"></script>
 <script src="index.js"></script>
 <script src="src/scripts/AI.js"></script>
 <script src="src/scripts/fps.js"></script>
@@ -223,9 +225,12 @@
 <script src="src/scripts/elementsController.js"></script>
 <script src="src/scripts/load.js"></script>
 <script src="src/scripts/fireworks.js"></script>
+<script src="src/scripts/snow.js"></script>
 <script src="src/scripts/time.js"></script>
 <script src="src/scripts/preventInspectElement.js"></script>
 <script src="src/scripts/window_focus.js"></script>
+<script src="src/scripts/card_sounds.js"></script>
+<script src="src/scripts/testing.js"></script>
 <script>
 function showGameMenu() {
   // show game menu
