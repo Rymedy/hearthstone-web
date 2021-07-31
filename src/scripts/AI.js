@@ -446,7 +446,15 @@ function oneAlliedCard() {
     var alliedAttack = alliedCards[0].children[0].children[0].innerText;
     var alliedHealth = alliedCards[0].children[1].children[0].innerText;
     maxAttack.children[1].children[0].innerText = opponentHealth - alliedAttack;
-    alliedCards[0].children[1].children[0].innerText = alliedHealth - opponentAttack;
+    if (alliedCards[0].classList.contains("hasDivineShield")) {
+      alliedCards[0].classList.remove("hasDivineShield");
+      playerCardSlot2.children[i].children[2].classList.add("divineShieldBreak");
+      setTimeout(function() {
+        playerCardSlot2.children[i].children[2].style.visibility = "hidden";
+      },400);
+    } else {
+      alliedCards[0].children[1].children[0].innerText = alliedHealth - opponentAttack;
+    }
     var totalAttack = 0;
     for(let i = 0; i < numOfOpponentCards; i++) {
       totalAttack += parseInt(opponentCards[i].children[0].children[0].innerText);
@@ -458,7 +466,14 @@ function oneAlliedCard() {
       showDamageLabel(totalAttack);
     }
     setTimeout(function() {
-      if(alliedCards[0].children[1].children[0].innerHTML <= 0) { 
+      if (alliedCards[0].classList.contains("hasDivineShield")) {
+        alliedCards[0].classList.remove("hasDivineShield");
+        alliedCards[0].children[2].classList.add("divineShieldBreak");
+        setTimeout(function() {
+          alliedCards[0].children[2].style.visibility = "hidden";
+        },400);
+      }
+      else if(alliedCards[0].children[1].children[0].innerHTML <= 0) { 
         alliedCards[0].remove();
       }
       if(maxAttack.children[1].children[0].innerHTML <= 0) {
@@ -492,7 +507,21 @@ function twoAlliedCards() {
   else if (numOfOpponentCards == 7) {
     healthModifier += 10;
   }
-  if(document.getElementById('playerhero').children[1].innerText <= healthModifier) {
+  if ((tauntExists == true) && (numOfOpponentCards <= 1)) {
+    for (let i=0; i<playerCardSlot2.childElementCount; i++) {
+      if (playerCardSlot2.children[i].classList.contains("hasTaunt")) {
+        var maxOpponentAttack = findMaxOpponentAttack(0);
+        var alliedAttack = playerCardSlot2.children[i].children[0].children[0].innerText;
+        var alliedHealth = playerCardSlot2.children[i].children[1].children[0].innerText;
+        var opponentAttack = maxOpponentAttack.children[0].children[0].innerText;
+        var opponentHealth = maxOpponentAttack.children[1].children[0].innerText;
+        playerCardSlot2.children[i].children[1].children[0].innerText = alliedHealth - opponentAttack;
+        maxOpponentAttack.children[1].children[0].innerText = opponentHealth - alliedAttack;
+        break
+      }
+    }
+  }
+  else if(document.getElementById('playerhero').children[1].innerText <= healthModifier) {
     for(let i = 0; i < numOfOpponentCards; i++) {
       var opponentAttack = parseInt(opponentCards[i].children[0].children[0].innerText);
       var heroHealth = document.getElementById('playerhero').children[1].innerText;
@@ -511,9 +540,24 @@ function twoAlliedCards() {
         var opponentAttack = maxOpponentAttack.children[0].children[0].innerText;
         var opponentHealth = maxOpponentAttack.children[1].children[0].innerText;
         maxOpponentAttack.children[1].children[0].innerText = opponentHealth - alliedAttack;
-        maxPlayerAttack.children[1].children[0].innerText = alliedHealth - opponentAttack;
+        if (playerCardSlot2.children[i].classList.contains("hasDivineShield")) {
+          playerCardSlot2.children[i].classList.remove("hasDivineShield");
+          playerCardSlot2.children[i].children[2].classList.add("divineShieldBreak");
+          setTimeout(function() {
+            playerCardSlot2.children[i].children[2].style.visibility = "hidden";
+          },400);
+        } else {
+          maxPlayerAttack.children[1].children[0].innerText = alliedHealth - opponentAttack;
+        }
         setTimeout(function() {
-          if(maxPlayerAttack.children[1].children[0].innerHTML <= 0) { 
+          if (maxPlayerAttack.classList.contains("hasDivineShield")) {
+            maxPlayerAttack.classList.remove("hasDivineShield");
+            maxPlayerAttack.children[2].classList.add("divineShieldBreak");
+            setTimeout(function() {
+              maxPlayerAttack.children[2].style.visibility = "hidden";
+            },400);
+          }
+          else if(maxPlayerAttack.children[1].children[0].innerHTML <= 0) { 
             maxPlayerAttack.remove();
           }
           if(maxOpponentAttack.children[1].children[0].innerHTML <= 0) {
@@ -534,7 +578,14 @@ function twoAlliedCards() {
             maxOpponentAttack.children[1].children[0].innerText = opponentHealth - alliedAttack;
             maxPlayerAttack.children[1].children[0].innerText = alliedHealth - opponentAttack;
             setTimeout(function() {
-              if(parseInt(maxPlayerAttack.children[1].children[0].innerText) <= 0) { 
+              if (maxPlayerAttack.classList.contains("hasDivineShield")) {
+                maxPlayerAttack.classList.remove("hasDivineShield");
+                maxPlayerAttack.children[2].classList.add("divineShieldBreak");
+                setTimeout(function() {
+                  maxPlayerAttack.children[2].style.visibility = "hidden";
+                },400);
+              }
+              else if(parseInt(maxPlayerAttack.children[1].children[0].innerText) <= 0) { 
                 maxPlayerAttack.remove();
               }
               if(parseInt(maxOpponentAttack.children[1].children[0].innerText) <= 0) {
@@ -576,7 +627,21 @@ function threeAlliedCards() {
   else if (numOfOpponentCards == 7) {
     healthModifier += 10;
   }
-  if(document.getElementById('playerhero').children[1].innerText <= healthModifier) {
+  if ((tauntExists == true) && (numOfOpponentCards <= 1)) {
+    for (let i=0; i<playerCardSlot2.childElementCount; i++) {
+      if (playerCardSlot2.children[i].classList.contains("hasTaunt")) {
+        var maxOpponentAttack = findMaxOpponentAttack(0);
+        var alliedAttack = playerCardSlot2.children[i].children[0].children[0].innerText;
+        var alliedHealth = playerCardSlot2.children[i].children[1].children[0].innerText;
+        var opponentAttack = maxOpponentAttack.children[0].children[0].innerText;
+        var opponentHealth = maxOpponentAttack.children[1].children[0].innerText;
+        playerCardSlot2.children[i].children[1].children[0].innerText = alliedHealth - opponentAttack;
+        maxOpponentAttack.children[1].children[0].innerText = opponentHealth - alliedAttack;
+        break
+      }
+    }
+  }
+  else if(document.getElementById('playerhero').children[1].innerText <= healthModifier) {
     for(let i = 0; i < numOfOpponentCards; i++) {
       var opponentAttack = parseInt(opponentCards[i].children[0].children[0].innerText);
       var heroHealth = document.getElementById('playerhero').children[1].innerText;
@@ -595,9 +660,24 @@ function threeAlliedCards() {
         var opponentAttack = maxOpponentAttack.children[0].children[0].innerText;
         var opponentHealth = maxOpponentAttack.children[1].children[0].innerText;
         maxOpponentAttack.children[1].children[0].innerText = opponentHealth - alliedAttack;
-        maxPlayerAttack.children[1].children[0].innerText = alliedHealth - opponentAttack;
+        if (playerCardSlot2.children[i].classList.contains("hasDivineShield")) {
+          playerCardSlot2.children[i].classList.remove("hasDivineShield");
+          playerCardSlot2.children[i].children[2].classList.add("divineShieldBreak");
+          setTimeout(function() {
+            playerCardSlot2.children[i].children[2].style.visibility = "hidden";
+          },400);
+        } else {
+          maxPlayerAttack.children[1].children[0].innerText = alliedHealth - opponentAttack;
+        }
         setTimeout(function() {
-          if(maxPlayerAttack.children[1].children[0].innerHTML <= 0) { 
+          if (maxPlayerAttack.classList.contains("hasDivineShield")) {
+            maxPlayerAttack.classList.remove("hasDivineShield");
+            maxPlayerAttack.children[2].classList.add("divineShieldBreak");
+            setTimeout(function() {
+              maxPlayerAttack.children[2].style.visibility = "hidden";
+            },400);
+          }
+          else if(maxPlayerAttack.children[1].children[0].innerHTML <= 0) { 
             maxPlayerAttack.remove();
           }
           if(maxOpponentAttack.children[1].children[0].innerHTML <= 0) {
@@ -616,9 +696,24 @@ function threeAlliedCards() {
             var opponentHealth = maxOpponentAttack.children[1].children[0].innerText;
             opponentAttackSum += opponentAttack;
             maxOpponentAttack.children[1].children[0].innerText = opponentHealth - alliedAttack;
-            maxPlayerAttack.children[1].children[0].innerText = alliedHealth - opponentAttack;
+            if (playerCardSlot2.children[i].classList.contains("hasDivineShield")) {
+              playerCardSlot2.children[i].classList.remove("hasDivineShield");
+              playerCardSlot2.children[i].children[2].classList.add("divineShieldBreak");
+              setTimeout(function() {
+                playerCardSlot2.children[i].children[2].style.visibility = "hidden";
+              },400);
+            } else {
+              maxPlayerAttack.children[1].children[0].innerText = alliedHealth - opponentAttack;
+            }
             setTimeout(function() {
-              if(parseInt(maxPlayerAttack.children[1].children[0].innerText) <= 0) { 
+              if (maxPlayerAttack.classList.contains("hasDivineShield")) {
+                maxPlayerAttack.classList.remove("hasDivineShield");
+                maxPlayerAttack.children[2].classList.add("divineShieldBreak");
+                setTimeout(function() {
+                  maxPlayerAttack.children[2].style.visibility = "hidden";
+                },400);
+              }
+              else if(parseInt(maxPlayerAttack.children[1].children[0].innerText) <= 0) { 
                 maxPlayerAttack.remove();
               }
               if(parseInt(maxOpponentAttack.children[1].children[0].innerText) <= 0) {
@@ -659,7 +754,21 @@ function fourAlliedCards() {
   else if (numOfOpponentCards == 7) {
     healthModifier += 10;
   }
-  if(document.getElementById('playerhero').children[1].innerText <= healthModifier) {
+  if ((tauntExists == true) && (numOfOpponentCards <= 1)) {
+    for (let i=0; i<playerCardSlot2.childElementCount; i++) {
+      if (playerCardSlot2.children[i].classList.contains("hasTaunt")) {
+        var maxOpponentAttack = findMaxOpponentAttack(0);
+        var alliedAttack = playerCardSlot2.children[i].children[0].children[0].innerText;
+        var alliedHealth = playerCardSlot2.children[i].children[1].children[0].innerText;
+        var opponentAttack = maxOpponentAttack.children[0].children[0].innerText;
+        var opponentHealth = maxOpponentAttack.children[1].children[0].innerText;
+        playerCardSlot2.children[i].children[1].children[0].innerText = alliedHealth - opponentAttack;
+        maxOpponentAttack.children[1].children[0].innerText = opponentHealth - alliedAttack;
+        break
+      }
+    }
+  }
+  else if(document.getElementById('playerhero').children[1].innerText <= healthModifier) {
     for(let i = 0; i < numOfOpponentCards; i++) {
       var opponentAttack = parseInt(opponentCards[i].children[0].children[0].innerText);
       var heroHealth = document.getElementById('playerhero').children[1].innerText;
@@ -678,9 +787,24 @@ function fourAlliedCards() {
         var opponentAttack = maxOpponentAttack.children[0].children[0].innerText;
         var opponentHealth = maxOpponentAttack.children[1].children[0].innerText;
         maxOpponentAttack.children[1].children[0].innerText = opponentHealth - alliedAttack;
-        maxPlayerAttack.children[1].children[0].innerText = alliedHealth - opponentAttack;
+        if (playerCardSlot2.children[i].classList.contains("hasDivineShield")) {
+          playerCardSlot2.children[i].classList.remove("hasDivineShield");
+          playerCardSlot2.children[i].children[2].classList.add("divineShieldBreak");
+          setTimeout(function() {
+            playerCardSlot2.children[i].children[2].style.visibility = "hidden";
+          },400);
+        } else {
+          maxPlayerAttack.children[1].children[0].innerText = alliedHealth - opponentAttack;
+        }
         setTimeout(function() {
-          if(maxPlayerAttack.children[1].children[0].innerHTML <= 0) { 
+          if (maxPlayerAttack.classList.contains("hasDivineShield")) {
+            maxPlayerAttack.classList.remove("hasDivineShield");
+            maxPlayerAttack.children[2].classList.add("divineShieldBreak");
+            setTimeout(function() {
+              maxPlayerAttack.children[2].style.visibility = "hidden";
+            },400);
+          }
+          else if(maxPlayerAttack.children[1].children[0].innerHTML <= 0) { 
             maxPlayerAttack.remove();
           }
           if(maxOpponentAttack.children[1].children[0].innerHTML <= 0) {
@@ -699,9 +823,24 @@ function fourAlliedCards() {
             var opponentHealth = maxOpponentAttack.children[1].children[0].innerText;
             opponentAttackSum += opponentAttack;
             maxOpponentAttack.children[1].children[0].innerText = opponentHealth - alliedAttack;
-            maxPlayerAttack.children[1].children[0].innerText = alliedHealth - opponentAttack;
+            if (playerCardSlot2.children[i].classList.contains("hasDivineShield")) {
+              playerCardSlot2.children[i].classList.remove("hasDivineShield");
+              playerCardSlot2.children[i].children[2].classList.add("divineShieldBreak");
+              setTimeout(function() {
+                playerCardSlot2.children[i].children[2].style.visibility = "hidden";
+              },400);
+            } else {
+              maxPlayerAttack.children[1].children[0].innerText = alliedHealth - opponentAttack;
+            }
             setTimeout(function() {
-              if(parseInt(maxPlayerAttack.children[1].children[0].innerText) <= 0) { 
+              if (maxPlayerAttack.classList.contains("hasDivineShield")) {
+                maxPlayerAttack.classList.remove("hasDivineShield");
+                maxPlayerAttack.children[2].classList.add("divineShieldBreak");
+                setTimeout(function() {
+                  maxPlayerAttack.children[2].style.visibility = "hidden";
+                },400);
+              }
+              else if(parseInt(maxPlayerAttack.children[1].children[0].innerText) <= 0) { 
                 maxPlayerAttack.remove();
               }
               if(parseInt(maxOpponentAttack.children[1].children[0].innerText) <= 0) {
@@ -742,7 +881,21 @@ function fiveAlliedCards() {
   else if (numOfOpponentCards == 7) {
     healthModifier += 10;
   }
-  if(document.getElementById('playerhero').children[1].innerText <= healthModifier) {
+  if ((tauntExists == true) && (numOfOpponentCards <= 1)) {
+    for (let i=0; i<playerCardSlot2.childElementCount; i++) {
+      if (playerCardSlot2.children[i].classList.contains("hasTaunt")) {
+        var maxOpponentAttack = findMaxOpponentAttack(0);
+        var alliedAttack = playerCardSlot2.children[i].children[0].children[0].innerText;
+        var alliedHealth = playerCardSlot2.children[i].children[1].children[0].innerText;
+        var opponentAttack = maxOpponentAttack.children[0].children[0].innerText;
+        var opponentHealth = maxOpponentAttack.children[1].children[0].innerText;
+        playerCardSlot2.children[i].children[1].children[0].innerText = alliedHealth - opponentAttack;
+        maxOpponentAttack.children[1].children[0].innerText = opponentHealth - alliedAttack;
+        break
+      }
+    }
+  }
+  else if(document.getElementById('playerhero').children[1].innerText <= healthModifier) {
     for(let i = 0; i < numOfOpponentCards; i++) {
       var opponentAttack = parseInt(opponentCards[i].children[0].children[0].innerText);
       var heroHealth = document.getElementById('playerhero').children[1].innerText;
@@ -761,9 +914,24 @@ function fiveAlliedCards() {
         var opponentAttack = maxOpponentAttack.children[0].children[0].innerText;
         var opponentHealth = maxOpponentAttack.children[1].children[0].innerText;
         maxOpponentAttack.children[1].children[0].innerText = opponentHealth - alliedAttack;
-        maxPlayerAttack.children[1].children[0].innerText = alliedHealth - opponentAttack;
+        if (playerCardSlot2.children[i].classList.contains("hasDivineShield")) {
+          playerCardSlot2.children[i].classList.remove("hasDivineShield");
+          playerCardSlot2.children[i].children[2].classList.add("divineShieldBreak");
+          setTimeout(function() {
+            playerCardSlot2.children[i].children[2].style.visibility = "hidden";
+          },400);
+        } else {
+          maxPlayerAttack.children[1].children[0].innerText = alliedHealth - opponentAttack;
+        }
         setTimeout(function() {
-          if(maxPlayerAttack.children[1].children[0].innerHTML <= 0) { 
+          if (maxPlayerAttack.classList.contains("hasDivineShield")) {
+            maxPlayerAttack.classList.remove("hasDivineShield");
+            maxPlayerAttack.children[2].classList.add("divineShieldBreak");
+            setTimeout(function() {
+              maxPlayerAttack.children[2].style.visibility = "hidden";
+            },400);
+          }
+          else if(maxPlayerAttack.children[1].children[0].innerHTML <= 0) { 
             maxPlayerAttack.remove();
           }
           if(maxOpponentAttack.children[1].children[0].innerHTML <= 0) {
@@ -782,9 +950,24 @@ function fiveAlliedCards() {
             var opponentHealth = maxOpponentAttack.children[1].children[0].innerText;
             opponentAttackSum += opponentAttack;
             maxOpponentAttack.children[1].children[0].innerText = opponentHealth - alliedAttack;
-            maxPlayerAttack.children[1].children[0].innerText = alliedHealth - opponentAttack;
+            if (playerCardSlot2.children[i].classList.contains("hasDivineShield")) {
+              playerCardSlot2.children[i].classList.remove("hasDivineShield");
+              playerCardSlot2.children[i].children[2].classList.add("divineShieldBreak");
+              setTimeout(function() {
+                playerCardSlot2.children[i].children[2].style.visibility = "hidden";
+              },400);
+            } else {
+              maxPlayerAttack.children[1].children[0].innerText = alliedHealth - opponentAttack;
+            }
             setTimeout(function() {
-              if(parseInt(maxPlayerAttack.children[1].children[0].innerText) <= 0) { 
+              if (maxPlayerAttack.classList.contains("hasDivineShield")) {
+                maxPlayerAttack.classList.remove("hasDivineShield");
+                maxPlayerAttack.children[2].classList.add("divineShieldBreak");
+                setTimeout(function() {
+                  maxPlayerAttack.children[2].style.visibility = "hidden";
+                },400);
+              }
+              else if(parseInt(maxPlayerAttack.children[1].children[0].innerText) <= 0) { 
                 maxPlayerAttack.remove();
               }
               if(parseInt(maxOpponentAttack.children[1].children[0].innerText) <= 0) {
@@ -825,7 +1008,21 @@ function sixAlliedCards() {
   else if (numOfOpponentCards == 7) {
     healthModifier += 10;
   }
-  if(document.getElementById('playerhero').children[1].innerText <= healthModifier) {
+  if ((tauntExists == true) && (numOfOpponentCards <= 1)) {
+    for (let i=0; i<playerCardSlot2.childElementCount; i++) {
+      if (playerCardSlot2.children[i].classList.contains("hasTaunt")) {
+        var maxOpponentAttack = findMaxOpponentAttack(0);
+        var alliedAttack = playerCardSlot2.children[i].children[0].children[0].innerText;
+        var alliedHealth = playerCardSlot2.children[i].children[1].children[0].innerText;
+        var opponentAttack = maxOpponentAttack.children[0].children[0].innerText;
+        var opponentHealth = maxOpponentAttack.children[1].children[0].innerText;
+        playerCardSlot2.children[i].children[1].children[0].innerText = alliedHealth - opponentAttack;
+        maxOpponentAttack.children[1].children[0].innerText = opponentHealth - alliedAttack;
+        break
+      }
+    }
+  }
+  else if(document.getElementById('playerhero').children[1].innerText <= healthModifier) {
     for(let i = 0; i < numOfOpponentCards; i++) {
       var opponentAttack = parseInt(opponentCards[i].children[0].children[0].innerText);
       var heroHealth = document.getElementById('playerhero').children[1].innerText;
@@ -844,9 +1041,24 @@ function sixAlliedCards() {
         var opponentAttack = maxOpponentAttack.children[0].children[0].innerText;
         var opponentHealth = maxOpponentAttack.children[1].children[0].innerText;
         maxOpponentAttack.children[1].children[0].innerText = opponentHealth - alliedAttack;
-        maxPlayerAttack.children[1].children[0].innerText = alliedHealth - opponentAttack;
+        if (playerCardSlot2.children[i].classList.contains("hasDivineShield")) {
+          playerCardSlot2.children[i].classList.remove("hasDivineShield");
+          playerCardSlot2.children[i].children[2].classList.add("divineShieldBreak");
+          setTimeout(function() {
+            playerCardSlot2.children[i].children[2].style.visibility = "hidden";
+          },400);
+        } else {
+          maxPlayerAttack.children[1].children[0].innerText = alliedHealth - opponentAttack;
+        }
         setTimeout(function() {
-          if(maxPlayerAttack.children[1].children[0].innerHTML <= 0) { 
+          if (maxPlayerAttack.classList.contains("hasDivineShield")) {
+            maxPlayerAttack.classList.remove("hasDivineShield");
+            maxPlayerAttack.children[2].classList.add("divineShieldBreak");
+            setTimeout(function() {
+              maxPlayerAttack.children[2].style.visibility = "hidden";
+            },400);
+          }
+          else if(maxPlayerAttack.children[1].children[0].innerHTML <= 0) { 
             maxPlayerAttack.remove();
           }
           if(maxOpponentAttack.children[1].children[0].innerHTML <= 0) {
@@ -865,9 +1077,24 @@ function sixAlliedCards() {
             var opponentHealth = maxOpponentAttack.children[1].children[0].innerText;
             opponentAttackSum += opponentAttack;
             maxOpponentAttack.children[1].children[0].innerText = opponentHealth - alliedAttack;
-            maxPlayerAttack.children[1].children[0].innerText = alliedHealth - opponentAttack;
+            if (playerCardSlot2.children[i].classList.contains("hasDivineShield")) {
+              playerCardSlot2.children[i].classList.remove("hasDivineShield");
+              playerCardSlot2.children[i].children[2].classList.add("divineShieldBreak");
+              setTimeout(function() {
+                playerCardSlot2.children[i].children[2].style.visibility = "hidden";
+              },400);
+            } else {
+              maxPlayerAttack.children[1].children[0].innerText = alliedHealth - opponentAttack;
+            }
             setTimeout(function() {
-              if(parseInt(maxPlayerAttack.children[1].children[0].innerText) <= 0) { 
+              if (maxPlayerAttack.classList.contains("hasDivineShield")) {
+                maxPlayerAttack.classList.remove("hasDivineShield");
+                maxPlayerAttack.children[2].classList.add("divineShieldBreak");
+                setTimeout(function() {
+                  maxPlayerAttack.children[2].style.visibility = "hidden";
+                },400);
+              }
+              else if(parseInt(maxPlayerAttack.children[1].children[0].innerText) <= 0) { 
                 maxPlayerAttack.remove();
               }
               if(parseInt(maxOpponentAttack.children[1].children[0].innerText) <= 0) {
@@ -908,7 +1135,21 @@ function sevenAlliedCards() {
   else if (numOfOpponentCards == 7) {
     healthModifier += 10;
   }
-  if(document.getElementById('playerhero').children[1].innerText <= healthModifier) {
+  if ((tauntExists == true) && (numOfOpponentCards <= 1)) {
+    for (let i=0; i<playerCardSlot2.childElementCount; i++) {
+      if (playerCardSlot2.children[i].classList.contains("hasTaunt")) {
+        var maxOpponentAttack = findMaxOpponentAttack(0);
+        var alliedAttack = playerCardSlot2.children[i].children[0].children[0].innerText;
+        var alliedHealth = playerCardSlot2.children[i].children[1].children[0].innerText;
+        var opponentAttack = maxOpponentAttack.children[0].children[0].innerText;
+        var opponentHealth = maxOpponentAttack.children[1].children[0].innerText;
+        playerCardSlot2.children[i].children[1].children[0].innerText = alliedHealth - opponentAttack;
+        maxOpponentAttack.children[1].children[0].innerText = opponentHealth - alliedAttack;
+        break
+      }
+    }
+  }
+  else if(document.getElementById('playerhero').children[1].innerText <= healthModifier) {
     for(let i = 0; i < numOfOpponentCards; i++) {
       var opponentAttack = parseInt(opponentCards[i].children[0].children[0].innerText);
       var heroHealth = document.getElementById('playerhero').children[1].innerText;
@@ -927,9 +1168,24 @@ function sevenAlliedCards() {
         var opponentAttack = maxOpponentAttack.children[0].children[0].innerText;
         var opponentHealth = maxOpponentAttack.children[1].children[0].innerText;
         maxOpponentAttack.children[1].children[0].innerText = opponentHealth - alliedAttack;
-        maxPlayerAttack.children[1].children[0].innerText = alliedHealth - opponentAttack;
+        if (playerCardSlot2.children[i].classList.contains("hasDivineShield")) {
+          playerCardSlot2.children[i].classList.remove("hasDivineShield");
+          playerCardSlot2.children[i].children[2].classList.add("divineShieldBreak");
+          setTimeout(function() {
+            playerCardSlot2.children[i].children[2].style.visibility = "hidden";
+          },400);
+        } else {
+          maxPlayerAttack.children[1].children[0].innerText = alliedHealth - opponentAttack;
+        }
         setTimeout(function() {
-          if(maxPlayerAttack.children[1].children[0].innerHTML <= 0) { 
+          if (maxPlayerAttack.classList.contains("hasDivineShield")) {
+            maxPlayerAttack.classList.remove("hasDivineShield");
+            maxPlayerAttack.children[2].classList.add("divineShieldBreak");
+            setTimeout(function() {
+              maxPlayerAttack.children[2].style.visibility = "hidden";
+            },400);
+          }
+          else if(maxPlayerAttack.children[1].children[0].innerHTML <= 0) { 
             maxPlayerAttack.remove();
           }
           if(maxOpponentAttack.children[1].children[0].innerHTML <= 0) {

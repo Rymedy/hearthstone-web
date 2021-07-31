@@ -586,6 +586,18 @@ head {
 		right: 56.8%;
 		font-size: 27px;
 	}
+	.taunt {
+		width: 144%;
+		height: 143%;
+		position: absolute;
+		top: -13%;
+		left: -13.5%;
+	}
+	#enablescreenshake {
+		left: 15%; 
+		top: 79%;
+		font-size: 25px;
+	}
 }
 @media only screen and (min-width: 1500px) {
 	.cardinplay {
@@ -728,6 +740,18 @@ head {
 		bottom: 10%;
 		right: 66.7%;
 		font-size: 35px;
+	}
+	.taunt {
+		width: 134%;
+		height: 134%;
+		position: absolute;
+		top: -10%;
+		left: -13.5%;
+	}
+	#enablescreenshake {
+		left: 15%; 
+		top: 79%;
+		font-size: 30px;
 	}
 }
 .computer-cardinplay:hover {
@@ -1856,7 +1880,10 @@ head {
 	user-select: none;
 	z-index: 50;
 }
-
+#enablescreenshake {
+	color: white; 
+	position: absolute; 
+}
 /* Main Menu */
 #mainmenu {
 	width: 100%;
@@ -3156,4 +3183,37 @@ head {
   #snowCanvas {
 	  display: none;
 	  transform: rotate(83deg);
+  }
+
+  .divineShield {
+	width: 165%;
+	height: 165%;
+	position: absolute;
+	top: -22%;
+	left: -31.5%;
+	background-image: url(src/images/divine_shield.png) !important;
+	background-size: contain;
+	background-repeat: no-repeat;
+	user-select: none;
+	visibility: hidden;
+  }
+  .taunt {
+	background-image: url(src/images/taunt.png) !important;
+	background-size: contain;
+	background-repeat: no-repeat;
+	user-select: none;
+	z-index: -1;
+	visibility: hidden;
+  }
+  .legendaryinplay {
+	width: 125%;
+	height: 125%;
+	position: absolute;
+	top: -13%;
+	left: 5.5%;
+	background-image: url(src/images/legendaryinplay.png) !important;
+	background-size: contain;
+	background-repeat: no-repeat;
+	user-select: none;
+	visibility: hidden;
   }

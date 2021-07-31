@@ -60,6 +60,9 @@ class MinionCard {
 		const playerHealthValueBackground = document.createElement('div')
 		const playerAttackValue = document.createElement('div')
 		const playerHealthValue = document.createElement('div')
+		const legendary = document.createElement('div')
+		const divineShield = document.createElement('div')
+		const taunt = document.createElement('div')
 		const nameOfCard = this.name;
 		playerCardDiv.id = "playerCardInPlay" + id1
 		playerCardDiv.classList.add("cardinplay")
@@ -110,8 +113,14 @@ class MinionCard {
 		playerHealthValue.classList.add("healthValue")
 		playerAttackValueBackground.classList.add("attackValueBackground")
 		playerHealthValueBackground.classList.add("healthValueBackground")
+		legendary.classList.add("legendaryinplay");
+		divineShield.classList.add("divineShield");
+		taunt.classList.add("taunt");
 		playerCardDiv.appendChild(playerAttackValueBackground)
 		playerCardDiv.appendChild(playerHealthValueBackground)
+		playerCardDiv.appendChild(divineShield)
+		playerCardDiv.appendChild(taunt)
+		playerCardDiv.appendChild(legendary)
 		playerAttackValueBackground.appendChild(playerAttackValue)
 		playerHealthValueBackground.appendChild(playerHealthValue)
 		playerAttackValue.innerText = this.attack
@@ -156,6 +165,10 @@ class MinionCard {
 
 function freshDeck() {
 	// deck in use by the player and computer
+	
+	let murloc_scout = new MinionCard(1, 1, 0, "", "src/cards/murloc_scout.jpg", "Murloc Scout", "Common")
+	let alexstrasza = new MinionCard(8, 8, 9, "Battlecry: Set a hero's remaining Health to 15.", "src/cards/alexstrasza.jpg", "Alexstrasza", "Legendary")
+	let elite_tauren_chieftain = new MinionCard(5, 5, 5, "Battlecry: Give both players the power to ROCK! (Draw a card)", "src/cards/elite_tauren_chieftain.png", "Elite Tauren Chieftain", "Legendary")
 	let deathwing = new MinionCard(12, 12, 10, "Battlecry: Destroy all other minions and discard your hand.", "src/cards/deathwing.png", "Deathwing", "Legendary")
 	let elven_archer = new MinionCard(1, 1, 1, "Battlecry: Deal 1 damage.", "src/cards/elven_archer.jpg", "Elven Archer", "Common")
 	let voodoo_doctor = new MinionCard(2, 1, 1, "Battlecry: Restore 2 Health.", "src/cards/voodoo_doctor.jpg", "Voodoo Doctor", "Common")
@@ -164,7 +177,8 @@ function freshDeck() {
 	let lich_king = new MinionCard(8, 8, 8, "Taunt\nAt the end of your turn, add a random Death Knight card to your hand.", "src/cards/lich_king.jpg", "The Lich King", "Legendary")
 	let acidic_swamp_ooze = new MinionCard(3, 2, 2, "Battlecry: Destroy your opponent's weapon.", "src/cards/acidic_swamp_ooze.jpg", "Acidic Swamp Ooze", "Common")
 	let bloodfen_raptor = new MinionCard(3, 2, 2, "", "src/cards/bloodfen_raptor.jpg", "Bloodfen Raptor", "Common")
-	let kobold_geomancer = new MinionCard(2, 2, 2, "Spell Damage +1", "src/cards/kobold_geomancer.png", "Kobold Geomancer", "Common")
+	let lifedrinker = new MinionCard(3, 3, 4, "Battlecry: Deal 3 damage to the enemy hero. Restore 3 Health to your hero.", "src/cards/lifedrinker.jpg", "Lifedrinker", "Rare")
+	let boar = new MinionCard(1, 1, 1, "", "src/cards/boar.jpg", "Boar", "Common")
 	let razorfen_hunter = new MinionCard(2, 3, 3, "Battlecry: Summon a 1/1 Boar.", "src/cards/razorfen_hunter.jpg", "Razorfen Hunter", "Common")
 	let murloc_tidehunter = new MinionCard(2, 1, 2, "Battlecry: Summon a 1/1 Murloc Scout.", "src/cards/murloc_tidehunter.jpg", "Murloc Tidehunter", "Common")
 	let leeroy_jenkins = new MinionCard(6, 2, 4, "Charge. Battlecry: Summon two 1/1 Whelps for your opponent.", "src/cards/leeroy_jenkins.jpg", "Leeroy Jenkins", "Legendary")
@@ -174,10 +188,15 @@ function freshDeck() {
 	let archmage = new MinionCard(4, 7, 6, "Spell Damage +1", "src/cards/archmage.jpg", "Archmage", "Common")
 	let boulderfist_ogre = new MinionCard(6, 7, 6, "", "src/cards/boulderfist_ogre.jpg", "Boulderfist Ogre", "Common")
 	let stormwind_champion = new MinionCard(7, 7, 7, "Your other minions have +1/+1.", "src/cards/stormwind_champion.png", "Stormwind Champion", "Common")
+	let whelp = new MinionCard(1, 1, 1, "", "src/cards/whelp.png", "Whelp", "Common")
+	let devout_adventurer = new MinionCard(2, 2, 2, "Divine Shield", "src/cards/devout_adventurer.jpg", "Devout Adventurer", "Common")
+	// spell cards
 
 	return [
 	// player's deck
-	deathwing,
+	elite_tauren_chieftain,
+	devout_adventurer,
+	devout_adventurer,
 	deathwing,
 	elven_archer,
 	elven_archer,
@@ -185,21 +204,20 @@ function freshDeck() {
 	voodoo_doctor,
 	king_krush,
 	ragnaros_the_firelord,
-	ragnaros_the_firelord,
-	lich_king,
 	lich_king,
 	acidic_swamp_ooze,
 	acidic_swamp_ooze,
-	bloodfen_raptor,
-	bloodfen_raptor,
-	kobold_geomancer,
+	lifedrinker,
+	lifedrinker,
+	alexstrasza,
 	razorfen_hunter,
 	razorfen_hunter,
 	murloc_tidehunter,
 	murloc_tidehunter,
-	leeroy_jenkins,
 	leeroy_jenkins,
 	gnomish_inventor,
+	gnomish_inventor,
+	senjin_shieldmasta,
 	senjin_shieldmasta,
 	saronite_chain_gang,
 	saronite_chain_gang,
@@ -209,7 +227,9 @@ function freshDeck() {
 	stormwind_champion,
 
 	// computer's deck
-	deathwing,
+	elite_tauren_chieftain,
+	devout_adventurer,
+	devout_adventurer,
 	deathwing,
 	elven_archer,
 	elven_archer,
@@ -217,27 +237,31 @@ function freshDeck() {
 	voodoo_doctor,
 	king_krush,
 	ragnaros_the_firelord,
-	ragnaros_the_firelord,
-	lich_king,
 	lich_king,
 	acidic_swamp_ooze,
 	acidic_swamp_ooze,
 	bloodfen_raptor,
 	bloodfen_raptor,
-	kobold_geomancer,
+	alexstrasza,
 	razorfen_hunter,
 	razorfen_hunter,
 	murloc_tidehunter,
 	murloc_tidehunter,
-	leeroy_jenkins,
 	leeroy_jenkins,
 	gnomish_inventor,
+	gnomish_inventor,
+	senjin_shieldmasta,
 	senjin_shieldmasta,
 	saronite_chain_gang,
 	saronite_chain_gang,
 	archmage,
 	boulderfist_ogre,
 	boulderfist_ogre,
-	stormwind_champion
+	stormwind_champion,
+
+	// other (summoned from battlecries etc.)
+	whelp,
+	boar,
+	murloc_scout
 	]
 }

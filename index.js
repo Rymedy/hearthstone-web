@@ -9,6 +9,7 @@ var playersTurn = new Boolean(false);
 var alreadyMocked = new Boolean(false);
 var gameIsWon = new Boolean(false);
 var isTutorial = new Boolean(false);
+var tauntExists = new Boolean(false);
 var manaCost = null;
 var manaCapacity = 1;
 var mana = manaCapacity;
@@ -47,9 +48,9 @@ function startGame() {
 	const deck = new Deck()
 	const deckMidpoint = Math.ceil(deck.numberOfCards / 2)
   originalDeck = new Deck(deck.cards.slice(0, deck.numberOfCards))
-	playerDeck = new Deck(deck.cards.slice(0, deckMidpoint))
+	playerDeck = new Deck(deck.cards.slice(0, 30))
   playerDeck.shuffle()
-	computerDeck = new Deck(deck.cards.slice(deckMidpoint, deck.numberOfCards))
+	computerDeck = new Deck(deck.cards.slice(30, 60))
   computerDeck.shuffle()
 	inRound = false
 	updateDeckCount()
@@ -188,6 +189,13 @@ document.getElementById("endturn").addEventListener("click", function() {
 the computers board and uses the shift method to remove the first card in the array then proceeds to call both updateDeckCount and playerTurn functions. */
 function opponentTurn() {
   playersTurn = false;
+  for (let i=0; i<playerCardSlot2.childElementCount; i++) {
+    playerCardSlot2.children[i].style.boxShadow = "none";
+  }
+  for (let i=0; i<hand.childElementCount; i++) {
+    hand.children[i].children[0].children[4].style.border = "solid 4px rgb(56, 56, 56)";
+  }
+  document.getElementById("playerheropower").style.boxShadow = "none";
   document.body.style.cursor = "url(src/cursor/spectate.png) 10 2, auto";
   document.getElementById("computerTurn").style.display = "block";
   document.getElementById("endturn").style.backgroundColor = "grey";
@@ -234,6 +242,9 @@ function computerCardPlace() {
       computerCardSlot.appendChild(computerDeck.cards[i].getComputerHTML())
       var index = computerDeck.cards.indexOf(i);
       cardplaceSnd.play();
+      break
+    } else if (manaCapacity == 10) {
+      computerCardSlot.appendChild(computerDeck.cards[0].getComputerHTML())
       break
     }
   }

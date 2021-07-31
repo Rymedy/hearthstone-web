@@ -636,6 +636,54 @@ starttutorialbtn.onclick = function () {
                                             document.querySelector('#hint').style.visibility = "hidden";
                                             document.querySelector('#hint').style.opacity="0";
                                             document.querySelector('#hint').style.transition="visibility 0s 0.5s, opacity 0.5s linear";
+                                            setTimeout(function() {
+                                                document.querySelector('#triangle').style.visibility = "visible";
+                                                document.querySelector('#triangle').style.opacity="1";
+                                                document.querySelector('#triangle').style.transition="none";
+                                                document.querySelector('#triangle').style.top="74%";
+                                                document.querySelector('#triangle').style.left="63%";
+                                                document.querySelector('#hintbackbackground').style.visibility = "visible";
+                                                document.querySelector('#hintbackbackground').style.opacity="1";
+                                                document.querySelector('#hintbackbackground').style.transition="none";
+                                                document.querySelector('#hintbackbackground').style.top="70.3%";
+                                                document.querySelector('#hintbackbackground').style.left="64.9%";
+                                                document.querySelector('#hintbackground').style.visibility = "visible";
+                                                document.querySelector('#hintbackground').style.opacity="1";
+                                                document.querySelector('#hintbackground').style.transition="none";
+                                                document.querySelector('#hintbackground').style.top="70.5%";
+                                                document.querySelector('#hintbackground').style.left="65.1%";
+                                                document.querySelector('#hint').style.opacity="1";
+                                                document.querySelector('#hint').style.transition="none";
+                                                document.querySelector('#hint').style.visibility = "visible";
+                                                document.querySelector('#hint').style.opacity="1";
+                                                document.querySelector('#hint').style.transition="none";
+                                                document.querySelector('#hint').style.top="71.5%";
+                                                document.querySelector('#hint').style.left="65.7%";
+                                                document.querySelector('#hintlabel').style.left="0%";
+                                                document.querySelector('#hintlabel').style.top="17%";
+                                                document.querySelector('#triangle').classList.add("triangleOpenMenuAnim");
+                                                document.querySelector('#hintbackbackground').classList.add("openMenuAnim");
+                                                document.querySelector('#hintbackground').classList.add("openMenuAnim");
+                                                document.querySelector('#hint').classList.add("openMenuAnim");
+                                                document.querySelector('#hintlabel').style.width = "100%";
+                                                document.querySelector('#hintlabel').style.left = "0";
+                                                document.querySelector('#hintlabel').style.fontSize = "20px";
+                                                document.querySelector('#hintlabel').innerText = "Spend 2 mana to deal 1 damage to an opponent!";
+                                                setTimeout(function() {
+                                                    document.querySelector('#triangle').style.visibility = "hidden";
+                                                    document.querySelector('#triangle').style.opacity="0";
+                                                    document.querySelector('#triangle').style.transition="visibility 0s 0.5s, opacity 0.5s linear";
+                                                    document.querySelector('#hintbackbackground').style.visibility = "hidden";
+                                                    document.querySelector('#hintbackbackground').style.opacity="0";
+                                                    document.querySelector('#hintbackbackground').style.transition="visibility 0s 0.5s, opacity 0.5s linear";
+                                                    document.querySelector('#hintbackground').style.visibility = "hidden";
+                                                    document.querySelector('#hintbackground').style.opacity="0";
+                                                    document.querySelector('#hintbackground').style.transition="visibility 0s 0.5s, opacity 0.5s linear";
+                                                    document.querySelector('#hint').style.visibility = "hidden";
+                                                    document.querySelector('#hint').style.opacity="0";
+                                                    document.querySelector('#hint').style.transition="visibility 0s 0.5s, opacity 0.5s linear";
+                                                },4000)
+                                            },1000)
                                         },4000)
                                     },1000)
                                     },1000)

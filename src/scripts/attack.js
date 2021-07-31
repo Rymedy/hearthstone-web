@@ -51,29 +51,45 @@ function attack() {
             checkForRequiredMana();
             updateManaGUI();
             setTimeout(function() {
-            currentAttackerHealth -= targetAttack;
-            targetHealth -= currentAttackerAttack;
-            currentAttackerElement.children[1].children[0].innerHTML = currentAttackerHealth;
-            targetElement.children[1].children[0].innerHTML = targetHealth;
-            if (targetElement.id != "opposinghero") {
-              currentAttackerElement.children[1].children[0].style.color = "#f20301";
-            }
-            targetElement.children[1].children[0].style.color = "#f20301";
-            if (targetHealth <= 0) {
-              setTimeout(function() {
-                targetElement.remove();
-              },200);
-            }
+              currentAttackerHealth -= targetAttack;
+              targetHealth -= currentAttackerAttack;
+              currentAttackerElement.children[1].children[0].innerHTML = currentAttackerHealth;
+              targetElement.children[1].children[0].innerHTML = targetHealth;
+              if (targetElement.id != "opposinghero") {
+                currentAttackerElement.children[1].children[0].style.color = "#f20301";
+              }
+              targetElement.children[1].children[0].style.color = "#f20301";
+              if (targetHealth <= 0) {
+                setTimeout(function() {
+                  if (targetElement.id == "opposinghero") {
+                    gameWon();
+                  }
+                  targetElement.remove();
+                },200);
+              }
           },1000);
           } else {
-            currentAttackerHealth -= targetAttack;
-            targetHealth -= currentAttackerAttack;
+            if (currentAttackerElement.classList.contains("hasDivineShield")) {
+              currentAttackerElement.classList.remove("hasDivineShield");
+              currentAttackerElement.children[2].classList.add("divineShieldBreak");
+              setTimeout(function() {
+                currentAttackerElement.children[2].style.visibility = "hidden";
+              },400);
+            } else {
+              currentAttackerHealth -= targetAttack;
+              if (targetElement.id != "opposinghero") {
+                currentAttackerElement.children[1].children[0].style.color = "#f20301";
+              }
+            }
+            if (targetElement.classList.contains("hasDivineShield")) {
+              targetElement.classList.remove("hasDivineShield");
+              computerCardSlot2.lastChild.children[2].style.visibility = "hidden";
+            } else {
+              targetHealth -= currentAttackerAttack;
+              targetElement.children[1].children[0].style.color = "#f20301";
+            }
             currentAttackerElement.children[1].children[0].innerHTML = currentAttackerHealth;
             targetElement.children[1].children[0].innerHTML = targetHealth;
-            if (targetElement.id != "opposinghero") {
-              currentAttackerElement.children[1].children[0].style.color = "#f20301";
-            }
-            targetElement.children[1].children[0].style.color = "#f20301";
           }
           if ((currentAttackerAttack >= 5) && (isScreenShake == true)) {
             document.getElementById("game").classList.add("bigHitAnim");
@@ -111,6 +127,9 @@ function attack() {
                 alert("You've Lost!")
                 location.reload();
               }
+              if (currentAttackerElement.classList.contains("hasTaunt")) {
+                tauntExists = false;
+              }
               currentAttackerElement.remove();
             }
             if(targetHealth <= 0) {
@@ -128,74 +147,7 @@ function attack() {
                   document.getElementById('fireworkCanvas').style.display = "block";
                   document.getElementById('fireworkCanvas').classList.add("fadeInAnim");
                 },3000);
-                if (isTutorial == true) {
-                  let victorySnd = new Audio("src/sounds/victorytutorial.mp3");
-                  victorySnd.play();
-                  song.pause();
-                } else {
-                  lichkingOST.pause();
-                  let victorySnd = new Audio("src/sounds/victory.mp3");
-                  victorySnd.play();
-                  var myGold = Number(localStorage.getItem('myGold'));
-                  myGold += 10; // number of gold earned per win
-                  localStorage.setItem('myGold', myGold.toString());
-                  // 20% or 1/5 chance of getting a pack on win
-                  var chanceGetPack = Math.random();
-                  if (chanceGetPack < 0.2) {
-                    var myPacks = Number(localStorage.getItem('myPacks'));
-                    myPacks++;
-                    localStorage.setItem('myPacks', myPacks.toString());
-                  }
-                  setTimeout(function() {
-                    document.querySelector("#computerbubble").innerText = "I see... only\ndarkness\nbefore me...";
-                    document.querySelector("#computerbubble").style.visibility = "visible";
-                    document.querySelector('#computerbubble').classList.add("openMenuAnim");
-                    setTimeout(function() {
-                      document.querySelector('#computerbubble').classList.add("easeOutAnim");
-                      document.querySelector('#computerbubble').classList.remove("openMenuAnim");
-                      setTimeout(function(){
-                        document.querySelector("#computerbubble").style.visibility = "hidden";
-                        document.querySelector('#computerbubble').classList.remove("easeOutAnim");
-                      },250);
-                    },5000);
-                  },250);
-                }
-                // adjust position of player board to fix GUI
-                computerCardSlot.style.transform = "translateY(17.5%)"; 
-                setTimeout(function() {
-                  document.querySelector(".opponenthero").style.display = "none";
-                  if (isScreenShake == true) {
-                    document.getElementById("game").classList.remove("shakeScreenAnim");
-                    document.getElementById("game").classList.add("shakeScreenAnim");
-                  }
-                },750);
-                setTimeout(function() {
-                document.getElementById("game").style.filter = "blur(5px)";
-                document.getElementById('block').style.visibility = "hidden";
-                document.getElementById("victory").style.display = "block";
-                document.getElementById("victoryImg1").classList.add("openMenuAnim");
-                document.getElementById("victoryImg2").classList.add("openMenuAnim");
-                document.getElementById("victorylabel").classList.add("openMenuAnim");
-                setTimeout(function() {
-                  document.getElementById('fireworkCanvas').classList.add("fadeOutAnim");
-                  setTimeout(function() {
-                    document.getElementById('fireworkCanvas').style.display = "none";
-                    setTimeout(function() {
-                      location.reload();
-                    },9000);
-                    if (isTutorial == false) {
-                      setTimeout(function() {
-                        document.getElementById('victoryImg1').style.visibility="hidden";
-                        document.getElementById('victoryImg1').style.opacity="0";
-                        document.getElementById('victoryImg1').style.transition="visibility 0s 2s, opacity 2s linear";
-                      },4000);
-                    } else if (isTutorial == true) {
-                      document.getElementById('victoryhint').style.display = "block";
-                      document.getElementById('victoryhint').classList.add("openMenuAnim");
-                    }
-                  },1000);
-                },5000);
-              },5000);
+                gameWon();
               } else {
               targetElement.remove();
               // adjust position of player board to fix GUI
@@ -239,4 +191,75 @@ function attack() {
     });
   });
   return true
+}
+
+function gameWon() {
+  if (isTutorial == true) {
+    let victorySnd = new Audio("src/sounds/victorytutorial.mp3");
+    victorySnd.play();
+    song.pause();
+  } else {
+    lichkingOST.pause();
+    let victorySnd = new Audio("src/sounds/victory.mp3");
+    victorySnd.play();
+    var myGold = Number(localStorage.getItem('myGold'));
+    myGold += 10; // number of gold earned per win
+    localStorage.setItem('myGold', myGold.toString());
+    // 20% or 1/5 chance of getting a pack on win
+    var chanceGetPack = Math.random();
+    if (chanceGetPack < 0.2) {
+      var myPacks = Number(localStorage.getItem('myPacks'));
+      myPacks++;
+      localStorage.setItem('myPacks', myPacks.toString());
+    }
+    setTimeout(function() {
+      document.querySelector("#computerbubble").innerText = "I see... only\ndarkness\nbefore me...";
+      document.querySelector("#computerbubble").style.visibility = "visible";
+      document.querySelector('#computerbubble').classList.add("openMenuAnim");
+      setTimeout(function() {
+        document.querySelector('#computerbubble').classList.add("easeOutAnim");
+        document.querySelector('#computerbubble').classList.remove("openMenuAnim");
+        setTimeout(function(){
+          document.querySelector("#computerbubble").style.visibility = "hidden";
+          document.querySelector('#computerbubble').classList.remove("easeOutAnim");
+        },250);
+      },5000);
+    },250);
+  }
+  // adjust position of player board to fix GUI
+  computerCardSlot.style.transform = "translateY(17.5%)"; 
+  setTimeout(function() {
+    document.querySelector(".opponenthero").style.display = "none";
+    if (isScreenShake == true) {
+      document.getElementById("game").classList.remove("shakeScreenAnim");
+      document.getElementById("game").classList.add("shakeScreenAnim");
+    }
+  },750);
+  setTimeout(function() {
+  document.getElementById("game").style.filter = "blur(5px)";
+  document.getElementById('block').style.visibility = "hidden";
+  document.getElementById("victory").style.display = "block";
+  document.getElementById("victoryImg1").classList.add("openMenuAnim");
+  document.getElementById("victoryImg2").classList.add("openMenuAnim");
+  document.getElementById("victorylabel").classList.add("openMenuAnim");
+  setTimeout(function() {
+    document.getElementById('fireworkCanvas').classList.add("fadeOutAnim");
+    setTimeout(function() {
+      document.getElementById('fireworkCanvas').style.display = "none";
+      setTimeout(function() {
+        location.reload();
+      },9000);
+      if (isTutorial == false) {
+        setTimeout(function() {
+          document.getElementById('victoryImg1').style.visibility="hidden";
+          document.getElementById('victoryImg1').style.opacity="0";
+          document.getElementById('victoryImg1').style.transition="visibility 0s 2s, opacity 2s linear";
+        },4000);
+      } else if (isTutorial == true) {
+        document.getElementById('victoryhint').style.display = "block";
+        document.getElementById('victoryhint').classList.add("openMenuAnim");
+      }
+    },1000);
+  },5000);
+},5000);
 }
