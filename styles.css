@@ -42,20 +42,22 @@ head {
 	src: url(src/fonts/BelweBdBTBold.ttf);
 }
 #load{
-    width:103%;
+    width:100%;
     height:100%;
     position:absolute;
 	top: 0;
 	left: 0;
 	right: 0;
 	bottom: 0;
-    z-index:9999;
+    z-index:1000000;
 	font-size: 35px;
 	text-align: center;
 	user-select: none;
 	color: white;
-    background:url("src/images/loading.gif") no-repeat center center black !important;
+    background-image:url("src/images/loading.gif") !important;
 	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
 }
 #preventCORS {
 	width: 100%;
@@ -71,7 +73,7 @@ head {
 	visibility: hidden;
 	text-align:center;
 	user-select: none;
-	z-index: 1000;
+	z-index: 1000000;
 }
 #computerTurn {
 	width: 100%;
@@ -123,6 +125,24 @@ head {
 	-ms-user-select: none; /* Internet Explorer/Edge */
 	user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
+}
+.card .cardtutorialhint {
+	display: none;
+}
+.card:hover .cardtutorialhint {
+	display: block;
+	color: white;
+	font-size: 14px;
+	line-height: 10.5rem;
+	position: absolute;
+	top: -65%;
+	width: 134%;
+	padding-right: 10px;
+	text-shadow:
+	-1px -1px 0 #000,
+	1px -1px 0 #000,
+	-1px 1px 0 #000,
+	1px 1px 0 #000;
 }
 .enemycard {
 	width: 100px;
@@ -558,7 +578,7 @@ head {
 		left: 39.5%;
 		top: 36%;
 	}
-	#localmultiplayerbutton {
+	#howtoplaybutton {
 		font-size: 18px;
 	}
 	#preventCORS {
@@ -597,6 +617,12 @@ head {
 		left: 15%; 
 		top: 79%;
 		font-size: 25px;
+	}
+	#leftsideblock {
+		box-shadow: 0 0 30px 40px black;
+	}
+	#rightsideblock {
+		box-shadow: 0 0 30px 40px black;
 	}
 }
 @media only screen and (min-width: 1500px) {
@@ -713,7 +739,7 @@ head {
 		left: 38.5%;
 		top: 36%;
 	}
-	#localmultiplayerbutton {
+	#howtoplaybutton {
 		font-size: 22px;
 	}
 	#preventCORS {
@@ -752,6 +778,12 @@ head {
 		left: 15%; 
 		top: 79%;
 		font-size: 30px;
+	}
+	#leftsideblock {
+		box-shadow: 0 0 40px 60px black;
+	}
+	#rightsideblock {
+		box-shadow: 0 0 40px 60px black;
 	}
 }
 .computer-cardinplay:hover {
@@ -1182,7 +1214,7 @@ head {
 	  color: white;
 	  font-size: 25px;
 	  user-select: none;
-	  z-index: 200;
+	  z-index: 10000;
   }
 /* Mana GUI Related */
 #manacontainer {
@@ -1979,7 +2011,7 @@ head {
 	border-bottom-right-radius: 30px 175%; 
 	background: linear-gradient(to top right, #653517, #e6c279);
 }
-#localmultiplayerbutton {
+#howtoplaybutton {
 	width: 16%;
 	height: 3.5%;
 	position: absolute;
@@ -1996,7 +2028,7 @@ head {
 	z-index: 20;
 	outline: none;
 }
-#localmultiplayerbutton:hover {
+#howtoplaybutton:hover {
 	background-color: #fffeea;
 }
 
@@ -2135,8 +2167,8 @@ head {
 	left: 0;
 	bottom: 0;
 	background-color: black;
-	box-shadow: 0 0 10px 10px black;
-	z-index: 199;
+	z-index: 100000000000;
+	pointer-events: none;
 }
 #rightsideblock {
 	width: 12%;
@@ -2146,8 +2178,8 @@ head {
 	bottom: 0;
 	right: 0;
 	background-color: black;
-	box-shadow: 0 0 10px 10px black;
-	z-index: 199;
+	z-index: 1000000000000;
+	pointer-events: none;
 }
 #transitionblock {
 	width: 100%;
@@ -3185,6 +3217,7 @@ head {
 	  transform: rotate(83deg);
   }
 
+  /* Card Effects */
   .divineShield {
 	width: 165%;
 	height: 165%;
@@ -3217,3 +3250,48 @@ head {
 	user-select: none;
 	visibility: hidden;
   }
+  /* How To Play */
+  #howtoplay {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	bottom: 0;
+    top: 0;
+    left: 12%;
+    right: 0;
+	background-image: url(src/images/example.png) !important;
+	background-size: contain;
+	background-repeat: no-repeat;
+	display: none;
+	z-index: 25;
+}
+
+#cinematicVideo {
+	top: 0px;
+	left: 50%;
+	transform: translateX(-50%);
+	position: absolute;
+	width: auto;
+	height: 100%;
+	z-index: 9999;
+}
+
+#skipcinematicbtn {
+	width: 8%;
+	height: 4%;
+	position: absolute;
+	right: -1.75%;
+	bottom: .5%;
+	background-color: transparent;
+	outline: none;
+	border: none;
+	color: white;
+	font-size: 25px;
+	transition: all .5s ease;
+	transform: scale(1);
+	z-index: 1000000000000;
+	font-family: BelweBdBTBold;
+}
+#skipcinematicbtn:hover {
+	transform: scale(1.25) perspective(1px)
+}

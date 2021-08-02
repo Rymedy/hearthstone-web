@@ -20,7 +20,7 @@
   <div id="transitionblock"></div>
 </head>
 <div id="preventCORS">Click anywhere to continue...</div>
-<div id="load">Setting up the board...</div>
+<div id="load"></div>
 <button class="openbtn" onclick="showGameMenu()"><i class="fa fa-gear"></i></button>
 <span id="fps"></span>
 <span id="time"></span>
@@ -117,7 +117,7 @@
     <div id="goldborder7"></div>
     <button id="tutorialbutton">Tutorial</button>
     <div id="goldborder8"></div>
-    <button id="localmultiplayerbutton" disabled>Under Maintenance</button>
+    <button id="howtoplaybutton">How To Play</button>
     <div id="goldborder9"></div>
     <button id="maintenancebutton2" disabled>Under Maintenance</button>
     <button id="openpacksbutton"></button>
@@ -191,6 +191,10 @@
   </div>
   <div class="mana" id="mana">1/1</div>
 <div class="board board--player"></div>
+<video id="cinematicVideo" autoplay>
+  <source src="src/media/introcinematic.mp4" type="video/mp4">
+</video>
+<button id="skipcinematicbtn">Skip ▶</button>
     </div>
   </div>
   <div id="pkcollisionbox" class="pkcollisionbox"></div>
@@ -213,6 +217,7 @@
   <path id="svgpath" fill="none" stroke="#e82e12" stroke-width="40" stroke-dasharray="60,10" d="">
 </svg>
 </div>
+<div id="howtoplay"></div>
 <div id="computerTurn"></div>
 </body>
 </div>

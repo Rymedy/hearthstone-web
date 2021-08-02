@@ -448,9 +448,9 @@ function oneAlliedCard() {
     maxAttack.children[1].children[0].innerText = opponentHealth - alliedAttack;
     if (alliedCards[0].classList.contains("hasDivineShield")) {
       alliedCards[0].classList.remove("hasDivineShield");
-      playerCardSlot2.children[i].children[2].classList.add("divineShieldBreak");
+      playerCardSlot2.children[0].children[2].classList.add("divineShieldBreak");
       setTimeout(function() {
-        playerCardSlot2.children[i].children[2].style.visibility = "hidden";
+        playerCardSlot2.children[0].children[2].style.visibility = "hidden";
       },400);
     } else {
       alliedCards[0].children[1].children[0].innerText = alliedHealth - opponentAttack;

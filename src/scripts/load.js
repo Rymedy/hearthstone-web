@@ -37,12 +37,8 @@ document.onreadystatechange = function () {
             for (let i = 0; i < myPacks; i++) {
                 createPack();
             }
-            if (hasPlayedTutorial_deserailized === null) {
-               tutorial();
-            } else {
-                document.getElementById("preventCORS").style.visibility = "visible";
-            }
-        },1000);
+            document.getElementById("preventCORS").style.visibility = "visible";
+        },4000);
     }
   }
 

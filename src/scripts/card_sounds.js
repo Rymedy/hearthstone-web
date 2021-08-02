@@ -207,6 +207,9 @@ function cardPlaceSnds() {
             document.getElementById('playerdamagecontainer').style.opacity="0";
           },1000);
         },2000);
+        if (document.querySelector('.playerHeroHealth').innerText <= 0) {
+            gameWon();
+        }
     }
     else if (getNameOfElement == "Murloc Tidehunter") {
         let murloctidehunterSnd = new Audio("src/sounds/cardPlaceSnds/murloc_tidehunter_play.mp3")

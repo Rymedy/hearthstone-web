@@ -50,7 +50,7 @@ function startGame() {
   originalDeck = new Deck(deck.cards.slice(0, deck.numberOfCards))
 	playerDeck = new Deck(deck.cards.slice(0, 30))
   playerDeck.shuffle()
-	computerDeck = new Deck(deck.cards.slice(30, 60))
+	computerDeck = new Deck(deck.cards.slice(31, 60))
   computerDeck.shuffle()
 	inRound = false
 	updateDeckCount()
@@ -115,36 +115,34 @@ function placeCardFunc(e) {
       }
     }
   },0.01);
-    // console.log(playerDeck.cards[0]['name'])
-   // Change this to playerCardSlot2.appendChild([THE CARD].getPlayerHTML()); maybe cycle thru the array playerDeck.cards to find if name is = to the name of the card being placed 
   }
 }
 
+// fix this function (very buggy)
+/* defines function that updates the mana GUI at the bottom left of the screen
+whenever mana is spent or the player's turn has just started */
 function updateManaGUI() {
   var manaCrystals = document.getElementsByClassName("manabox");
   for (let i=0; i<manaCrystals.length; i++) {
-    if (i == 0) {
+    if (i == 1) {
       manaCrystals[manaCrystals.length-1].style.backgroundColor = "black";
     }
-    else if (i == 1) {
+    else if (i == 2) {
       manaCrystals[manaCrystals.length-2].style.backgroundColor = "black";
     }
-    else if (i == 2) {
+    else if (i == 3) {
       manaCrystals[manaCrystals.length-3].style.backgroundColor = "black";
     }
-    else if (i == 3) {
+    else if (i == 4) {
       manaCrystals[manaCrystals.length-4].style.backgroundColor = "black";
     }
-    else if (i == 4) {
+    else if (i == 5) {
       manaCrystals[manaCrystals.length-5].style.backgroundColor = "black";
     }
-    else if (i == 5) {
+    else if (i == 6) {
       manaCrystals[manaCrystals.length-6].style.backgroundColor = "black";
     }
-    else if (i == 6) {
-      manaCrystals[manaCrystals.length-7].style.backgroundColor = "black";
-    }
-    if (i+1 == manaCost) {
+    if (i == manaCost) {
       break
     }
   }
@@ -220,6 +218,7 @@ function opponentTurn() {
     },1000)
   },2500)
   } else {
+    // places card if number of cards on board has not reached the max amount (10)
     setTimeout(function() {
       let opponentCardsInPlay = computerCardSlot.childElementCount;
       if(opponentCardsInPlay != maxOpponentCardsInPlay) {

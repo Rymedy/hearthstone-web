@@ -138,6 +138,7 @@ class MinionCard {
 		const playerManaValueInHand = document.createElement('div')
 		const playerInfoValueInHand = document.createElement('div')
 		const playerNameValueInHand = document.createElement('div')
+		const tutorialHintValueInHand = document.createElement('div')
 		playerCardInHandDiv.classList.add("card")
 		playerCardFaceInHandDiv.classList.add("card-face")
 		playerCardBorderInHandDiv.classList.add("card-border")
@@ -146,6 +147,7 @@ class MinionCard {
 		playerManaValueInHand.classList.add("cardManaValue")
 		playerInfoValueInHand.classList.add("cardInfoValue")
 		playerNameValueInHand.classList.add("cardNameValue")
+		tutorialHintValueInHand.classList.add("cardtutorialhint")
 		playerCardInHandDiv.appendChild(playerCardFaceInHandDiv)
 		playerCardFaceInHandDiv.appendChild(playerAttackValueInHand)
 		playerCardFaceInHandDiv.appendChild(playerHealthValueInHand)
@@ -153,6 +155,10 @@ class MinionCard {
 		playerCardFaceInHandDiv.appendChild(playerInfoValueInHand)
 		playerCardFaceInHandDiv.appendChild(playerCardBorderInHandDiv)
 		playerCardFaceInHandDiv.appendChild(playerNameValueInHand)
+		playerCardFaceInHandDiv.appendChild(tutorialHintValueInHand)
+		// if (isTutorial == true) {}
+		let tutorialHintText = 'Mana Cost\nAttack' + '                     ' + 'Health';
+		tutorialHintValueInHand.innerText = tutorialHintText
 		playerAttackValueInHand.innerText = this.attack
 		playerHealthValueInHand.innerText = this.health
 		playerManaValueInHand.innerText = this.mana
@@ -165,7 +171,6 @@ class MinionCard {
 
 function freshDeck() {
 	// deck in use by the player and computer
-	
 	let murloc_scout = new MinionCard(1, 1, 0, "", "src/cards/murloc_scout.jpg", "Murloc Scout", "Common")
 	let alexstrasza = new MinionCard(8, 8, 9, "Battlecry: Set a hero's remaining Health to 15.", "src/cards/alexstrasza.jpg", "Alexstrasza", "Legendary")
 	let elite_tauren_chieftain = new MinionCard(5, 5, 5, "Battlecry: Give both players the power to ROCK! (Draw a card)", "src/cards/elite_tauren_chieftain.png", "Elite Tauren Chieftain", "Legendary")
@@ -190,6 +195,19 @@ function freshDeck() {
 	let stormwind_champion = new MinionCard(7, 7, 7, "Your other minions have +1/+1.", "src/cards/stormwind_champion.png", "Stormwind Champion", "Common")
 	let whelp = new MinionCard(1, 1, 1, "", "src/cards/whelp.png", "Whelp", "Common")
 	let devout_adventurer = new MinionCard(2, 2, 2, "Divine Shield", "src/cards/devout_adventurer.jpg", "Devout Adventurer", "Common")
+	let coldwraith = new MinionCard(3, 4, 3, "Battlecry: If an enemy is Frozen, draw a card.", "src/cards/coldwraith.jpg", "Coldwraith", "Common")
+	let water_elemental = new MinionCard(3, 6, 4, "Freeze any character damaged by this minion.", "src/cards/water_elemental.jpg", "Water Elemental", "Common")
+	let ghoul = new MinionCard(2, 2, 2, "", "src/cards/ghoul.jpg", "Ghoul", "Common")
+	let skeletal_knight = new MinionCard(2, 3, 1, "Deathrattle: Add a Knights of the Frozen Throne card to your opponent's hand.", "src/cards/skeletal_knight.jpg", "Skeletal Knight", "Common")
+	let glacial_shard = new MinionCard(2, 1, 1, "Battlecry: Freeze an enemy.", "src/cards/glacial_shard.jpg", "Glacial Shard", "Common")
+	let maexxna = new MinionCard(2, 8, 6, "Poisonous", "src/cards/maexxna.jpg", "Maexxna", "Legendary")
+	let trapped_soul = new MinionCard(2, 6, 3, "", "src/cards/trapped_soul.jpg", "Trapped Soul", "Common")
+	let sludge_belcher = new MinionCard(3, 5, 5, "Taunt\nDeathrattle: Summon a 1/2 Slime with Taunt.", "src/cards/sludge_belcher.jpg", "Sludge Belcher", "Rare")
+	let grim_necromancer = new MinionCard(2, 4, 4, "Battlecry: Summon two 1/1 Skeletons.", "src/cards/grim_necromancer.jpg", "Grim Necromancer", "Common")
+	let skeleton = new MinionCard(1, 1, 1, "", "src/cards/skeleton.jpg", "Skeleton", "Common")
+	let slime = new MinionCard(1, 2, 1, "Taunt", "src/cards/slime.png", "Slime", "Common")
+	let the_black_knight = new MinionCard(4, 5, 6, "Battlecry: Destroy an enemy minion with Taunt.", "src/cards/the_black_knight.jpg", "The Black Knight", "Legendary")
+	let bonemare = new MinionCard(5, 5, 7, "Battlecry: Give a friendly minion +4/+4 and Taunt.", "src/cards/bonemare.jpg", "Bonemare", "Common")
 	// spell cards
 
 	return [
@@ -226,38 +244,36 @@ function freshDeck() {
 	boulderfist_ogre,
 	stormwind_champion,
 
-	// computer's deck
-	elite_tauren_chieftain,
-	devout_adventurer,
-	devout_adventurer,
-	deathwing,
-	elven_archer,
-	elven_archer,
-	voodoo_doctor,
-	voodoo_doctor,
-	king_krush,
-	ragnaros_the_firelord,
-	lich_king,
-	acidic_swamp_ooze,
-	acidic_swamp_ooze,
-	bloodfen_raptor,
-	bloodfen_raptor,
-	alexstrasza,
-	razorfen_hunter,
-	razorfen_hunter,
-	murloc_tidehunter,
-	murloc_tidehunter,
-	leeroy_jenkins,
-	gnomish_inventor,
-	gnomish_inventor,
-	senjin_shieldmasta,
-	senjin_shieldmasta,
+	// lich king's deck
+	coldwraith,
+	coldwraith,
+	water_elemental,
+	water_elemental,
+	ghoul,
+	ghoul,
+	skeletal_knight,
+	skeletal_knight,
+	skeletal_knight,
+	glacial_shard,
+	glacial_shard,
 	saronite_chain_gang,
 	saronite_chain_gang,
-	archmage,
-	boulderfist_ogre,
-	boulderfist_ogre,
-	stormwind_champion,
+	maexxna,
+	maexxna,
+	trapped_soul,
+	trapped_soul,
+	sludge_belcher,
+	sludge_belcher,
+	grim_necromancer,
+	grim_necromancer,
+	skeleton,
+	skeleton,
+	slime,
+	slime,
+	the_black_knight,
+	the_black_knight,
+	bonemare,
+	bonemare,
 
 	// other (summoned from battlecries etc.)
 	whelp,
