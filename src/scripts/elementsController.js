@@ -273,6 +273,7 @@ playbtn.onclick = function () {
     isInGame = true;
     let cinematicvideo = document.getElementById("cinematicVideo");
     cinematicvideo.style.display = "none";
+    document.getElementById("skipcinematicbtn").style.display = "none";
     document.getElementById("block").style.visibility = "visible";
     // fade out the volume of the mainmenuOST
     var fadeout = setInterval(
