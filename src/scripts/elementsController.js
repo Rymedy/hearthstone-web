@@ -641,7 +641,6 @@ starttutorialbtn.onclick = function () {
                                         document.querySelector('#hint').classList.add("openMenuAnim");
                                         document.querySelector('#hintlabel').style.width = "100%";
                                         document.querySelector('#hintlabel').style.left = "0";
-                                        document.querySelector('#hintlabel').style.fontSize = "20px";
                                         document.querySelector('#hintlabel').innerText = "When Hogger has\nno Health, you win.";
                                         setTimeout(function() {
                                             document.querySelector('#triangle').style.visibility = "hidden";
@@ -687,7 +686,6 @@ starttutorialbtn.onclick = function () {
                                                 document.querySelector('#hint').classList.add("openMenuAnim");
                                                 document.querySelector('#hintlabel').style.width = "100%";
                                                 document.querySelector('#hintlabel').style.left = "0";
-                                                document.querySelector('#hintlabel').style.fontSize = "20px";
                                                 document.querySelector('#hintlabel').innerText = "Spend 2 mana to deal 1 damage to an opponent!";
                                                 setTimeout(function() {
                                                     document.querySelector('#triangle').style.visibility = "hidden";

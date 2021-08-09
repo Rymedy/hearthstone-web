@@ -54,7 +54,7 @@ function startGame() {
   computerDeck.shuffle()
 	inRound = false
 	updateDeckCount()
-  // start with 3 cards in hand initially
+  // if the player is playing the tutorial start with one 1 mana card
   if (isTutorial == true) {
     for (let i=0; i<playerDeck.cards.length; i++) {
       if (playerDeck.cards[i]['mana'] == 1) {
@@ -62,11 +62,16 @@ function startGame() {
         break
       }
     }
+    // remove a card from both the player's and computer's deck
 		playerDeck.cards.shift();
 		computerDeck.cards.shift();
 		updateDeckCount();
+    /* checks to see what cards can be played and if the player has the 
+    required mana to play each card */
     checkForRequiredMana();
   } else {
+    /* start with 3 cards in hand initially with one of the cards being a 
+    guaranteed 1 mana card */
     let x = 2;
     for(let i = 0; i < x; i++) {
       hand.appendChild(playerDeck.cards[0].getPlayerCardsInHandHTML())
@@ -79,19 +84,22 @@ function startGame() {
         hand.appendChild(playerDeck.cards[i].getPlayerCardsInHandHTML())
         playerDeck.cards.shift();
         computerDeck.cards.shift();
-        updateDeckCount()
+        updateDeckCount();
         break
       }
     }
     checkForRequiredMana();
   }
   createManaCrystal();
+  /* ensures the player i playing the tutorial by checking if the 
+  computer's health is set to 10 */
   if (document.querySelector('.opposingHeroHealth').innerText == 10) {
     isTutorial = true;
   }
 }
 /* defines new function that when boolean collision is true between the card and collisionbox element and element is 
-created using the getPlayerHTML() function defined in deck.js and is appended as a child into the players' board */
+created using the getPlayerHTML() function defined in deck.js and is appended as a child into the players' board
+and mana is made = to mana - the mana cost of the card */
 function placeCardFunc(e) {
   if(collision == true) {
     var found = false;
@@ -107,6 +115,8 @@ function placeCardFunc(e) {
         updateManaGUI();
         cardPlaceSnds();
         cardplaceSnd.play();
+        /* lets the user know to press the end turn button as they have 
+        no more cards left to play */
         if (hand.childElementCount == 0) {
           document.getElementById("gifhint").style.backgroundImage = "url('src/hints/end_turn.gif')";
           document.getElementById("texthint").innerText = "Press the end turn button...";
@@ -118,7 +128,6 @@ function placeCardFunc(e) {
   }
 }
 
-// fix this function (very buggy)
 /* defines function that updates the mana GUI at the bottom left of the screen
 whenever mana is spent or the player's turn has just started */
 function updateManaGUI() {
@@ -142,6 +151,7 @@ function updateManaGUI() {
     else if (i == 6) {
       manaCrystals[manaCrystals.length-6].style.backgroundColor = "black";
     }
+    // once the amount of iterations is equal to the mana cost stop the loop
     if (i == manaCost) {
       break
     }
@@ -199,7 +209,8 @@ function opponentTurn() {
   document.getElementById("endturn").style.backgroundColor = "grey";
   document.getElementById("endturn").innerText = "ENEMY TURN";
   if (computerCardSlot.childElementCount != 0) {
-  // calls function defined in AI.js
+  /* calls function defined in AI.js (determines what the computer 
+  attacks and with what minions) */
   setTimeout(function() {
     AI();
   },1250)
@@ -228,6 +239,7 @@ function opponentTurn() {
           computerCardSlot.style.transform = "translateY(17.5%)"; 
         }
       }
+      // then calls the player turn function allowing the player to play his turn
       setTimeout(function() {
         playerTurn();
       },1000)
@@ -235,6 +247,8 @@ function opponentTurn() {
   }
 }
 
+/* places a card onto the computers board whose mana is equal 
+to the player's mana capacity */
 function computerCardPlace() {
   for (let i=0; i<computerDeck.cards.length; i++) {
     if (computerDeck.cards[i]['mana'] == manaCapacity) {
@@ -242,15 +256,25 @@ function computerCardPlace() {
       var index = computerDeck.cards.indexOf(i);
       cardplaceSnd.play();
       break
+    /* if the player's mana capacity is at the maxiumum (10) then 
+    plays the card at the top of the computer's deck */
     } else if (manaCapacity == 10) {
       computerCardSlot.appendChild(computerDeck.cards[0].getComputerHTML())
       break
     }
   }
+  // removes the card that was placed from the deck
   computerDeck.cards.splice(index, 1);
+  // updates the deck count innerHTML
   updateDeckCount();
 }
 
+/* the player turn function allows the player ot place cards and attack 
+computer minions increments the mana capcity if manacapcity is not at 
+the maximum (10) and displays the mana and manaCapacity in an element's
+innerHTML and checks what cards can played and if the player has the
+required mana to play the card for every card in the player's hand and
+if so makes the boxShadow css property green*/
 function playerTurn() {
   playersTurn = true;
   if (manaCapacity != 10) {
@@ -271,7 +295,7 @@ function playerTurn() {
   document.getElementById("computerTurn").style.display = "none";
   document.getElementById("endturn").style.backgroundColor = "#4ce322";
   document.getElementById("endturn").innerText = "END TURN";
-  // mock's the user if it has been their turn for 30secs+
+  // mock's the user (dialogue) if it has been their turn for 30secs+
   setTimeout(function() {
     if ((playersTurn == true) && (alreadyMocked == false) && (gameIsWon == false) && (isTutorial == false)) {
       alreadyMocked = true;
@@ -307,7 +331,8 @@ function playerTurn() {
   playerDeck.cards.shift();
   updateDeckCount()
 }
-
+/* checks if the player has enough mana to play each card in their hand 
+and if so makes the border of the card green */
 function checkForRequiredMana() {
   for (let i=0; i<draggableElements.length; i++) {
     if (mana < draggableElements[i].children[0].children[2].innerText) {
@@ -325,14 +350,15 @@ function checkForRequiredMana() {
     document.getElementById("playerheropower").style.pointerEvents = "all";
   }
 }
-
+// creates an element inside the element with id "manacontainer"
 function createManaCrystal() {
   const manacontainer = document.getElementById("manacontainer");
   const manacrystal = document.createElement('div');
   manacrystal.classList.add("manabox");
   manacontainer.appendChild(manacrystal);
 }
-
+/* the following functions allow the user to drag cards 
+from the hand onto the board */
 function enableDrag() {
   for(var i = 0; i < draggableElements.length; i++){
       dragElement(draggableElements[i]);
@@ -363,6 +389,7 @@ function dragElement(elmnt) {
         pos2 = pos4 - parseInt(e.clientY);
         pos3 = parseInt(e.clientX);
         pos4 = parseInt(e.clientY);
+        // sets the position of the element to the position of the mouse
         elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
         elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
         // Checks for collision between elements (the card and collisionbox)
@@ -395,7 +422,7 @@ startGame();
 placeCard();
 enableDrag();
 
-// Disable and Enable Screen Shakes
+// disable and enable screen shakes (options menu)
 const screenshakebtn = document.getElementById('togglescreenshake')
 var isScreenShake = new Boolean(true);
 screenshakebtn.onclick = function () {
