@@ -5,6 +5,7 @@ var rareSnd = new Audio("src/sounds/rare.mp3")
 var epicSnd = new Audio("src/sounds/epic.mp3")
 var legendarySnd = new Audio("src/sounds/legendary.mp3")
 var alreadyHasRare = new Boolean(false);
+// creates the pack html element
 function createPack() {
     const packPack = document.createElement('div');
     const packs = document.getElementById('body');
@@ -17,7 +18,7 @@ function createPack() {
     packPack.appendChild(imgpack);
     return packPack
 }
-
+// creates a common card element
 function createCommonCard() {
 	var numberOfElements = document.getElementById('containerOpenPack').childElementCount;
 	const containerDiv = document.getElementById('containerOpenPack');
@@ -63,6 +64,7 @@ function createCommonCard() {
 	}
 	return flipCard
 }
+// creates a rare card element
 function createRareCard() {
 	var numberOfElements = document.getElementById('containerOpenPack').childElementCount;
 	const containerDiv = document.getElementById('containerOpenPack');
@@ -108,6 +110,7 @@ function createRareCard() {
 	}
 	return flipCard
 }
+// creates a epic card element
 function createEpicCard() {
 	var numberOfElements = document.getElementById('containerOpenPack').childElementCount;
 	const containerDiv = document.getElementById('containerOpenPack');
@@ -153,6 +156,7 @@ function createEpicCard() {
 	}
 	return flipCard
 }
+// creates a legendary card element
 function createLegendaryCard() {
 	var numberOfElements = document.getElementById('containerOpenPack').childElementCount;
 	const containerDiv = document.getElementById('containerOpenPack');
@@ -232,7 +236,7 @@ var pack,
 	majestyvol,
 	majestyvoltarget,
 	audioloaded;
-
+// loads audio
 function audioload() {
 	audioloaded++;
 	if( audioloaded == 2 ) {
@@ -243,7 +247,7 @@ function audioload() {
 		loop();
 	}
 }
-
+// runs on page load
 function init() {
 	onresize();
 	pack = document.querySelector('.pack');
@@ -287,14 +291,14 @@ function init() {
 	majesty.volume = 0;
 	majesty.loop = true;
 }
-
+// adds event listeners to the packs and window
 function bindevents() {
 	pack.addEventListener('mousedown', onmousedown);
 	pack.addEventListener('mouseup', onmouseup);
 	window.addEventListener('mousemove', onmousemove);
 	window.addEventListener('resize', onresize);
 }
-
+// onmousedown event listener
 function onmousedown( e ) {
 	md = true;
 	mx = e.pageX;
@@ -306,7 +310,7 @@ function onmousedown( e ) {
 	pinxperc = 100 - ( pinx / packw ) * 100; // transform based on the pin position
 	pinyperc = 100 - ( piny / packh ) * 100; // transform based on the pin position
 }
-
+// onmouseup event listener
 function onmouseup() {
 	md = false;
     const pkcollisionbox = document.getElementById("pkcollisionbox");
@@ -361,6 +365,7 @@ function onmouseup() {
 					alreadyHasRare = true;
 				}
 			}
+			// add card animation classes when opening pack
 			document.getElementsByClassName("flip-card")[0].classList.add("cardOnePackOpen");
 			document.getElementsByClassName("flip-card")[1].classList.add("cardTwoPackOpen");
 			document.getElementsByClassName("flip-card")[2].classList.add("cardThreePackOpen");
@@ -441,19 +446,20 @@ function onmouseup() {
         },1700);
     }
 }
-
+// onmousemove event listener
 function onmousemove( e ) {
 	if( md ) {
 		mx = e.pageX;
 		my = e.pageY;
 	}
 }
-
+/* when the window is resized change the ww and wh 
+variables to the new window width and height */
 function onresize() {
 	ww = window.innerWidth;
 	wh = window.innerHeight;
 }
-
+// function to loop
 function loop() {
 	requestAnimationFrame( loop )
 	

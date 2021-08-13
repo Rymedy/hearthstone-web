@@ -1,3 +1,4 @@
+// gets the current local time and updates every 10 seconds
 (function(){
     var hours = (new Date).getHours();
     var minutes = (new Date).getMinutes();

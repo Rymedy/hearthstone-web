@@ -61,6 +61,6 @@ window.onload = function(){
       }
     }
   }
-
+  // calls the drawFlakes function every 3 seconds
   setInterval(drawFlakes, 3);
 }

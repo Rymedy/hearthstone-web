@@ -27,6 +27,7 @@ test("showDamageLabel");
 */
 /* ==================================================================== */
 
+// the test function utilised in order to test functions
 function test(functionToTest) {
     if (functionToTest == "attack") {
         for (let i=0; i<numOfTests; i++) {
@@ -57,6 +58,7 @@ function test(functionToTest) {
         testSuites = 0;
         tests = 0;
     }
+    // function to test AI()
     else if (functionToTest == "AI") {
         for (let i=0; i<numOfTests; i++) {
             tests++;
@@ -86,6 +88,7 @@ function test(functionToTest) {
         testSuites = 0;
         tests = 0;
     }
+    // function to test findMaxOpponentAttack()
     else if (functionToTest == "findMaxOpponentAttack") {
         for (let i=0; i<numOfTests; i++) {
             tests++;
@@ -115,6 +118,7 @@ function test(functionToTest) {
         testSuites = 0;
         tests = 0;
     }
+    // function to test findMaxPlayerAttack()
     else if (functionToTest == "findMaxPlayerAttack") {
         for (let i=0; i<numOfTests; i++) {
             tests++;
@@ -144,6 +148,7 @@ function test(functionToTest) {
         testSuites = 0;
         tests = 0;
     }
+    // function to test findMaxOpponentHealth()
     else if (functionToTest == "findMaxOpponentHealth") {
         for (let i=0; i<numOfTests; i++) {
             tests++;
@@ -173,6 +178,7 @@ function test(functionToTest) {
         testSuites = 0;
         tests = 0;
     }
+    // function to test findMaxPlayerHealth()
     else if (functionToTest == "findMaxPlayerHealth") {
         for (let i=0; i<numOfTests; i++) {
             tests++;
@@ -202,6 +208,7 @@ function test(functionToTest) {
         testSuites = 0;
         tests = 0;
     }
+    // function to test checkForLoss()
     else if (functionToTest == "checkForLoss") {
         for (let i=0; i<numOfTests; i++) {
             tests++;
@@ -231,6 +238,7 @@ function test(functionToTest) {
         testSuites = 0;
         tests = 0;
     }
+    // function to test showDamageLabel()
     else if (functionToTest == "showDamageLabel") {
         for (let i=0; i<numOfTests; i++) {
             var input = Math.floor(Math.random() * 10) + 1;

@@ -11,6 +11,8 @@ function attack() {
   // attacking algorithm
   document.querySelectorAll('.cardinplay').forEach(function(e){
     e.addEventListener('mousedown', function(e) {
+      /* checks if currentAttacker is not defined and if the element contains 
+      the player-cardinplay and the canAttack class or is the player's hero power */
       if(currentAttacker == null) {
         if((this.classList.contains('player-cardinplay')) && (this.classList.contains('canAttack')) || (this.id == "playerheropower") && (this.classList.contains('canAttack'))) {
           playerCardSlot2.style.zIndex = "1"

@@ -76,7 +76,7 @@ document.addEventListener("keydown", function(){
     }
 })
 
-// On button hover play sound
+// on button hover play sound
 var concedebtn = document.querySelector('#concedebutton');
 var optionsbtn = document.querySelector('#optionsbutton');
 var quitbtn = document.querySelector('#quitbutton');
@@ -259,7 +259,7 @@ confirmbtn.onclick = function () {
         }
     }
 };
-
+// miscellaneous button (in options (press esc))
 miscellaneousbtn.onclick = function () {
     openmenuSnd.play();
     window.open(
@@ -267,7 +267,7 @@ miscellaneousbtn.onclick = function () {
         '_blank' // <- This is what makes it open in a new window.
       );
 };
-
+// play button on click
 playbtn.onclick = function () {
     isTutorial = false;
     isInGame = true;
@@ -361,7 +361,8 @@ playbtn.onclick = function () {
      },6000);
 },1000);
 };
-
+/* function tutorial called on tutorial button on click 
+and on page load if local storage hasPlayedTutorial == null */
 function tutorial() {
     isTutorial = true;
     isInGame = true;
@@ -431,8 +432,7 @@ function tutorial() {
         }
         },48000);
 }
-
-
+// tutorial button on click called the tutorial function
 tutorialbtn.onclick = function () {
     menubtnsSnd.play();
     tutorial();
@@ -476,7 +476,7 @@ openpacksbtn.onclick = function () {
         init();
     }
 };
-
+// shop function called on shop button on click
 function shop() {
     shoponclickSnd.play();
     document.getElementById("shopmenu").style.display = "block";
@@ -484,7 +484,7 @@ function shop() {
     document.getElementById("shopmenuContent").classList.add("openMenuAnim");
     document.getElementById("mainmenu").style.filter = "blur(5px)";
 }
-
+// shop button on click calls the shop function
 shopbtn.onclick = function () {
     shop();
 };
@@ -508,7 +508,7 @@ buybtn.onclick = function () {
         myGold += 100;
     }
 };
-
+// back button when in the pack screen
 backfrompackbtn.onclick = function () {
     openmenuSnd.play();
     crowdSnd.play();
@@ -520,7 +520,7 @@ backfrompackbtn.onclick = function () {
         document.getElementsByClassName("pack")[i].style.display = "none";
     }
 };
-
+// start tutorial button on click
 starttutorialbtn.onclick = function () {
     openmenuSnd.play();
     document.querySelector('#endturn').style.zIndex = "1";
@@ -718,7 +718,7 @@ starttutorialbtn.onclick = function () {
         document.querySelector("#tutorialmenu").style.display = "none";
     },125);
 };
-
+// done pack button on click
 donepackbtn.onclick = function () {
     document.getElementById('openpacks').classList.remove("openPackShakeScreenAnim");
     var packElements = document.getElementsByClassName("pack");
@@ -753,7 +753,8 @@ fpsbtn.onclick = function () {
         targetDiv.style.display = "block";
       }
 };
-
+/* on page load prompts the user to click in order to start/play the game and is 
+done in order to prevent chrome and other browsers policy conflicts such as CORS */
 const preventCORSbtn = document.getElementById('preventCORS');
 preventCORSbtn.onclick = function () {
     document.getElementById('preventCORS').classList.add("fadeOutAnim");
@@ -790,6 +791,7 @@ preventCORSbtn.onclick = function () {
         },4000);
     }
 }
+// button to skip the cinematic for the tutorial
 skipcinematicbtn.onclick = function () {
     tutorialIntroRunning = true;
     document.getElementById("skipcinematicbtn").style.display = "none";
@@ -822,6 +824,7 @@ skipcinematicbtn.onclick = function () {
     },1000);
 };
 
+// custom cursor when attacking with the use of svg
 let outercircle = document.getElementById('outercursor');
 const onMouseOuterMove = (e) =>{
   outercircle.style.left = e.pageX + 'px';

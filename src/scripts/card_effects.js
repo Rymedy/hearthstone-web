@@ -1,4 +1,6 @@
+// function for the sounds and effects when a card is placed onto the board
 function cardPlaceSnds() {
+    // stormwind champion card effects
     if (getNameOfElement == "Stormwind Champion") {
         let stormwindchampionSnd = new Audio("src/sounds/cardPlaceSnds/stormwind_champion_play.mp3")
         stormwindchampionSnd.play();
@@ -12,11 +14,13 @@ function cardPlaceSnds() {
             playerCardSlot2.children[i].children[1].children[0].style.color = "#00d70c";
         }
     }
+    // elven archer card effects
     else if (getNameOfElement == "Elven Archer") {
         let elvenarcherSnd = new Audio("src/sounds/cardPlaceSnds/elven_archer_play.mp3")
         elvenarcherSnd.play();
         elvenarcherSnd.volume = 0.7;
     }
+    // razorfen hunter card effects
     else if (getNameOfElement == "Razorfen Hunter") {
         let razorfenhunterSnd = new Audio("src/sounds/cardPlaceSnds/razorfen_hunter_play.mp3")
         razorfenhunterSnd.play();
@@ -30,6 +34,7 @@ function cardPlaceSnds() {
             }
         },1000);
     }
+    // ragnaros the firelord card effects
     else if (getNameOfElement == "Ragnaros the Firelord") {
         let ragnarosthefirelordSnd = new Audio("src/sounds/cardPlaceSnds/ragnaros_the_firelord_play.mp3")
         ragnarosthefirelordSnd.play();
@@ -37,6 +42,7 @@ function cardPlaceSnds() {
         fadeOutInMusic();
         playerCardSlot2.lastChild.children[4].style.visibility = "visible";
     }
+    // deathwing card effects
     else if (getNameOfElement == "Deathwing") {
         let deathwingSnd = new Audio("src/sounds/cardPlaceSnds/deathwing_play.mp3")
         deathwingSnd.play();
@@ -56,6 +62,7 @@ function cardPlaceSnds() {
             computerCardSlot.children[i].remove();
         }
     }
+    // gnomish inventor card effects
     else if (getNameOfElement == "Gnomish Inventor") {
         let gnomishinventorSnd = new Audio("src/sounds/cardPlaceSnds/gnomish_inventor_play.mp3")
         gnomishinventorSnd.play();
@@ -70,27 +77,32 @@ function cardPlaceSnds() {
         playerDeck.cards.shift();
         updateDeckCount();
     }
+    // bloodfen raptor card effects
     else if (getNameOfElement == "Bloodfen Raptor") {
         let bloodfenraptorSnd = new Audio("src/sounds/cardPlaceSnds/bloodfen_raptor_play.mp3")
         bloodfenraptorSnd.play();
         bloodfenraptorSnd.volume = 0.7;
     }
+    // boulderfist ogre card effects
     else if (getNameOfElement == "Boulderfist Ogre") {
         let boulderfistogreSnd = new Audio("src/sounds/cardPlaceSnds/boulderfist_ogre_play.mp3")
         boulderfistogreSnd.play();
         boulderfistogreSnd.volume = 0.7;
     }
+    // voodoo doctor card effects
     else if (getNameOfElement == "Voodoo Doctor") {
         let voodoodoctorSnd = new Audio("src/sounds/cardPlaceSnds/voodoo_doctor_play.mp3")
         voodoodoctorSnd.play();
         voodoodoctorSnd.volume = 0.7;
     }
+    // debout adventurer card effects
     else if (getNameOfElement == "Devout Adventurer") {
         let devoutadventurerSnd = new Audio("src/sounds/cardPlaceSnds/devout_adventurer_play.mp3")
         devoutadventurerSnd.play();
         playerCardSlot2.lastChild.classList.add("hasDivineShield");
         playerCardSlot2.lastChild.children[2].style.visibility = "visible";
     }
+    // elite tauren chieftain card effects
     else if (getNameOfElement == "Elite Tauren Chieftain") {
         let elitetaurenchieftainSnd = new Audio("src/sounds/cardPlaceSnds/elite_tauren_chieftain_play.mp3")
         elitetaurenchieftainSnd.play();
@@ -106,6 +118,7 @@ function cardPlaceSnds() {
         playerDeck.cards.shift();
         updateDeckCount();
     }
+    // leeroy jenkins card effects
     else if (getNameOfElement == "Leeroy Jenkins") {
         let leeyroyjenkinsSnd = new Audio("src/sounds/cardPlaceSnds/leeroy_jenkins_play.mp3")
         let leeyroyjenkinsmusicSnd = new Audio("src/sounds/cardPlaceSnds/leeroy_jenkins_music_play.mp3")
@@ -130,10 +143,12 @@ function cardPlaceSnds() {
         attack();
         computerCardSlot.style.transform = "translateY(17.5%)"; 
     }
+    // acidic swamp ooze card effects
     else if (getNameOfElement == "Acidic Swamp Ooze") {
         let acidicswampoozeSnd = new Audio("src/sounds/cardPlaceSnds/acidic_swamp_ooze_play.mp3")
         acidicswampoozeSnd.play();
     }
+    // sen'jin shieldmasta card effects
     else if (getNameOfElement == "Sen'jin Shieldmasta") {
         let senjinshieldmastaSnd = new Audio("src/sounds/cardPlaceSnds/senjin_shieldmasta_play.mp3")
         senjinshieldmastaSnd.play();
@@ -146,16 +161,19 @@ function cardPlaceSnds() {
             tauntSnd.play();
         },800);
     }
+    // archmage card effects
     else if (getNameOfElement == "Archmage") {
         let archmageSnd = new Audio("src/sounds/cardPlaceSnds/archmage_play.mp3")
         archmageSnd.play();
     }
+    // king krush card effects
     else if (getNameOfElement == "King Krush") {
         let kingkrushSnd = new Audio("src/sounds/cardPlaceSnds/king_krush_play.mp3")
         kingkrushSnd.play();
         attack();
         playerCardSlot2.lastChild.children[4].style.visibility = "visible";
     }
+    // lifedrinker card effects
     else if (getNameOfElement == "Lifedrinker") {
         let lifedrinkerSnd = new Audio("src/sounds/cardPlaceSnds/lifedrinker_play.mp3")
         lifedrinkerSnd.play();
@@ -169,7 +187,8 @@ function cardPlaceSnds() {
         } else if (playerHeroHealth == 29) {
             document.querySelector(".playerHeroHealth").innerText = playerHeroHealth + 1;
         }
-
+        /* deals 3 damage to the enemy hero and heals the player hero for 3 and 
+        displays the damage label for both the player and the opponent */
         document.querySelector("#computerdamagevalue").innerText = "-3";
         document.querySelector("#computerdamagecontainer").style.visibility = "visible";
         document.getElementById('computerdamagecontainer').style.opacity="1";
@@ -211,6 +230,7 @@ function cardPlaceSnds() {
             gameWon();
         }
     }
+    // murloc tidehunter card effects
     else if (getNameOfElement == "Murloc Tidehunter") {
         let murloctidehunterSnd = new Audio("src/sounds/cardPlaceSnds/murloc_tidehunter_play.mp3")
         murloctidehunterSnd.play();
@@ -225,10 +245,12 @@ function cardPlaceSnds() {
             }
         },1000);
     }
+    // murloc scout card effects
     else if (getNameOfElement == "Murloc Scout") {
         let murlocscoutSnd = new Audio("src/sounds/cardPlaceSnds/murloc_scout_play.mp3")
         murlocscoutSnd.play();
     }
+    // alexstrasza card effects
     else if (getNameOfElement == "Alexstrasza") {
         let alexstraszaSnd = new Audio("src/sounds/cardPlaceSnds/alexstrasza_play.mp3")
         let alexstraszamusicSnd = new Audio("src/sounds/cardPlaceSnds/alexstrasza_music_play.mp3")
@@ -239,6 +261,7 @@ function cardPlaceSnds() {
         },375);
         document.querySelector(".opposingHeroHealth").innerText = "15";
     }
+    // saronite chain gang card effects
     else if (getNameOfElement == "Saronite Chain Gang") {
         let saronitechaingangSnd = new Audio("src/sounds/cardPlaceSnds/saronite_chain_gang_play.mp3")
         saronitechaingangSnd.play();
@@ -260,6 +283,7 @@ function cardPlaceSnds() {
             },1000);
         },2000);
     }
+    // the lich king card effects
     else if (getNameOfElement == "The Lich King") {
         let lichkingSnd = new Audio("src/sounds/cardPlaceSnds/lich_king_play.mp3")
         lichkingSnd.play();
@@ -284,6 +308,7 @@ function cardPlaceSnds() {
     }
 }
 
+// function that fades the music out and back in over a period of 5.3 seconds
 function fadeOutInMusic() {
     lichkingOST.volume = 0.7;
     setTimeout(function() {
