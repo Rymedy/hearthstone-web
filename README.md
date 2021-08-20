@@ -27,7 +27,7 @@ TLDR: Each card can attack once per turn. Both players draw a card every turn. T
 
 ## Installation Manual
 If you would like to install the game to play locally (instead of playing it online) you can simply download the zip here on the github repository which can be found here: 
-![This image failed to load.](https://github.com/Rymedy/hearthstone-web/blob/master/src/images/installationmanualimg1.PNG)
+![This image failed to load.](https://github.com/Rymedy/hearthstone-web/blob/master/src/images/installationmanualimg1.png)
 Once the zip is installed, it can be found most likely in your downloads folder on the drive. Simply right click the folder (hearthstone-web-main) and select "Extract to "hearthstone-web-main\". Then simply open the folder, double click "index.html" and play the game!
 ## Where can I report glitches and bugs?
 You can report glitches and bugs in the project by simply making a request [here](https://github.com/Rymedy/hearthstone-web/issues).
