@@ -41,7 +41,7 @@ document.onreadystatechange = function () {
                 createPack();
             }
             document.getElementById("preventCORS").style.visibility = "visible";
-        },4000);
+        },250);
     }
   }
 
