@@ -1,16 +1,16 @@
 var id1 = 0;
 var id2 = 0;
 
+// creates a 'Deck' class where objects can be made from using the OOP
 class Deck {
 	constructor(cards = freshDeck()) {
 		this.cards = cards
 	}
-
-
+	// function that returns the length of the deck
 	get numberOfCards() {
 		return this.cards.length
 	}
-
+	// defines a shuffle function that shuffles the cards in the deck randomly
 	shuffle() {
 		for (let i = this.numberOfCards - 1; i > 0; i--) {
 			const newIndex = Math.floor(Math.random() * (i + 1))
@@ -20,6 +20,7 @@ class Deck {
 		}
 	}
 }
+// class to make objects for each card including the card stats and properties
 class MinionCard {
 	constructor(attack, health, mana, info, imageString, name, rarity) {
 		this.imageString = imageString;
@@ -30,6 +31,7 @@ class MinionCard {
 		this.mana = mana;
 		this.rarity = rarity;
 	}
+	// function to create the card in play element for the opponent
 	getComputerHTML() {
 		const computerCardDiv = document.createElement('div')
 		const computerAttackValueBackground = document.createElement('div')
@@ -54,6 +56,7 @@ class MinionCard {
 		id2 += 1
 		return computerCardDiv
 	}
+	// function to create the card in play element for the player
 	getPlayerHTML() {
 		const playerCardDiv = document.createElement('div')
 		const playerAttackValueBackground = document.createElement('div')
@@ -129,6 +132,7 @@ class MinionCard {
 		id1 += 1
 		return playerCardDiv
 	}
+	// function to create the card in hand element for the player
 	getPlayerCardsInHandHTML() {
 		const playerCardInHandDiv = document.createElement('div')
 		const playerCardFaceInHandDiv = document.createElement('div')
@@ -168,19 +172,19 @@ class MinionCard {
 		return playerCardInHandDiv
 	}
 }
-
+// function to create the full deck both the player and the opponent's deck
 function freshDeck() {
 	// deck in use by the player and computer
 	let murloc_scout = new MinionCard(1, 1, 0, "", "src/cards/murloc_scout.jpg", "Murloc Scout", "Common")
 	let alexstrasza = new MinionCard(8, 8, 9, "Battlecry: Set a hero's remaining Health to 15.", "src/cards/alexstrasza.jpg", "Alexstrasza", "Legendary")
 	let elite_tauren_chieftain = new MinionCard(5, 5, 5, "Battlecry: Give both players the power to ROCK! (Draw a card)", "src/cards/elite_tauren_chieftain.png", "Elite Tauren Chieftain", "Legendary")
 	let deathwing = new MinionCard(12, 12, 10, "Battlecry: Destroy all other minions and discard your hand.", "src/cards/deathwing.png", "Deathwing", "Legendary")
-	let elven_archer = new MinionCard(1, 1, 1, "Battlecry: Deal 1 damage.", "src/cards/elven_archer.jpg", "Elven Archer", "Common")
-	let voodoo_doctor = new MinionCard(2, 1, 1, "Battlecry: Restore 2 Health.", "src/cards/voodoo_doctor.jpg", "Voodoo Doctor", "Common")
+	let elven_archer = new MinionCard(1, 1, 1, "", "src/cards/elven_archer.jpg", "Elven Archer", "Common")
+	let voodoo_doctor = new MinionCard(2, 1, 1, "", "src/cards/voodoo_doctor.jpg", "Voodoo Doctor", "Common")
 	let king_krush = new MinionCard(8, 8, 9, "Charge", "src/cards/king_krush.jpg", "King Krush", "Legendary")
-	let ragnaros_the_firelord = new MinionCard(8, 8, 8, "Can't attack. At the end of your turn, deal 8 damage to a random enemy.", "src/cards/ragnaros_the_firelord.png", "Ragnaros the Firelord", "Legendary")
-	let lich_king = new MinionCard(8, 8, 8, "Taunt\nAt the end of your turn, add a random Death Knight card to your hand.", "src/cards/lich_king.jpg", "The Lich King", "Legendary")
-	let acidic_swamp_ooze = new MinionCard(3, 2, 2, "Battlecry: Destroy your opponent's weapon.", "src/cards/acidic_swamp_ooze.jpg", "Acidic Swamp Ooze", "Common")
+	let ragnaros_the_firelord = new MinionCard(8, 8, 8, "", "src/cards/ragnaros_the_firelord.png", "Ragnaros the Firelord", "Legendary")
+	let lich_king = new MinionCard(8, 8, 8, "Taunt", "src/cards/lich_king.jpg", "The Lich King", "Legendary")
+	let acidic_swamp_ooze = new MinionCard(3, 2, 2, "", "src/cards/acidic_swamp_ooze.jpg", "Acidic Swamp Ooze", "Common")
 	let bloodfen_raptor = new MinionCard(3, 2, 2, "", "src/cards/bloodfen_raptor.jpg", "Bloodfen Raptor", "Common")
 	let lifedrinker = new MinionCard(3, 3, 4, "Battlecry: Deal 3 damage to the enemy hero. Restore 3 Health to your hero.", "src/cards/lifedrinker.jpg", "Lifedrinker", "Rare")
 	let boar = new MinionCard(1, 1, 1, "", "src/cards/boar.jpg", "Boar", "Common")
@@ -190,9 +194,9 @@ function freshDeck() {
 	let gnomish_inventor = new MinionCard(2, 4, 4, "Battlecry: Draw a card.", "src/cards/gnomish_inventor.jpg", "Gnomish Inventor", "Common")
 	let senjin_shieldmasta = new MinionCard(3, 5, 4, "Taunt", "src/cards/senjin_shieldmasta.jpg", "Sen'jin Shieldmasta", "Common")
 	let saronite_chain_gang = new MinionCard(2, 3, 4, "Taunt\nBattlecry: Summon a copy of this minion.", "src/cards/saronite_chain_gang.jpg", "Saronite Chain Gang", "Rare")
-	let archmage = new MinionCard(4, 7, 6, "Spell Damage +1", "src/cards/archmage.jpg", "Archmage", "Common")
+	let archmage = new MinionCard(4, 7, 6, "", "src/cards/archmage.jpg", "Archmage", "Common")
 	let boulderfist_ogre = new MinionCard(6, 7, 6, "", "src/cards/boulderfist_ogre.jpg", "Boulderfist Ogre", "Common")
-	let stormwind_champion = new MinionCard(7, 7, 7, "Your other minions have +1/+1.", "src/cards/stormwind_champion.png", "Stormwind Champion", "Common")
+	let stormwind_champion = new MinionCard(7, 7, 7, "Battlecry: Your other minions have +1/+1.", "src/cards/stormwind_champion.png", "Stormwind Champion", "Common")
 	let whelp = new MinionCard(1, 1, 1, "", "src/cards/whelp.png", "Whelp", "Common")
 	let devout_adventurer = new MinionCard(2, 2, 2, "Divine Shield", "src/cards/devout_adventurer.jpg", "Devout Adventurer", "Common")
 	let coldwraith = new MinionCard(3, 4, 3, "Battlecry: If an enemy is Frozen, draw a card.", "src/cards/coldwraith.jpg", "Coldwraith", "Common")

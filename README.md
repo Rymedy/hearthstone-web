@@ -21,6 +21,7 @@ Finally also note some of the player's cards will have card effects which also h
 Battlecry = When the card is played the effect is played.
 Taunt = That card must be attacked and other cards cannot be attacked.
 Divine Shield = The card is invulnerable to any damage taken next, then breaks.
+Charge = Rally all allied cards to have the ability to attack when card is played.
 
 
 TLDR: Each card can attack once per turn. Both players draw a card every turn. The player has mana which is used to play cards down (which cost mana). To win you must attack the enemy hero until their health reaches 0. However when your hero's portrait reaches 0, you lose. Cards also have card effects which change gameplay strategies and decisions etc.
@@ -28,7 +29,7 @@ TLDR: Each card can attack once per turn. Both players draw a card every turn. T
 ## Installation Manual
 If you would like to install the game to play locally (instead of playing it online) you can simply download the zip here on the github repository which can be found here: 
 ![This image failed to load.](https://github.com/Rymedy/hearthstone-web/blob/master/src/images/installationmanualimg1.png)
-Once the zip is installed, it can be found most likely in your downloads folder on the drive. Simply right click the folder (hearthstone-web-main) and select "Extract to "hearthstone-web-main\". Then simply open the folder, double click "index.html" and play the game!
+Once the zip is installed, it can be found most likely in your downloads folder on the drive. Simply right click the folder (hearthstone-web-main) and select "Extract to "hearthstone-web-main\"". Then simply open the folder, double click "index.html" and play the game!
 ## Where can I report glitches and bugs?
 You can report glitches and bugs in the project by simply making a request [here](https://github.com/Rymedy/hearthstone-web/issues).
 
